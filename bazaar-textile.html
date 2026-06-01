@@ -1,0 +1,1742 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>芭莎纺织 · 产品目录</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&family=Noto+Sans+SC:wght@300;400;500&display=swap');
+
+:root {
+  --gold: #C8A96E;
+  --gold-light: #E8D5A8;
+  --gold-dark: #8B6F3E;
+  --ink: #1A1612;
+  --ink2: #3D3428;
+  --ink3: #6B5E4E;
+  --paper: #FAF7F2;
+  --paper2: #F2EDE4;
+  --paper3: #E8E0D4;
+  --white: #FFFFFF;
+  --red: #C0392B;
+  --green: #2D6A4F;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --tab-h: 60px;
+  --nav-h: 52px;
+  --bg-home: linear-gradient(135deg,#FAF7F2 0%,#F2EDE4 100%);
+  --bg-catalog: linear-gradient(135deg,#FAF7F2 0%,#F2EDE4 100%);
+  --bg-detail: linear-gradient(135deg,#FAF7F2 0%,#F2EDE4 100%);
+  --bg-profile: linear-gradient(135deg,#FAF7F2 0%,#F2EDE4 100%);
+  --bg-qr: linear-gradient(135deg,#FAF7F2 0%,#F2EDE4 100%);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:'Noto Sans SC',Arial,sans-serif;background:#2C2416;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:20px}
+.phone-shell{width:390px;height:844px;background:var(--paper);border-radius:44px;overflow:hidden;position:relative;box-shadow:0 40px 120px rgba(0,0,0,0.7),0 0 0 1px rgba(255,255,255,0.1);display:flex;flex-direction:column}
+.status-bar{height:44px;background:var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 24px 0 20px;flex-shrink:0}
+.status-bar .time{color:#fff;font-size:15px;font-weight:500}
+.status-icons{display:flex;align-items:center;gap:6px}
+.status-icons svg{fill:white}
+.screen{flex:1;overflow:hidden;position:relative;background:var(--paper)}
+.page{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;background:var(--paper);display:none;flex-direction:column}
+.page.active{display:flex}
+.page::-webkit-scrollbar{display:none}
+
+/* NAV */
+.nav-bar{height:var(--nav-h);background:var(--ink);display:flex;align-items:center;justify-content:center;position:relative;flex-shrink:0}
+.nav-bar .nav-title{color:var(--gold-light);font-family:'Noto Serif SC',serif;font-size:17px;font-weight:600;letter-spacing:2px}
+.nav-back{position:absolute;left:16px;color:var(--gold-light);font-size:13px;cursor:pointer;display:flex;align-items:center;gap:4px;padding:8px}
+.nav-right{position:absolute;right:16px;color:var(--gold-light);font-size:20px;cursor:pointer;padding:8px}
+
+/* TABS */
+.tab-bar{height:var(--tab-h);background:var(--ink);display:flex;align-items:stretch;flex-shrink:0;border-top:1px solid rgba(200,169,110,0.2)}
+.tab-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;position:relative}
+.tab-item .tab-icon{font-size:20px;transition:all .2s}
+.tab-item .tab-label{font-size:10px;color:rgba(255,255,255,0.4);transition:all .2s}
+.tab-item.active .tab-label{color:var(--gold)}
+
+/* LANG SWITCHER */
+.lang-fab{position:fixed;bottom:80px;left:30px;z-index:9999;display:none}
+.phone-shell .lang-fab{display:block;position:absolute;bottom:70px;left:12px}
+.lang-btn{width:44px;height:44px;border-radius:50%;background:var(--ink);border:2px solid var(--gold);color:var(--gold);font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,0.3);font-family:'Noto Sans SC',sans-serif;font-weight:500}
+.lang-menu{position:absolute;bottom:52px;left:0;background:var(--ink);border:1px solid rgba(200,169,110,0.3);border-radius:var(--radius);overflow:hidden;display:none;min-width:130px;box-shadow:0 8px 24px rgba(0,0,0,0.4)}
+.lang-menu.open{display:block}
+.lang-menu-item{padding:10px 14px;font-size:12px;color:var(--gold-light);cursor:pointer;transition:background .15s;white-space:nowrap}
+.lang-menu-item:hover,.lang-menu-item.active{background:rgba(200,169,110,0.15)}
+
+/* LOGIN */
+#page-login{background:var(--ink);justify-content:flex-start;overflow:hidden}
+.login-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 40% at 80% 20%,rgba(200,169,110,0.12) 0%,transparent 60%),radial-gradient(ellipse 40% 60% at 20% 80%,rgba(200,169,110,0.08) 0%,transparent 50%)}
+.login-pattern{position:absolute;top:0;left:0;right:0;height:60%;background-image:repeating-linear-gradient(45deg,transparent,transparent 30px,rgba(200,169,110,0.04) 30px,rgba(200,169,110,0.04) 31px)}
+.login-content{position:relative;z-index:2;padding:60px 32px 40px;display:flex;flex-direction:column;height:100%}
+.login-logo{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.logo-emblem{width:56px;height:56px;border:1.5px solid var(--gold);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2px;background:rgba(200,169,110,0.08)}
+.logo-zh{color:var(--gold);font-family:'Noto Serif SC',serif;font-size:16px;font-weight:600;letter-spacing:2px}
+.logo-en{color:rgba(200,169,110,0.6);font-size:7px;letter-spacing:1.5px}
+.login-brand-name{color:var(--gold-light);font-family:'Noto Serif SC',serif;font-size:22px;font-weight:600;letter-spacing:3px;line-height:1.3}
+.login-brand-sub{color:rgba(200,169,110,0.5);font-size:10px;letter-spacing:3px;margin-top:4px}
+.login-tagline{color:rgba(255,255,255,0.35);font-size:12px;letter-spacing:1px;margin:20px 0 32px;line-height:1.8}
+.login-tabs{display:flex;gap:0;margin-bottom:24px;border-bottom:1px solid rgba(200,169,110,0.2)}
+.login-tab{flex:1;text-align:center;padding:10px;font-size:14px;color:rgba(255,255,255,0.4);cursor:pointer;transition:all .2s;position:relative}
+.login-tab.active{color:var(--gold)}
+.login-tab.active::after{content:'';position:absolute;bottom:-1px;left:20%;right:20%;height:2px;background:var(--gold);border-radius:2px}
+.login-form{display:flex;flex-direction:column;gap:14px}
+.login-input-wrap{display:flex;align-items:center;background:rgba(255,255,255,0.06);border:1px solid rgba(200,169,110,0.2);border-radius:var(--radius-sm);padding:0 16px;height:48px;transition:border-color .2s}
+.login-input-wrap:focus-within{border-color:rgba(200,169,110,0.6)}
+.login-input-icon{color:rgba(200,169,110,0.6);font-size:16px;margin-right:10px}
+.login-input{flex:1;background:transparent;border:none;outline:none;color:#fff;font-size:14px;font-family:'Noto Sans SC',sans-serif}
+.login-input::placeholder{color:rgba(255,255,255,0.25)}
+.login-input-suffix{color:var(--gold);font-size:12px;cursor:pointer;white-space:nowrap}
+.btn-login{height:50px;background:var(--gold);border:none;border-radius:var(--radius-sm);color:var(--ink);font-family:'Noto Serif SC',serif;font-size:16px;font-weight:600;letter-spacing:3px;cursor:pointer;margin-top:8px;transition:opacity .2s,transform .1s}
+.btn-login:active{transform:scale(0.98);opacity:0.9}
+.login-divider{display:flex;align-items:center;gap:12px;margin:16px 0;color:rgba(255,255,255,0.2);font-size:12px}
+.login-divider::before,.login-divider::after{content:'';flex:1;height:1px;background:rgba(200,169,110,0.15)}
+.btn-wechat{height:50px;background:transparent;border:1px solid rgba(255,255,255,0.15);border-radius:var(--radius-sm);color:rgba(255,255,255,0.7);font-size:14px;font-family:'Noto Sans SC',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .2s}
+.wechat-dot{width:20px;height:20px;background:#07C160;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;color:white}
+.login-footer{margin-top:auto;text-align:center;color:rgba(255,255,255,0.2);font-size:11px;line-height:1.8;padding-top:16px}
+.guest-btn{height:42px;background:transparent;border:1px solid rgba(200,169,110,0.3);border-radius:var(--radius-sm);color:rgba(200,169,110,0.6);font-size:13px;font-family:'Noto Sans SC',sans-serif;cursor:pointer;margin-top:8px;letter-spacing:1px}
+
+/* HOME */
+.home-hero{background:var(--ink);padding:20px 20px 0;flex-shrink:0}
+.home-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.home-logo-row{display:flex;align-items:center;gap:10px}
+.home-logo-sq{width:36px;height:36px;border:1px solid var(--gold);border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px}
+.hlz{color:var(--gold);font-family:'Noto Serif SC',serif;font-size:11px;font-weight:600;letter-spacing:2px}
+.home-brand{color:var(--gold-light);font-family:'Noto Serif SC',serif;font-size:16px;letter-spacing:2px}
+.home-sub{color:rgba(200,169,110,0.5);font-size:9px;letter-spacing:2px}
+.home-icons{display:flex;gap:16px}
+.home-icon{color:rgba(200,169,110,0.7);font-size:20px;cursor:pointer}
+.home-search{display:flex;align-items:center;background:rgba(255,255,255,0.07);border-radius:var(--radius-sm);padding:0 14px;height:38px;gap:8px;margin-bottom:20px;border:1px solid rgba(200,169,110,0.15)}
+.home-search-input{background:transparent;border:none;outline:none;color:rgba(255,255,255,0.7);font-size:13px;font-family:'Noto Sans SC',sans-serif;flex:1}
+.home-search-input::placeholder{color:rgba(255,255,255,0.25)}
+.home-banner{border-radius:var(--radius) var(--radius) 0 0;overflow:hidden;height:160px;position:relative;background:linear-gradient(135deg,#2C2010 0%,#4A3520 50%,#2C2010 100%);cursor:pointer}
+.banner-texture{position:absolute;inset:0;background-image:repeating-linear-gradient(-45deg,transparent,transparent 20px,rgba(200,169,110,0.05) 20px,rgba(200,169,110,0.05) 21px)}
+.banner-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:24px 28px}
+.banner-season{color:var(--gold);font-size:10px;letter-spacing:3px;margin-bottom:8px}
+.banner-title{color:var(--gold-light);font-family:'Noto Serif SC',serif;font-size:22px;font-weight:600;letter-spacing:2px;line-height:1.4}
+.banner-sub{color:rgba(200,169,110,0.6);font-size:11px;letter-spacing:1px;margin-top:8px}
+.banner-dots{position:absolute;bottom:12px;right:20px;display:flex;gap:5px}
+.banner-dot{width:5px;height:5px;border-radius:50%;background:rgba(200,169,110,0.3)}
+.banner-dot.active{background:var(--gold);width:16px;border-radius:3px}
+.home-scroll{flex:1;overflow-y:auto;background:var(--paper)}
+.home-scroll::-webkit-scrollbar{display:none}
+.section-header{display:flex;align-items:center;justify-content:space-between;padding:20px 20px 12px}
+.section-title{font-family:'Noto Serif SC',serif;font-size:16px;color:var(--ink);font-weight:600;letter-spacing:1px;display:flex;align-items:center;gap:8px}
+.section-title::before{content:'';width:3px;height:16px;background:var(--gold);border-radius:2px}
+.section-more{font-size:12px;color:var(--gold-dark);cursor:pointer}
+.cat-scroll{display:flex;gap:12px;padding:0 20px 4px;overflow-x:auto}
+.cat-scroll::-webkit-scrollbar{display:none}
+.cat-item{display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;flex-shrink:0}
+.cat-icon{width:58px;height:58px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;transition:transform .2s;border:1px solid transparent}
+.cat-item:active .cat-icon{transform:scale(0.93)}
+.cat-c1{background:#F5EDD8;border-color:rgba(200,169,110,0.3)}
+.cat-c2{background:#E8EEF5;border-color:rgba(100,130,180,0.2)}
+.cat-c3{background:#F0EBF5;border-color:rgba(150,100,180,0.2)}
+.cat-c4{background:#E8F3EC;border-color:rgba(80,160,100,0.2)}
+.cat-c5{background:#F5E8E8;border-color:rgba(180,80,80,0.2)}
+.cat-name{font-size:11px;color:var(--ink3);white-space:nowrap}
+.prod-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 16px 20px}
+.prod-card{background:var(--white);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:transform .15s;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.prod-card:active{transform:scale(0.97)}
+.prod-img{height:130px;display:flex;align-items:center;justify-content:center;font-size:50px;position:relative}
+.prod-badge{position:absolute;top:8px;left:8px;background:var(--gold);color:var(--ink);font-size:9px;font-weight:500;padding:2px 7px;border-radius:4px;letter-spacing:0.5px}
+.prod-badge.new{background:var(--red);color:#fff}
+.prod-badge.hot{background:#E67E22;color:#fff}
+.prod-info{padding:10px 12px 12px}
+.prod-name{font-size:13px;color:var(--ink);font-weight:500;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.prod-spec{font-size:11px;color:var(--ink3);margin-bottom:8px}
+.prod-bottom{display:flex;align-items:center;justify-content:space-between}
+.prod-moq{font-size:10px;color:var(--ink3);background:var(--paper2);padding:2px 7px;border-radius:4px}
+.prod-inquiry{width:28px;height:28px;background:var(--ink);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:14px}
+.company-info-card{margin:12px 16px;background:var(--white);border-radius:var(--radius);padding:16px;box-shadow:0 2px 8px rgba(0,0,0,0.06);cursor:pointer}
+.company-info-title{font-family:'Noto Serif SC',serif;font-size:14px;color:var(--ink);font-weight:600;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between}
+.company-info-text{font-size:12px;color:var(--ink3);line-height:1.7}
+.company-media-row{display:flex;gap:8px;margin-top:10px;overflow-x:auto}
+.company-media-row::-webkit-scrollbar{display:none}
+.company-media-thumb{width:70px;height:70px;border-radius:8px;object-fit:cover;flex-shrink:0;background:var(--paper2);display:flex;align-items:center;justify-content:center;font-size:24px;border:1px solid var(--paper3)}
+
+/* CATALOG */
+.catalog-filter{background:var(--white);border-bottom:1px solid var(--paper3);flex-shrink:0}
+.filter-scroll{display:flex;gap:8px;padding:12px 16px;overflow-x:auto}
+.filter-scroll::-webkit-scrollbar{display:none}
+.filter-chip{flex-shrink:0;height:30px;padding:0 14px;border-radius:15px;font-size:12px;border:1px solid var(--paper3);background:transparent;color:var(--ink3);cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:4px;white-space:nowrap}
+.filter-chip.active{background:var(--ink);color:var(--gold-light);border-color:var(--ink)}
+.catalog-list{flex:1;overflow-y:auto;padding:12px 16px 20px;display:flex;flex-direction:column;gap:12px}
+.catalog-list::-webkit-scrollbar{display:none}
+.list-card{background:var(--white);border-radius:var(--radius);display:flex;gap:14px;padding:14px;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,0.05);transition:transform .15s}
+.list-card:active{transform:scale(0.98)}
+.list-img{width:88px;height:88px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:42px;flex-shrink:0;background:var(--paper2);overflow:hidden}
+.list-img img{width:100%;height:100%;object-fit:cover}
+.list-body{flex:1;display:flex;flex-direction:column;justify-content:space-between}
+.list-name{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:4px}
+.list-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
+.list-tag{font-size:10px;padding:1px 7px;border-radius:4px;background:var(--paper2);color:var(--ink3)}
+.list-meta{display:flex;align-items:center;justify-content:space-between}
+.list-moq{font-size:11px;color:var(--ink3)}
+.list-btn{font-size:11px;background:var(--ink);color:var(--gold-light);border:none;border-radius:6px;padding:5px 12px;cursor:pointer;font-family:'Noto Sans SC',sans-serif;letter-spacing:0.5px}
+
+/* DETAIL */
+.detail-gallery{height:260px;background:var(--paper2);display:flex;align-items:center;justify-content:center;font-size:90px;position:relative;flex-shrink:0;overflow:hidden}
+.detail-gallery-img{width:100%;height:100%;object-fit:cover}
+.gallery-indicator{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:5px}
+.gallery-dot{width:5px;height:5px;border-radius:50%;background:rgba(0,0,0,0.15)}
+.gallery-dot.active{background:var(--gold-dark);width:14px;border-radius:3px}
+.detail-body{flex:1;overflow-y:auto;background:var(--paper)}
+.detail-body::-webkit-scrollbar{display:none}
+.detail-header{padding:20px 20px 16px;background:var(--white)}
+.detail-tags{display:flex;gap:6px;margin-bottom:10px}
+.detail-tag{font-size:10px;padding:2px 8px;border-radius:4px}
+.tag-new{background:#FDECEA;color:var(--red)}
+.tag-cat{background:var(--paper2);color:var(--ink3)}
+.detail-name{font-family:'Noto Serif SC',serif;font-size:20px;color:var(--ink);font-weight:600;letter-spacing:1px;margin-bottom:6px}
+.detail-name-en{font-size:11px;color:var(--ink3);letter-spacing:1px;margin-bottom:12px}
+.detail-moq-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.detail-moq-badge{background:var(--paper2);border-radius:6px;padding:5px 12px;font-size:12px;color:var(--ink3)}
+.detail-moq-badge span{color:var(--ink);font-weight:500}
+.detail-section{background:var(--white);margin-top:8px;padding:16px 20px}
+.detail-section-title{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--paper3);display:flex;align-items:center;gap:6px}
+.detail-section-title::before{content:'';width:3px;height:13px;background:var(--gold);border-radius:2px}
+.spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.spec-item{background:var(--paper);border-radius:var(--radius-sm);padding:10px 12px}
+.spec-label{font-size:11px;color:var(--ink3);margin-bottom:3px}
+.spec-value{font-size:13px;color:var(--ink);font-weight:500}
+.color-swatches{display:flex;gap:10px;flex-wrap:wrap}
+.swatch{display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer}
+.swatch-circle{width:36px;height:36px;border-radius:50%;border:2px solid transparent;transition:border-color .15s}
+.swatch.selected .swatch-circle{border-color:var(--gold)}
+.swatch-name{font-size:10px;color:var(--ink3)}
+.cert-row{display:flex;gap:8px;flex-wrap:wrap}
+.cert-badge{background:#EEF7EE;color:var(--green);font-size:11px;padding:4px 10px;border-radius:6px;border:1px solid rgba(45,106,79,0.2)}
+.detail-actions{padding:16px 20px;background:var(--white);margin-top:8px;display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.btn-inquiry{height:50px;background:var(--ink);border:none;border-radius:var(--radius-sm);color:var(--gold-light);font-family:'Noto Serif SC',serif;font-size:15px;letter-spacing:2px;cursor:pointer;transition:opacity .2s}
+.btn-inquiry:active{opacity:0.85}
+.btn-whatsapp{height:44px;background:#07C160;border:none;border-radius:var(--radius-sm);color:#fff;font-size:14px;font-family:'Noto Sans SC',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
+
+/* COMMENTS */
+.comment-section{background:var(--white);margin-top:8px;padding:16px 20px}
+.comment-list{display:flex;flex-direction:column;gap:12px;margin-bottom:14px}
+.comment-item{background:var(--paper);border-radius:var(--radius-sm);padding:12px}
+.comment-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.comment-user{font-size:12px;font-weight:500;color:var(--ink)}
+.comment-time{font-size:10px;color:var(--ink3)}
+.comment-text{font-size:12px;color:var(--ink2);line-height:1.6}
+.comment-contact{font-size:11px;color:var(--gold-dark);margin-top:4px}
+.comment-input-wrap{display:flex;flex-direction:column;gap:8px}
+.comment-input{width:100%;height:72px;background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);padding:10px 12px;font-size:13px;font-family:'Noto Sans SC',sans-serif;color:var(--ink);outline:none;resize:none;line-height:1.5}
+.comment-input:focus{border-color:var(--gold)}
+.comment-contact-input{width:100%;height:38px;background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);padding:0 12px;font-size:12px;font-family:'Noto Sans SC',sans-serif;color:var(--ink);outline:none}
+.comment-contact-input:focus{border-color:var(--gold)}
+.comment-submit-row{display:flex;gap:8px}
+.btn-comment-submit{flex:1;height:38px;background:var(--ink);border:none;border-radius:var(--radius-sm);color:var(--gold-light);font-size:13px;font-family:'Noto Sans SC',sans-serif;cursor:pointer;letter-spacing:1px}
+
+/* INQUIRY FORM */
+.form-scroll{flex:1;overflow-y:auto;padding:16px 20px 24px}
+.form-scroll::-webkit-scrollbar{display:none}
+.form-product-preview{display:flex;gap:12px;align-items:center;background:var(--white);border-radius:var(--radius);padding:12px 14px;margin-bottom:20px;border:1px solid rgba(200,169,110,0.25)}
+.fpp-img{font-size:36px}
+.fpp-name{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:3px}
+.fpp-sub{font-size:11px;color:var(--ink3)}
+.form-group{margin-bottom:16px}
+.form-label{font-size:12px;color:var(--ink3);margin-bottom:6px;display:block}
+.form-required{color:var(--red)}
+.form-input{width:100%;height:44px;background:var(--white);border:1px solid var(--paper3);border-radius:var(--radius-sm);padding:0 14px;font-size:14px;font-family:'Noto Sans SC',sans-serif;color:var(--ink);outline:none;transition:border-color .2s}
+.form-input:focus{border-color:var(--gold)}
+.form-input::placeholder{color:rgba(107,94,78,0.4)}
+.form-select{width:100%;height:44px;background:var(--white);border:1px solid var(--paper3);border-radius:var(--radius-sm);padding:0 14px;font-size:14px;font-family:'Noto Sans SC',sans-serif;color:var(--ink);outline:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' viewBox='0 0 24 24'%3E%3Cpath stroke='%236B5E4E' stroke-width='2' stroke-linecap='round' d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+.form-textarea{width:100%;height:90px;background:var(--white);border:1px solid var(--paper3);border-radius:var(--radius-sm);padding:12px 14px;font-size:14px;font-family:'Noto Sans SC',sans-serif;color:var(--ink);outline:none;resize:none;transition:border-color .2s;line-height:1.6}
+.form-textarea:focus{border-color:var(--gold)}
+.form-textarea::placeholder{color:rgba(107,94,78,0.4)}
+.form-type-row{display:flex;gap:8px;flex-wrap:wrap}
+.type-chip{flex:1;min-width:80px;height:36px;border:1px solid var(--paper3);border-radius:var(--radius-sm);background:transparent;color:var(--ink3);font-size:12px;font-family:'Noto Sans SC',sans-serif;cursor:pointer;transition:all .15s}
+.type-chip.selected{background:var(--ink);color:var(--gold-light);border-color:var(--ink)}
+.btn-submit{width:100%;height:52px;background:var(--ink);border:none;border-radius:var(--radius-sm);color:var(--gold-light);font-family:'Noto Serif SC',serif;font-size:16px;letter-spacing:3px;cursor:pointer;margin-top:8px;transition:opacity .2s}
+.btn-submit:active{opacity:0.85}
+
+/* PROFILE */
+.profile-hero{background:var(--ink);padding:28px 24px 32px;flex-shrink:0}
+.profile-avatar-row{display:flex;align-items:center;gap:16px;margin-bottom:16px}
+.profile-avatar{width:64px;height:64px;border-radius:50%;background:rgba(200,169,110,0.15);border:2px solid rgba(200,169,110,0.4);display:flex;align-items:center;justify-content:center;font-size:28px}
+.profile-name{color:var(--gold-light);font-size:18px;font-weight:500;margin-bottom:4px}
+.profile-email{color:rgba(200,169,110,0.5);font-size:12px}
+.profile-badges{display:flex;gap:8px;margin-top:10px}
+.profile-badge{padding:3px 10px;border-radius:5px;font-size:11px}
+.pb-vip{background:rgba(200,169,110,0.15);color:var(--gold);border:1px solid rgba(200,169,110,0.3)}
+.pb-country{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.1)}
+.pb-admin{background:rgba(192,57,43,0.2);color:#E74C3C;border:1px solid rgba(192,57,43,0.3)}
+.profile-scroll{flex:1;overflow-y:auto}
+.profile-scroll::-webkit-scrollbar{display:none}
+.profile-stats{display:grid;grid-template-columns:repeat(3,1fr);background:var(--white);border-bottom:1px solid var(--paper3);padding:16px 0}
+.stat-item{text-align:center;border-right:1px solid var(--paper3)}
+.stat-item:last-child{border-right:none}
+.stat-num{font-size:22px;font-weight:500;color:var(--ink);font-family:'Noto Serif SC',serif}
+.stat-label{font-size:11px;color:var(--ink3);margin-top:2px}
+.profile-section{background:var(--white);margin-top:8px;padding:0 20px}
+.profile-item{display:flex;align-items:center;padding:14px 0;border-bottom:1px solid var(--paper3);cursor:pointer}
+.profile-item:last-child{border-bottom:none}
+.profile-item-icon{font-size:18px;margin-right:12px;width:24px;text-align:center}
+.profile-item-label{flex:1;font-size:14px;color:var(--ink)}
+.profile-item-right{color:var(--ink3);font-size:12px}
+.profile-item-arrow{color:var(--paper3);font-size:16px;margin-left:6px}
+
+/* QR */
+.qr-page-content{flex:1;overflow-y:auto;display:flex;flex-direction:column;align-items:center;padding:30px 20px 40px;gap:20px}
+.qr-page-content::-webkit-scrollbar{display:none}
+.qr-card{background:var(--white);border-radius:20px;padding:28px 28px 20px;display:flex;flex-direction:column;align-items:center;width:280px;box-shadow:0 4px 24px rgba(0,0,0,0.08);border:1px solid var(--paper3)}
+.qr-company-header{display:flex;align-items:center;gap:10px;margin-bottom:20px;width:100%}
+.qr-logo-sq{width:36px;height:36px;border:1.5px solid var(--gold);border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;background:var(--ink)}
+.qlz{color:var(--gold);font-family:'Noto Serif SC',serif;font-size:10px;letter-spacing:2px}
+.qr-co-name{font-family:'Noto Serif SC',serif;font-size:14px;color:var(--ink);font-weight:600;letter-spacing:1px}
+.qr-frame{width:180px;height:180px;padding:10px;border:1.5px solid var(--paper3);border-radius:12px;position:relative;background:var(--white);margin-bottom:12px}
+.qr-frame svg{width:100%;height:100%}
+.qr-logo-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:36px;height:36px;background:var(--white);border-radius:6px;border:1px solid rgba(200,169,110,0.3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px}
+.qlz2{color:var(--gold-dark);font-family:'Noto Serif SC',serif;font-size:9px;letter-spacing:1px}
+.qr-caption{font-size:11px;color:var(--ink3);text-align:center;margin-bottom:4px}
+.qr-url{font-size:10px;color:var(--gold-dark);font-family:monospace}
+.qr-separator{width:100%;height:1px;background:var(--paper3);margin:12px 0}
+.qr-scan-hint{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--ink3)}
+.qr-hint-dot{width:6px;height:6px;border-radius:50%;background:#07C160}
+.qr-actions{display:flex;gap:10px;width:100%}
+.qr-btn{flex:1;height:44px;border-radius:var(--radius-sm);font-size:13px;font-family:'Noto Sans SC',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
+.qr-btn-primary{background:var(--ink);border:none;color:var(--gold-light)}
+.qr-btn-secondary{background:transparent;border:1px solid var(--paper3);color:var(--ink3)}
+.qr-type-tabs{display:flex;gap:8px;width:100%}
+.qr-type-tab{flex:1;height:36px;border:1px solid var(--paper3);border-radius:var(--radius-sm);background:transparent;color:var(--ink3);font-size:12px;font-family:'Noto Sans SC',sans-serif;cursor:pointer;transition:all .15s}
+.qr-type-tab.active{background:var(--ink);color:var(--gold-light);border-color:var(--ink)}
+
+/* ADMIN PANEL */
+#page-admin{background:var(--paper)}
+.admin-section{background:var(--white);margin:8px 16px;border-radius:var(--radius);overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.admin-section-header{padding:14px 16px;background:var(--ink);color:var(--gold-light);font-size:14px;font-weight:500;font-family:'Noto Serif SC',serif;letter-spacing:1px;display:flex;align-items:center;justify-content:space-between}
+.admin-section-body{padding:14px 16px}
+.admin-input{width:100%;height:40px;background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);padding:0 12px;font-size:13px;font-family:'Noto Sans SC',sans-serif;color:var(--ink);outline:none;margin-bottom:8px}
+.admin-input:focus{border-color:var(--gold)}
+.admin-textarea{width:100%;height:80px;background:var(--paper);border:1px solid var(--paper3);border-radius:var(--radius-sm);padding:10px 12px;font-size:13px;font-family:'Noto Sans SC',sans-serif;color:var(--ink);outline:none;resize:none;margin-bottom:8px;line-height:1.5}
+.admin-textarea:focus{border-color:var(--gold)}
+.admin-btn{height:36px;padding:0 16px;background:var(--ink);border:none;border-radius:var(--radius-sm);color:var(--gold-light);font-size:12px;font-family:'Noto Sans SC',sans-serif;cursor:pointer;letter-spacing:0.5px}
+.admin-btn-sm{height:30px;padding:0 12px;background:var(--ink);border:none;border-radius:6px;color:var(--gold-light);font-size:11px;font-family:'Noto Sans SC',sans-serif;cursor:pointer}
+.admin-btn-danger{background:#C0392B}
+.admin-btn-warn{background:#E67E22}
+.admin-user-row{display:flex;align-items:center;padding:10px 0;border-bottom:1px solid var(--paper3);gap:10px;font-size:12px}
+.admin-user-row:last-child{border-bottom:none}
+.admin-user-name{flex:1;color:var(--ink);font-weight:500}
+.admin-user-role{font-size:10px;padding:2px 7px;border-radius:4px;background:var(--paper2);color:var(--ink3);margin-right:4px}
+.admin-user-blocked{background:#FDECEA;color:var(--red)}
+.admin-prod-row{display:flex;align-items:center;padding:10px 0;border-bottom:1px solid var(--paper3);gap:10px}
+.admin-prod-row:last-child{border-bottom:none}
+.admin-prod-emoji{font-size:24px;width:36px;text-align:center}
+.admin-prod-info{flex:1}
+.admin-prod-name{font-size:13px;color:var(--ink);font-weight:500}
+.admin-prod-sub{font-size:11px;color:var(--ink3);margin-top:2px}
+.admin-action-row{display:flex;gap:6px}
+.bg-picker-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.bg-option{height:50px;border-radius:var(--radius-sm);cursor:pointer;border:2px solid transparent;transition:border-color .15s;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--ink3)}
+.bg-option.selected{border-color:var(--gold)}
+.media-upload-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.media-thumb{width:60px;height:60px;border-radius:8px;background:var(--paper2);border:1px solid var(--paper3);display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;position:relative;overflow:hidden}
+.media-thumb img,.media-thumb video{width:100%;height:100%;object-fit:cover}
+.media-add{border:1.5px dashed var(--paper3);cursor:pointer}
+.media-add:hover{border-color:var(--gold)}
+.tab-scroll{display:flex;overflow-x:auto;background:var(--white);border-bottom:1px solid var(--paper3);flex-shrink:0}
+.tab-scroll::-webkit-scrollbar{display:none}
+.tab-scroll-item{flex-shrink:0;padding:10px 16px;font-size:12px;color:var(--ink3);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap}
+.tab-scroll-item.active{color:var(--ink);border-bottom-color:var(--gold);font-weight:500}
+.admin-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.admin-stat-box{background:var(--paper);border-radius:var(--radius-sm);padding:12px;text-align:center}
+.admin-stat-num{font-size:24px;font-weight:500;color:var(--ink);font-family:'Noto Serif SC',serif}
+.admin-stat-label{font-size:11px;color:var(--ink3);margin-top:2px}
+.comment-admin-row{display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid var(--paper3);font-size:12px}
+.comment-admin-row:last-child{border-bottom:none}
+.comment-admin-body{flex:1}
+.comment-admin-user{font-weight:500;color:var(--ink);margin-bottom:2px}
+.comment-admin-text{color:var(--ink3);line-height:1.5}
+
+/* CHANGE PASSWORD */
+#page-changepass{background:var(--paper)}
+.change-pass-body{flex:1;padding:20px;display:flex;flex-direction:column;gap:14px}
+
+/* SUCCESS */
+.success-overlay{display:none;position:absolute;inset:0;background:rgba(26,22,18,0.7);z-index:100;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.success-overlay.show{display:flex}
+.success-card{background:var(--white);border-radius:20px;padding:36px 32px;text-align:center;width:300px;animation:popIn .3s cubic-bezier(.34,1.56,.64,1)}
+@keyframes popIn{from{transform:scale(0.8);opacity:0}to{transform:scale(1);opacity:1}}
+.success-icon{font-size:52px;margin-bottom:16px}
+.success-title{font-family:'Noto Serif SC',serif;font-size:20px;color:var(--ink);margin-bottom:8px;font-weight:600}
+.success-sub{font-size:13px;color:var(--ink3);line-height:1.7;margin-bottom:24px}
+.success-btn{width:100%;height:46px;background:var(--ink);border:none;border-radius:var(--radius-sm);color:var(--gold-light);font-family:'Noto Serif SC',serif;font-size:15px;letter-spacing:2px;cursor:pointer}
+
+/* TOAST */
+.toast{position:absolute;bottom:100px;left:50%;transform:translateX(-50%);background:rgba(26,22,18,0.9);color:var(--gold-light);font-size:13px;padding:10px 20px;border-radius:20px;white-space:nowrap;z-index:200;opacity:0;transition:opacity .3s;pointer-events:none}
+.toast.show{opacity:1}
+
+/* MODAL */
+.modal-overlay{display:none;position:absolute;inset:0;background:rgba(26,22,18,0.7);z-index:150;align-items:flex-end;justify-content:center}
+.modal-overlay.show{display:flex}
+.modal-sheet{background:var(--white);border-radius:20px 20px 0 0;width:100%;padding:20px;max-height:70%;overflow-y:auto}
+.modal-sheet::-webkit-scrollbar{display:none}
+.modal-title{font-family:'Noto Serif SC',serif;font-size:16px;color:var(--ink);font-weight:600;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--paper3)}
+.modal-close{float:right;font-size:20px;color:var(--ink3);cursor:pointer;margin-left:8px}
+
+/* ANIMATIONS */
+.page-enter{animation:slideUp .25s ease forwards}
+@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+
+/* ADMIN BADGE on edit buttons */
+.edit-fab{display:none;position:absolute;top:8px;right:8px;background:var(--gold);border:none;border-radius:6px;color:var(--ink);font-size:11px;padding:4px 8px;cursor:pointer;font-family:'Noto Sans SC',sans-serif;z-index:10;font-weight:500}
+.admin-mode .edit-fab{display:block}
+.guest-banner{background:rgba(200,169,110,0.12);border:1px solid rgba(200,169,110,0.25);margin:12px 16px;border-radius:var(--radius-sm);padding:10px 14px;font-size:12px;color:var(--ink3);text-align:center;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="phone-shell" id="appShell">
+
+  <!-- Status Bar -->
+  <div class="status-bar">
+    <span class="time" id="statusTime">9:41</span>
+    <div class="status-icons">
+      <svg width="16" height="12" viewBox="0 0 16 12"><rect x="0" y="3" width="3" height="9" rx="1" opacity=".4"/><rect x="4" y="2" width="3" height="10" rx="1" opacity=".6"/><rect x="8" y="0" width="3" height="12" rx="1" opacity=".8"/><rect x="12" y="0" width="3" height="12" rx="1"/></svg>
+      <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 2C5 2 2.5 3.5 1 5.5L3 7C4 5.5 5.8 4.5 8 4.5S12 5.5 13 7l2-1.5C13.5 3.5 11 2 8 2z" opacity=".4"/><path d="M8 5c-1.8 0-3.2.8-4.2 2L6 8.5C6.6 7.6 7.2 7.2 8 7.2s1.4.4 2 1.3L12.2 7C11.2 5.8 9.8 5 8 5z" opacity=".7"/><circle cx="8" cy="10.5" r="1.5"/></svg>
+      <svg width="25" height="12" viewBox="0 0 25 12"><rect x="0" y="1" width="22" height="10" rx="2.5" fill="none" stroke="white" stroke-width="1" opacity=".35"/><rect x="23" y="3.5" width="2" height="5" rx="1" fill="white" opacity=".4"/><rect x="1.5" y="2.5" width="16" height="7" rx="1.5" fill="white"/></svg>
+    </div>
+  </div>
+
+  <div class="screen" id="mainScreen">
+
+    <!-- ═══ LOGIN ═══ -->
+    <div class="page active" id="page-login" style="background:var(--ink)">
+      <div class="login-bg"></div>
+      <div class="login-pattern"></div>
+      <div class="login-content">
+        <div class="login-logo">
+          <div class="logo-emblem">
+            <span class="logo-zh">芭莎</span>
+            <span class="logo-en">BAZAAR</span>
+          </div>
+          <div>
+            <div class="login-brand-name" data-i18n="brandName">芭莎纺织</div>
+            <div class="login-brand-sub">BAZAAR TEXTILE · GLOBAL CATALOG</div>
+          </div>
+        </div>
+        <div class="login-tagline" data-i18n="tagline">优质面料，触达全球<br>Quality Fabric, Global Reach</div>
+        <div class="login-tabs">
+          <div class="login-tab active" onclick="switchLoginTab('email',this)" data-i18n="emailLogin">邮箱登录</div>
+          <div class="login-tab" onclick="switchLoginTab('phone',this)" data-i18n="phoneLogin">手机号登录</div>
+        </div>
+        <div class="login-form" id="login-form-email">
+          <div class="login-input-wrap">
+            <span class="login-input-icon">✉</span>
+            <input class="login-input" id="loginUser" type="text" placeholder="账号 / Email / Phone" autocomplete="username">
+          </div>
+          <div class="login-input-wrap">
+            <span class="login-input-icon">🔑</span>
+            <input class="login-input" id="loginPass" type="password" placeholder="密码 Password" autocomplete="current-password">
+          </div>
+          <button class="btn-login" onclick="doLogin()" data-i18n="loginBtn">登  录</button>
+        </div>
+        <div class="login-form" id="login-form-phone" style="display:none">
+          <div class="login-input-wrap">
+            <span class="login-input-icon">📱</span>
+            <input class="login-input" type="text" placeholder="+86  手机号码">
+          </div>
+          <div class="login-input-wrap">
+            <span class="login-input-icon">🔑</span>
+            <input class="login-input" type="text" placeholder="短信验证码">
+            <span class="login-input-suffix" data-i18n="getCode">获取验证码</span>
+          </div>
+          <button class="btn-login" onclick="doLogin()" data-i18n="loginBtn">登  录</button>
+        </div>
+        <div class="login-divider" data-i18n="or">或</div>
+        <button class="btn-wechat" onclick="doGuestLogin()">
+          <div class="wechat-dot">👤</div>
+          <span data-i18n="guestLogin">游客模式浏览 · Guest Mode</span>
+        </button>
+        <div class="login-footer" data-i18n="loginFooter">登录即表示同意《用户协议》和《隐私政策》<br>Bazaar Textile Co., Ltd.</div>
+      </div>
+    </div>
+
+    <!-- ═══ HOME ═══ -->
+    <div class="page" id="page-home">
+      <div class="home-hero">
+        <div class="home-header">
+          <div class="home-logo-row">
+            <div class="home-logo-sq"><span class="hlz">芭莎</span></div>
+            <div>
+              <div class="home-brand" data-i18n="brandName">芭莎纺织</div>
+              <div class="home-sub">BAZAAR TEXTILE</div>
+            </div>
+          </div>
+          <div class="home-icons">
+            <span class="home-icon" onclick="goPage('page-qr')" title="分享">📲</span>
+            <span class="home-icon" id="adminEntryBtn" onclick="goPage('page-admin')" title="管理后台" style="display:none">⚙️</span>
+          </div>
+        </div>
+        <div class="home-search">
+          <span>🔍</span>
+          <input class="home-search-input" id="searchInput" placeholder="搜索产品、面料、色号…" oninput="doSearch(this.value)">
+        </div>
+        <div class="home-banner" onclick="goPage('page-catalog')">
+          <div class="banner-texture"></div>
+          <div class="banner-content">
+            <div class="banner-season" data-i18n="bannerSeason">2025 春夏新品</div>
+            <div class="banner-title" id="homeBannerTitle" data-i18n="bannerTitle">天丝系列<br>精工上新</div>
+            <div class="banner-sub" data-i18n="bannerSub">TENCEL COLLECTION · NEW ARRIVAL</div>
+          </div>
+          <div class="banner-dots">
+            <div class="banner-dot active"></div>
+            <div class="banner-dot"></div>
+            <div class="banner-dot"></div>
+          </div>
+        </div>
+      </div>
+      <div class="home-scroll" id="homeScrollArea">
+        <div id="guestBanner" class="guest-banner" style="display:none" data-i18n="guestBannerText">您正在以游客身份浏览 · 登录后可提交询盘 · You are browsing as a guest</div>
+        <!-- Company Info -->
+        <div class="company-info-card" id="companyInfoCard" style="position:relative">
+          <button class="edit-fab" onclick="openEditCompany()">✏️ 编辑</button>
+          <div class="company-info-title">
+            <span data-i18n="companyInfoTitle">关于我们</span>
+          </div>
+          <div class="company-info-text" id="companyInfoText">芭莎纺织成立于2008年，专注于高端面料研发与出口，产品远销全球60余个国家。拥有OEKO-TEX、GOTS等国际认证，年产能超500万米。</div>
+          <div class="company-media-row" id="companyMediaRow"></div>
+        </div>
+        <div class="section-header">
+          <div class="section-title" data-i18n="categories">产品分类</div>
+        </div>
+        <div class="cat-scroll">
+          <div class="cat-item" onclick="filterByCategory('天丝系列')"><div class="cat-icon cat-c1">🧵</div><div class="cat-name" data-i18n="cat1">天丝面料</div></div>
+          <div class="cat-item" onclick="filterByCategory('棉麻系列')"><div class="cat-icon cat-c2">🔵</div><div class="cat-name" data-i18n="cat2">棉麻系列</div></div>
+          <div class="cat-item" onclick="filterByCategory('丝绒面料')"><div class="cat-icon cat-c3">🪡</div><div class="cat-name" data-i18n="cat3">丝绒面料</div></div>
+          <div class="cat-item" onclick="filterByCategory('环保系列')"><div class="cat-icon cat-c4">🌿</div><div class="cat-name" data-i18n="cat4">环保系列</div></div>
+          <div class="cat-item" onclick="filterByCategory('提花系列')"><div class="cat-icon cat-c5">✨</div><div class="cat-name" data-i18n="cat5">提花系列</div></div>
+        </div>
+        <div class="section-header">
+          <div class="section-title" data-i18n="hotProducts">热门产品</div>
+          <div class="section-more" onclick="goPage('page-catalog')" data-i18n="viewAll">查看全部 ›</div>
+        </div>
+        <div class="prod-grid" id="homeProdGrid"></div>
+      </div>
+      <div class="tab-bar">
+        <div class="tab-item active" onclick="switchTab('home',this)"><span class="tab-icon">🏠</span><span class="tab-label" data-i18n="tabHome">首页</span></div>
+        <div class="tab-item" onclick="switchTab('catalog',this)"><span class="tab-icon">📦</span><span class="tab-label" data-i18n="tabCatalog">产品</span></div>
+        <div class="tab-item" onclick="switchTab('qr',this)"><span class="tab-icon">📲</span><span class="tab-label" data-i18n="tabShare">分享</span></div>
+        <div class="tab-item" onclick="switchTab('profile',this)"><span class="tab-icon">👤</span><span class="tab-label" data-i18n="tabProfile">我的</span></div>
+      </div>
+    </div>
+
+    <!-- ═══ CATALOG ═══ -->
+    <div class="page" id="page-catalog">
+      <div class="nav-bar">
+        <div class="nav-back" onclick="goBack()">‹ <span data-i18n="back">返回</span></div>
+        <div class="nav-title" data-i18n="catalog">产品目录</div>
+        <div class="nav-right" onclick="openAddProduct()" id="addProductBtn" style="display:none;font-size:14px;color:var(--gold)">+ 添加</div>
+      </div>
+      <div class="catalog-filter">
+        <div class="filter-scroll" id="catalogFilterScroll">
+          <div class="filter-chip active" onclick="filterCatalog('全部',this)" data-i18n="filterAll">全部</div>
+          <div class="filter-chip" onclick="filterCatalog('天丝系列',this)" data-i18n="cat1">天丝系列</div>
+          <div class="filter-chip" onclick="filterCatalog('棉麻系列',this)" data-i18n="cat2">棉麻系列</div>
+          <div class="filter-chip" onclick="filterCatalog('丝绒面料',this)" data-i18n="cat3">丝绒面料</div>
+          <div class="filter-chip" onclick="filterCatalog('环保系列',this)" data-i18n="cat4">环保系列</div>
+          <div class="filter-chip" onclick="filterCatalog('提花系列',this)" data-i18n="cat5">提花系列</div>
+        </div>
+      </div>
+      <div class="catalog-list" id="catalogList"></div>
+    </div>
+
+    <!-- ═══ DETAIL ═══ -->
+    <div class="page" id="page-detail">
+      <div class="nav-bar" style="position:relative">
+        <div class="nav-back" onclick="goBack()">‹ <span data-i18n="back">返回</span></div>
+        <div class="nav-title" data-i18n="productDetail">产品详情</div>
+        <div class="nav-right" id="detailEditBtn" onclick="openEditProduct()" style="display:none;font-size:14px;color:var(--gold)">✏️编辑</div>
+      </div>
+      <div class="detail-body" id="detailBodyContent"></div>
+    </div>
+
+    <!-- ═══ INQUIRY ═══ -->
+    <div class="page" id="page-inquiry">
+      <div class="nav-bar">
+        <div class="nav-back" onclick="goBack()">‹ <span data-i18n="back">返回</span></div>
+        <div class="nav-title" data-i18n="inquiry">提交询盘</div>
+      </div>
+      <div class="form-scroll">
+        <div class="form-product-preview" id="inquiryProductPreview"></div>
+        <div class="form-group">
+          <label class="form-label" data-i18n="inquiryType">询盘类型 <span class="form-required">*</span></label>
+          <div class="form-type-row">
+            <button class="type-chip selected" onclick="toggleType(this)" data-i18n="priceInquiry">询价报价</button>
+            <button class="type-chip" onclick="toggleType(this)" data-i18n="sampleCard">索要样卡</button>
+            <button class="type-chip" onclick="toggleType(this)" data-i18n="productCatalog">产品目录</button>
+            <button class="type-chip" onclick="toggleType(this)" data-i18n="moqInquiry">咨询 MOQ</button>
+          </div>
+        </div>
+        <div class="form-group"><label class="form-label" data-i18n="nameLabel">姓名 <span class="form-required">*</span></label><input class="form-input" id="inqName" type="text" placeholder="您的姓名 / Your Name"></div>
+        <div class="form-group"><label class="form-label" data-i18n="companyLabel">公司名称</label><input class="form-input" id="inqCompany" type="text" placeholder="公司全称 / Company Name"></div>
+        <div class="form-group">
+          <label class="form-label" data-i18n="countryLabel">所在国家 <span class="form-required">*</span></label>
+          <select class="form-select" id="inqCountry">
+            <option value="">请选择国家 / Select Country</option>
+            <option>中国大陆</option><option>俄罗斯</option><option>美国</option><option>英国</option><option>德国</option><option>法国</option><option>阿联酋</option><option>印度</option><option>巴西</option><option>其他</option>
+          </select>
+        </div>
+        <div class="form-group"><label class="form-label" data-i18n="emailLabel">联系邮箱 <span class="form-required">*</span></label><input class="form-input" id="inqEmail" type="email" placeholder="email@company.com"></div>
+        <div class="form-group"><label class="form-label">WhatsApp / 电话</label><input class="form-input" id="inqPhone" type="text" placeholder="+1 234 567 8900"></div>
+        <div class="form-group"><label class="form-label" data-i18n="quantityLabel">采购数量</label><input class="form-input" id="inqQty" type="text" placeholder="预计采购量，如 2000m"></div>
+        <div class="form-group"><label class="form-label" data-i18n="messageLabel">留言</label><textarea class="form-textarea" id="inqMsg" placeholder="请描述您的具体需求…"></textarea></div>
+        <button class="btn-submit" onclick="submitInquiry()" data-i18n="submitInquiry">提 交 询 盘</button>
+      </div>
+    </div>
+
+    <!-- ═══ QR ═══ -->
+    <div class="page" id="page-qr">
+      <div class="nav-bar">
+        <div class="nav-back" onclick="goBack()">‹ <span data-i18n="back">返回</span></div>
+        <div class="nav-title" data-i18n="shareQR">分享二维码</div>
+      </div>
+      <div class="qr-page-content">
+        <div class="qr-type-tabs">
+          <button class="qr-type-tab active" onclick="switchQrTab(this)" data-i18n="miniProgram">小程序码</button>
+          <button class="qr-type-tab" onclick="switchQrTab(this)">H5 链接码</button>
+          <button class="qr-type-tab" onclick="switchQrTab(this)" data-i18n="productQR">产品专属码</button>
+        </div>
+        <div class="qr-card">
+          <div class="qr-company-header">
+            <div class="qr-logo-sq"><span class="qlz">芭莎</span></div>
+            <div><div class="qr-co-name" data-i18n="brandName">芭莎纺织</div><div style="font-size:9px;color:var(--ink3);letter-spacing:1.5px">BAZAAR TEXTILE</div></div>
+          </div>
+          <div class="qr-frame">
+            <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+              <rect x="8" y="8" width="44" height="44" rx="6" fill="var(--ink)" opacity=".9"/><rect x="12" y="12" width="36" height="36" rx="4" fill="var(--paper)"/><rect x="18" y="18" width="24" height="24" rx="2" fill="var(--ink)" opacity=".85"/>
+              <rect x="108" y="8" width="44" height="44" rx="6" fill="var(--ink)" opacity=".9"/><rect x="112" y="12" width="36" height="36" rx="4" fill="var(--paper)"/><rect x="118" y="18" width="24" height="24" rx="2" fill="var(--ink)" opacity=".85"/>
+              <rect x="8" y="108" width="44" height="44" rx="6" fill="var(--ink)" opacity=".9"/><rect x="12" y="112" width="36" height="36" rx="4" fill="var(--paper)"/><rect x="18" y="118" width="24" height="24" rx="2" fill="var(--ink)" opacity=".85"/>
+              <rect x="62" y="8" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/><rect x="74" y="8" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/><rect x="86" y="8" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="62" y="20" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/><rect x="86" y="20" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/><rect x="74" y="32" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="8" y="62" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/><rect x="20" y="62" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/><rect x="32" y="62" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="62" y="62" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/><rect x="74" y="62" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/><rect x="86" y="62" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/><rect x="98" y="62" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/><rect x="110" y="62" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/><rect x="122" y="62" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/><rect x="134" y="62" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="62" y="74" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/><rect x="86" y="74" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/><rect x="110" y="74" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="74" y="86" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/><rect x="98" y="86" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="62" y="98" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/><rect x="86" y="98" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="74" y="110" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/><rect x="98" y="110" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="62" y="122" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/><rect x="86" y="122" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="110" y="134" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/><rect x="134" y="134" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="62" y="146" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/><rect x="74" y="146" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/><rect x="98" y="146" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+            </svg>
+            <div class="qr-logo-center"><span class="qlz2">芭莎</span></div>
+          </div>
+          <div class="qr-caption" data-i18n="qrCaption">微信扫码 · 打开小程序</div>
+          <div class="qr-url">bazaartextile.com/mp</div>
+          <div class="qr-separator"></div>
+          <div class="qr-scan-hint"><div class="qr-hint-dot"></div><span data-i18n="qrHint">适合国内客户，微信扫码直达</span></div>
+        </div>
+        <div class="qr-actions">
+          <button class="qr-btn qr-btn-primary" data-i18n="downloadQR">⬇ 下载二维码</button>
+          <button class="qr-btn qr-btn-secondary" onclick="showToast('链接已复制')" data-i18n="copyLink">📋 复制链接</button>
+        </div>
+        <div style="background:var(--white);border-radius:var(--radius);padding:16px 18px;width:100%;border:1px solid var(--paper3)">
+          <div style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:10px" data-i18n="shareChannels">分享渠道推荐</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:var(--ink3)"><div style="width:28px;height:28px;background:#07C160;border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-size:14px;flex-shrink:0">W</div><span data-i18n="whatsappShare">WhatsApp 发送链接（推荐海外客户）</span></div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:var(--ink3)"><div style="width:28px;height:28px;background:#1DA1F2;border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-size:14px;flex-shrink:0">✉</div><span data-i18n="emailShare">邮件附件（含产品目录）</span></div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:var(--ink3)"><div style="width:28px;height:28px;background:var(--ink);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:14px;flex-shrink:0">展</div><span data-i18n="exhibitionShare">展会名片 / 物料印刷</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ PROFILE ═══ -->
+    <div class="page" id="page-profile">
+      <div class="profile-hero">
+        <div class="profile-avatar-row">
+          <div class="profile-avatar">👤</div>
+          <div id="profileNameArea">
+            <div class="profile-name" id="profileName">游客 · Guest</div>
+            <div class="profile-email" id="profileEmail">guest@bazaartextile.com</div>
+          </div>
+        </div>
+        <div class="profile-badges" id="profileBadges">
+          <span class="profile-badge pb-country">🌍 访客</span>
+        </div>
+      </div>
+      <div class="profile-scroll">
+        <div class="profile-stats">
+          <div class="stat-item"><div class="stat-num" id="statBrowse">0</div><div class="stat-label" data-i18n="statBrowse">浏览产品</div></div>
+          <div class="stat-item"><div class="stat-num" id="statInquiry">0</div><div class="stat-label" data-i18n="statInquiry">我的询盘</div></div>
+          <div class="stat-item"><div class="stat-num" id="statFav">0</div><div class="stat-label" data-i18n="statFav">收藏产品</div></div>
+        </div>
+        <div class="profile-section">
+          <div class="profile-item" onclick="goPage('page-inquiry')">
+            <span class="profile-item-icon">📋</span><span class="profile-item-label" data-i18n="myInquiries">我的询盘</span><span class="profile-item-right" id="profileInqCount">0 条</span><span class="profile-item-arrow">›</span>
+          </div>
+          <div class="profile-item" onclick="goPage('page-qr')">
+            <span class="profile-item-icon">📲</span><span class="profile-item-label" data-i18n="myInviteCode">我的专属邀请码</span><span class="profile-item-right" id="profileInviteCode">—</span><span class="profile-item-arrow">›</span>
+          </div>
+          <div class="profile-item" id="adminPanelBtn" onclick="goPage('page-admin')" style="display:none">
+            <span class="profile-item-icon">⚙️</span><span class="profile-item-label" style="color:var(--red)">管理后台</span><span class="profile-item-arrow">›</span>
+          </div>
+        </div>
+        <div class="profile-section" style="margin-top:8px">
+          <div class="profile-item">
+            <span class="profile-item-icon">🌐</span><span class="profile-item-label" data-i18n="switchLang">切换语言</span><span class="profile-item-right" id="currentLangDisplay">中文</span><span class="profile-item-arrow">›</span>
+          </div>
+          <div class="profile-item">
+            <span class="profile-item-icon">📞</span><span class="profile-item-label" data-i18n="contactSales">联系业务员</span><span class="profile-item-arrow">›</span>
+          </div>
+          <div class="profile-item">
+            <span class="profile-item-icon">❓</span><span class="profile-item-label" data-i18n="helpFeedback">帮助与反馈</span><span class="profile-item-arrow">›</span>
+          </div>
+        </div>
+        <div style="padding:24px;text-align:center">
+          <button style="background:transparent;border:1px solid var(--paper3);color:var(--ink3);border-radius:var(--radius-sm);padding:10px 40px;font-size:13px;font-family:'Noto Sans SC';cursor:pointer" onclick="doLogout()" data-i18n="logout">退出登录</button>
+        </div>
+      </div>
+      <div class="tab-bar">
+        <div class="tab-item" onclick="switchTab('home',this)"><span class="tab-icon">🏠</span><span class="tab-label" data-i18n="tabHome">首页</span></div>
+        <div class="tab-item" onclick="switchTab('catalog',this)"><span class="tab-icon">📦</span><span class="tab-label" data-i18n="tabCatalog">产品</span></div>
+        <div class="tab-item" onclick="switchTab('qr',this)"><span class="tab-icon">📲</span><span class="tab-label" data-i18n="tabShare">分享</span></div>
+        <div class="tab-item active" onclick="switchTab('profile',this)"><span class="tab-icon">👤</span><span class="tab-label" data-i18n="tabProfile">我的</span></div>
+      </div>
+    </div>
+
+    <!-- ═══ ADMIN ═══ -->
+    <div class="page" id="page-admin">
+      <div class="nav-bar">
+        <div class="nav-back" onclick="goBack()">‹ 返回</div>
+        <div class="nav-title">管理后台</div>
+      </div>
+      <div class="tab-scroll" id="adminTabs">
+        <div class="tab-scroll-item active" onclick="switchAdminTab('overview',this)">概览</div>
+        <div class="tab-scroll-item" onclick="switchAdminTab('company',this)">公司信息</div>
+        <div class="tab-scroll-item" onclick="switchAdminTab('products',this)">产品管理</div>
+        <div class="tab-scroll-item" onclick="switchAdminTab('users',this)">用户管理</div>
+        <div class="tab-scroll-item" onclick="switchAdminTab('inquiries',this)">询盘管理</div>
+        <div class="tab-scroll-item" onclick="switchAdminTab('comments',this)">留言管理</div>
+        <div class="tab-scroll-item" onclick="switchAdminTab('background',this)">界面背景</div>
+        <div class="tab-scroll-item" id="adminMgmtTab" onclick="switchAdminTab('admins',this)" style="display:none">管理员</div>
+      </div>
+      <div style="flex:1;overflow-y:auto;padding:12px 0 20px" id="adminPanelBody">
+        <!-- dynamic content -->
+      </div>
+    </div>
+
+    <!-- ═══ CHANGE PASSWORD ═══ -->
+    <div class="page" id="page-changepass">
+      <div class="nav-bar">
+        <div class="nav-back" onclick="goBack()">‹ 返回</div>
+        <div class="nav-title">修改账号密码</div>
+      </div>
+      <div class="change-pass-body">
+        <div style="background:rgba(200,169,110,0.1);border:1px solid rgba(200,169,110,0.3);border-radius:var(--radius-sm);padding:12px 14px;font-size:12px;color:var(--ink3);line-height:1.7">
+          ⚠️ 首次登录请修改初始密码以确保账户安全。Please change your initial password for security.
+        </div>
+        <div class="form-group">
+          <label class="form-label">新账号 New Username <span class="form-required">*</span></label>
+          <input class="form-input" id="cpNewUser" type="text" placeholder="新账号（不少于4位）">
+        </div>
+        <div class="form-group">
+          <label class="form-label">新密码 New Password <span class="form-required">*</span></label>
+          <input class="form-input" id="cpNewPass" type="password" placeholder="新密码（不少于6位）">
+        </div>
+        <div class="form-group">
+          <label class="form-label">确认密码 Confirm Password <span class="form-required">*</span></label>
+          <input class="form-input" id="cpConfirm" type="password" placeholder="再次输入新密码">
+        </div>
+        <button class="btn-submit" onclick="doChangePass()">保存修改</button>
+      </div>
+    </div>
+
+    <!-- Success Overlay -->
+    <div class="success-overlay" id="success-overlay">
+      <div class="success-card" onclick="event.stopPropagation()">
+        <div class="success-icon" id="successIcon">✅</div>
+        <div class="success-title" id="successTitle">询盘已提交</div>
+        <div class="success-sub" id="successSub">感谢您的询价！我们的业务员将在 24 小时内通过邮件与您联系。</div>
+        <button class="success-btn" onclick="closeSuccess()" id="successBtn">返 回 首 页</button>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toastEl"></div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+      <div class="modal-sheet" onclick="event.stopPropagation()" id="modalSheet">
+        <div class="modal-title"><span id="modalTitleText">标题</span><span class="modal-close" onclick="closeModal()">×</span></div>
+        <div id="modalBody"></div>
+      </div>
+    </div>
+
+  </div><!-- /screen -->
+
+  <!-- Language FAB -->
+  <div class="lang-fab" id="langFab">
+    <div class="lang-menu" id="langMenu">
+      <div class="lang-menu-item active" onclick="setLang('zh','中文',this)">🇨🇳 中文</div>
+      <div class="lang-menu-item" onclick="setLang('en','EN',this)">🇺🇸 English</div>
+      <div class="lang-menu-item" onclick="setLang('ru','RU',this)">🇷🇺 Русский</div>
+      <div class="lang-menu-item" onclick="setLang('ar','AR',this)">🇸🇦 العربية</div>
+      <div class="lang-menu-item" onclick="setLang('fr','FR',this)">🇫🇷 Français</div>
+      <div class="lang-menu-item" onclick="setLang('de','DE',this)">🇩🇪 Deutsch</div>
+      <div class="lang-menu-item" onclick="setLang('es','ES',this)">🇪🇸 Español</div>
+    </div>
+    <button class="lang-btn" onclick="toggleLangMenu()" id="langBtnLabel">中文</button>
+  </div>
+
+</div><!-- /phone-shell -->
+
+<script>
+// ============================================================
+// DATA STORE
+// ============================================================
+var DB = {
+  admins: [
+    { id: 'superadmin', username: 'admin', password: '123456', role: 'super', name: '超级管理员', changed: false },
+    { id: 'admin2', username: 'admin2', password: '123456', role: 'admin', name: '管理员2', changed: false },
+    { id: 'admin3', username: 'admin3', password: '123456', role: 'admin', name: '管理员3', changed: false }
+  ],
+  users: [
+    { id: 'u001', name: '张伟', email: 'zhang@test.com', country: '中国', type: 'registered', blocked: false, inquiries: 3 },
+    { id: 'u002', name: 'John Smith', email: 'john@company.com', country: 'USA', type: 'registered', blocked: false, inquiries: 1 },
+    { id: 'u003', name: 'Иван', email: 'ivan@mail.ru', country: 'Russia', type: 'guest', blocked: false, inquiries: 0 }
+  ],
+  products: [
+    { id: 'p001', name: '莫代尔天丝混纺面料', nameEn: 'Modal × TENCEL Blended Fabric', emoji: '🧶', bg: '#F5EDD8', category: '天丝系列', badge: 'hot', badgeText: '热门', moq: '500m', width: '150cm', weight: '180g/m²', lead: '30天', specs: { 成分: 'Modal 50% / TENCEL 50%', 克重: '180 g/m²', 幅宽: '150 cm', 后整理: '磨毛 / 丝光', 缩水率: '≤ 3%', 适用: '服装 / 家纺' }, certs: ['OEKO-TEX 100','GOTS认证','BCI良棉','ISO 9001'], colors: [{bg:'#F0E6D6',name:'米白'},{bg:'#3A4A5C',name:'藏蓝'},{bg:'#8B3A3A',name:'枣红'},{bg:'#4A7C59',name:'松绿'},{bg:'#5C4A7A',name:'紫灰'},{bg:'#2A2A2A',name:'纯黑'}], media: [], comments: [{user:'张伟',time:'2024-12-01',text:'面料手感非常好，已下单！',contact:'zhang@test.com'}] },
+    { id: 'p002', name: '高支精梳棉单面布', nameEn: 'High Count Combed Cotton Jersey', emoji: '🔷', bg: '#EEF0F8', category: '棉麻系列', badge: 'new', badgeText: '新品', moq: '300m', width: '145cm', weight: '120g/m²', lead: '25天', specs: { 成分: '100% 精梳棉', 克重: '120 g/m²', 幅宽: '145 cm', 后整理: '丝光', 缩水率: '≤ 4%', 适用: 'T恤 / 内衣' }, certs: ['OEKO-TEX 100','BCI良棉'], colors: [{bg:'#FFFFFF',name:'纯白'},{bg:'#1A1612',name:'纯黑'},{bg:'#C0392B',name:'大红'},{bg:'#3498DB',name:'天蓝'}], media: [], comments: [] },
+    { id: 'p003', name: '冰丝天鹅绒面料', nameEn: 'Ice Silk Velvet Fabric', emoji: '🪡', bg: '#F0EBF5', category: '丝绒面料', badge: '', badgeText: '', moq: '200m', width: '140cm', weight: '220g/m²', lead: '35天', specs: { 成分: '88% 冰丝 / 12% 氨纶', 克重: '220 g/m²', 幅宽: '140 cm', 后整理: '压绒', 缩水率: '≤ 3%', 适用: '礼服 / 家纺' }, certs: ['OEKO-TEX 100'], colors: [{bg:'#5C4A7A',name:'紫色'},{bg:'#C8A96E',name:'金色'},{bg:'#2C2416',name:'黑色'},{bg:'#A93226',name:'酒红'}], media: [], comments: [] },
+    { id: 'p004', name: 'GOTS认证有机棉', nameEn: 'GOTS Certified Organic Cotton', emoji: '🌿', bg: '#E8F3EC', category: '环保系列', badge: '', badgeText: '', moq: '500m', width: '160cm', weight: '95g/m²', lead: '40天', specs: { 成分: '100% 有机棉', 克重: '95 g/m²', 幅宽: '160 cm', 后整理: '无化学整理', 缩水率: '≤ 5%', 适用: '婴幼儿 / 环保品牌' }, certs: ['GOTS认证','BCI良棉','OEKO-TEX 100','ISO 14001'], colors: [{bg:'#F5EDD8',name:'本白'},{bg:'#8B6F3E',name:'卡其'},{bg:'#4A7C59',name:'草绿'}], media: [], comments: [] },
+    { id: 'p005', name: '提花大花纹面料', nameEn: 'Jacquard Floral Fabric', emoji: '✨', bg: '#F5E8E8', category: '提花系列', badge: 'new', badgeText: '新品', moq: '300m', width: '148cm', weight: '210g/m²', lead: '45天', specs: { 成分: '55% 涤纶 / 45% 棉', 克重: '210 g/m²', 幅宽: '148 cm', 后整理: '定型 / 免烫', 缩水率: '≤ 2%', 适用: '窗帘 / 沙发' }, certs: ['OEKO-TEX 100','ISO 9001'], colors: [{bg:'#F0E6D6',name:'米色'},{bg:'#8B3A3A',name:'酒红'},{bg:'#2C4A6E',name:'深蓝'}], media: [], comments: [] }
+  ],
+  inquiries: [],
+  companyInfo: {
+    text: '芭莎纺织成立于2008年，专注于高端面料研发与出口，产品远销全球60余个国家。拥有OEKO-TEX、GOTS等国际认证，年产能超500万米。',
+    media: []
+  },
+  backgrounds: {
+    home: 'default', catalog: 'default', detail: 'default', profile: 'default', qr: 'default'
+  },
+  blockedIPs: []
+};
+
+// ============================================================
+// STATE
+// ============================================================
+var currentUser = null; // null = not logged in
+var isGuest = false;
+var isAdmin = false;
+var isSuperAdmin = false;
+var pageStack = [];
+var currentPage = 'page-login';
+var currentProduct = null;
+var currentAdminTab = 'overview';
+var currentLang = 'zh';
+var statBrowse = 0, statInqCount = 0;
+
+// ============================================================
+// I18N
+// ============================================================
+var i18n = {
+  zh: { brandName:'芭莎纺织', tagline:'优质面料，触达全球<br>Quality Fabric, Global Reach', emailLogin:'邮箱登录', phoneLogin:'手机号登录', loginBtn:'登  录', getCode:'获取验证码', or:'或', guestLogin:'游客模式浏览 · Guest Mode', loginFooter:'登录即表示同意《用户协议》和《隐私政策》', guestBannerText:'您正在以游客身份浏览 · 登录后可提交询盘', bannerSeason:'2025 春夏新品', bannerTitle:'天丝系列<br>精工上新', bannerSub:'TENCEL COLLECTION · NEW ARRIVAL', categories:'产品分类', cat1:'天丝面料', cat2:'棉麻系列', cat3:'丝绒面料', cat4:'环保系列', cat5:'提花系列', hotProducts:'热门产品', viewAll:'查看全部 ›', companyInfoTitle:'关于我们', catalog:'产品目录', filterAll:'全部', productDetail:'产品详情', inquiry:'提交询盘', inquiryType:'询盘类型', priceInquiry:'询价报价', sampleCard:'索要样卡', productCatalog:'产品目录', moqInquiry:'咨询 MOQ', nameLabel:'姓名', companyLabel:'公司名称', countryLabel:'所在国家', emailLabel:'联系邮箱', quantityLabel:'采购数量', messageLabel:'留言', submitInquiry:'提 交 询 盘', shareQR:'分享二维码', miniProgram:'小程序码', productQR:'产品专属码', qrCaption:'微信扫码 · 打开小程序', qrHint:'适合国内客户，微信扫码直达', downloadQR:'⬇ 下载二维码', copyLink:'📋 复制链接', shareChannels:'分享渠道推荐', whatsappShare:'WhatsApp 发送链接（推荐海外客户）', emailShare:'邮件附件（含产品目录）', exhibitionShare:'展会名片 / 物料印刷', tabHome:'首页', tabCatalog:'产品', tabShare:'分享', tabProfile:'我的', statBrowse:'浏览产品', statInquiry:'我的询盘', statFav:'收藏产品', myInquiries:'我的询盘', myInviteCode:'我的专属邀请码', switchLang:'切换语言', contactSales:'联系业务员', helpFeedback:'帮助与反馈', logout:'退出登录', back:'返回', specsTitle:'面料参数', colorsTitle:'可供色卡', certsTitle:'认证 & 资质', inquiryNow:'立即询价', leaveComment:'留言 / 联系我们', commentPlaceholder:'请留下您的需求或联系方式…', contactPlaceholder:'邮箱/WhatsApp/微信', submitComment:'提交留言', noComment:'暂无留言' },
+  en: { brandName:'Bazaar Textile', tagline:'Quality Fabric, Global Reach', emailLogin:'Email Login', phoneLogin:'Phone Login', loginBtn:'Login', getCode:'Get Code', or:'OR', guestLogin:'Browse as Guest', loginFooter:'By logging in, you agree to our Terms & Privacy Policy.', guestBannerText:'Browsing as guest · Login to submit inquiries', bannerSeason:'2025 Spring/Summer New Arrivals', bannerTitle:'TENCEL Series<br>New Collection', bannerSub:'TENCEL COLLECTION · NEW ARRIVAL', categories:'Categories', cat1:'TENCEL', cat2:'Cotton & Linen', cat3:'Velvet', cat4:'Eco Series', cat5:'Jacquard', hotProducts:'Popular Products', viewAll:'View All ›', companyInfoTitle:'About Us', catalog:'Product Catalog', filterAll:'All', productDetail:'Product Detail', inquiry:'Submit Inquiry', inquiryType:'Inquiry Type', priceInquiry:'Price Inquiry', sampleCard:'Request Sample', productCatalog:'Catalog', moqInquiry:'MOQ Inquiry', nameLabel:'Name', companyLabel:'Company', countryLabel:'Country', emailLabel:'Email', quantityLabel:'Quantity', messageLabel:'Message', submitInquiry:'Submit Inquiry', shareQR:'Share QR Code', miniProgram:'Mini Program', productQR:'Product QR', qrCaption:'WeChat Scan · Open Mini Program', qrHint:'Recommended for domestic customers', downloadQR:'⬇ Download QR', copyLink:'📋 Copy Link', shareChannels:'Share Channels', whatsappShare:'WhatsApp (Recommended for overseas)', emailShare:'Email with product catalog', exhibitionShare:'Exhibition cards / Print material', tabHome:'Home', tabCatalog:'Products', tabShare:'Share', tabProfile:'Profile', statBrowse:'Viewed', statInquiry:'Inquiries', statFav:'Favorites', myInquiries:'My Inquiries', myInviteCode:'My Invite Code', switchLang:'Language', contactSales:'Contact Sales', helpFeedback:'Help & Feedback', logout:'Logout', back:'Back', specsTitle:'Specifications', colorsTitle:'Available Colors', certsTitle:'Certifications', inquiryNow:'Inquire Now', leaveComment:'Comments / Contact Us', commentPlaceholder:'Leave your requirements or contact info…', contactPlaceholder:'Email / WhatsApp / WeChat', submitComment:'Submit', noComment:'No comments yet' },
+  ru: { brandName:'Базар Текстиль', tagline:'Качественные ткани по всему миру', emailLogin:'Вход по email', phoneLogin:'Вход по телефону', loginBtn:'Войти', getCode:'Получить код', or:'ИЛИ', guestLogin:'Гостевой режим', loginFooter:'Войдя, вы соглашаетесь с правилами.', guestBannerText:'Вы просматриваете как гость', bannerSeason:'Новинки 2025', bannerTitle:'Коллекция<br>TENCEL', bannerSub:'TENCEL COLLECTION · НОВИНКА', categories:'Категории', cat1:'TENCEL', cat2:'Хлопок и лён', cat3:'Бархат', cat4:'Эко серия', cat5:'Жаккард', hotProducts:'Популярные товары', viewAll:'Все ›', companyInfoTitle:'О нас', catalog:'Каталог', filterAll:'Все', productDetail:'Детали', inquiry:'Запрос', inquiryType:'Тип запроса', priceInquiry:'Запрос цены', sampleCard:'Образец', productCatalog:'Каталог', moqInquiry:'Запрос MOQ', nameLabel:'Имя', companyLabel:'Компания', countryLabel:'Страна', emailLabel:'Email', quantityLabel:'Количество', messageLabel:'Сообщение', submitInquiry:'Отправить', shareQR:'QR код', miniProgram:'Мини-программа', productQR:'QR товара', qrCaption:'Сканируйте QR', qrHint:'Для отечественных клиентов', downloadQR:'⬇ Скачать', copyLink:'📋 Копировать', shareChannels:'Поделиться', whatsappShare:'WhatsApp', emailShare:'Email', exhibitionShare:'Выставка', tabHome:'Главная', tabCatalog:'Товары', tabShare:'Поделиться', tabProfile:'Профиль', statBrowse:'Просмотры', statInquiry:'Запросы', statFav:'Избранное', myInquiries:'Мои запросы', myInviteCode:'Код приглашения', switchLang:'Язык', contactSales:'Контакты', helpFeedback:'Помощь', logout:'Выйти', back:'Назад', specsTitle:'Характеристики', colorsTitle:'Цвета', certsTitle:'Сертификаты', inquiryNow:'Запросить', leaveComment:'Комментарии', commentPlaceholder:'Оставьте комментарий…', contactPlaceholder:'Email / WhatsApp', submitComment:'Отправить', noComment:'Нет комментариев' },
+  ar: { brandName:'بازار للنسيج', tagline:'أقمشة عالية الجودة للعالم', emailLogin:'تسجيل بالبريد', phoneLogin:'تسجيل بالهاتف', loginBtn:'دخول', getCode:'الحصول على رمز', or:'أو', guestLogin:'تصفح كضيف', loginFooter:'بتسجيل الدخول توافق على الشروط.', guestBannerText:'أنت تتصفح كضيف', bannerSeason:'وصولات 2025', bannerTitle:'مجموعة<br>TENCEL', bannerSub:'TENCEL · جديد', categories:'الفئات', cat1:'تنسيل', cat2:'قطن وكتان', cat3:'مخمل', cat4:'بيئي', cat5:'جاكار', hotProducts:'منتجات شعبية', viewAll:'عرض الكل ›', companyInfoTitle:'من نحن', catalog:'الكتالوج', filterAll:'الكل', productDetail:'تفاصيل', inquiry:'استفسار', inquiryType:'نوع الاستفسار', priceInquiry:'استفسار سعر', sampleCard:'طلب عينة', productCatalog:'كتالوج', moqInquiry:'استفسار MOQ', nameLabel:'الاسم', companyLabel:'الشركة', countryLabel:'الدولة', emailLabel:'البريد', quantityLabel:'الكمية', messageLabel:'رسالة', submitInquiry:'إرسال', shareQR:'رمز QR', miniProgram:'البرنامج الصغير', productQR:'رمز المنتج', qrCaption:'امسح للفتح', qrHint:'للعملاء المحليين', downloadQR:'⬇ تنزيل', copyLink:'📋 نسخ', shareChannels:'مشاركة', whatsappShare:'واتساب', emailShare:'البريد', exhibitionShare:'المعرض', tabHome:'الرئيسية', tabCatalog:'المنتجات', tabShare:'مشاركة', tabProfile:'ملفي', statBrowse:'المشاهدات', statInquiry:'استفسارات', statFav:'المفضلة', myInquiries:'استفساراتي', myInviteCode:'رمز الدعوة', switchLang:'اللغة', contactSales:'اتصل بنا', helpFeedback:'مساعدة', logout:'خروج', back:'رجوع', specsTitle:'المواصفات', colorsTitle:'الألوان', certsTitle:'الشهادات', inquiryNow:'استفسر الآن', leaveComment:'تعليقات', commentPlaceholder:'اترك تعليقك…', contactPlaceholder:'البريد / واتساب', submitComment:'إرسال', noComment:'لا توجد تعليقات' },
+  fr: { brandName:'Bazaar Textile', tagline:'Tissu de qualité, portée mondiale', emailLogin:'Connexion email', phoneLogin:'Connexion téléphone', loginBtn:'Connexion', getCode:'Obtenir le code', or:'OU', guestLogin:'Mode visiteur', loginFooter:'En vous connectant, vous acceptez nos conditions.', guestBannerText:'Vous naviguez en tant que visiteur', bannerSeason:'Nouveautés 2025', bannerTitle:'Collection<br>TENCEL', bannerSub:'TENCEL · NOUVEAUTÉ', categories:'Catégories', cat1:'TENCEL', cat2:'Coton & Lin', cat3:'Velours', cat4:'Écologique', cat5:'Jacquard', hotProducts:'Produits populaires', viewAll:'Tout voir ›', companyInfoTitle:'À propos', catalog:'Catalogue', filterAll:'Tous', productDetail:'Détails', inquiry:'Demande', inquiryType:'Type', priceInquiry:'Demande de prix', sampleCard:'Échantillon', productCatalog:'Catalogue', moqInquiry:'MOQ', nameLabel:'Nom', companyLabel:'Société', countryLabel:'Pays', emailLabel:'Email', quantityLabel:'Quantité', messageLabel:'Message', submitInquiry:'Soumettre', shareQR:'QR Code', miniProgram:'Mini Program', productQR:'QR Produit', qrCaption:'Scannez le QR', qrHint:'Pour clients domestiques', downloadQR:'⬇ Télécharger', copyLink:'📋 Copier', shareChannels:'Partager', whatsappShare:'WhatsApp', emailShare:'Email', exhibitionShare:'Foire', tabHome:'Accueil', tabCatalog:'Produits', tabShare:'Partager', tabProfile:'Profil', statBrowse:'Vus', statInquiry:'Demandes', statFav:'Favoris', myInquiries:'Mes demandes', myInviteCode:'Code invitation', switchLang:'Langue', contactSales:'Contact', helpFeedback:'Aide', logout:'Déconnexion', back:'Retour', specsTitle:'Spécifications', colorsTitle:'Couleurs', certsTitle:'Certifications', inquiryNow:'Demander', leaveComment:'Commentaires', commentPlaceholder:'Laissez un commentaire…', contactPlaceholder:'Email / WhatsApp', submitComment:'Envoyer', noComment:'Aucun commentaire' },
+  de: { brandName:'Bazaar Textil', tagline:'Hochwertige Stoffe weltweit', emailLogin:'E-Mail Login', phoneLogin:'Telefon Login', loginBtn:'Anmelden', getCode:'Code holen', or:'ODER', guestLogin:'Als Gast ansehen', loginFooter:'Mit der Anmeldung stimmen Sie zu.', guestBannerText:'Sie surfen als Gast', bannerSeason:'Neuheiten 2025', bannerTitle:'TENCEL<br>Kollektion', bannerSub:'TENCEL · NEU', categories:'Kategorien', cat1:'TENCEL', cat2:'Baumwolle & Leinen', cat3:'Samt', cat4:'Öko-Serie', cat5:'Jacquard', hotProducts:'Beliebte Produkte', viewAll:'Alle ›', companyInfoTitle:'Über uns', catalog:'Katalog', filterAll:'Alle', productDetail:'Details', inquiry:'Anfrage', inquiryType:'Anfragetyp', priceInquiry:'Preisanfrage', sampleCard:'Muster', productCatalog:'Katalog', moqInquiry:'MOQ', nameLabel:'Name', companyLabel:'Unternehmen', countryLabel:'Land', emailLabel:'E-Mail', quantityLabel:'Menge', messageLabel:'Nachricht', submitInquiry:'Senden', shareQR:'QR-Code', miniProgram:'Mini-App', productQR:'Produkt-QR', qrCaption:'QR scannen', qrHint:'Für inländische Kunden', downloadQR:'⬇ Herunterladen', copyLink:'📋 Kopieren', shareChannels:'Teilen', whatsappShare:'WhatsApp', emailShare:'E-Mail', exhibitionShare:'Messe', tabHome:'Start', tabCatalog:'Produkte', tabShare:'Teilen', tabProfile:'Profil', statBrowse:'Angesehen', statInquiry:'Anfragen', statFav:'Favoriten', myInquiries:'Meine Anfragen', myInviteCode:'Einladungscode', switchLang:'Sprache', contactSales:'Kontakt', helpFeedback:'Hilfe', logout:'Abmelden', back:'Zurück', specsTitle:'Spezifikationen', colorsTitle:'Farben', certsTitle:'Zertifikate', inquiryNow:'Anfragen', leaveComment:'Kommentare', commentPlaceholder:'Kommentar hinterlassen…', contactPlaceholder:'E-Mail / WhatsApp', submitComment:'Senden', noComment:'Keine Kommentare' },
+  es: { brandName:'Bazaar Textil', tagline:'Telas de calidad para el mundo', emailLogin:'Login Email', phoneLogin:'Login Teléfono', loginBtn:'Entrar', getCode:'Obtener código', or:'O', guestLogin:'Modo visitante', loginFooter:'Al iniciar sesión, aceptas los términos.', guestBannerText:'Navegando como visitante', bannerSeason:'Novedades 2025', bannerTitle:'Colección<br>TENCEL', bannerSub:'TENCEL · NUEVO', categories:'Categorías', cat1:'TENCEL', cat2:'Algodón y Lino', cat3:'Terciopelo', cat4:'Ecológico', cat5:'Jacquard', hotProducts:'Productos populares', viewAll:'Ver todo ›', companyInfoTitle:'Sobre nosotros', catalog:'Catálogo', filterAll:'Todos', productDetail:'Detalles', inquiry:'Consulta', inquiryType:'Tipo', priceInquiry:'Consulta de precio', sampleCard:'Muestra', productCatalog:'Catálogo', moqInquiry:'MOQ', nameLabel:'Nombre', companyLabel:'Empresa', countryLabel:'País', emailLabel:'Email', quantityLabel:'Cantidad', messageLabel:'Mensaje', submitInquiry:'Enviar', shareQR:'Código QR', miniProgram:'Mini Programa', productQR:'QR Producto', qrCaption:'Escanear QR', qrHint:'Para clientes nacionales', downloadQR:'⬇ Descargar', copyLink:'📋 Copiar', shareChannels:'Compartir', whatsappShare:'WhatsApp', emailShare:'Email', exhibitionShare:'Feria', tabHome:'Inicio', tabCatalog:'Productos', tabShare:'Compartir', tabProfile:'Perfil', statBrowse:'Vistos', statInquiry:'Consultas', statFav:'Favoritos', myInquiries:'Mis consultas', myInviteCode:'Código invitación', switchLang:'Idioma', contactSales:'Contacto', helpFeedback:'Ayuda', logout:'Cerrar sesión', back:'Volver', specsTitle:'Especificaciones', colorsTitle:'Colores', certsTitle:'Certificaciones', inquiryNow:'Consultar', leaveComment:'Comentarios', commentPlaceholder:'Deja un comentario…', contactPlaceholder:'Email / WhatsApp', submitComment:'Enviar', noComment:'Sin comentarios' }
+};
+
+function t(key) {
+  return (i18n[currentLang] && i18n[currentLang][key]) ? i18n[currentLang][key] : (i18n['zh'][key] || key);
+}
+
+function applyI18n() {
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    var val = t(key);
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+      el.placeholder = val;
+    } else {
+      el.innerHTML = val;
+    }
+  });
+}
+
+function setLang(code, label, el) {
+  currentLang = code;
+  document.getElementById('langBtnLabel').textContent = label;
+  document.getElementById('currentLangDisplay').textContent = label;
+  document.querySelectorAll('.lang-menu-item').forEach(function(x){ x.classList.remove('active'); });
+  el.classList.add('active');
+  document.getElementById('langMenu').classList.remove('open');
+  applyI18n();
+  renderHomeProdGrid();
+  renderCatalogList('全部');
+  if (currentProduct) renderDetailPage(currentProduct);
+}
+
+function toggleLangMenu() {
+  document.getElementById('langMenu').classList.toggle('open');
+}
+
+// Close lang menu on outside click
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.lang-fab')) {
+    document.getElementById('langMenu').classList.remove('open');
+  }
+});
+
+// ============================================================
+// TIME
+// ============================================================
+function updateTime() {
+  var now = new Date();
+  var h = now.getHours().toString().padStart(2,'0');
+  var m = now.getMinutes().toString().padStart(2,'0');
+  document.getElementById('statusTime').textContent = h + ':' + m;
+}
+updateTime();
+setInterval(updateTime, 60000);
+
+// ============================================================
+// PAGE NAV
+// ============================================================
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  var el = document.getElementById(id);
+  if (el) {
+    el.classList.add('active');
+    el.classList.remove('page-enter');
+    void el.offsetWidth;
+    el.classList.add('page-enter');
+    el.scrollTop = 0;
+  }
+  currentPage = id;
+}
+
+function goPage(id) {
+  if (id === 'page-inquiry' && isGuest) {
+    showToast(t('guestBannerText'));
+    return;
+  }
+  if (id === 'page-admin' && !isAdmin) return;
+  pageStack.push(currentPage);
+  if (id === 'page-catalog') {
+    document.getElementById('addProductBtn').style.display = isAdmin ? 'block' : 'none';
+    renderCatalogList('全部');
+  }
+  if (id === 'page-admin') renderAdminPanel(currentAdminTab);
+  showPage(id);
+}
+
+function goBack() {
+  if (pageStack.length > 0) {
+    var prev = pageStack.pop();
+    showPage(prev);
+  }
+}
+
+function switchTab(tab, el) {
+  var map = { home: 'page-home', catalog: 'page-catalog', qr: 'page-qr', profile: 'page-profile' };
+  pageStack = [];
+  if (tab === 'catalog') {
+    document.getElementById('addProductBtn').style.display = isAdmin ? 'block' : 'none';
+    renderCatalogList('全部');
+  }
+  showPage(map[tab]);
+  var tabBar = el.closest('.tab-bar');
+  if (tabBar) tabBar.querySelectorAll('.tab-item').forEach(function(t){ t.classList.remove('active'); });
+  el.classList.add('active');
+}
+
+// ============================================================
+// AUTH
+// ============================================================
+function doLogin() {
+  var u = document.getElementById('loginUser').value.trim();
+  var p = document.getElementById('loginPass').value;
+  if (!u || !p) { showToast('请输入账号和密码'); return; }
+
+  var found = DB.admins.find(function(a){ return a.username === u && a.password === p; });
+  if (found) {
+    // Check if blocked
+    // Admin login
+    isGuest = false;
+    isAdmin = true;
+    isSuperAdmin = found.role === 'super';
+    currentUser = found;
+    document.getElementById('appShell').classList.add('admin-mode');
+    setupProfile(found.name, found.username + '@bazaartextile.com', true, isSuperAdmin);
+    pageStack = [];
+    renderHomeProdGrid();
+    renderCompanyMedia();
+    document.getElementById('guestBanner').style.display = 'none';
+    document.getElementById('adminEntryBtn').style.display = 'block';
+    document.getElementById('adminPanelBtn').style.display = 'flex';
+    document.getElementById('detailEditBtn').style.display = 'block';
+    document.getElementById('addProductBtn').style.display = 'block';
+    // Show super admin tab
+    if (isSuperAdmin) document.getElementById('adminMgmtTab').style.display = 'block';
+    // Force password change if not changed
+    if (!found.changed) {
+      pageStack.push('page-login');
+      showPage('page-changepass');
+      return;
+    }
+    showPage('page-home');
+    return;
+  }
+
+  // Check regular users
+  var user = DB.users.find(function(uu){ return uu.email === u && !uu.blocked; });
+  if (user) {
+    isGuest = false; isAdmin = false; isSuperAdmin = false;
+    currentUser = user;
+    setupProfile(user.name, user.email, false, false);
+    pageStack = [];
+    renderHomeProdGrid();
+    renderCompanyMedia();
+    document.getElementById('guestBanner').style.display = 'none';
+    showPage('page-home');
+    return;
+  }
+
+  // Check if blocked user
+  var blocked = DB.users.find(function(uu){ return uu.email === u && uu.blocked; });
+  if (blocked) { showToast('账号已被禁止登录 / Account blocked'); return; }
+
+  showToast('账号或密码错误 / Invalid credentials');
+}
+
+function doGuestLogin() {
+  isGuest = true; isAdmin = false; isSuperAdmin = false;
+  currentUser = { id: 'guest_' + Date.now(), name: '游客 Guest', type: 'guest' };
+  DB.users.push({ id: currentUser.id, name: currentUser.name, email: 'guest', country: '未知', type: 'guest', blocked: false, inquiries: 0 });
+  setupProfile('游客 · Guest', 'guest@bazaartextile.com', false, false);
+  pageStack = [];
+  renderHomeProdGrid();
+  renderCompanyMedia();
+  document.getElementById('guestBanner').style.display = 'block';
+  document.getElementById('adminEntryBtn').style.display = 'none';
+  document.getElementById('adminPanelBtn').style.display = 'none';
+  showPage('page-home');
+}
+
+function doLogout() {
+  isGuest = false; isAdmin = false; isSuperAdmin = false; currentUser = null;
+  document.getElementById('appShell').classList.remove('admin-mode');
+  document.getElementById('adminEntryBtn').style.display = 'none';
+  document.getElementById('adminPanelBtn').style.display = 'none';
+  document.getElementById('detailEditBtn').style.display = 'none';
+  document.getElementById('addProductBtn').style.display = 'none';
+  document.getElementById('adminMgmtTab').style.display = 'none';
+  document.getElementById('loginUser').value = '';
+  document.getElementById('loginPass').value = '';
+  pageStack = [];
+  showPage('page-login');
+}
+
+function doChangePass() {
+  var nu = document.getElementById('cpNewUser').value.trim();
+  var np = document.getElementById('cpNewPass').value;
+  var nc = document.getElementById('cpConfirm').value;
+  if (nu.length < 4) { showToast('账号不少于4位'); return; }
+  if (np.length < 6) { showToast('密码不少于6位'); return; }
+  if (np !== nc) { showToast('两次密码不一致'); return; }
+  var admin = DB.admins.find(function(a){ return a.id === currentUser.id; });
+  if (admin) {
+    admin.username = nu;
+    admin.password = np;
+    admin.changed = true;
+    currentUser.username = nu;
+    currentUser.password = np;
+    currentUser.changed = true;
+  }
+  showToast('账号密码已修改');
+  setTimeout(function(){ pageStack = []; showPage('page-home'); }, 1200);
+}
+
+function setupProfile(name, email, adminFlag, superFlag) {
+  document.getElementById('profileName').textContent = name;
+  document.getElementById('profileEmail').textContent = email;
+  var badges = document.getElementById('profileBadges');
+  var html = '';
+  if (adminFlag) html += '<span class="profile-badge pb-admin">' + (superFlag ? '超级管理员' : '管理员') + '</span>';
+  else if (isGuest) html += '<span class="profile-badge pb-country">🌍 访客</span>';
+  else html += '<span class="profile-badge pb-vip">VIP 客户</span>';
+  badges.innerHTML = html;
+  document.getElementById('profileInviteCode').textContent = adminFlag ? 'ADM-' + (currentUser.id||'').substring(0,4).toUpperCase() : 'USR-' + Math.random().toString(36).substring(2,7).toUpperCase();
+}
+
+// ============================================================
+// PRODUCTS RENDERING
+// ============================================================
+function renderHomeProdGrid() {
+  var grid = document.getElementById('homeProdGrid');
+  var html = '';
+  DB.products.slice(0,4).forEach(function(p) {
+    html += '<div class="prod-card" onclick="openProduct(\'' + p.id + '\')">';
+    html += '<div class="prod-img" style="background:' + p.bg + '">';
+    if (p.badge) html += '<div class="prod-badge ' + p.badge + '">' + p.badgeText + '</div>';
+    if (p.media && p.media.length > 0) {
+      html += '<img src="' + p.media[0] + '" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display=\'none\'">';
+    } else {
+      html += p.emoji;
+    }
+    html += '</div>';
+    html += '<div class="prod-info">';
+    html += '<div class="prod-name">' + p.name + '</div>';
+    html += '<div class="prod-spec">' + p.width + ' · ' + p.weight + '</div>';
+    html += '<div class="prod-bottom"><div class="prod-moq">MOQ ' + p.moq + '</div>';
+    if (!isGuest) html += '<div class="prod-inquiry" onclick="event.stopPropagation();openInquiry(\'' + p.id + '\')">+</div>';
+    html += '</div></div></div>';
+  });
+  grid.innerHTML = html;
+}
+
+function renderCatalogList(filter) {
+  var list = document.getElementById('catalogList');
+  var prods = filter === '全部' ? DB.products : DB.products.filter(function(p){ return p.category === filter; });
+  var html = '';
+  prods.forEach(function(p) {
+    html += '<div class="list-card" onclick="openProduct(\'' + p.id + '\')">';
+    html += '<div class="list-img" style="background:' + p.bg + '">';
+    if (p.media && p.media.length > 0) {
+      html += '<img src="' + p.media[0] + '" onerror="this.style.display=\'none\'">';
+    } else {
+      html += p.emoji;
+    }
+    html += '</div>';
+    html += '<div class="list-body"><div>';
+    html += '<div class="list-name">' + p.name + '</div>';
+    html += '<div class="list-tags"><span class="list-tag">' + p.category + '</span>';
+    if (p.badge) html += '<span class="list-tag">' + p.badgeText + '</span>';
+    p.certs.slice(0,1).forEach(function(c){ html += '<span class="list-tag">' + c + '</span>'; });
+    html += '</div></div>';
+    html += '<div class="list-meta"><div class="list-moq">MOQ ' + p.moq + ' · ' + p.width + '</div>';
+    if (!isGuest) html += '<button class="list-btn" onclick="event.stopPropagation();openInquiry(\'' + p.id + '\')">' + t('inquiry') + '</button>';
+    html += '</div></div></div>';
+  });
+  list.innerHTML = html || '<div style="padding:40px;text-align:center;color:var(--ink3)">暂无产品</div>';
+}
+
+function filterCatalog(cat, el) {
+  document.querySelectorAll('.filter-chip').forEach(function(c){ c.classList.remove('active'); });
+  el.classList.add('active');
+  renderCatalogList(cat);
+}
+
+function filterByCategory(cat) {
+  pageStack.push(currentPage);
+  document.getElementById('addProductBtn').style.display = isAdmin ? 'block' : 'none';
+  renderCatalogList(cat);
+  // activate correct chip
+  document.querySelectorAll('#catalogFilterScroll .filter-chip').forEach(function(c){
+    c.classList.toggle('active', c.textContent.trim() === cat || (c.getAttribute('data-i18n') && t(c.getAttribute('data-i18n')) === cat));
+  });
+  showPage('page-catalog');
+}
+
+function openProduct(id) {
+  currentProduct = DB.products.find(function(p){ return p.id === id; });
+  if (!currentProduct) return;
+  statBrowse++;
+  document.getElementById('statBrowse').textContent = statBrowse;
+  renderDetailPage(currentProduct);
+  document.getElementById('detailEditBtn').style.display = isAdmin ? 'block' : 'none';
+  pageStack.push(currentPage);
+  showPage('page-detail');
+}
+
+function renderDetailPage(p) {
+  var html = '';
+  html += '<div class="detail-gallery">';
+  if (p.media && p.media.length > 0) {
+    html += '<img class="detail-gallery-img" src="' + p.media[0] + '" onerror="this.style.display=\'none\'">';
+    html += '<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:90px;z-index:-1">' + p.emoji + '</div>';
+  } else {
+    html += p.emoji;
+  }
+  html += '<div class="gallery-indicator"><div class="gallery-dot active"></div><div class="gallery-dot"></div><div class="gallery-dot"></div></div></div>';
+  html += '<div class="detail-header">';
+  html += '<div class="detail-tags">';
+  if (p.badge) html += '<span class="detail-tag tag-new">' + p.badgeText + '</span>';
+  html += '<span class="detail-tag tag-cat">' + p.category + '</span>';
+  html += '</div>';
+  html += '<div class="detail-name">' + p.name + '</div>';
+  html += '<div class="detail-name-en">' + p.nameEn + '</div>';
+  html += '<div class="detail-moq-row">';
+  html += '<div class="detail-moq-badge">MOQ <span>' + p.moq + '</span></div>';
+  html += '<div class="detail-moq-badge">幅宽 <span>' + p.width + '</span></div>';
+  html += '<div class="detail-moq-badge">交期 <span>' + p.lead + '</span></div>';
+  html += '</div></div>';
+  // Specs
+  html += '<div class="detail-section"><div class="detail-section-title">' + t('specsTitle') + '</div><div class="spec-grid">';
+  Object.keys(p.specs).forEach(function(k){ html += '<div class="spec-item"><div class="spec-label">' + k + '</div><div class="spec-value">' + p.specs[k] + '</div></div>'; });
+  html += '</div></div>';
+  // Colors
+  html += '<div class="detail-section"><div class="detail-section-title">' + t('colorsTitle') + '</div><div class="color-swatches">';
+  p.colors.forEach(function(c,i){ html += '<div class="swatch' + (i===0?' selected':'') + '" onclick="selectSwatch(this)"><div class="swatch-circle" style="background:' + c.bg + ';' + (i===0?'border-color:var(--gold)':'') + '"></div><div class="swatch-name">' + c.name + '</div></div>'; });
+  html += '</div></div>';
+  // Certs
+  html += '<div class="detail-section"><div class="detail-section-title">' + t('certsTitle') + '</div><div class="cert-row">';
+  p.certs.forEach(function(c){ html += '<span class="cert-badge">✓ ' + c + '</span>'; });
+  html += '</div></div>';
+  // Product media
+  if (p.media && p.media.length > 0) {
+    html += '<div class="detail-section"><div class="detail-section-title">产品图片/视频</div><div class="company-media-row">';
+    p.media.forEach(function(m){ html += '<div class="company-media-thumb"><img src="' + m + '" onerror="this.style.display=\'none\'"></div>'; });
+    html += '</div></div>';
+  }
+  // Actions
+  html += '<div class="detail-actions">';
+  if (!isGuest) html += '<button class="btn-inquiry" onclick="openInquiry(\'' + p.id + '\')">' + t('inquiryNow') + '</button>';
+  html += '<button class="btn-whatsapp"><div class="wechat-dot">W</div>WhatsApp 直接联系</button>';
+  html += '</div>';
+  // Comments
+  html += '<div class="comment-section"><div class="detail-section-title">' + t('leaveComment') + '</div>';
+  html += '<div class="comment-list" id="commentList-' + p.id + '">';
+  if (p.comments && p.comments.length > 0) {
+    p.comments.forEach(function(c){ html += '<div class="comment-item"><div class="comment-header"><span class="comment-user">' + c.user + '</span><span class="comment-time">' + c.time + '</span></div><div class="comment-text">' + c.text + '</div>' + (c.contact ? '<div class="comment-contact">📧 ' + c.contact + '</div>' : '') + '</div>'; });
+  } else {
+    html += '<div style="font-size:12px;color:var(--ink3);padding:8px 0">' + t('noComment') + '</div>';
+  }
+  html += '</div>';
+  html += '<div class="comment-input-wrap">';
+  html += '<textarea class="comment-input" id="cmtText-' + p.id + '" placeholder="' + t('commentPlaceholder') + '"></textarea>';
+  html += '<input class="comment-contact-input" id="cmtContact-' + p.id + '" placeholder="' + t('contactPlaceholder') + '">';
+  html += '<div class="comment-submit-row"><button class="btn-comment-submit" onclick="submitComment(\'' + p.id + '\')">' + t('submitComment') + '</button></div>';
+  html += '</div></div>';
+  document.getElementById('detailBodyContent').innerHTML = html;
+}
+
+function selectSwatch(el) {
+  el.closest('.color-swatches').querySelectorAll('.swatch').forEach(function(s){ s.classList.remove('selected'); s.querySelector('.swatch-circle').style.borderColor = 'transparent'; });
+  el.classList.add('selected');
+  el.querySelector('.swatch-circle').style.borderColor = 'var(--gold)';
+}
+
+function submitComment(pid) {
+  var textEl = document.getElementById('cmtText-' + pid);
+  var contactEl = document.getElementById('cmtContact-' + pid);
+  if (!textEl || !textEl.value.trim()) { showToast('请输入留言内容'); return; }
+  var prod = DB.products.find(function(p){ return p.id === pid; });
+  if (!prod) return;
+  var guestName = isGuest ? '游客' : (currentUser ? currentUser.name : '游客');
+  var comment = { user: guestName, time: new Date().toISOString().substring(0,10), text: textEl.value.trim(), contact: contactEl ? contactEl.value.trim() : '' };
+  prod.comments.push(comment);
+  textEl.value = ''; if (contactEl) contactEl.value = '';
+  renderDetailPage(prod);
+  showToast('留言已提交');
+}
+
+// ============================================================
+// INQUIRY
+// ============================================================
+function openInquiry(pid) {
+  if (isGuest) { showToast(t('guestBannerText')); return; }
+  currentProduct = DB.products.find(function(p){ return p.id === pid; });
+  var prev = document.getElementById('inquiryProductPreview');
+  if (currentProduct) {
+    prev.innerHTML = '<div class="fpp-img">' + currentProduct.emoji + '</div><div><div class="fpp-name">' + currentProduct.name + '</div><div class="fpp-sub">' + currentProduct.nameEn + ' · ' + currentProduct.weight + ' · ' + currentProduct.width + '</div></div>';
+  }
+  pageStack.push(currentPage);
+  showPage('page-inquiry');
+}
+
+function submitInquiry() {
+  var name = document.getElementById('inqName').value.trim();
+  var email = document.getElementById('inqEmail').value.trim();
+  var country = document.getElementById('inqCountry').value;
+  if (!name) { showToast('请填写姓名'); return; }
+  if (!email) { showToast('请填写邮箱'); return; }
+  if (!country) { showToast('请选择国家'); return; }
+  var inquiry = {
+    id: 'inq_' + Date.now(),
+    product: currentProduct ? currentProduct.name : '—',
+    name: name, email: email, country: country,
+    company: document.getElementById('inqCompany').value,
+    phone: document.getElementById('inqPhone').value,
+    qty: document.getElementById('inqQty').value,
+    msg: document.getElementById('inqMsg').value,
+    time: new Date().toISOString().substring(0,10),
+    status: '待处理'
+  };
+  DB.inquiries.push(inquiry);
+  statInqCount++;
+  document.getElementById('statInquiry').textContent = statInqCount;
+  document.getElementById('profileInqCount').textContent = statInqCount + ' 条';
+  showSuccess('✅', '询盘已提交', '感谢您的询价！我们的业务员将在 24 小时内通过邮件与您联系。\n\nThank you! Our team will contact you within 24 hours.');
+}
+
+// ============================================================
+// SEARCH
+// ============================================================
+function doSearch(val) {
+  if (!val.trim()) { renderHomeProdGrid(); return; }
+  var v = val.toLowerCase();
+  var results = DB.products.filter(function(p){ return p.name.toLowerCase().includes(v) || p.nameEn.toLowerCase().includes(v) || p.category.toLowerCase().includes(v); });
+  var grid = document.getElementById('homeProdGrid');
+  if (!results.length) { grid.innerHTML = '<div style="grid-column:1/-1;padding:20px;text-align:center;color:var(--ink3)">未找到相关产品</div>'; return; }
+  var html = '';
+  results.forEach(function(p){
+    html += '<div class="prod-card" onclick="openProduct(\'' + p.id + '\')">';
+    html += '<div class="prod-img" style="background:' + p.bg + '">' + p.emoji + '</div>';
+    html += '<div class="prod-info"><div class="prod-name">' + p.name + '</div><div class="prod-spec">' + p.width + ' · ' + p.weight + '</div>';
+    html += '<div class="prod-bottom"><div class="prod-moq">MOQ ' + p.moq + '</div></div></div></div>';
+  });
+  grid.innerHTML = html;
+}
+
+// ============================================================
+// COMPANY INFO
+// ============================================================
+function renderCompanyMedia() {
+  var row = document.getElementById('companyMediaRow');
+  if (!row) return;
+  var html = '';
+  DB.companyInfo.media.forEach(function(m){
+    if (m.type === 'image') {
+      html += '<img src="' + m.url + '" class="company-media-thumb" onerror="this.style.display=\'none\'">';
+    } else {
+      html += '<div class="company-media-thumb"><video src="' + m.url + '" style="width:100%;height:100%;object-fit:cover"></video></div>';
+    }
+  });
+  row.innerHTML = html;
+  document.getElementById('companyInfoText').textContent = DB.companyInfo.text;
+}
+
+// ============================================================
+// ADMIN PANEL
+// ============================================================
+function switchAdminTab(tab, el) {
+  currentAdminTab = tab;
+  document.querySelectorAll('.tab-scroll-item').forEach(function(t){ t.classList.remove('active'); });
+  el.classList.add('active');
+  renderAdminPanel(tab);
+}
+
+function renderAdminPanel(tab) {
+  var body = document.getElementById('adminPanelBody');
+  if (tab === 'overview') {
+    var totalComments = DB.products.reduce(function(n,p){ return n + (p.comments||[]).length; }, 0);
+    body.innerHTML = '<div style="padding:0 16px">' +
+      '<div class="admin-stat-grid">' +
+      '<div class="admin-stat-box"><div class="admin-stat-num">' + DB.products.length + '</div><div class="admin-stat-label">产品数量</div></div>' +
+      '<div class="admin-stat-box"><div class="admin-stat-num">' + DB.inquiries.length + '</div><div class="admin-stat-label">询盘总数</div></div>' +
+      '<div class="admin-stat-box"><div class="admin-stat-num">' + DB.users.length + '</div><div class="admin-stat-label">用户总数</div></div>' +
+      '<div class="admin-stat-box"><div class="admin-stat-num">' + totalComments + '</div><div class="admin-stat-label">留言总数</div></div>' +
+      '</div>' +
+      '<div style="background:var(--white);border-radius:var(--radius);padding:14px;margin-top:4px;font-size:12px;color:var(--ink3);line-height:1.8">' +
+      '当前登录: <strong style="color:var(--ink)">' + (currentUser ? currentUser.name : '—') + '</strong><br>' +
+      '角色: <strong style="color:' + (isSuperAdmin?'var(--red)':'var(--ink)') + '">' + (isSuperAdmin ? '超级管理员' : '管理员') + '</strong><br>' +
+      '<button class="admin-btn" style="margin-top:10px" onclick="pageStack.push(currentPage);showPage(\'page-changepass\')">修改账号密码</button>' +
+      '</div></div>';
+  } else if (tab === 'company') {
+    body.innerHTML = '<div style="padding:0 16px">' +
+      '<div class="admin-section"><div class="admin-section-header">公司简介</div>' +
+      '<div class="admin-section-body">' +
+      '<textarea class="admin-textarea" id="adminCompanyText" style="height:120px">' + DB.companyInfo.text + '</textarea>' +
+      '<button class="admin-btn" onclick="saveCompanyText()">保存文字</button>' +
+      '</div></div>' +
+      '<div class="admin-section" style="margin-top:12px"><div class="admin-section-header">图片/视频管理</div>' +
+      '<div class="admin-section-body">' +
+      '<div class="media-upload-row" id="adminCompanyMedia">' + renderMediaThumbs(DB.companyInfo.media, 'company', -1) + '</div>' +
+      '<input type="file" id="adminCompanyFile" accept="image/*,video/*" style="display:none" onchange="handleMediaUpload(this,\'company\',-1)">' +
+      '<button class="admin-btn" style="margin-top:10px" onclick="document.getElementById(\'adminCompanyFile\').click()">+ 添加图片/视频</button>' +
+      '</div></div>' +
+      '</div>';
+  } else if (tab === 'products') {
+    var html = '<div style="padding:0 16px">';
+    html += '<button class="admin-btn" style="margin-bottom:12px;width:100%" onclick="openAddProduct()">+ 添加新产品</button>';
+    DB.products.forEach(function(p,i){
+      html += '<div class="admin-section" style="margin-bottom:8px">' +
+        '<div class="admin-section-header">' + p.emoji + ' ' + p.name +
+        '<div style="display:flex;gap:6px">' +
+        '<button class="admin-btn-sm" onclick="openEditProductById(\'' + p.id + '\')">编辑</button>' +
+        '<button class="admin-btn-sm admin-btn-danger" onclick="deleteProduct(\'' + p.id + '\')">删除</button>' +
+        '</div></div>' +
+        '<div class="admin-section-body" style="font-size:12px;color:var(--ink3)">' +
+        p.category + ' · MOQ ' + p.moq + ' · ' + p.width + ' · ' + p.weight + '<br>' +
+        '媒体文件: ' + (p.media?p.media.length:0) + ' 个 · 留言: ' + (p.comments?p.comments.length:0) + ' 条' +
+        '</div></div>';
+    });
+    html += '</div>';
+    body.innerHTML = html;
+  } else if (tab === 'users') {
+    var html = '<div style="padding:0 16px">';
+    html += '<div class="admin-section"><div class="admin-section-header">用户列表 (' + DB.users.length + ')</div><div class="admin-section-body">';
+    DB.users.forEach(function(u){
+      html += '<div class="admin-user-row">' +
+        '<div class="admin-user-name">' + u.name + '<br><span style="color:var(--ink3);font-size:10px">' + u.email + ' · ' + u.country + '</span></div>' +
+        '<span class="admin-user-role' + (u.blocked?' admin-user-blocked':'') + '">' + (u.blocked?'已拉黑':u.type) + '</span>' +
+        '<button class="admin-btn-sm ' + (u.blocked?'admin-btn-warn':'admin-btn-danger') + '" onclick="toggleBlock(\'' + u.id + '\')">' + (u.blocked?'解封':'拉黑') + '</button>' +
+        '</div>';
+    });
+    html += '</div></div></div>';
+    body.innerHTML = html;
+  } else if (tab === 'inquiries') {
+    var html = '<div style="padding:0 16px">';
+    if (DB.inquiries.length === 0) {
+      html += '<div style="padding:40px;text-align:center;color:var(--ink3)">暂无询盘</div>';
+    } else {
+      html += '<div class="admin-section"><div class="admin-section-header">询盘列表 (' + DB.inquiries.length + ')</div><div class="admin-section-body">';
+      DB.inquiries.forEach(function(inq,i){
+        html += '<div style="padding:10px 0;border-bottom:1px solid var(--paper3);font-size:12px">' +
+          '<div style="font-weight:500;color:var(--ink)">' + inq.name + ' · ' + inq.country + '</div>' +
+          '<div style="color:var(--ink3);margin:2px 0">' + inq.product + ' · ' + inq.time + '</div>' +
+          '<div style="color:var(--ink3)">' + inq.email + (inq.phone?' · '+inq.phone:'') + '</div>' +
+          (inq.msg?'<div style="color:var(--ink2);margin-top:4px">💬 '+inq.msg+'</div>':'') +
+          '<div style="margin-top:6px"><span style="background:' + (inq.status==='已处理'?'#EEF7EE':'#FEF9E7') + ';color:' + (inq.status==='已处理'?'var(--green)':'#E67E22') + ';padding:2px 8px;border-radius:4px;font-size:10px">' + inq.status + '</span>' +
+          (inq.status!=='已处理'?'<button class="admin-btn-sm" style="margin-left:8px" onclick="markInquiry(' + i + ')">标记已处理</button>':'') +
+          '</div></div>';
+      });
+      html += '</div></div>';
+    }
+    html += '</div>';
+    body.innerHTML = html;
+  } else if (tab === 'comments') {
+    var html = '<div style="padding:0 16px">';
+    html += '<div class="admin-section"><div class="admin-section-header">全部留言</div><div class="admin-section-body">';
+    var any = false;
+    DB.products.forEach(function(p){
+      if (p.comments && p.comments.length > 0) {
+        any = true;
+        html += '<div style="font-size:11px;color:var(--gold-dark);margin:8px 0 4px;font-weight:500">📦 ' + p.name + '</div>';
+        p.comments.forEach(function(c,ci){
+          html += '<div class="comment-admin-row">' +
+            '<div class="comment-admin-body">' +
+            '<div class="comment-admin-user">' + c.user + ' · ' + c.time + '</div>' +
+            '<div class="comment-admin-text">' + c.text + (c.contact?' | 联系: '+c.contact:'') + '</div></div>' +
+            '<button class="admin-btn-sm admin-btn-danger" onclick="deleteComment(\'' + p.id + '\',' + ci + ')">删除</button>' +
+            '</div>';
+        });
+      }
+    });
+    if (!any) html += '<div style="padding:20px;text-align:center;color:var(--ink3)">暂无留言</div>';
+    html += '</div></div></div>';
+    body.innerHTML = html;
+  } else if (tab === 'background') {
+    var pages = [{key:'home',label:'首页'},{key:'catalog',label:'产品页'},{key:'detail',label:'详情页'},{key:'profile',label:'我的页'},{key:'qr',label:'分享页'}];
+    var bgOptions = [
+      {val:'default',label:'默认纸色',style:'background:linear-gradient(135deg,#FAF7F2,#F2EDE4)'},
+      {val:'dark',label:'暗色模式',style:'background:linear-gradient(135deg,#1A1612,#3D3428)'},
+      {val:'gold',label:'金色典雅',style:'background:linear-gradient(135deg,#F5EDD8,#C8A96E)'},
+      {val:'blue',label:'商务蓝',style:'background:linear-gradient(135deg,#E8EEF5,#B8C8E8)'},
+      {val:'green',label:'自然绿',style:'background:linear-gradient(135deg,#E8F3EC,#A8D5B5)'},
+      {val:'purple',label:'优雅紫',style:'background:linear-gradient(135deg,#F0EBF5,#C8A8E0)'}
+    ];
+    var bgMap = {
+      default:'linear-gradient(135deg,#FAF7F2 0%,#F2EDE4 100%)',
+      dark:'linear-gradient(135deg,#1A1612 0%,#3D3428 100%)',
+      gold:'linear-gradient(135deg,#F5EDD8 0%,#C8A96E 100%)',
+      blue:'linear-gradient(135deg,#E8EEF5 0%,#B8C8E8 100%)',
+      green:'linear-gradient(135deg,#E8F3EC 0%,#A8D5B5 100%)',
+      purple:'linear-gradient(135deg,#F0EBF5 0%,#C8A8E0 100%)'
+    };
+    var html = '<div style="padding:0 16px">';
+    pages.forEach(function(pg){
+      html += '<div class="admin-section" style="margin-bottom:8px">';
+      html += '<div class="admin-section-header">' + pg.label + '</div>';
+      html += '<div class="admin-section-body"><div class="bg-picker-row">';
+      bgOptions.forEach(function(opt){
+        html += '<div class="bg-option' + (DB.backgrounds[pg.key]===opt.val?' selected':'') + '" style="' + opt.style + '" onclick="setBg(\'' + pg.key + '\',\'' + opt.val + '\',this,\'' + (bgMap[opt.val]||bgMap.default) + '\')">' + opt.label + '</div>';
+      });
+      html += '</div></div></div>';
+    });
+    html += '</div>';
+    body.innerHTML = html;
+  } else if (tab === 'admins' && isSuperAdmin) {
+    var html = '<div style="padding:0 16px">';
+    html += '<div class="admin-section"><div class="admin-section-header">管理员列表</div><div class="admin-section-body">';
+    DB.admins.forEach(function(a){
+      html += '<div class="admin-user-row">' +
+        '<div class="admin-user-name">' + a.name + '<br><span style="color:var(--ink3);font-size:10px">@' + a.username + ' · ' + (a.role==='super'?'超级管理员':'管理员') + '</span></div>' +
+        (a.role !== 'super' ? '<button class="admin-btn-sm admin-btn-warn" onclick="resetAdminPass(\'' + a.id + '\')">重置密码</button>' : '<span style="font-size:10px;color:var(--ink3)">主管理员</span>') +
+        '</div>';
+    });
+    html += '</div></div></div>';
+    body.innerHTML = html;
+  }
+}
+
+function saveCompanyText() {
+  DB.companyInfo.text = document.getElementById('adminCompanyText').value;
+  document.getElementById('companyInfoText').textContent = DB.companyInfo.text;
+  showToast('公司信息已保存');
+}
+
+function toggleBlock(uid) {
+  var u = DB.users.find(function(x){ return x.id === uid; });
+  if (u) { u.blocked = !u.blocked; renderAdminPanel('users'); showToast(u.blocked ? '已拉黑该用户' : '已解封该用户'); }
+}
+
+function markInquiry(idx) {
+  DB.inquiries[idx].status = '已处理';
+  renderAdminPanel('inquiries');
+  showToast('已标记处理');
+}
+
+function deleteComment(pid, ci) {
+  var p = DB.products.find(function(x){ return x.id === pid; });
+  if (p) { p.comments.splice(ci, 1); renderAdminPanel('comments'); showToast('留言已删除'); }
+}
+
+function deleteProduct(id) {
+  if (!confirm('确定删除该产品？')) return;
+  DB.products = DB.products.filter(function(p){ return p.id !== id; });
+  renderAdminPanel('products');
+  renderHomeProdGrid();
+  showToast('产品已删除');
+}
+
+function resetAdminPass(aid) {
+  var a = DB.admins.find(function(x){ return x.id === aid; });
+  if (a) { a.password = '123456'; a.changed = false; showToast('密码已重置为 123456'); }
+}
+
+function setBg(pageKey, val, el, cssVal) {
+  DB.backgrounds[pageKey] = val;
+  el.closest('.bg-picker-row').querySelectorAll('.bg-option').forEach(function(o){ o.classList.remove('selected'); });
+  el.classList.add('selected');
+  var pageEl = document.getElementById('page-' + pageKey);
+  if (pageEl) pageEl.style.background = cssVal;
+  showToast('背景已应用');
+}
+
+// ============================================================
+// ADD / EDIT PRODUCT MODAL
+// ============================================================
+function openAddProduct() {
+  if (!isAdmin) return;
+  openModal('添加产品', buildProductForm(null));
+}
+
+function openEditProduct() {
+  if (!isAdmin || !currentProduct) return;
+  openModal('编辑产品', buildProductForm(currentProduct));
+}
+
+function openEditProductById(id) {
+  if (!isAdmin) return;
+  var p = DB.products.find(function(x){ return x.id === id; });
+  if (p) { currentProduct = p; openModal('编辑产品', buildProductForm(p)); }
+}
+
+function openEditCompany() {
+  if (!isAdmin) return;
+  var html = '<div style="display:flex;flex-direction:column;gap:10px">' +
+    '<label style="font-size:12px;color:var(--ink3)">公司简介</label>' +
+    '<textarea class="admin-textarea" id="modalCompanyText" style="height:100px">' + DB.companyInfo.text + '</textarea>' +
+    '<label style="font-size:12px;color:var(--ink3)">添加图片链接 (URL)</label>' +
+    '<div style="display:flex;gap:8px"><input class="admin-input" id="modalMediaUrl" placeholder="https://..." style="flex:1;margin:0"><button class="admin-btn" onclick="addCompanyMedia()">添加</button></div>' +
+    '<div class="media-upload-row" id="modalMediaThumbsWrap">' + renderMediaThumbs(DB.companyInfo.media, 'company', -1) + '</div>' +
+    '<button class="admin-btn" style="margin-top:4px" onclick="saveCompanyModal()">保存</button>' +
+    '</div>';
+  openModal('编辑公司信息', html);
+}
+
+function addCompanyMedia() {
+  var url = document.getElementById('modalMediaUrl').value.trim();
+  if (!url) return;
+  DB.companyInfo.media.push({ type: url.match(/\.(mp4|webm|ogg)$/i) ? 'video' : 'image', url: url });
+  document.getElementById('modalMediaThumbsWrap').innerHTML = renderMediaThumbs(DB.companyInfo.media, 'company', -1);
+  document.getElementById('modalMediaUrl').value = '';
+}
+
+function saveCompanyModal() {
+  DB.companyInfo.text = document.getElementById('modalCompanyText').value;
+  renderCompanyMedia();
+  closeModal();
+  showToast('公司信息已保存');
+}
+
+function renderMediaThumbs(media, type, pid) {
+  var html = '';
+  (media||[]).forEach(function(m, i){
+    if (m.type === 'image') html += '<div class="media-thumb"><img src="' + m.url + '" onerror="this.style.display=\'none\'"><div style="position:absolute;top:2px;right:2px;background:rgba(0,0,0,0.5);color:white;border-radius:3px;font-size:10px;padding:1px 4px;cursor:pointer" onclick="removeMedia(\'' + type + '\',' + pid + ',' + i + ')">×</div></div>';
+    else html += '<div class="media-thumb"><video src="' + m.url + '"></video><div style="position:absolute;top:2px;right:2px;background:rgba(0,0,0,0.5);color:white;border-radius:3px;font-size:10px;padding:1px 4px;cursor:pointer" onclick="removeMedia(\'' + type + '\',' + pid + ',' + i + ')">×</div></div>';
+  });
+  return html;
+}
+
+function removeMedia(type, pid, idx) {
+  if (type === 'company') {
+    DB.companyInfo.media.splice(idx, 1);
+    renderCompanyMedia();
+    if (document.getElementById('adminCompanyMedia')) document.getElementById('adminCompanyMedia').innerHTML = renderMediaThumbs(DB.companyInfo.media, 'company', -1);
+    if (document.getElementById('modalMediaThumbsWrap')) document.getElementById('modalMediaThumbsWrap').innerHTML = renderMediaThumbs(DB.companyInfo.media, 'company', -1);
+  } else {
+    var p = DB.products.find(function(x){ return x.id === pid; });
+    if (p) { p.media.splice(idx, 1); }
+  }
+  showToast('已删除');
+}
+
+function buildProductForm(p) {
+  var cats = ['天丝系列','棉麻系列','丝绒面料','环保系列','提花系列'];
+  var emojis = ['🧶','🔷','🪡','🌿','✨','🧵','🔶','💠','🎀'];
+  var isEdit = !!p;
+  return '<div style="display:flex;flex-direction:column;gap:10px">' +
+    '<input class="admin-input" id="pfName" placeholder="产品名称 *" value="' + (p?p.name:'') + '" style="margin:0">' +
+    '<input class="admin-input" id="pfNameEn" placeholder="英文名称" value="' + (p?p.nameEn:'') + '" style="margin:0">' +
+    '<select class="form-select" id="pfCat" style="height:40px;font-size:13px">' + cats.map(function(c){ return '<option' + (p&&p.category===c?' selected':'') + '>' + c + '</option>'; }).join('') + '</select>' +
+    '<div style="display:flex;gap:8px">' +
+    '<input class="admin-input" id="pfMoq" placeholder="MOQ (如500m)" value="' + (p?p.moq:'') + '" style="flex:1;margin:0">' +
+    '<input class="admin-input" id="pfWidth" placeholder="幅宽 (如150cm)" value="' + (p?p.width:'') + '" style="flex:1;margin:0">' +
+    '</div>' +
+    '<div style="display:flex;gap:8px">' +
+    '<input class="admin-input" id="pfWeight" placeholder="克重" value="' + (p?p.weight:'') + '" style="flex:1;margin:0">' +
+    '<input class="admin-input" id="pfLead" placeholder="交期" value="' + (p?p.lead:'30天') + '" style="flex:1;margin:0">' +
+    '</div>' +
+    '<textarea class="admin-textarea" id="pfDesc" placeholder="产品描述/规格 (每行一个键值对，如：成分:Modal 50%)">' + (p?Object.entries(p.specs).map(function(e){return e[0]+':'+e[1]}).join('\n'):'') + '</textarea>' +
+    '<label style="font-size:12px;color:var(--ink3)">添加产品图片/视频 URL</label>' +
+    '<div style="display:flex;gap:8px"><input class="admin-input" id="pfMediaUrl" placeholder="https://..." style="flex:1;margin:0"><button class="admin-btn" onclick="addProductMedia()">添加</button></div>' +
+    '<div class="media-upload-row" id="pfMediaThumbs">' + renderMediaThumbs(p?p.media:[], 'product', p?p.id:'') + '</div>' +
+    '<div style="display:flex;gap:8px">' +
+    '<input class="admin-input" id="pfEmoji" placeholder="Emoji" value="' + (p?p.emoji:'🧶') + '" style="flex:1;margin:0">' +
+    '<select class="form-select" id="pfBadge" style="height:40px;font-size:12px;flex:1">' +
+    '<option value="">无标签</option>' +
+    '<option value="hot"' + (p&&p.badge==='hot'?' selected':'') + '>热门</option>' +
+    '<option value="new"' + (p&&p.badge==='new'?' selected':'') + '>新品</option>' +
+    '</select>' +
+    '</div>' +
+    '<button class="admin-btn" style="margin-top:4px" onclick="saveProduct(\'' + (p?p.id:'') + '\')">' + (isEdit?'保存修改':'添加产品') + '</button>' +
+    '</div>';
+}
+
+var tempProductMedia = [];
+function openModal(title, html) {
+  tempProductMedia = currentProduct ? JSON.parse(JSON.stringify(currentProduct.media||[])) : [];
+  document.getElementById('modalTitleText').textContent = title;
+  document.getElementById('modalBody').innerHTML = html;
+  document.getElementById('modalOverlay').classList.add('show');
+}
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('show');
+  tempProductMedia = [];
+}
+
+function addProductMedia() {
+  var url = document.getElementById('pfMediaUrl').value.trim();
+  if (!url) return;
+  tempProductMedia.push({ type: url.match(/\.(mp4|webm|ogg)$/i) ? 'video' : 'image', url: url });
+  document.getElementById('pfMediaThumbs').innerHTML = renderMediaThumbs(tempProductMedia, 'product', currentProduct?currentProduct.id:'');
+  document.getElementById('pfMediaUrl').value = '';
+}
+
+function saveProduct(id) {
+  var name = document.getElementById('pfName').value.trim();
+  if (!name) { showToast('请输入产品名称'); return; }
+  var specsRaw = document.getElementById('pfDesc').value.trim();
+  var specs = {};
+  specsRaw.split('\n').forEach(function(line){ var kv = line.split(':'); if (kv.length >= 2) specs[kv[0].trim()] = kv.slice(1).join(':').trim(); });
+  var badge = document.getElementById('pfBadge').value;
+  var badgeTextMap = { hot:'热门', new:'新品' };
+  if (id) {
+    var p = DB.products.find(function(x){ return x.id === id; });
+    if (p) {
+      p.name = name;
+      p.nameEn = document.getElementById('pfNameEn').value.trim() || name;
+      p.category = document.getElementById('pfCat').value;
+      p.moq = document.getElementById('pfMoq').value.trim() || p.moq;
+      p.width = document.getElementById('pfWidth').value.trim() || p.width;
+      p.weight = document.getElementById('pfWeight').value.trim() || p.weight;
+      p.lead = document.getElementById('pfLead').value.trim() || p.lead;
+      p.specs = Object.keys(specs).length ? specs : p.specs;
+      p.emoji = document.getElementById('pfEmoji').value || p.emoji;
+      p.badge = badge; p.badgeText = badgeTextMap[badge]||'';
+      p.media = tempProductMedia.map(function(m){ return m.url; });
+    }
+    showToast('产品已更新');
+    if (currentProduct && currentProduct.id === id) renderDetailPage(currentProduct);
+  } else {
+    var newP = {
+      id: 'p' + Date.now(),
+      name: name,
+      nameEn: document.getElementById('pfNameEn').value.trim() || name,
+      emoji: document.getElementById('pfEmoji').value || '🧶',
+      bg: '#F5EDD8',
+      category: document.getElementById('pfCat').value,
+      badge: badge, badgeText: badgeTextMap[badge]||'',
+      moq: document.getElementById('pfMoq').value.trim() || '500m',
+      width: document.getElementById('pfWidth').value.trim() || '150cm',
+      weight: document.getElementById('pfWeight').value.trim() || '180g/m²',
+      lead: document.getElementById('pfLead').value.trim() || '30天',
+      specs: Object.keys(specs).length ? specs : { 成分:'—', 克重:'—', 幅宽:'—' },
+      certs: [],
+      colors: [{bg:'#F0E6D6',name:'默认'}],
+      media: tempProductMedia.map(function(m){ return m.url; }),
+      comments: []
+    };
+    DB.products.push(newP);
+    showToast('产品已添加');
+  }
+  closeModal();
+  renderHomeProdGrid();
+  renderCatalogList('全部');
+  renderAdminPanel('products');
+  tempProductMedia = [];
+}
+
+function handleMediaUpload(input, type) {
+  var file = input.files[0];
+  if (!file) return;
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    if (type === 'company') {
+      DB.companyInfo.media.push({ type: file.type.startsWith('video') ? 'video' : 'image', url: e.target.result });
+      renderCompanyMedia();
+      if (document.getElementById('adminCompanyMedia')) document.getElementById('adminCompanyMedia').innerHTML = renderMediaThumbs(DB.companyInfo.media, 'company', -1);
+    }
+    showToast('已上传');
+  };
+  reader.readAsDataURL(file);
+}
+
+// ============================================================
+// UI HELPERS
+// ============================================================
+function showToast(msg) {
+  var el = document.getElementById('toastEl');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(function(){ el.classList.remove('show'); }, 2500);
+}
+
+function showSuccess(icon, title, sub) {
+  document.getElementById('successIcon').textContent = icon;
+  document.getElementById('successTitle').textContent = title;
+  document.getElementById('successSub').textContent = sub;
+  document.getElementById('success-overlay').classList.add('show');
+}
+
+function closeSuccess() {
+  document.getElementById('success-overlay').classList.remove('show');
+  pageStack = [];
+  showPage('page-home');
+}
+
+function switchLoginTab(type, el) {
+  document.querySelectorAll('.login-tab').forEach(function(t){ t.classList.remove('active'); });
+  el.classList.add('active');
+  document.getElementById('login-form-email').style.display = type === 'email' ? 'flex' : 'none';
+  document.getElementById('login-form-phone').style.display = type === 'phone' ? 'flex' : 'none';
+}
+
+function toggleType(el) {
+  document.querySelectorAll('.type-chip').forEach(function(c){ c.classList.remove('selected'); });
+  el.classList.add('selected');
+}
+
+function switchQrTab(el) {
+  document.querySelectorAll('.qr-type-tab').forEach(function(t){ t.classList.remove('active'); });
+  el.classList.add('active');
+}
+
+// ============================================================
+// INIT
+// ============================================================
+renderHomeProdGrid();
+renderCompanyMedia();
+applyI18n();
+</script>
+</body>
+</html>
