@@ -1,0 +1,1795 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>芭莎纺织 · 产品目录</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #C8A96E;
+  --gold-light: #E8D5A8;
+  --gold-dark: #8B6F3E;
+  --ink: #1A1612;
+  --ink2: #3D3428;
+  --ink3: #6B5E4E;
+  --paper: #FAF7F2;
+  --paper2: #F2EDE4;
+  --paper3: #E8E0D4;
+  --white: #FFFFFF;
+  --red: #C0392B;
+  --green: #2D6A4F;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --tab-h: 60px;
+  --nav-h: 52px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+body {
+  font-family: 'Noto Sans SC', sans-serif;
+  background: #2C2416;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.phone-shell {
+  width: 390px;
+  height: 844px;
+  background: var(--paper);
+  border-radius: 44px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 40px 120px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.status-bar {
+  height: 44px;
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px 0 20px;
+  flex-shrink: 0;
+}
+.status-bar .time { color: #fff; font-size: 15px; font-weight: 500; font-family: 'Noto Sans SC'; }
+.status-icons { display: flex; align-items: center; gap: 6px; }
+.status-icons svg { fill: white; }
+
+.screen { flex: 1; overflow: hidden; position: relative; background: var(--paper); }
+.page { position: absolute; inset: 0; overflow-y: auto; overflow-x: hidden; background: var(--paper); display: none; flex-direction: column; }
+.page.active { display: flex; }
+.page::-webkit-scrollbar { display: none; }
+
+/* ── NAV BAR ── */
+.nav-bar {
+  height: var(--nav-h);
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+}
+.nav-bar .nav-title {
+  color: var(--gold-light);
+  font-family: 'Noto Serif SC', serif;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+.nav-back {
+  position: absolute;
+  left: 16px;
+  color: var(--gold-light);
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px;
+}
+.nav-bar .nav-right {
+  position: absolute;
+  right: 16px;
+  color: var(--gold-light);
+  font-size: 20px;
+  cursor: pointer;
+  padding: 8px;
+}
+
+/* ── TAB BAR ── */
+.tab-bar {
+  height: var(--tab-h);
+  background: var(--ink);
+  display: flex;
+  align-items: stretch;
+  flex-shrink: 0;
+  border-top: 1px solid rgba(200,169,110,0.2);
+}
+.tab-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  cursor: pointer;
+  position: relative;
+}
+.tab-item .tab-icon { font-size: 20px; transition: all .2s; }
+.tab-item .tab-label { font-size: 10px; color: rgba(255,255,255,0.4); transition: all .2s; }
+.tab-item.active .tab-icon { filter: brightness(0) saturate(100%) invert(78%) sepia(32%) saturate(600%) hue-rotate(5deg) brightness(100%); }
+.tab-item.active .tab-label { color: var(--gold); }
+
+/* ── LOGIN PAGE ── */
+#page-login {
+  background: var(--ink);
+  justify-content: flex-start;
+  overflow: hidden;
+}
+.login-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 80% 20%, rgba(200,169,110,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 20% 80%, rgba(200,169,110,0.08) 0%, transparent 50%);
+}
+.login-pattern {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 60%;
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 30px,
+    rgba(200,169,110,0.04) 30px,
+    rgba(200,169,110,0.04) 31px
+  );
+}
+.login-content {
+  position: relative;
+  z-index: 2;
+  padding: 60px 32px 40px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.login-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+.logo-emblem {
+  width: 56px; height: 56px;
+  border: 1.5px solid var(--gold);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2px;
+  background: rgba(200,169,110,0.08);
+}
+.logo-zh { color: var(--gold); font-family: 'Noto Serif SC',serif; font-size: 16px; font-weight: 600; letter-spacing: 2px; }
+.logo-en { color: rgba(200,169,110,0.6); font-size: 7px; letter-spacing: 1.5px; }
+.login-brand-name { color: var(--gold-light); font-family: 'Noto Serif SC',serif; font-size: 22px; font-weight: 600; letter-spacing: 3px; line-height: 1.3; }
+.login-brand-sub { color: rgba(200,169,110,0.5); font-size: 10px; letter-spacing: 3px; margin-top: 4px; }
+
+.login-tagline {
+  color: rgba(255,255,255,0.35);
+  font-size: 12px;
+  letter-spacing: 1px;
+  margin: 20px 0 48px;
+  line-height: 1.8;
+}
+
+.login-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 28px;
+  border-bottom: 1px solid rgba(200,169,110,0.2);
+}
+.login-tab {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.4);
+  cursor: pointer;
+  transition: all .2s;
+  position: relative;
+}
+.login-tab.active { color: var(--gold); }
+.login-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 20%; right: 20%;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 2px;
+}
+
+.login-form { display: flex; flex-direction: column; gap: 14px; }
+.login-input-wrap {
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(200,169,110,0.2);
+  border-radius: var(--radius-sm);
+  padding: 0 16px;
+  height: 48px;
+  transition: border-color .2s;
+}
+.login-input-wrap:focus-within { border-color: rgba(200,169,110,0.6); }
+.login-input-icon { color: rgba(200,169,110,0.6); font-size: 16px; margin-right: 10px; }
+.login-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 14px;
+  font-family: 'Noto Sans SC', sans-serif;
+}
+.login-input::placeholder { color: rgba(255,255,255,0.25); }
+.login-input-suffix {
+  color: var(--gold);
+  font-size: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-login {
+  height: 50px;
+  background: var(--gold);
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+  font-family: 'Noto Serif SC', serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: opacity .2s, transform .1s;
+}
+.btn-login:active { transform: scale(0.98); opacity: 0.9; }
+
+.login-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+  color: rgba(255,255,255,0.2);
+  font-size: 12px;
+}
+.login-divider::before, .login-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(200,169,110,0.15);
+}
+
+.btn-wechat {
+  height: 50px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: var(--radius-sm);
+  color: rgba(255,255,255,0.7);
+  font-size: 14px;
+  font-family: 'Noto Sans SC', sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all .2s;
+}
+.btn-wechat:active { background: rgba(255,255,255,0.06); }
+.wechat-dot { width: 20px; height: 20px; background: #07C160; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+.login-footer {
+  margin-top: auto;
+  text-align: center;
+  color: rgba(255,255,255,0.2);
+  font-size: 11px;
+  line-height: 1.8;
+  padding-top: 20px;
+}
+
+/* ── HOME PAGE ── */
+.home-hero {
+  background: var(--ink);
+  padding: 20px 20px 0;
+  flex-shrink: 0;
+}
+.home-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.home-logo-row { display: flex; align-items: center; gap: 10px; }
+.home-logo-sq {
+  width: 36px; height: 36px;
+  border: 1px solid var(--gold);
+  border-radius: 8px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 1px;
+}
+.hlz { color: var(--gold); font-family: 'Noto Serif SC',serif; font-size: 11px; font-weight: 600; letter-spacing: 2px; }
+.home-brand { color: var(--gold-light); font-family: 'Noto Serif SC',serif; font-size: 16px; letter-spacing: 2px; }
+.home-sub { color: rgba(200,169,110,0.5); font-size: 9px; letter-spacing: 2px; }
+.home-icons { display: flex; gap: 16px; }
+.home-icon { color: rgba(200,169,110,0.7); font-size: 20px; cursor: pointer; }
+
+.home-search {
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.07);
+  border-radius: var(--radius-sm);
+  padding: 0 14px;
+  height: 38px;
+  gap: 8px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(200,169,110,0.15);
+}
+.home-search span { color: rgba(255,255,255,0.25); font-size: 13px; }
+
+.home-banner {
+  border-radius: var(--radius) var(--radius) 0 0;
+  overflow: hidden;
+  height: 160px;
+  position: relative;
+  background: linear-gradient(135deg, #2C2010 0%, #4A3520 50%, #2C2010 100%);
+}
+.banner-texture {
+  position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 20px,
+    rgba(200,169,110,0.05) 20px,
+    rgba(200,169,110,0.05) 21px
+  );
+}
+.banner-content {
+  position: absolute; inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px 28px;
+}
+.banner-season { color: var(--gold); font-size: 10px; letter-spacing: 3px; margin-bottom: 8px; }
+.banner-title { color: var(--gold-light); font-family: 'Noto Serif SC',serif; font-size: 22px; font-weight: 600; letter-spacing: 2px; line-height: 1.4; }
+.banner-sub { color: rgba(200,169,110,0.6); font-size: 11px; letter-spacing: 1px; margin-top: 8px; }
+.banner-dots {
+  position: absolute; bottom: 12px; right: 20px;
+  display: flex; gap: 5px;
+}
+.banner-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(200,169,110,0.3); }
+.banner-dot.active { background: var(--gold); width: 16px; border-radius: 3px; }
+
+.home-scroll { flex: 1; overflow-y: auto; background: var(--paper); }
+.home-scroll::-webkit-scrollbar { display: none; }
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 20px 12px;
+}
+.section-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 16px;
+  color: var(--ink);
+  font-weight: 600;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-title::before {
+  content: '';
+  width: 3px; height: 16px;
+  background: var(--gold);
+  border-radius: 2px;
+}
+.section-more { font-size: 12px; color: var(--gold-dark); }
+
+/* categories */
+.cat-scroll {
+  display: flex;
+  gap: 12px;
+  padding: 0 20px 4px;
+  overflow-x: auto;
+}
+.cat-scroll::-webkit-scrollbar { display: none; }
+.cat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.cat-icon {
+  width: 58px; height: 58px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  transition: transform .2s;
+  border: 1px solid transparent;
+}
+.cat-item:active .cat-icon { transform: scale(0.93); }
+.cat-c1 { background: #F5EDD8; border-color: rgba(200,169,110,0.3); }
+.cat-c2 { background: #E8EEF5; border-color: rgba(100,130,180,0.2); }
+.cat-c3 { background: #F0EBF5; border-color: rgba(150,100,180,0.2); }
+.cat-c4 { background: #E8F3EC; border-color: rgba(80,160,100,0.2); }
+.cat-c5 { background: #F5E8E8; border-color: rgba(180,80,80,0.2); }
+.cat-name { font-size: 11px; color: var(--ink3); white-space: nowrap; }
+
+/* product grid */
+.prod-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 0 16px 20px;
+}
+.prod-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform .15s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.prod-card:active { transform: scale(0.97); }
+.prod-img {
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  position: relative;
+}
+.prod-badge {
+  position: absolute;
+  top: 8px; left: 8px;
+  background: var(--gold);
+  color: var(--ink);
+  font-size: 9px;
+  font-weight: 500;
+  padding: 2px 7px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+.prod-badge.new { background: var(--red); color: #fff; }
+.prod-badge.hot { background: #E67E22; color: #fff; }
+.prod-info { padding: 10px 12px 12px; }
+.prod-name { font-size: 13px; color: var(--ink); font-weight: 500; margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.prod-spec { font-size: 11px; color: var(--ink3); margin-bottom: 8px; }
+.prod-bottom { display: flex; align-items: center; justify-content: space-between; }
+.prod-moq { font-size: 10px; color: var(--ink3); background: var(--paper2); padding: 2px 7px; border-radius: 4px; }
+.prod-inquiry { width: 28px; height: 28px; background: var(--ink); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 14px; }
+
+/* ── CATALOG PAGE ── */
+.catalog-filter {
+  background: var(--white);
+  border-bottom: 1px solid var(--paper3);
+  flex-shrink: 0;
+}
+.filter-scroll {
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px;
+  overflow-x: auto;
+}
+.filter-scroll::-webkit-scrollbar { display: none; }
+.filter-chip {
+  flex-shrink: 0;
+  height: 30px;
+  padding: 0 14px;
+  border-radius: 15px;
+  font-size: 12px;
+  border: 1px solid var(--paper3);
+  background: transparent;
+  color: var(--ink3);
+  cursor: pointer;
+  transition: all .15s;
+  display: flex; align-items: center; gap: 4px;
+  white-space: nowrap;
+}
+.filter-chip.active {
+  background: var(--ink);
+  color: var(--gold-light);
+  border-color: var(--ink);
+}
+
+.catalog-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.catalog-list::-webkit-scrollbar { display: none; }
+
+.list-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  display: flex;
+  gap: 14px;
+  padding: 14px;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  transition: transform .15s;
+}
+.list-card:active { transform: scale(0.98); }
+.list-img {
+  width: 88px; height: 88px;
+  border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 42px;
+  flex-shrink: 0;
+  background: var(--paper2);
+}
+.list-body { flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+.list-name { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+.list-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
+.list-tag {
+  font-size: 10px; padding: 1px 7px;
+  border-radius: 4px;
+  background: var(--paper2);
+  color: var(--ink3);
+}
+.list-meta { display: flex; align-items: center; justify-content: space-between; }
+.list-moq { font-size: 11px; color: var(--ink3); }
+.list-btn {
+  font-size: 11px;
+  background: var(--ink);
+  color: var(--gold-light);
+  border: none;
+  border-radius: 6px;
+  padding: 5px 12px;
+  cursor: pointer;
+  font-family: 'Noto Sans SC', sans-serif;
+  letter-spacing: 0.5px;
+}
+
+/* ── PRODUCT DETAIL ── */
+.detail-gallery {
+  height: 260px;
+  background: var(--paper2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 90px;
+  position: relative;
+  flex-shrink: 0;
+}
+.gallery-indicator {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex; gap: 5px;
+}
+.gallery-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(0,0,0,0.15); }
+.gallery-dot.active { background: var(--gold-dark); width: 14px; border-radius: 3px; }
+
+.detail-body { flex: 1; overflow-y: auto; background: var(--paper); }
+.detail-body::-webkit-scrollbar { display: none; }
+
+.detail-header { padding: 20px 20px 16px; background: var(--white); }
+.detail-tags { display: flex; gap: 6px; margin-bottom: 10px; }
+.detail-tag {
+  font-size: 10px; padding: 2px 8px;
+  border-radius: 4px;
+}
+.tag-new { background: #FDECEA; color: var(--red); }
+.tag-cat { background: var(--paper2); color: var(--ink3); }
+.detail-name {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 20px;
+  color: var(--ink);
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+.detail-name-en { font-size: 11px; color: var(--ink3); letter-spacing: 1px; margin-bottom: 12px; }
+.detail-moq-row { display: flex; align-items: center; gap: 10px; }
+.detail-moq-badge {
+  background: var(--paper2);
+  border-radius: 6px;
+  padding: 5px 12px;
+  font-size: 12px;
+  color: var(--ink3);
+}
+.detail-moq-badge span { color: var(--ink); font-weight: 500; }
+
+.detail-section {
+  background: var(--white);
+  margin-top: 8px;
+  padding: 16px 20px;
+}
+.detail-section-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--paper3);
+  display: flex; align-items: center; gap: 6px;
+}
+.detail-section-title::before {
+  content: '';
+  width: 3px; height: 13px;
+  background: var(--gold);
+  border-radius: 2px;
+}
+
+.spec-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.spec-item {
+  background: var(--paper);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+}
+.spec-label { font-size: 11px; color: var(--ink3); margin-bottom: 3px; }
+.spec-value { font-size: 13px; color: var(--ink); font-weight: 500; }
+
+.color-swatches {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.swatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+.swatch-circle {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  transition: border-color .15s;
+}
+.swatch.selected .swatch-circle { border-color: var(--gold); }
+.swatch-name { font-size: 10px; color: var(--ink3); }
+
+.cert-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.cert-badge {
+  background: #EEF7EE;
+  color: var(--green);
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(45,106,79,0.2);
+}
+
+.detail-actions {
+  padding: 16px 20px;
+  background: var(--white);
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.btn-inquiry {
+  height: 50px;
+  background: var(--ink);
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--gold-light);
+  font-family: 'Noto Serif SC', serif;
+  font-size: 15px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: opacity .2s;
+}
+.btn-inquiry:active { opacity: 0.85; }
+.btn-whatsapp {
+  height: 44px;
+  background: #07C160;
+  border: none;
+  border-radius: var(--radius-sm);
+  color: #fff;
+  font-size: 14px;
+  font-family: 'Noto Sans SC', sans-serif;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+
+/* ── INQUIRY FORM ── */
+.form-scroll { flex: 1; overflow-y: auto; padding: 16px 20px 24px; }
+.form-scroll::-webkit-scrollbar { display: none; }
+
+.form-product-preview {
+  display: flex; gap: 12px; align-items: center;
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(200,169,110,0.25);
+}
+.fpp-img { font-size: 36px; }
+.fpp-name { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 3px; }
+.fpp-sub { font-size: 11px; color: var(--ink3); }
+
+.form-group { margin-bottom: 16px; }
+.form-label {
+  font-size: 12px;
+  color: var(--ink3);
+  margin-bottom: 6px;
+  display: block;
+}
+.form-required { color: var(--red); }
+.form-input {
+  width: 100%;
+  height: 44px;
+  background: var(--white);
+  border: 1px solid var(--paper3);
+  border-radius: var(--radius-sm);
+  padding: 0 14px;
+  font-size: 14px;
+  font-family: 'Noto Sans SC', sans-serif;
+  color: var(--ink);
+  outline: none;
+  transition: border-color .2s;
+}
+.form-input:focus { border-color: var(--gold); }
+.form-input::placeholder { color: rgba(107,94,78,0.4); }
+.form-select {
+  width: 100%;
+  height: 44px;
+  background: var(--white);
+  border: 1px solid var(--paper3);
+  border-radius: var(--radius-sm);
+  padding: 0 14px;
+  font-size: 14px;
+  font-family: 'Noto Sans SC', sans-serif;
+  color: var(--ink);
+  outline: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' viewBox='0 0 24 24'%3E%3Cpath stroke='%236B5E4E' stroke-width='2' stroke-linecap='round' d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+}
+.form-textarea {
+  width: 100%;
+  height: 90px;
+  background: var(--white);
+  border: 1px solid var(--paper3);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-size: 14px;
+  font-family: 'Noto Sans SC', sans-serif;
+  color: var(--ink);
+  outline: none;
+  resize: none;
+  transition: border-color .2s;
+  line-height: 1.6;
+}
+.form-textarea:focus { border-color: var(--gold); }
+.form-textarea::placeholder { color: rgba(107,94,78,0.4); }
+
+.form-type-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.type-chip {
+  flex: 1; min-width: 80px;
+  height: 36px;
+  border: 1px solid var(--paper3);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--ink3);
+  font-size: 12px;
+  font-family: 'Noto Sans SC', sans-serif;
+  cursor: pointer;
+  transition: all .15s;
+}
+.type-chip.selected {
+  background: var(--ink);
+  color: var(--gold-light);
+  border-color: var(--ink);
+}
+
+.btn-submit {
+  width: 100%;
+  height: 52px;
+  background: var(--ink);
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--gold-light);
+  font-family: 'Noto Serif SC', serif;
+  font-size: 16px;
+  letter-spacing: 3px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: opacity .2s;
+}
+.btn-submit:active { opacity: 0.85; }
+
+/* ── PROFILE PAGE ── */
+.profile-hero {
+  background: var(--ink);
+  padding: 28px 24px 32px;
+  flex-shrink: 0;
+}
+.profile-avatar-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.profile-avatar {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: rgba(200,169,110,0.15);
+  border: 2px solid rgba(200,169,110,0.4);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+}
+.profile-name { color: var(--gold-light); font-size: 18px; font-weight: 500; margin-bottom: 4px; }
+.profile-email { color: rgba(200,169,110,0.5); font-size: 12px; }
+.profile-badges { display: flex; gap: 8px; margin-top: 10px; }
+.profile-badge {
+  padding: 3px 10px; border-radius: 5px;
+  font-size: 11px;
+}
+.pb-vip { background: rgba(200,169,110,0.15); color: var(--gold); border: 1px solid rgba(200,169,110,0.3); }
+.pb-country { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.1); }
+
+.profile-scroll { flex: 1; overflow-y: auto; }
+.profile-scroll::-webkit-scrollbar { display: none; }
+
+.profile-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: var(--white);
+  border-bottom: 1px solid var(--paper3);
+  padding: 16px 0;
+}
+.stat-item { text-align: center; border-right: 1px solid var(--paper3); }
+.stat-item:last-child { border-right: none; }
+.stat-num { font-size: 22px; font-weight: 500; color: var(--ink); font-family: 'Noto Serif SC', serif; }
+.stat-label { font-size: 11px; color: var(--ink3); margin-top: 2px; }
+
+.profile-section {
+  background: var(--white);
+  margin-top: 8px;
+  padding: 0 20px;
+}
+.profile-item {
+  display: flex; align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--paper3);
+  cursor: pointer;
+}
+.profile-item:last-child { border-bottom: none; }
+.profile-item-icon { font-size: 18px; margin-right: 12px; width: 24px; text-align: center; }
+.profile-item-label { flex: 1; font-size: 14px; color: var(--ink); }
+.profile-item-right { color: var(--ink3); font-size: 12px; }
+.profile-item-arrow { color: var(--paper3); font-size: 16px; margin-left: 6px; }
+
+/* ── QR CODE PAGE ── */
+.qr-page-content {
+  flex: 1; overflow-y: auto;
+  display: flex; flex-direction: column;
+  align-items: center;
+  padding: 30px 20px 40px;
+  gap: 20px;
+}
+.qr-page-content::-webkit-scrollbar { display: none; }
+
+.qr-card {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 28px 28px 20px;
+  display: flex; flex-direction: column; align-items: center;
+  width: 280px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  border: 1px solid var(--paper3);
+}
+.qr-company-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+.qr-logo-sq {
+  width: 36px; height: 36px;
+  border: 1.5px solid var(--gold);
+  border-radius: 8px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 1px; background: var(--ink);
+}
+.qlz { color: var(--gold); font-family: 'Noto Serif SC',serif; font-size: 10px; letter-spacing: 2px; }
+.qr-co-name { font-family: 'Noto Serif SC',serif; font-size: 14px; color: var(--ink); font-weight: 600; letter-spacing: 1px; }
+.qr-co-sub { font-size: 9px; color: var(--ink3); letter-spacing: 1.5px; }
+.qr-frame {
+  width: 180px; height: 180px;
+  padding: 10px;
+  border: 1.5px solid var(--paper3);
+  border-radius: 12px;
+  position: relative;
+  background: var(--white);
+  margin-bottom: 12px;
+}
+.qr-frame svg { width: 100%; height: 100%; }
+.qr-logo-center {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 36px; height: 36px;
+  background: var(--white);
+  border-radius: 6px;
+  border: 1px solid rgba(200,169,110,0.3);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 1px;
+}
+.qlz2 { color: var(--gold-dark); font-family: 'Noto Serif SC',serif; font-size: 9px; letter-spacing: 1px; }
+.qr-caption { font-size: 11px; color: var(--ink3); text-align: center; margin-bottom: 4px; }
+.qr-url { font-size: 10px; color: var(--gold-dark); font-family: monospace; }
+.qr-separator { width: 100%; height: 1px; background: var(--paper3); margin: 12px 0; }
+.qr-scan-hint { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--ink3); }
+.qr-hint-dot { width: 6px; height: 6px; border-radius: 50%; background: #07C160; }
+
+.qr-actions {
+  display: flex; gap: 10px; width: 100%;
+}
+.qr-btn {
+  flex: 1; height: 44px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-family: 'Noto Sans SC', sans-serif;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.qr-btn-primary {
+  background: var(--ink); border: none;
+  color: var(--gold-light);
+}
+.qr-btn-secondary {
+  background: transparent;
+  border: 1px solid var(--paper3);
+  color: var(--ink3);
+}
+
+.qr-type-tabs {
+  display: flex; gap: 8px; width: 100%;
+}
+.qr-type-tab {
+  flex: 1; height: 36px;
+  border: 1px solid var(--paper3);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--ink3);
+  font-size: 12px;
+  font-family: 'Noto Sans SC', sans-serif;
+  cursor: pointer;
+  transition: all .15s;
+}
+.qr-type-tab.active {
+  background: var(--ink);
+  color: var(--gold-light);
+  border-color: var(--ink);
+}
+
+/* ── SUCCESS ── */
+.success-overlay {
+  display: none;
+  position: absolute; inset: 0;
+  background: rgba(26,22,18,0.7);
+  z-index: 100;
+  align-items: center; justify-content: center;
+  backdrop-filter: blur(4px);
+}
+.success-overlay.show { display: flex; }
+.success-card {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 36px 32px;
+  text-align: center;
+  width: 300px;
+  animation: popIn .3s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.success-icon { font-size: 52px; margin-bottom: 16px; }
+.success-title { font-family: 'Noto Serif SC',serif; font-size: 20px; color: var(--ink); margin-bottom: 8px; font-weight: 600; }
+.success-sub { font-size: 13px; color: var(--ink3); line-height: 1.7; margin-bottom: 24px; }
+.success-btn {
+  width: 100%; height: 46px;
+  background: var(--ink);
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--gold-light);
+  font-family: 'Noto Serif SC',serif;
+  font-size: 15px;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+/* ── ANIMATIONS ── */
+.page-enter { animation: slideUp .25s ease forwards; }
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+</style>
+</head>
+<body>
+
+<div class="phone-shell">
+  <!-- Status Bar -->
+  <div class="status-bar">
+    <span class="time">9:41</span>
+    <div class="status-icons">
+      <svg width="16" height="12" viewBox="0 0 16 12"><rect x="0" y="3" width="3" height="9" rx="1" opacity=".4"/><rect x="4" y="2" width="3" height="10" rx="1" opacity=".6"/><rect x="8" y="0" width="3" height="12" rx="1" opacity=".8"/><rect x="12" y="0" width="3" height="12" rx="1"/></svg>
+      <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 2C5 2 2.5 3.5 1 5.5L3 7C4 5.5 5.8 4.5 8 4.5S12 5.5 13 7l2-1.5C13.5 3.5 11 2 8 2z" opacity=".4"/><path d="M8 5c-1.8 0-3.2.8-4.2 2L6 8.5C6.6 7.6 7.2 7.2 8 7.2s1.4.4 2 1.3L12.2 7C11.2 5.8 9.8 5 8 5z" opacity=".7"/><circle cx="8" cy="10.5" r="1.5"/></svg>
+      <svg width="25" height="12" viewBox="0 0 25 12"><rect x="0" y="1" width="22" height="10" rx="2.5" fill="none" stroke="white" stroke-width="1" opacity=".35"/><rect x="23" y="3.5" width="2" height="5" rx="1" fill="white" opacity=".4"/><rect x="1.5" y="2.5" width="16" height="7" rx="1.5" fill="white"/></svg>
+    </div>
+  </div>
+
+  <!-- Screen -->
+  <div class="screen">
+
+    <!-- ═══ LOGIN ═══ -->
+    <div class="page active" id="page-login">
+      <div class="login-bg"></div>
+      <div class="login-pattern"></div>
+      <div class="login-content">
+        <div class="login-logo">
+          <div class="logo-emblem">
+            <span class="logo-zh">芭莎</span>
+            <span class="logo-en">BAZAAR</span>
+          </div>
+          <div>
+            <div class="login-brand-name">芭莎纺织</div>
+            <div class="login-brand-sub">BAZAAR TEXTILE · GLOBAL CATALOG</div>
+          </div>
+        </div>
+        <div class="login-tagline">优质面料，触达全球<br>Quality Fabric, Global Reach</div>
+
+        <div class="login-tabs">
+          <div class="login-tab active" onclick="switchLoginTab('email',this)">邮箱登录</div>
+          <div class="login-tab" onclick="switchLoginTab('phone',this)">手机号登录</div>
+        </div>
+
+        <div class="login-form" id="login-form-email">
+          <div class="login-input-wrap">
+            <span class="login-input-icon">✉</span>
+            <input class="login-input" type="email" placeholder="请输入您的邮箱">
+          </div>
+          <div class="login-input-wrap">
+            <span class="login-input-icon">🔑</span>
+            <input class="login-input" type="text" placeholder="请输入验证码" style="width:100px">
+            <span class="login-input-suffix" onclick="this.textContent='60s后重发'">获取验证码</span>
+          </div>
+          <button class="btn-login" onclick="doLogin()">登  录</button>
+        </div>
+
+        <div class="login-form" id="login-form-phone" style="display:none">
+          <div class="login-input-wrap">
+            <span class="login-input-icon">📱</span>
+            <input class="login-input" type="text" placeholder="+86  手机号码">
+          </div>
+          <div class="login-input-wrap">
+            <span class="login-input-icon">🔑</span>
+            <input class="login-input" type="text" placeholder="短信验证码">
+            <span class="login-input-suffix">获取验证码</span>
+          </div>
+          <button class="btn-login" onclick="doLogin()">登  录</button>
+        </div>
+
+        <div class="login-divider">或</div>
+        <button class="btn-wechat" onclick="doLogin()">
+          <div class="wechat-dot" style="font-size:12px;color:white">W</div>
+          微信一键授权登录
+        </button>
+
+        <div class="login-footer">
+          登录即表示同意《用户协议》和《隐私政策》<br>
+          Bazaar Textile Co., Ltd.
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ HOME ═══ -->
+    <div class="page" id="page-home">
+      <div class="home-hero">
+        <div class="home-header">
+          <div class="home-logo-row">
+            <div class="home-logo-sq"><span class="hlz">芭莎</span></div>
+            <div>
+              <div class="home-brand">芭莎纺织</div>
+              <div class="home-sub">BAZAAR TEXTILE</div>
+            </div>
+          </div>
+          <div class="home-icons">
+            <span class="home-icon" onclick="goPage('page-qr')">📲</span>
+            <span class="home-icon">🔔</span>
+          </div>
+        </div>
+        <div class="home-search">
+          <span>🔍</span>
+          <span>搜索产品、面料、色号…</span>
+        </div>
+        <div class="home-banner" onclick="goPage('page-catalog')">
+          <div class="banner-texture"></div>
+          <div class="banner-content">
+            <div class="banner-season">2025 春夏新品</div>
+            <div class="banner-title">天丝系列<br>精工上新</div>
+            <div class="banner-sub">TENCEL COLLECTION · NEW ARRIVAL</div>
+          </div>
+          <div class="banner-dots">
+            <div class="banner-dot active"></div>
+            <div class="banner-dot"></div>
+            <div class="banner-dot"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="home-scroll">
+        <div class="section-header">
+          <div class="section-title">产品分类</div>
+        </div>
+        <div class="cat-scroll">
+          <div class="cat-item" onclick="goPage('page-catalog')">
+            <div class="cat-icon cat-c1">🧵</div>
+            <div class="cat-name">天丝面料</div>
+          </div>
+          <div class="cat-item" onclick="goPage('page-catalog')">
+            <div class="cat-icon cat-c2">🔵</div>
+            <div class="cat-name">棉麻系列</div>
+          </div>
+          <div class="cat-item" onclick="goPage('page-catalog')">
+            <div class="cat-icon cat-c3">🪡</div>
+            <div class="cat-name">丝绒面料</div>
+          </div>
+          <div class="cat-item" onclick="goPage('page-catalog')">
+            <div class="cat-icon cat-c4">🌿</div>
+            <div class="cat-name">环保系列</div>
+          </div>
+          <div class="cat-item" onclick="goPage('page-catalog')">
+            <div class="cat-icon cat-c5">✨</div>
+            <div class="cat-name">提花系列</div>
+          </div>
+        </div>
+
+        <div class="section-header">
+          <div class="section-title">热门产品</div>
+          <div class="section-more" onclick="goPage('page-catalog')">查看全部 ›</div>
+        </div>
+        <div class="prod-grid">
+          <div class="prod-card" onclick="goPage('page-detail')">
+            <div class="prod-img" style="background:#F5EDD8"><div class="prod-badge hot">热门</div>🧶</div>
+            <div class="prod-info">
+              <div class="prod-name">莫代尔天丝混纺</div>
+              <div class="prod-spec">150cm · 180g/m²</div>
+              <div class="prod-bottom">
+                <div class="prod-moq">MOQ 500m</div>
+                <div class="prod-inquiry" onclick="event.stopPropagation();goPage('page-inquiry')">+</div>
+              </div>
+            </div>
+          </div>
+          <div class="prod-card" onclick="goPage('page-detail')">
+            <div class="prod-img" style="background:#EEF0F8"><div class="prod-badge new">新品</div>🔷</div>
+            <div class="prod-info">
+              <div class="prod-name">高支精梳棉</div>
+              <div class="prod-spec">145cm · 120g/m²</div>
+              <div class="prod-bottom">
+                <div class="prod-moq">MOQ 300m</div>
+                <div class="prod-inquiry" onclick="event.stopPropagation();goPage('page-inquiry')">+</div>
+              </div>
+            </div>
+          </div>
+          <div class="prod-card" onclick="goPage('page-detail')">
+            <div class="prod-img" style="background:#F0EBF5">🪡</div>
+            <div class="prod-info">
+              <div class="prod-name">冰丝丝绒</div>
+              <div class="prod-spec">140cm · 220g/m²</div>
+              <div class="prod-bottom">
+                <div class="prod-moq">MOQ 200m</div>
+                <div class="prod-inquiry" onclick="event.stopPropagation();goPage('page-inquiry')">+</div>
+              </div>
+            </div>
+          </div>
+          <div class="prod-card" onclick="goPage('page-detail')">
+            <div class="prod-img" style="background:#E8F3EC">🌿</div>
+            <div class="prod-info">
+              <div class="prod-name">有机棉纱布</div>
+              <div class="prod-spec">160cm · 95g/m²</div>
+              <div class="prod-bottom">
+                <div class="prod-moq">MOQ 500m</div>
+                <div class="prod-inquiry" onclick="event.stopPropagation();goPage('page-inquiry')">+</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-bar">
+        <div class="tab-item active" onclick="switchTab('home',this)"><span class="tab-icon">🏠</span><span class="tab-label">首页</span></div>
+        <div class="tab-item" onclick="switchTab('catalog',this)"><span class="tab-icon">📦</span><span class="tab-label">产品</span></div>
+        <div class="tab-item" onclick="switchTab('qr',this)"><span class="tab-icon">📲</span><span class="tab-label">分享</span></div>
+        <div class="tab-item" onclick="switchTab('profile',this)"><span class="tab-icon">👤</span><span class="tab-label">我的</span></div>
+      </div>
+    </div>
+
+    <!-- ═══ CATALOG ═══ -->
+    <div class="page" id="page-catalog">
+      <div class="nav-bar">
+        <div class="nav-back" onclick="goBack()">‹ 返回</div>
+        <div class="nav-title">产品目录</div>
+        <div class="nav-right">⊞</div>
+      </div>
+      <div class="catalog-filter">
+        <div class="filter-scroll">
+          <div class="filter-chip active">全部</div>
+          <div class="filter-chip" onclick="toggleChip(this)">天丝系列</div>
+          <div class="filter-chip" onclick="toggleChip(this)">棉麻系列</div>
+          <div class="filter-chip" onclick="toggleChip(this)">丝绒面料</div>
+          <div class="filter-chip" onclick="toggleChip(this)">环保认证</div>
+          <div class="filter-chip" onclick="toggleChip(this)">新品</div>
+        </div>
+      </div>
+      <div class="catalog-list">
+        <div class="list-card" onclick="goPage('page-detail')">
+          <div class="list-img">🧶</div>
+          <div class="list-body">
+            <div>
+              <div class="list-name">莫代尔天丝混纺面料</div>
+              <div class="list-tags">
+                <span class="list-tag">天丝系列</span>
+                <span class="list-tag">热门</span>
+                <span class="list-tag">OEKO-TEX</span>
+              </div>
+            </div>
+            <div class="list-meta">
+              <div class="list-moq">MOQ 500m · 150cm幅宽</div>
+              <button class="list-btn" onclick="event.stopPropagation();goPage('page-inquiry')">询  价</button>
+            </div>
+          </div>
+        </div>
+        <div class="list-card" onclick="goPage('page-detail')">
+          <div class="list-img">🔷</div>
+          <div class="list-body">
+            <div>
+              <div class="list-name">高支精梳棉单面布</div>
+              <div class="list-tags">
+                <span class="list-tag">棉麻系列</span>
+                <span class="list-tag">新品</span>
+              </div>
+            </div>
+            <div class="list-meta">
+              <div class="list-moq">MOQ 300m · 145cm幅宽</div>
+              <button class="list-btn" onclick="event.stopPropagation();goPage('page-inquiry')">询  价</button>
+            </div>
+          </div>
+        </div>
+        <div class="list-card" onclick="goPage('page-detail')">
+          <div class="list-img">🪡</div>
+          <div class="list-body">
+            <div>
+              <div class="list-name">冰丝天鹅绒面料</div>
+              <div class="list-tags">
+                <span class="list-tag">丝绒面料</span>
+                <span class="list-tag">畅销款</span>
+              </div>
+            </div>
+            <div class="list-meta">
+              <div class="list-moq">MOQ 200m · 140cm幅宽</div>
+              <button class="list-btn" onclick="event.stopPropagation();goPage('page-inquiry')">询  价</button>
+            </div>
+          </div>
+        </div>
+        <div class="list-card" onclick="goPage('page-detail')">
+          <div class="list-img">🌿</div>
+          <div class="list-body">
+            <div>
+              <div class="list-name">GOTS认证有机棉</div>
+              <div class="list-tags">
+                <span class="list-tag">环保系列</span>
+                <span class="list-tag">GOTS</span>
+                <span class="list-tag">BCI</span>
+              </div>
+            </div>
+            <div class="list-meta">
+              <div class="list-moq">MOQ 500m · 160cm幅宽</div>
+              <button class="list-btn" onclick="event.stopPropagation();goPage('page-inquiry')">询  价</button>
+            </div>
+          </div>
+        </div>
+        <div class="list-card" onclick="goPage('page-detail')">
+          <div class="list-img" style="background:#F5E8E8">✨</div>
+          <div class="list-body">
+            <div>
+              <div class="list-name">提花大花纹面料</div>
+              <div class="list-tags">
+                <span class="list-tag">提花系列</span>
+                <span class="list-tag">新品</span>
+              </div>
+            </div>
+            <div class="list-meta">
+              <div class="list-moq">MOQ 300m · 148cm幅宽</div>
+              <button class="list-btn" onclick="event.stopPropagation();goPage('page-inquiry')">询  价</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ DETAIL ═══ -->
+    <div class="page" id="page-detail">
+      <div class="nav-bar">
+        <div class="nav-back" onclick="goBack()">‹ 返回</div>
+        <div class="nav-title">产品详情</div>
+        <div class="nav-right">⋯</div>
+      </div>
+      <div class="detail-body">
+        <div class="detail-gallery">
+          🧶
+          <div class="gallery-indicator">
+            <div class="gallery-dot active"></div>
+            <div class="gallery-dot"></div>
+            <div class="gallery-dot"></div>
+            <div class="gallery-dot"></div>
+          </div>
+        </div>
+
+        <div class="detail-header">
+          <div class="detail-tags">
+            <span class="detail-tag tag-new">新品</span>
+            <span class="detail-tag tag-cat">天丝系列</span>
+          </div>
+          <div class="detail-name">莫代尔天丝混纺面料</div>
+          <div class="detail-name-en">Modal × TENCEL Blended Fabric</div>
+          <div class="detail-moq-row">
+            <div class="detail-moq-badge">MOQ <span>500m</span></div>
+            <div class="detail-moq-badge">幅宽 <span>150cm</span></div>
+            <div class="detail-moq-badge">交期 <span>30天</span></div>
+          </div>
+        </div>
+
+        <div class="detail-section">
+          <div class="detail-section-title">面料参数</div>
+          <div class="spec-grid">
+            <div class="spec-item"><div class="spec-label">成分</div><div class="spec-value">Modal 50% / TENCEL 50%</div></div>
+            <div class="spec-item"><div class="spec-label">克重</div><div class="spec-value">180 g/m²</div></div>
+            <div class="spec-item"><div class="spec-label">幅宽</div><div class="spec-value">150 cm</div></div>
+            <div class="spec-item"><div class="spec-label">后整理</div><div class="spec-value">磨毛 / 丝光</div></div>
+            <div class="spec-item"><div class="spec-label">缩水率</div><div class="spec-value">≤ 3%</div></div>
+            <div class="spec-item"><div class="spec-label">适用</div><div class="spec-value">服装 / 家纺</div></div>
+          </div>
+        </div>
+
+        <div class="detail-section">
+          <div class="detail-section-title">可供色卡</div>
+          <div class="color-swatches">
+            <div class="swatch selected"><div class="swatch-circle" style="background:#F0E6D6;border-color:var(--gold)"></div><div class="swatch-name">米白</div></div>
+            <div class="swatch"><div class="swatch-circle" style="background:#3A4A5C"></div><div class="swatch-name">藏蓝</div></div>
+            <div class="swatch"><div class="swatch-circle" style="background:#8B3A3A"></div><div class="swatch-name">枣红</div></div>
+            <div class="swatch"><div class="swatch-circle" style="background:#4A7C59"></div><div class="swatch-name">松绿</div></div>
+            <div class="swatch"><div class="swatch-circle" style="background:#5C4A7A"></div><div class="swatch-name">紫灰</div></div>
+            <div class="swatch"><div class="swatch-circle" style="background:#2A2A2A"></div><div class="swatch-name">纯黑</div></div>
+          </div>
+        </div>
+
+        <div class="detail-section">
+          <div class="detail-section-title">认证 &amp; 资质</div>
+          <div class="cert-row">
+            <span class="cert-badge">✓ OEKO-TEX 100</span>
+            <span class="cert-badge">✓ GOTS认证</span>
+            <span class="cert-badge">✓ BCI良棉</span>
+            <span class="cert-badge">✓ ISO 9001</span>
+          </div>
+        </div>
+
+        <div class="detail-actions">
+          <button class="btn-inquiry" onclick="goPage('page-inquiry')">立即询价</button>
+          <button class="btn-whatsapp">
+            <div class="wechat-dot" style="font-size:12px;color:white">W</div>
+            WhatsApp 直接联系
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ INQUIRY ═══ -->
+    <div class="page" id="page-inquiry">
+      <div class="nav-bar">
+        <div class="nav-back" onclick="goBack()">‹ 返回</div>
+        <div class="nav-title">提交询盘</div>
+      </div>
+      <div class="form-scroll">
+        <div class="form-product-preview">
+          <div class="fpp-img">🧶</div>
+          <div>
+            <div class="fpp-name">莫代尔天丝混纺面料</div>
+            <div class="fpp-sub">Modal × TENCEL · 180g/m² · 150cm</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">询盘类型 <span class="form-required">*</span></label>
+          <div class="form-type-row">
+            <button class="type-chip selected" onclick="toggleType(this)">询价报价</button>
+            <button class="type-chip" onclick="toggleType(this)">索要样卡</button>
+            <button class="type-chip" onclick="toggleType(this)">产品目录</button>
+            <button class="type-chip" onclick="toggleType(this)">咨询 MOQ</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">姓名 <span class="form-required">*</span></label>
+          <input class="form-input" type="text" placeholder="您的姓名 / Your Name">
+        </div>
+        <div class="form-group">
+          <label class="form-label">公司名称</label>
+          <input class="form-input" type="text" placeholder="公司全称 / Company Name">
+        </div>
+        <div class="form-group">
+          <label class="form-label">所在国家 <span class="form-required">*</span></label>
+          <select class="form-select">
+            <option value="">请选择国家 / Select Country</option>
+            <option>中国大陆</option>
+            <option>俄罗斯</option>
+            <option>美国</option>
+            <option>英国</option>
+            <option>德国</option>
+            <option>法国</option>
+            <option>阿联酋</option>
+            <option>其他</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">联系邮箱 <span class="form-required">*</span></label>
+          <input class="form-input" type="email" placeholder="email@company.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">WhatsApp / 电话</label>
+          <input class="form-input" type="text" placeholder="+1 234 567 8900">
+        </div>
+        <div class="form-group">
+          <label class="form-label">采购数量</label>
+          <input class="form-input" type="text" placeholder="预计采购量，如 2000m">
+        </div>
+        <div class="form-group">
+          <label class="form-label">留言</label>
+          <textarea class="form-textarea" placeholder="请描述您的具体需求，包括颜色、规格、用途等…&#10;Please describe your requirements..."></textarea>
+        </div>
+
+        <button class="btn-submit" onclick="submitInquiry()">提 交 询 盘</button>
+      </div>
+    </div>
+
+    <!-- ═══ QR CODE ═══ -->
+    <div class="page" id="page-qr">
+      <div class="nav-bar">
+        <div class="nav-back" onclick="goBack()">‹ 返回</div>
+        <div class="nav-title">分享二维码</div>
+      </div>
+      <div class="qr-page-content">
+        <div class="qr-type-tabs">
+          <button class="qr-type-tab active" onclick="switchQrTab(this)">小程序码</button>
+          <button class="qr-type-tab" onclick="switchQrTab(this)">H5 链接码</button>
+          <button class="qr-type-tab" onclick="switchQrTab(this)">产品专属码</button>
+        </div>
+
+        <div class="qr-card">
+          <div class="qr-company-header">
+            <div class="qr-logo-sq"><span class="qlz">芭莎</span></div>
+            <div>
+              <div class="qr-co-name">芭莎纺织</div>
+              <div style="font-size:9px;color:var(--ink3);letter-spacing:1.5px">BAZAAR TEXTILE</div>
+            </div>
+          </div>
+
+          <div class="qr-frame">
+            <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+              <!-- Corner squares -->
+              <rect x="8" y="8" width="44" height="44" rx="6" fill="var(--ink)" opacity=".9"/>
+              <rect x="12" y="12" width="36" height="36" rx="4" fill="var(--paper)"/>
+              <rect x="18" y="18" width="24" height="24" rx="2" fill="var(--ink)" opacity=".85"/>
+              <rect x="108" y="8" width="44" height="44" rx="6" fill="var(--ink)" opacity=".9"/>
+              <rect x="112" y="12" width="36" height="36" rx="4" fill="var(--paper)"/>
+              <rect x="118" y="18" width="24" height="24" rx="2" fill="var(--ink)" opacity=".85"/>
+              <rect x="8" y="108" width="44" height="44" rx="6" fill="var(--ink)" opacity=".9"/>
+              <rect x="12" y="112" width="36" height="36" rx="4" fill="var(--paper)"/>
+              <rect x="18" y="118" width="24" height="24" rx="2" fill="var(--ink)" opacity=".85"/>
+              <!-- Data modules -->
+              <rect x="62" y="8" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="74" y="8" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="86" y="8" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="62" y="20" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="86" y="20" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="74" y="32" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="86" y="32" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="62" y="44" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="74" y="44" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="8" y="62" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="20" y="62" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="32" y="62" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="8" y="74" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="32" y="74" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="20" y="86" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="8" y="98" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="20" y="98" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="62" y="62" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="74" y="62" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="86" y="62" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="98" y="62" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="110" y="62" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="122" y="62" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="134" y="62" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="146" y="62" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="62" y="74" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="86" y="74" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="110" y="74" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="134" y="74" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="74" y="86" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="98" y="86" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="122" y="86" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="62" y="98" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="86" y="98" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="110" y="98" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="134" y="98" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="74" y="110" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="98" y="110" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="122" y="110" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="146" y="110" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="62" y="122" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="86" y="122" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="110" y="134" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="134" y="134" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="62" y="146" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="74" y="146" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="98" y="146" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="122" y="146" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+              <rect x="146" y="146" width="8" height="8" rx="2" fill="var(--ink)" opacity=".7"/>
+            </svg>
+            <div class="qr-logo-center">
+              <span class="qlz2">芭莎</span>
+            </div>
+          </div>
+
+          <div class="qr-caption">微信扫码 · 打开小程序</div>
+          <div class="qr-url">bazaartextile.com/mp</div>
+          <div class="qr-separator"></div>
+          <div class="qr-scan-hint">
+            <div class="qr-hint-dot"></div>
+            适合国内客户，微信扫码直达
+          </div>
+        </div>
+
+        <div class="qr-actions">
+          <button class="qr-btn qr-btn-primary">⬇ 下载二维码</button>
+          <button class="qr-btn qr-btn-secondary">📋 复制链接</button>
+        </div>
+
+        <div style="background:var(--white);border-radius:var(--radius);padding:16px 18px;width:100%;border:1px solid var(--paper3)">
+          <div style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:10px">分享渠道推荐</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:var(--ink3)">
+              <div style="width:28px;height:28px;background:#07C160;border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-size:14px;flex-shrink:0">W</div>
+              WhatsApp 发送链接（推荐海外客户）
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:var(--ink3)">
+              <div style="width:28px;height:28px;background:#1DA1F2;border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-size:14px;flex-shrink:0">✉</div>
+              邮件附件（含产品目录）
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:var(--ink3)">
+              <div style="width:28px;height:28px;background:var(--ink);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:14px;flex-shrink:0">展</div>
+              展会名片 / 物料印刷
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ PROFILE ═══ -->
+    <div class="page" id="page-profile">
+      <div class="profile-hero">
+        <div class="profile-avatar-row">
+          <div class="profile-avatar">👤</div>
+          <div>
+            <div class="profile-name">张 伟 · Zhang Wei</div>
+            <div class="profile-email">zhang.wei@company.com</div>
+          </div>
+        </div>
+        <div class="profile-badges">
+          <span class="profile-badge pb-vip">VIP 客户</span>
+          <span class="profile-badge pb-country">🇨🇳 中国大陆</span>
+        </div>
+      </div>
+      <div class="profile-scroll">
+        <div class="profile-stats">
+          <div class="stat-item"><div class="stat-num">12</div><div class="stat-label">浏览产品</div></div>
+          <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">我的询盘</div></div>
+          <div class="stat-item"><div class="stat-num">5</div><div class="stat-label">收藏产品</div></div>
+        </div>
+        <div class="profile-section">
+          <div class="profile-item">
+            <span class="profile-item-icon">📋</span>
+            <span class="profile-item-label">我的询盘</span>
+            <span class="profile-item-right">3 条</span>
+            <span class="profile-item-arrow">›</span>
+          </div>
+          <div class="profile-item">
+            <span class="profile-item-icon">❤️</span>
+            <span class="profile-item-label">收藏的产品</span>
+            <span class="profile-item-right">5 件</span>
+            <span class="profile-item-arrow">›</span>
+          </div>
+          <div class="profile-item" onclick="goPage('page-qr')">
+            <span class="profile-item-icon">📲</span>
+            <span class="profile-item-label">我的专属邀请码</span>
+            <span class="profile-item-right">ABC123</span>
+            <span class="profile-item-arrow">›</span>
+          </div>
+        </div>
+        <div class="profile-section" style="margin-top:8px">
+          <div class="profile-item">
+            <span class="profile-item-icon">👤</span>
+            <span class="profile-item-label">编辑个人资料</span>
+            <span class="profile-item-arrow">›</span>
+          </div>
+          <div class="profile-item">
+            <span class="profile-item-icon">🌐</span>
+            <span class="profile-item-label">切换语言</span>
+            <span class="profile-item-right">中文</span>
+            <span class="profile-item-arrow">›</span>
+          </div>
+          <div class="profile-item">
+            <span class="profile-item-icon">📞</span>
+            <span class="profile-item-label">联系业务员</span>
+            <span class="profile-item-arrow">›</span>
+          </div>
+          <div class="profile-item">
+            <span class="profile-item-icon">❓</span>
+            <span class="profile-item-label">帮助与反馈</span>
+            <span class="profile-item-arrow">›</span>
+          </div>
+        </div>
+        <div style="padding:24px;text-align:center">
+          <button style="background:transparent;border:1px solid var(--paper3);color:var(--ink3);border-radius:var(--radius-sm);padding:10px 40px;font-size:13px;font-family:'Noto Sans SC';cursor:pointer" onclick="doLogout()">退出登录</button>
+        </div>
+      </div>
+      <div class="tab-bar">
+        <div class="tab-item" onclick="switchTab('home',this)"><span class="tab-icon">🏠</span><span class="tab-label">首页</span></div>
+        <div class="tab-item" onclick="switchTab('catalog',this)"><span class="tab-icon">📦</span><span class="tab-label">产品</span></div>
+        <div class="tab-item" onclick="switchTab('qr',this)"><span class="tab-icon">📲</span><span class="tab-label">分享</span></div>
+        <div class="tab-item active" onclick="switchTab('profile',this)"><span class="tab-icon">👤</span><span class="tab-label">我的</span></div>
+      </div>
+    </div>
+
+    <!-- Success Overlay -->
+    <div class="success-overlay" id="success-overlay" onclick="closeSuccess()">
+      <div class="success-card" onclick="event.stopPropagation()">
+        <div class="success-icon">✅</div>
+        <div class="success-title">询盘已提交</div>
+        <div class="success-sub">感谢您的询价！我们的业务员将在 24 小时内通过邮件与您联系。<br><br>Thank you! Our team will contact you within 24 hours.</div>
+        <button class="success-btn" onclick="closeSuccess()">返 回 首 页</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+let pageStack = [];
+let currentPage = 'page-login';
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => { p.classList.remove('active'); p.style.display = ''; });
+  const el = document.getElementById(id);
+  if (el) {
+    el.classList.add('active');
+    el.classList.remove('page-enter');
+    void el.offsetWidth;
+    el.classList.add('page-enter');
+    el.scrollTop = 0;
+  }
+  currentPage = id;
+}
+
+function goPage(id) {
+  pageStack.push(currentPage);
+  showPage(id);
+}
+
+function goBack() {
+  if (pageStack.length > 0) {
+    showPage(pageStack.pop());
+  }
+}
+
+function doLogin() {
+  pageStack = [];
+  showPage('page-home');
+}
+
+function doLogout() {
+  pageStack = [];
+  showPage('page-login');
+}
+
+function switchTab(tab, el) {
+  const map = { home: 'page-home', catalog: 'page-catalog', qr: 'page-qr', profile: 'page-profile' };
+  pageStack = [];
+  showPage(map[tab]);
+  const tabBar = el.closest('.tab-bar');
+  if (tabBar) tabBar.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function switchLoginTab(type, el) {
+  document.querySelectorAll('.login-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('login-form-email').style.display = type === 'email' ? 'flex' : 'none';
+  document.getElementById('login-form-phone').style.display = type === 'phone' ? 'flex' : 'none';
+}
+
+function toggleChip(el) {
+  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function toggleType(el) {
+  document.querySelectorAll('.type-chip').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function switchQrTab(el) {
+  document.querySelectorAll('.qr-type-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function submitInquiry() {
+  document.getElementById('success-overlay').classList.add('show');
+}
+
+function closeSuccess() {
+  document.getElementById('success-overlay').classList.remove('show');
+  pageStack = [];
+  showPage('page-home');
+}
+
+document.querySelectorAll('.swatch').forEach(s => {
+  s.addEventListener('click', function() {
+    s.closest('.color-swatches').querySelectorAll('.swatch').forEach(x => x.classList.remove('selected'));
+    s.classList.add('selected');
+  });
+});
+</script>
+</body>
+</html>
