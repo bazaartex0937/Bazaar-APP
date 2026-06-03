@@ -1636,17 +1636,16 @@ if(state.user){
 }
 </script>
 </body>
-</html>
-const supabaseUrl = 'https://bazaartex0937.github.io/Bazaar-APP/bazaar-global-catalog-v3';
-
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVodnZwaW9uYmt3b25md3Z5YnRiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0NTg2NjEsImV4cCI6MjA5NjAzNDY2MX0.ZEOhZC8pCCF8EOGhAvkIBAxgkzhehyZ10gFh4QBh1Xc';
-
-
-
-const supabase = window.supabase.createClient(
-
-  supabaseUrl,
-
-  supabaseKey
-
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const supabaseUrl =
+'https://ehvvpionbkwonfwvybtb.supabase.co';
+const supabaseKey =
+'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVodnZwaW9uYmt3b25md3Z5YnRiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0NTg2NjEsImV4cCI6MjA5NjAzNDY2MX0.ZEOhZC8pCCF8EOGhAvkIBAxgkzhehyZ10gFh4QBh1Xc';
+const supabase =
+window.supabase.createClient(supabaseUrl,
+supabaseKey
 );
+console.log('Supabase连接成功');
+</script>
+</html>
