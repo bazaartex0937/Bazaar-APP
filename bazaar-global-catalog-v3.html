@@ -1609,6 +1609,7 @@ function bind(){
   document.getElementById("loginGlobeBtn")?.addEventListener("click",e=>{e.stopPropagation();document.getElementById("loginLangDropdown")?.classList.toggle("open");});
   document.getElementById("sidebarGlobeBtn")?.addEventListener("click",e=>{e.stopPropagation();document.getElementById("sidebarLangDropdown")?.classList.toggle("open");});
   document.addEventListener("click",()=>$$(".lang-dropdown,.sidebar-lang-dropdown").forEach(d=>d.classList.remove("open")));
+  
 }
 
 // ─── Init ──────────────────────────────────────────────────
@@ -1636,3 +1637,16 @@ if(state.user){
 </script>
 </body>
 </html>
+const supabaseUrl = 'https://bazaartex0937.github.io/Bazaar-APP/bazaar-global-catalog-v3';
+
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVodnZwaW9uYmt3b25md3Z5YnRiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0NTg2NjEsImV4cCI6MjA5NjAzNDY2MX0.ZEOhZC8pCCF8EOGhAvkIBAxgkzhehyZ10gFh4QBh1Xc';
+
+
+
+const supabase = window.supabase.createClient(
+
+  supabaseUrl,
+
+  supabaseKey
+
+);
