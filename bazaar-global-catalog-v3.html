@@ -1645,7 +1645,7 @@ const supabaseUrl =
 'https://ehvvpionbkwonfwvybtb.supabase.co';
 
 const supabaseKey =
-'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVodnZwaW9uYmt3b25md3Z5YnRiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0NTg2NjEsImV4cCI6MjA5NjAzNDY2MX0.ZEOhZC8pCCF8EOGhAvkIBAxgkzhehyZ10gFh4QBh1Xc';
+'sb_secret_SD9GB5R8uIw4n7yHEsAGHA_5jpl-SPo';
 
 const supabase =
 window.supabase.createClient(
@@ -1653,7 +1653,13 @@ supabaseUrl,
 supabaseKey
 );
 
-console.log('Supabase连接成功');
+const { data, error } = await supabase
+  .from('users_data')
+  .select('*')
+  .limit(1);
+
+console.log(data);
+console.log(error);
 
 </script>
 
