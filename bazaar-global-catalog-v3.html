@@ -1653,13 +1653,18 @@ supabaseUrl,
 supabaseKey
 );
 
-const { data, error } = await supabase
-  .from('users_data')
-  .select('*')
-  .limit(1);
+async function testSupabase() {
 
-console.log(data);
-console.log(error);
+  const { data, error } = await supabase
+    .from('users_data')
+    .select('*')
+    .limit(1);
+
+  console.log('data:', data);
+  console.log('error:', error);
+}
+
+testSupabase();
 
 </script>
 
