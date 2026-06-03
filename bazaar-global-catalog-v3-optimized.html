@@ -30,7 +30,7 @@ a{color:var(--teal);}
 .hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(135deg,rgba(10,14,23,.95),rgba(26,35,50,.85));}
 .hero>*{position:relative;z-index:2;}
 .logo-row{display:flex;align-items:center;gap:12px;}
-.logo-mark{width:48px;height:48px;border-radius:8px;background:linear-gradient(135deg, var(--teal), var(--teal2));color:#fff;display:grid;place-items:center;font-weight:900;font-size:20px;overflow:hidden;flex-shrink:0;box-shadow:0 4px 12px rgba(15,118,110,.3);}
+.logo-mark{width:48px;height:48px;border-radius:8px;background:linear-gradient(135deg, var(--teal), var(--teal2));color:#fff;display:grid;place-items:center;font-weight:900;font-size:20px;overflow:hidden;}
 .logo-mark img{width:100%;height:100%;object-fit:cover;}
 .logo-row strong{display:block;font-size:19px;}
 .logo-row span{display:block;color:rgba(255,255,255,.7);font-size:12px;}
@@ -38,7 +38,7 @@ a{color:var(--teal);}
 .hero-copy h1{margin:0 0 14px;font-size:46px;line-height:1.05;text-shadow:0 2px 8px rgba(0,0,0,.3);}
 .hero-copy p{margin:0;font-size:17px;color:rgba(255,255,255,.82);max-width:560px;}
 .hero-badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;}
-.badge{min-height:30px;display:inline-flex;align-items:center;padding:0 10px;border-radius:999px;background:rgba(15,118,110,.25);color:#fff;font-weight:700;font-size:12px;border:1px solid rgba(15,118,110,.4);}
+.badge{min-height:30px;display:inline-flex;align-items:center;padding:0 10px;border-radius:999px;background:rgba(15,118,110,.25);color:#fff;font-weight:700;font-size:12px;border:1px solid rgba(15,118,110,.5);}
 .login-panel{min-height:100vh;padding:34px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;background:var(--dark-bg);}
 .login-card{width:100%;max-width:440px;background:var(--dark-panel);border:1px solid var(--dark-border);border-radius:var(--r);padding:24px;box-shadow:0 8px 32px rgba(0,0,0,.3);}
 .login-card h2{margin:0;font-size:22px;color:#fff;}
@@ -62,6 +62,9 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
 .btn.red{color:var(--red);border-color:rgba(185,28,28,.28);}
 .btn.red:hover{background:var(--red);color:#fff;}
 .btn.full{width:100%;}
+.btn:disabled{opacity:0.5;cursor:not-allowed;}
+.error-msg{color:#fca5a5;font-size:11px;margin-top:4px;display:none;}
+.error-msg.show{display:block;}
 .privacy-bar{font-size:11px;color:rgba(255,255,255,.6);text-align:center;line-height:1.8;}
 .privacy-bar a{color:var(--teal);}
 
@@ -86,6 +89,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 
 .nav{display:grid;gap:6px;}
 .nav button{border:0;border-radius:var(--r);background:transparent;color:#b7c5d2;min-height:40px;text-align:left;padding:0 12px;font-weight:700;transition:.15s;}
 .nav button.active,.nav button:hover{background:rgba(255,255,255,.1);color:#fff;}
+.nav button[data-admin-only="true"]:not(.admin-visible),.nav button[data-main-only="true"]:not(.main-visible){display:none;}
 .side-card{margin-top:auto;border:1px solid rgba(255,255,255,.12);border-radius:var(--r);padding:12px;color:#b7c5d2;background:rgba(255,255,255,.07);font-size:12px;}
 main{padding:22px;min-width:0;overflow-y:auto;background:var(--bg);}
 .topbar{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:16px;}
@@ -118,8 +122,10 @@ main{padding:22px;min-width:0;overflow-y:auto;background:var(--bg);}
 table{width:100%;border-collapse:collapse;min-width:600px;}
 th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line);vertical-align:top;font-size:13px;}
 th{color:var(--muted);background:#f8fafc;font-size:12px;}
-.toast{position:fixed;right:22px;bottom:22px;background:#101820;color:#fff;border-radius:var(--r);padding:12px 16px;max-width:340px;opacity:0;transform:translateY(8px);pointer-events:none;transition:.3s;}
-.toast.show{opacity:1;transform:translateY(0);}
+.toast{position:fixed;right:22px;bottom:22px;background:#101820;color:#fff;border-radius:var(--r);padding:12px 16px;max-width:340px;opacity:0;transform:translateY(8px);pointer-events:none;transition:.2s;}
+.toast.show{opacity:1;transform:translateY(0);pointer-events:auto;}
+.toast.error{background:#b91c1c;}
+.toast.success{background:#15803d;}
 
 /* ─── MEDIA SIZE HINT ─── */
 .media-hint{background:#f0fdf4;border:1px solid #86efac;border-radius:var(--r);padding:12px;margin:8px 0;font-size:12px;color:#166534;}
@@ -190,35 +196,52 @@ th{color:var(--muted);background:#f8fafc;font-size:12px;}
       <div class="form-stack" id="emailLogin">
         <label id="lbl_email">邮箱 / Email
           <input id="emailInput" type="email" placeholder="customer@example.com">
+          <span class="error-msg" id="emailError"></span>
         </label>
         <div class="row">
-          <label id="lbl_code">验证码<input id="emailCode" placeholder="123456"></label>
+          <label id="lbl_code">验证码<input id="emailCode" placeholder="123456">
+          <span class="error-msg" id="codeError"></span>
+          </label>
           <button class="btn" id="sendEmailCode" style="align-self:end">发送验证码</button>
         </div>
-        <button class="btn primary full" data-do-login="游客客户" id="btn_email_login">邮箱登录</button>
+        <button class="btn primary full" id="btn_email_login">邮箱登录</button>
       </div>
       
       <!-- PHONE LOGIN -->
       <div class="form-stack hidden" id="phoneLogin">
-        <label id="lbl_phone">手机号<input id="phoneInput" placeholder="+86 / +1 ..."></label>
+        <label id="lbl_phone">手机号
+          <input id="phoneInput" placeholder="+86 / +1 ...">
+          <span class="error-msg" id="phoneError"></span>
+        </label>
         <div class="row">
-          <label id="lbl_smscode">验证码<input id="phoneCode" placeholder="123456"></label>
+          <label id="lbl_smscode">验证码<input id="phoneCode" placeholder="123456">
+          <span class="error-msg" id="smsError"></span>
+          </label>
           <button class="btn" id="sendPhoneCode" style="align-self:end">发送验证码</button>
         </div>
-        <button class="btn primary full" data-do-login="游客客户" id="btn_phone_login">手机号登录</button>
+        <button class="btn primary full" id="btn_phone_login">手机号登录</button>
       </div>
       
       <!-- INVITE LOGIN -->
       <div class="form-stack hidden" id="inviteLogin">
-        <label id="lbl_invite">邀请码<input id="inviteInput" placeholder="BAZAAR2026"></label>
-        <label id="lbl_contact">联系方式<input id="inviteContact" placeholder="邮箱 / WhatsApp / 手机"></label>
-        <button class="btn primary full" data-do-login="邀请客户" id="btn_invite_login">邀请码登录</button>
+        <label id="lbl_invite">邀请码
+          <input id="inviteInput" placeholder="BAZAAR2026">
+          <span class="error-msg" id="inviteError"></span>
+        </label>
+        <label id="lbl_contact">联系方式
+          <input id="inviteContact" placeholder="邮箱 / WhatsApp / 手机">
+          <span class="error-msg" id="contactError"></span>
+        </label>
+        <button class="btn primary full" id="btn_invite_login">邀请码登录</button>
       </div>
       
       <!-- ADMIN LOGIN -->
       <div class="form-stack hidden" id="adminLogin">
         <label>管理员账号<select id="adminAccount"></select></label>
-        <label id="lbl_pwd">管理员密码<input id="adminPassword" type="password" placeholder="请输入密码"></label>
+        <label id="lbl_pwd">管理员密码
+          <input id="adminPassword" type="password" placeholder="请输入密码">
+          <span class="error-msg" id="adminError"></span>
+        </label>
         <button class="btn primary full" id="adminLoginBtn">管理员登录</button>
         <div class="role-note" id="lbl_admin_note">演示：main_admin / BAZAAR-MAIN，admin_01 / BAZAAR-01，admin_02 / BAZAAR-02</div>
       </div>
@@ -475,6 +498,18 @@ const I18N = {
     heroH1:"国内外客户都能登录查看的产品小程序",
     heroP:"芭莎纺织 · 专注外套、羽绒服、户外功能面料，为全球服装品牌提供一站式面料解决方案。",
     heroFooter:"Shaoxing Basha Textile Co., Ltd.",
+    err_email_required:"请输入邮箱地址",
+    err_email_invalid:"邮箱格式不正确",
+    err_code_required:"请输入验证码",
+    err_code_invalid:"验证码不正确",
+    err_phone_required:"请输入手机号",
+    err_phone_invalid:"手机号格式不正确",
+    err_invite_required:"请输入邀请码",
+    err_contact_required:"请输入联系方式",
+    err_admin_required:"请输入密码",
+    err_admin_invalid:"账号或密码错误",
+    success_send_code:"验证码已发送，演示码为：123456",
+    success_login:"登录成功",
   },
   en:{
     login_title:"Login to Catalog",
@@ -486,37 +521,19 @@ const I18N = {
     heroH1:"Global Product Catalog for Worldwide Customers",
     heroP:"Bazaar Textile · Outerwear, down, and functional fabrics.",
     heroFooter:"Shaoxing Basha Textile Co., Ltd.",
+    err_email_required:"Please enter your email",
+    err_email_invalid:"Invalid email format",
+    err_code_required:"Please enter verification code",
+    err_code_invalid:"Verification code is incorrect",
+    err_phone_required:"Please enter phone number",
+    err_phone_invalid:"Invalid phone format",
+    err_invite_required:"Please enter invite code",
+    err_contact_required:"Please enter contact info",
+    err_admin_required:"Please enter password",
+    err_admin_invalid:"Invalid username or password",
+    success_send_code:"Code sent (demo: 123456)",
+    success_login:"Login successful",
   },
-  es:{ login_title:"Iniciar sesión",login_sub:"Visitantes ven productos; administradores gestionan.",
-       tab_email:"Email",tab_phone:"Teléfono",tab_invite:"Invitación",tab_admin:"Admin",
-       send_code:"Enviar código",btn_email:"Entrar con Email",btn_phone:"Entrar con Teléfono",
-       logout:"Salir",heroH1:"Catálogo global",heroP:"Bazaar Textile · Telas especializadas.",
-       heroFooter:"Shaoxing Basha Textile Co., Ltd.",},
-  de:{ login_title:"Anmelden",login_sub:"Gäste sehen Produkte; Admins verwalten.",
-       tab_email:"E-Mail",tab_phone:"Telefon",tab_invite:"Einladung",tab_admin:"Admin",
-       send_code:"Code senden",btn_email:"Mit Email anmelden",btn_phone:"Mit Telefon anmelden",
-       logout:"Abmelden",heroH1:"Globaler Produktkatalog",heroP:"Bazaar Textile · Spezialstoffe.",
-       heroFooter:"Shaoxing Basha Textile Co., Ltd.",},
-  fr:{ login_title:"Connexion",login_sub:"Les visiteurs voient les produits; admins gèrent.",
-       tab_email:"Email",tab_phone:"Téléphone",tab_invite:"Invitation",tab_admin:"Admin",
-       send_code:"Envoyer code",btn_email:"Connexion email",btn_phone:"Connexion téléphone",
-       logout:"Déconnexion",heroH1:"Catalogue mondial",heroP:"Bazaar Textile · Tissus spécialisés.",
-       heroFooter:"Shaoxing Basha Textile Co., Ltd.",},
-  ru:{ login_title:"Вход",login_sub:"Гости видят продукты; админы управляют.",
-       tab_email:"Email",tab_phone:"Телефон",tab_invite:"Инвайт",tab_admin:"Админ",
-       send_code:"Отправить код",btn_email:"Вход по email",btn_phone:"Вход по телефону",
-       logout:"Выход",heroH1:"Глобальный каталог",heroP:"Bazaar Textile · Специальные ткани.",
-       heroFooter:"Shaoxing Basha Textile Co., Ltd.",},
-  ar:{ login_title:"دخول",login_sub:"الزوار يرون المنتجات؛ الإدارة تدير النظام.",
-       tab_email:"البريد",tab_phone:"الهاتف",tab_invite:"دعوة",tab_admin:"مشرف",
-       send_code:"إرسال الكود",btn_email:"دخول بالبريد",btn_phone:"دخول بالهاتف",
-       logout:"خروج",heroH1:"كتالوج عالمي",heroP:"Bazaar Textile · أقمشة متخصصة.",
-       heroFooter:"Shaoxing Basha Textile Co., Ltd.",},
-  ja:{ login_title:"ログイン",login_sub:"ゲストは製品を表示; 管理者が管理。",
-       tab_email:"メール",tab_phone:"電話",tab_invite:"招待",tab_admin:"管理",
-       send_code:"コード送信",btn_email:"メールでログイン",btn_phone:"電話でログイン",
-       logout:"ログアウト",heroH1:"グローバルカタログ",heroP:"Bazaar Textile · 専門生地。",
-       heroFooter:"Shaoxing Basha Textile Co., Ltd.",}
 };
 const LANG_NAMES = {zh:"中文",en:"English",es:"Español",de:"Deutsch",fr:"Français",ru:"Русский",ar:"العربية",ja:"日本語"};
 
@@ -525,6 +542,16 @@ const PRIVACY_TEXTS = {
   user:`<h4>用户协议</h4><p>欢迎使用Bazaar全球产品目录。请您使用前仔细阅读本协议。</p>`,
   privacy:`<h4>隐私政策</h4><p>我们尊重您的隐私权，严格保护您的个人信息。</p>`,
 };
+
+// ─── Admin Credentials ────────────────────────────────────────
+const ADMIN_USERS = {
+  main_admin: "BAZAAR-MAIN",
+  admin_01: "BAZAAR-01",
+  admin_02: "BAZAAR-02"
+};
+
+// ─── Invite Codes ────────────────────────────────────────────
+const VALID_INVITES = ["BAZAAR2026", "VIP-2026", "INVITE-001"];
 
 // ─── State ───────────────────────────────────────────────────────
 const LS = k => localStorage.getItem("baz_"+k);
@@ -540,6 +567,7 @@ const state={
   appBgUrl: LS("appBgUrl")||"",
   logoUrl: LS("logoUrl")||"",
   heroText: JSON.parse(LS("heroText")||"null")||{h1:"",p:"",footer:""},
+  verificationCodes: {},
 };
 
 const $ = s => document.querySelector(s);
@@ -552,12 +580,38 @@ function save(){
   SS("logoUrl",state.logoUrl);SS("heroText",state.heroText);SS("lang",state.lang);
 }
 
-function toast(msg,dur=2800){
-  const t=$("#toast");t.textContent=msg;t.classList.add("show");
+function toast(msg,dur=2800,type="default"){
+  const t=$("#toast");
+  t.textContent=msg;
+  t.classList.remove("error","success");
+  if(type!=="default")t.classList.add(type);
+  t.classList.add("show");
   setTimeout(()=>t.classList.remove("show"),dur);
 }
 
 function t(k){return(I18N[state.lang]||I18N.zh)[k]||I18N.zh[k]||k;}
+
+// ─── Validation ────────────────────────────────────────────────
+function validateEmail(email){
+  const re=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(email);
+}
+
+function validatePhone(phone){
+  const re=/^\+?[\d\s\-()]+$/;
+  return re.test(phone) && phone.replace(/\D/g,"").length >= 10;
+}
+
+function showError(elementId,msg){
+  const el=document.getElementById(elementId);
+  if(!el)return;
+  if(msg){
+    el.textContent=msg;
+    el.classList.add("show");
+  } else {
+    el.classList.remove("show");
+  }
+}
 
 // ─── Language ──────────────────────────────────────────────────
 function setLang(lang){
@@ -582,7 +636,7 @@ function applyI18N(){
 
 function renderLangMenu(){
   const html=Object.entries(LANG_NAMES).map(([code,name])=>
-    `<button class="lang-menu-item" style="background:${state.lang===code?'rgba(15,118,110,.8)':'transparent'};color:#fff;border:1px solid var(--dark-border);border-radius:4px;padding:4px 8px;font-size:11px;width:100%;text-align:left;cursor:pointer;transition:.15s;" onclick="setLang('${code}')">${name}</button>`
+    `<button class="lang-menu-item" onclick="setLang('${code}')" style="background:${state.lang===code?'rgba(15,118,110,.8)':'transparent'};color:#fff;border:1px solid var(--dark-border);border-radius:4px;padding:4px 8px;font-size:10px;width:100%;cursor:pointer;">${name}</button>`
   ).join("");
   $("#langMenu").innerHTML=html;
 }
@@ -592,8 +646,19 @@ function toggleLangMenu(){
   menu.classList.toggle("show");
 }
 
+// ─── Verification Code ────────────────────────────────────────
+function generateCode(contact){
+  const code="123456";
+  state.verificationCodes[contact]=code;
+  return code;
+}
+
+function verifyCode(contact,code){
+  return state.verificationCodes[contact]===code;
+}
+
 // ─── Login / Logout ────────────────────────────────────────────
-function login(contact,method="email"){
+function loginGuest(contact,method="email"){
   const visitor={
     id:"v"+Date.now(),
     name:contact,
@@ -604,25 +669,68 @@ function login(contact,method="email"){
   };
   const existing=state.visitors.find(v=>v.name===contact);
   if(existing){
-    if(existing.blocked){toast("账号已被禁止访问");return;}
-    existing.visits++;existing.time=new Date().toLocaleString();
+    if(existing.blocked){
+      toast(t("err_blocked")||"账号已被禁止访问","default","error");
+      return false;
+    }
+    existing.visits++;
+    existing.time=new Date().toLocaleString();
   } else {
     state.visitors.unshift(visitor);
   }
   state.user={role:"Guest",type:"visitor",contact,time:new Date().toISOString()};
-  save();showApp();
+  save();
+  toast(t("success_login"),2000,"success");
+  setTimeout(showApp,500);
+  return true;
+}
+
+function loginAdmin(username,password){
+  if(!ADMIN_USERS[username]){
+    return false;
+  }
+  if(ADMIN_USERS[username]!==password){
+    return false;
+  }
+  state.user={role:"Admin",type:"admin",username,time:new Date().toISOString()};
+  save();
+  toast(t("success_login"),2000,"success");
+  setTimeout(showApp,500);
+  return true;
 }
 
 function logout(){
   state.user=null;save();
   $("#appShell").classList.add("hidden");
   $("#loginScreen").classList.remove("hidden");
+  $$(".tab").forEach(t=>t.classList.remove("active"));
+  $("#tab_email").classList.add("active");
+  $$("[id$='Login']").forEach(f=>f.classList.add("hidden"));
+  $("#emailLogin").classList.remove("hidden");
 }
 
 function showApp(){
   $("#loginScreen").classList.add("hidden");
   $("#appShell").classList.remove("hidden");
+  updateUserInfo();
   renderVisitorStats();
+}
+
+function updateUserInfo(){
+  if(!state.user)return;
+  const isAdmin=state.user.role==="Admin";
+  const roleLabel=$("#userRoleLabel");
+  const roleDesc=$("#userRoleDesc");
+  
+  if(isAdmin){
+    roleLabel.textContent="管理员";
+    roleDesc.textContent="管理员可管理产品、查看询盘和游客数据。";
+    $$("[data-admin-only]").forEach(btn=>btn.classList.add("admin-visible"));
+    $$("[data-main-only]").forEach(btn=>btn.classList.add("main-visible"));
+  } else {
+    roleLabel.textContent="客户";
+    roleDesc.textContent="游客可查看产品并提交询盘。";
+  }
 }
 
 // ─── Privacy ──────────────────────────────────────────────────
@@ -643,7 +751,7 @@ function saveLoginBg(){
     const reader=new FileReader();
     reader.onload=e=>{
       state.loginBgUrl=e.target.result;
-      save();toast("登录页背景已保存");
+      save();toast("登录页背景已保存",2000,"success");
     };
     reader.readAsDataURL(imgInput.files[0]);
   }
@@ -651,7 +759,7 @@ function saveLoginBg(){
     const reader=new FileReader();
     reader.onload=e=>{
       state.loginBgVideo=e.target.result;
-      save();toast("登录页视频已保存");
+      save();toast("登录页视频已保存",2000,"success");
     };
     reader.readAsDataURL(videoInput.files[0]);
   }
@@ -663,7 +771,7 @@ function resetLoginBg(){
   save();
   $("#loginBgUpload").value="";
   $("#loginVideoUpload").value="";
-  toast("已恢复默认背景");
+  toast("已恢复默认背景",2000,"success");
 }
 
 function saveHeroText(){
@@ -676,7 +784,7 @@ function saveHeroText(){
   $("#heroH1").textContent=state.heroText.h1;
   $("#heroP").textContent=state.heroText.p;
   $("#heroFooter").textContent=state.heroText.footer;
-  toast("页面文字已保存");
+  toast("页面文字已保存",2000,"success");
 }
 
 function saveAppSettings(){
@@ -686,11 +794,11 @@ function saveAppSettings(){
     const reader=new FileReader();
     reader.onload=e=>{
       state.logoUrl=e.target.result;
-      save();toast("Logo已保存");
+      save();toast("Logo已保存",2000,"success");
     };
     reader.readAsDataURL(logoInput.files[0]);
   }
-  save();toast("应用设置已保存");
+  save();toast("应用设置已保存",2000,"success");
 }
 
 function resetAppSettings(){
@@ -699,7 +807,7 @@ function resetAppSettings(){
   state.logoUrl="";
   $("#appBgColor").value="#f2f5f8";
   $("#logoUpload").value="";
-  save();toast("已恢复默认设置");
+  save();toast("已恢复默认设置",2000,"success");
 }
 
 // ─── Visitor Management ──────────────────────────────────────
@@ -716,7 +824,7 @@ function renderVisitorStats(){
       <td>${v.name}</td>
       <td>${v.loginMethod}</td>
       <td>${v.visits}</td>
-      <td><span style="color:${v.blocked?'red':'green'}">${v.blocked?'黑名单':'正常'}</span></td>
+      <td><span style="color:${v.blocked?'#b91c1c':'#15803d'}">${v.blocked?'黑名单':'正常'}</span></td>
       <td>
         <button class="btn" style="font-size:11px;padding:2px 6px" onclick="toggleVisitorStatus(${i})">${v.blocked?'解除':'封禁'}</button>
       </td>
@@ -726,8 +834,9 @@ function renderVisitorStats(){
 
 function toggleVisitorStatus(idx){
   state.visitors[idx].blocked=!state.visitors[idx].blocked;
-  save();renderVisitorStats();
-  toast("状态已更新");
+  save();
+  renderVisitorStats();
+  toast("状态已更新",2000,"success");
 }
 
 function exportVisitors(){
@@ -755,13 +864,152 @@ document.addEventListener("DOMContentLoaded",()=>{
       $$("[id$='Login']").forEach(f=>f.classList.add("hidden"));
       const form=document.getElementById(type+"Login");
       if(form)form.classList.remove("hidden");
+      $$(".error-msg").forEach(e=>e.classList.remove("show"));
     };
   });
+
+  // 填充管理员账号下拉框
+  const adminSelect=$("#adminAccount");
+  Object.keys(ADMIN_USERS).forEach(username=>{
+    const opt=document.createElement("option");
+    opt.value=username;
+    opt.textContent=username;
+    adminSelect.appendChild(opt);
+  });
   
-  // 登录按钮
-  $("#btn_email_login").onclick=()=>login($("#emailInput").value,"email");
-  $("#btn_phone_login").onclick=()=>login($("#phoneInput").value,"phone");
-  $("#adminLoginBtn").onclick=()=>login("admin","admin");
+  // EMAIL 登录
+  $("#sendEmailCode").onclick=()=>{
+    const email=$("#emailInput").value.trim();
+    if(!email){
+      showError("emailError",t("err_email_required"));
+      return;
+    }
+    if(!validateEmail(email)){
+      showError("emailError",t("err_email_invalid"));
+      return;
+    }
+    generateCode(email);
+    showError("emailError","");
+    toast(t("success_send_code"),3000,"success");
+  };
+
+  $("#btn_email_login").onclick=()=>{
+    const email=$("#emailInput").value.trim();
+    const code=$("#emailCode").value.trim();
+    
+    showError("emailError","");
+    showError("codeError","");
+    
+    if(!email){
+      showError("emailError",t("err_email_required"));
+      return;
+    }
+    if(!validateEmail(email)){
+      showError("emailError",t("err_email_invalid"));
+      return;
+    }
+    if(!code){
+      showError("codeError",t("err_code_required"));
+      return;
+    }
+    if(!verifyCode(email,code)){
+      showError("codeError",t("err_code_invalid"));
+      return;
+    }
+    
+    loginGuest(email,"email");
+  };
+
+  // PHONE 登录
+  $("#sendPhoneCode").onclick=()=>{
+    const phone=$("#phoneInput").value.trim();
+    if(!phone){
+      showError("phoneError",t("err_phone_required"));
+      return;
+    }
+    if(!validatePhone(phone)){
+      showError("phoneError",t("err_phone_invalid"));
+      return;
+    }
+    generateCode(phone);
+    showError("phoneError","");
+    toast(t("success_send_code"),3000,"success");
+  };
+
+  $("#btn_phone_login").onclick=()=>{
+    const phone=$("#phoneInput").value.trim();
+    const code=$("#phoneCode").value.trim();
+    
+    showError("phoneError","");
+    showError("smsError","");
+    
+    if(!phone){
+      showError("phoneError",t("err_phone_required"));
+      return;
+    }
+    if(!validatePhone(phone)){
+      showError("phoneError",t("err_phone_invalid"));
+      return;
+    }
+    if(!code){
+      showError("smsError",t("err_code_required"));
+      return;
+    }
+    if(!verifyCode(phone,code)){
+      showError("smsError",t("err_code_invalid"));
+      return;
+    }
+    
+    loginGuest(phone,"phone");
+  };
+
+  // INVITE 登录
+  $("#btn_invite_login").onclick=()=>{
+    const invite=$("#inviteInput").value.trim().toUpperCase();
+    const contact=$("#inviteContact").value.trim();
+    
+    showError("inviteError","");
+    showError("contactError","");
+    
+    if(!invite){
+      showError("inviteError",t("err_invite_required"));
+      return;
+    }
+    if(!contact){
+      showError("contactError",t("err_contact_required"));
+      return;
+    }
+    if(!VALID_INVITES.includes(invite)){
+      showError("inviteError","邀请码无效");
+      return;
+    }
+    
+    loginGuest(contact,"invite");
+  };
+
+  // ADMIN 登录
+  $("#adminLoginBtn").onclick=()=>{
+    const username=$("#adminAccount").value;
+    const password=$("#adminPassword").value;
+    
+    showError("adminError","");
+    
+    if(!password){
+      showError("adminError",t("err_admin_required"));
+      return;
+    }
+    
+    if(!loginAdmin(username,password)){
+      showError("adminError",t("err_admin_invalid"));
+      return;
+    }
+  };
+
+  // 微信登录（演示）
+  $("#wechatLogin").onclick=()=>{
+    const wechatUser="WeChat_User_"+Date.now();
+    loginGuest(wechatUser,"wechat");
+  };
   
   // 界面设置
   $("#saveLoginBg").onclick=saveLoginBg;
@@ -772,6 +1020,29 @@ document.addEventListener("DOMContentLoaded",()=>{
   
   // 游客管理
   $("#exportVisitors").onclick=exportVisitors;
+  
+  // 导航
+  $$(".nav button[data-view]").forEach(btn=>{
+    btn.onclick=()=>{
+      if(btn.hasAttribute("data-admin-only")&&state.user?.role!=="Admin")return;
+      if(btn.hasAttribute("data-main-only")&&state.user?.username!=="main_admin")return;
+      
+      $$(".nav button").forEach(b=>b.classList.remove("active"));
+      btn.classList.add("active");
+      
+      const viewId=btn.getAttribute("data-view");
+      $$(".view").forEach(v=>v.classList.remove("active"));
+      const view=document.getElementById(viewId);
+      if(view)view.classList.add("active");
+      
+      const titles={
+        home:"首页",products:"产品中心",company:"公司信息",share:"二维码/链接",
+        inquiries:"客户询盘",visitors:"游客管理",adminEdit:"产品管理",
+        appearance:"界面设置",adminUsers:"管理员管控"
+      };
+      $("#pageTitle").textContent=titles[viewId]||"首页";
+    };
+  });
   
   // 登出
   $("#logoutBtn").onclick=logout;
