@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bazaar Textile · Global Catalog</title>
+<style>
+:root{
+  --bg:#f2f5f8;--panel:#fff;--ink:#17212b;--muted:#687789;--line:#dce4ec;
+  --teal:#0f766e;--teal2:#0d9488;--gold:#b7791f;--blue:#2563eb;--red:#b91c1c;--green:#15803d;
+  --shadow:0 8px 32px rgba(21,34,46,.1);--r:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{min-height:100vh;background:var(--bg);color:var(--ink);font:14px/1.55 "PingFang SC","Microsoft YaHei",Arial,sans-serif;}
+button,input,select,textarea{font:inherit;}
+button{cursor:pointer;}
+.hidden{display:none!important;}
+a{color:var(--teal);}
+
+/* ─── LOGIN ─── */
+.login-screen{min-height:100vh;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(360px,.9fr);}
+.hero{
+  min-height:100vh;padding:42px;color:#fff;
+  display:flex;flex-direction:column;justify-content:space-between;
+  position:relative;overflow:hidden;
+}
+.hero-bg{position:absolute;inset:0;z-index:0;}
+.hero-bg img,.hero-bg video{width:100%;height:100%;object-fit:cover;display:block;}
+.hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(135deg,rgba(8,30,36,.82),rgba(8,30,36,.42));}
+.hero>*{position:relative;z-index:2;}
+.logo-row{display:flex;align-items:center;gap:12px;}
+.logo-mark{width:48px;height:48px;border-radius:8px;background:#fff;color:var(--teal);display:grid;place-items:center;font-weight:900;font-size:20px;overflow:hidden;flex-shrink:0;}
+.logo-mark img{width:100%;height:100%;object-fit:cover;}
+.logo-row strong{display:block;font-size:19px;}
+.logo-row span{display:block;color:rgba(255,255,255,.78);font-size:12px;}
+.hero-copy{max-width:660px;}
+.hero-copy h1{margin:0 0 14px;font-size:46px;line-height:1.05;}
+.hero-copy p{margin:0;font-size:17px;color:rgba(255,255,255,.84);max-width:560px;}
+.hero-badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;}
+.badge{min-height:30px;display:inline-flex;align-items:center;padding:0 10px;border-radius:999px;background:rgba(255,255,255,.14);color:#fff;font-weight:700;font-size:12px;}
+.login-panel{min-height:100vh;padding:34px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;}
+.login-card{width:100%;max-width:440px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:24px;box-shadow:var(--shadow);}
+.login-card h2{margin:0;font-size:22px;}
+.login-card>p{margin:6px 0 16px;color:var(--muted);font-size:13px;}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;}
+.tab{border:1px solid var(--line);border-radius:var(--r);background:#fff;min-height:38px;color:var(--muted);font-weight:700;transition:.15s;}
+.tab.active{color:#fff;background:var(--teal);border-color:var(--teal);}
+label{display:grid;gap:6px;color:var(--muted);font-size:12px;font-weight:700;}
+input,select,textarea{width:100%;border:1px solid var(--line);border-radius:var(--r);padding:9px 11px;background:#fff;color:var(--ink);outline:none;transition:.15s;}
+textarea{resize:vertical;min-height:80px;}
+input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(15,118,110,.1);}
+.form-stack{display:grid;gap:12px;}
+.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
+.btn{min-height:38px;border:1px solid var(--line);border-radius:var(--r);padding:0 14px;background:#fff;color:var(--ink);font-weight:700;transition:.15s;}
+.btn:hover{border-color:var(--teal);color:var(--teal);}
+.btn.primary{background:var(--teal);color:#fff;border-color:var(--teal);}
+.btn.primary:hover{background:var(--teal2);}
+.btn.blue{background:var(--blue);color:#fff;border-color:var(--blue);}
+.btn.gold{background:var(--gold);color:#fff;border-color:var(--gold);}
+.btn.red{color:var(--red);border-color:rgba(185,28,28,.28);}
+.btn.red:hover{background:var(--red);color:#fff;}
+.btn.full{width:100%;}
+.privacy-bar{font-size:11px;color:var(--muted);text-align:center;line-height:1.8;}
+.privacy-bar a{color:var(--teal);}
+
+/* ─── CHANGE PASSWORD MODAL ─── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(3px);}
+.modal-box{background:#fff;border-radius:12px;padding:28px;width:400px;max-width:90vw;box-shadow:0 24px 64px rgba(0,0,0,.2);}
+.modal-box h3{margin:0 0 6px;font-size:18px;}
+.modal-box p{margin:0 0 18px;color:var(--muted);font-size:13px;}
+
+/* ─── APP SHELL ─── */
+.app-shell{min-height:100vh;display:grid;grid-template-columns:240px minmax(0,1fr);}
+.sidebar{background:#101820;color:#fff;padding:20px;display:flex;flex-direction:column;gap:18px;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar .logo-mark{background:var(--teal);color:#fff;}
+.nav{display:grid;gap:6px;}
+.nav button{border:0;border-radius:var(--r);background:transparent;color:#b7c5d2;min-height:40px;text-align:left;padding:0 12px;font-weight:700;transition:.15s;}
+.nav button.active,.nav button:hover{background:rgba(255,255,255,.1);color:#fff;}
+.side-card{margin-top:auto;border:1px solid rgba(255,255,255,.12);border-radius:var(--r);padding:12px;color:#b7c5d2;background:rgba(255,255,255,.07);font-size:12px;}
+.lang-picker{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.lang-btn{border:1px solid rgba(255,255,255,.2);border-radius:6px;background:transparent;color:rgba(255,255,255,.6);padding:3px 9px;font-size:12px;font-weight:700;cursor:pointer;transition:.15s;}
+.lang-btn.active{background:var(--teal);border-color:var(--teal);color:#fff;}
+main{padding:22px;min-width:0;overflow-y:auto;}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:16px;}
+.topbar h2{margin:0;font-size:22px;}
+.topbar p{margin:3px 0 0;color:var(--muted);font-size:13px;}
+.actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;}
+.view{display:none;}
+.view.active{display:block;}
+.grid{display:grid;gap:14px;}
+.grid.cols-2{grid-template-columns:1fr 1fr;}
+.grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr));}
+.grid.cols-4{grid-template-columns:repeat(4,minmax(0,1fr));}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:16px;min-width:0;}
+.panel-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px;}
+.panel h3{margin:0;font-size:17px;}
+.metric{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:15px;box-shadow:var(--shadow);}
+.metric span{display:block;color:var(--muted);font-size:12px;}
+.metric b{display:block;margin-top:6px;font-size:28px;}
+.category-bar{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;margin-bottom:12px;}
+.chip{white-space:nowrap;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--muted);min-height:32px;padding:0 12px;font-weight:700;transition:.15s;}
+.chip.active{background:var(--teal);border-color:var(--teal);color:#fff;}
+.product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;}
+.product-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);}
+.product-media{height:180px;background:linear-gradient(135deg,#d8ece8,#f5e9d4);display:grid;place-items:center;color:var(--teal);font-size:40px;font-weight:900;}
+.product-media img{width:100%;height:100%;object-fit:cover;display:block;}
+.product-body{padding:13px;}
+.product-body h4{margin:0 0 5px;font-size:15px;}
+.product-body p{margin:0 0 10px;color:var(--muted);min-height:44px;font-size:13px;}
+.tag{display:inline-flex;min-height:22px;align-items:center;padding:0 8px;border-radius:999px;background:#e6f4f1;color:var(--teal);font-weight:700;font-size:11px;margin:0 4px 4px 0;}
+.tag.red{background:#fee2e2;color:var(--red);}
+.tag.gold{background:#fef3c7;color:var(--gold);}
+.role-note{border:1px solid var(--line);border-radius:var(--r);background:#f8fafc;padding:10px;color:var(--muted);font-size:12px;}
+.admin-status{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;font-weight:700;font-size:11px;background:#e6f4f1;color:var(--teal);}
+.admin-status.off{background:#fee2e2;color:var(--red);}
+.admin-status.warn{background:#fef3c7;color:var(--gold);}
+.detail-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:14px;}
+.detail-photo{min-height:300px;border-radius:var(--r);background:linear-gradient(135deg,#d8ece8,#fff1d6);display:grid;place-items:center;color:var(--teal);font-size:64px;font-weight:900;overflow:hidden;}
+.detail-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+.company-photo{min-height:240px;border-radius:var(--r);background:linear-gradient(135deg,#d8ece8,#fff1d6);display:grid;place-items:center;color:var(--teal);font-size:42px;font-weight:900;overflow:hidden;}
+.company-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+.company-video{width:100%;min-height:200px;border:1px solid var(--line);border-radius:var(--r);background:#0f172a;display:block;margin-top:12px;}
+.preview-box{border:1px dashed var(--line);border-radius:var(--r);padding:10px;background:#f8fafc;color:var(--muted);font-size:12px;}
+.kv{display:grid;grid-template-columns:110px 1fr;border-top:1px solid var(--line);}
+.kv div{padding:9px 0;border-bottom:1px solid var(--line);font-size:13px;}
+.kv div:nth-child(odd){color:var(--muted);font-weight:700;}
+table{width:100%;border-collapse:collapse;min-width:600px;}
+th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line);vertical-align:top;font-size:13px;}
+th{color:var(--muted);background:#f8fafc;font-size:12px;}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:var(--r);}
+.share-card{width:320px;max-width:100%;border:1px solid var(--line);border-radius:var(--r);background:#fff;padding:18px;text-align:center;box-shadow:var(--shadow);}
+.qr-wrap{position:relative;width:220px;height:220px;margin:14px auto;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:#fff;display:grid;place-items:center;}
+.qr-wrap img{width:100%;height:100%;object-fit:cover;}
+.qr-logo{position:absolute;width:60px;height:60px;border:4px solid #fff;border-radius:12px;background:var(--teal);color:#fff;display:grid;place-items:center;font-weight:900;font-size:18px;left:50%;top:50%;transform:translate(-50%,-50%);overflow:hidden;}
+.qr-logo img{width:100%;height:100%;object-fit:cover;}
+.toast{position:fixed;right:22px;bottom:22px;background:#101820;color:#fff;border-radius:var(--r);padding:12px 16px;max-width:340px;opacity:0;transform:translateY(8px);pointer-events:none;transition:.2s;box-shadow:var(--shadow);z-index:300;font-size:13px;}
+.toast.show{opacity:1;transform:translateY(0);}
+.country-map{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+.country-flag{font-size:22px;cursor:default;title:attr(title);}
+.bg-thumb{width:80px;height:54px;border-radius:6px;object-fit:cover;border:2px solid transparent;cursor:pointer;transition:.15s;}
+.bg-thumb.sel,.bg-thumb:hover{border-color:var(--teal);}
+.bg-thumb-default{width:80px;height:54px;border-radius:6px;border:2px solid var(--line);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--muted);background:#f0f4f8;transition:.15s;}
+.bg-thumb-default.sel,.bg-thumb-default:hover{border-color:var(--teal);color:var(--teal);}
+.visitor-row td span.blk{background:#fee2e2;color:var(--red);border-radius:4px;padding:1px 6px;font-size:11px;}
+
+/* ─── MOBILE ─── */
+@media(max-width:900px){
+  .login-screen{grid-template-columns:1fr;}
+  .hero{min-height:300px;padding:24px;}
+  .hero-copy h1{font-size:28px;}
+  .login-panel{min-height:auto;padding:20px;}
+  .app-shell{grid-template-columns:1fr;grid-template-rows:auto 1fr;}
+  .sidebar{position:static;height:auto;overflow:visible;padding:14px;}
+  .nav{grid-template-columns:repeat(3,minmax(0,1fr));}
+  .side-card{margin-top:0;}
+  .grid.cols-2,.grid.cols-3,.grid.cols-4,.detail-layout,.row{grid-template-columns:1fr;}
+  .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+  main{padding:14px;}
+}
+@media(max-width:600px){
+  .hero,.login-panel,main{padding:14px;}
+  .product-grid,.nav{grid-template-columns:1fr;}
+  .topbar{flex-direction:column;align-items:stretch;}
+  .actions{justify-content:stretch;}
+  .actions .btn{flex:1;}
+  .tabs{grid-template-columns:repeat(2,1fr);}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ LOGIN SCREEN ═══════════════ -->
+<section class="login-screen hidden" id="loginScreen">
+  <div class="hero" id="heroSection">
+    <div class="hero-bg" id="heroBg">
+      <img id="heroBgImg" src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?auto=format&fit=crop&w=1600&q=82" alt="bg">
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="logo-row">
+      <div class="logo-mark" id="loginLogoMark">B</div>
+      <div><strong id="heroTitle">Bazaar Textile</strong><span id="heroSubtitle">Global Product Catalog</span></div>
+    </div>
+    <div class="hero-copy">
+      <h1 id="heroH1">国内外客户都能登录查看的产品小程序</h1>
+      <p id="heroP">芭莎纺织 · 专注外套、羽绒服、户外功能面料，为全球服装品牌提供一站式面料解决方案。</p>
+      <div class="hero-badges">
+        <span class="badge" id="b1">微信小程序</span>
+        <span class="badge" id="b2">海外 H5 / PWA</span>
+        <span class="badge" id="b3">询盘 CRM</span>
+        <span class="badge" id="b4">多语言支持</span>
+      </div>
+    </div>
+    <div style="color:rgba(255,255,255,.72);font-size:13px" id="heroFooter">Shaoxing Basha Textile Co., Ltd.</div>
+  </div>
+
+  <div class="login-panel">
+    <div class="login-card">
+      <h2 id="lbl_login_title">登录产品目录</h2>
+      <p id="lbl_login_sub">游客登录后可查看产品；管理员登录后可管理后台。</p>
+      <div class="tabs">
+        <button class="tab active" data-login="email" id="tab_email">邮箱</button>
+        <button class="tab" data-login="phone" id="tab_phone">手机号</button>
+        <button class="tab" data-login="invite" id="tab_invite">邀请码</button>
+        <button class="tab" data-login="admin" id="tab_admin">管理员</button>
+      </div>
+      <div class="form-stack" id="emailLogin">
+        <label id="lbl_email">邮箱 / Email<input id="emailInput" type="email" placeholder="customer@example.com"></label>
+        <div class="row">
+          <label id="lbl_code">验证码<input id="emailCode" placeholder="123456"></label>
+          <button class="btn" id="sendEmailCode" style="align-self:end">发送验证码</button>
+        </div>
+        <button class="btn primary full" data-do-login="游客客户" id="btn_email_login">邮箱登录</button>
+      </div>
+      <div class="form-stack hidden" id="phoneLogin">
+        <label id="lbl_phone">手机号<input id="phoneInput" placeholder="+86 / +1 ..."></label>
+        <div class="row">
+          <label id="lbl_smscode">验证码<input id="phoneCode" placeholder="123456"></label>
+          <button class="btn" id="sendPhoneCode" style="align-self:end">发送验证码</button>
+        </div>
+        <button class="btn primary full" data-do-login="游客客户" id="btn_phone_login">手机号登录</button>
+      </div>
+      <div class="form-stack hidden" id="inviteLogin">
+        <label id="lbl_invite">邀请码<input id="inviteInput" placeholder="BAZAAR2026"></label>
+        <label id="lbl_contact">联系方式<input id="inviteContact" placeholder="邮箱 / WhatsApp / 手机"></label>
+        <button class="btn primary full" data-do-login="邀请客户" id="btn_invite_login">邀请码登录</button>
+      </div>
+      <div class="form-stack hidden" id="adminLogin">
+        <label>管理员账号<select id="adminAccount"></select></label>
+        <label id="lbl_pwd">管理员密码<input id="adminPassword" type="password" placeholder="请输入密码"></label>
+        <button class="btn primary full" id="adminLoginBtn">管理员登录</button>
+        <div class="role-note" id="lbl_admin_note">演示：main_admin / BAZAAR-MAIN，admin_01 / BAZAAR-01，admin_02 / BAZAAR-02。正式上线请更改默认密码。</div>
+      </div>
+      <button class="btn blue full" id="wechatLogin" style="margin-top:12px">微信授权登录（游客）</button>
+    </div>
+    <!-- 语言切换 + 隐私协议 底栏 -->
+    <div style="text-align:center;display:flex;flex-direction:column;gap:8px;align-items:center;">
+      <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;" id="loginLangBar"></div>
+      <div class="privacy-bar" id="privacyBar">
+        登录即表示您同意
+        <a href="#" onclick="showPrivacy('user');return false;" id="lbl_user_agree">《用户协议》</a>
+        和
+        <a href="#" onclick="showPrivacy('privacy');return false;" id="lbl_privacy">《隐私政策》</a>
+        及
+        <a href="#" onclick="showPrivacy('security');return false;" id="lbl_security">《安全协议》</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ APP SHELL ═══════════════ -->
+<section class="app-shell hidden" id="appShell">
+  <aside class="sidebar">
+    <div class="logo-row">
+      <div class="logo-mark" id="appLogoMark">B</div>
+      <div><strong id="appBrandName">Bazaar Textile</strong><span style="color:rgba(255,255,255,.6);font-size:12px">Global Catalog</span></div>
+    </div>
+    <nav class="nav">
+      <button class="active" data-view="home" id="nav_home">🏠 首页</button>
+      <button data-view="products" id="nav_products">🧵 产品中心</button>
+      <button data-view="company" id="nav_company">🏭 公司信息</button>
+      <button data-view="share" data-admin-only="true" id="nav_share">📲 二维码/链接</button>
+      <button data-view="inquiries" data-admin-only="true" id="nav_inquiries">📋 客户询盘</button>
+      <button data-view="visitors" data-admin-only="true" id="nav_visitors">👥 游客管理</button>
+      <button data-view="adminEdit" data-admin-only="true" id="nav_adminEdit">⚙️ 产品管理</button>
+      <button data-view="appearance" data-admin-only="true" id="nav_appearance">🎨 界面设置</button>
+      <button data-view="adminUsers" data-main-only="true" id="nav_adminUsers">🔐 管理员管控</button>
+    </nav>
+    <div class="lang-picker" id="sidebarLangBar"></div>
+    <div class="side-card" id="sideCard">
+      <strong id="userRoleLabel">客户</strong><br>
+      <span id="userRoleDesc">游客可查看产品并提交询盘。</span>
+    </div>
+  </aside>
+
+  <main>
+    <div class="topbar">
+      <div>
+        <h2 id="pageTitle">首页</h2>
+        <p id="pageSubtitle">芭莎纺织产品目录与询盘系统</p>
+      </div>
+      <div class="actions">
+        <button class="btn gold" data-view-shortcut="share" data-admin-only="true" id="topbar_share">生成分享码</button>
+        <button class="btn" id="changePwdBtn" style="display:none">🔑 修改密码</button>
+        <button class="btn red" id="logoutBtn">退出登录</button>
+      </div>
+    </div>
+
+    <!-- HOME -->
+    <section class="view active" id="home">
+      <div class="grid cols-4" id="homeMetrics">
+        <div class="metric"><span id="m_products">产品数量</span><b id="productMetric">0</b></div>
+        <div class="metric"><span id="m_cats">产品分类</span><b id="categoryMetric">0</b></div>
+        <div class="metric"><span id="m_countries">服务国家</span><b id="countryMetric">86+</b></div>
+        <div class="metric"><span id="m_langs">支持语言</span><b>7</b></div>
+      </div>
+      <div class="grid cols-2" style="margin-top:14px">
+        <div class="panel">
+          <div class="panel-head"><h3 id="h_company_intro">公司简介</h3><span class="tag">可后台更新</span></div>
+          <p id="companySummary" class="muted" style="font-size:13px"></p>
+          <div class="grid cols-3" style="margin-top:12px">
+            <div class="metric"><span id="m_main">主营</span><b style="font-size:16px" id="homeMain">外套面料</b></div>
+            <div class="metric"><span id="m_service">服务</span><b style="font-size:16px">样卡/定制</b></div>
+            <div class="metric"><span id="m_clients">客户</span><b style="font-size:16px">全球品牌</b></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3 id="h_featured">推荐产品</h3><button class="btn" data-view-shortcut="products" id="btn_all_products">查看全部</button></div>
+          <div id="featuredProducts" class="grid" style="gap:10px"></div>
+        </div>
+      </div>
+      <!-- 服务国家展示（游客模式） -->
+      <div class="panel" style="margin-top:14px" id="countryPanel">
+        <div class="panel-head"><h3 id="h_countries">全球服务国家</h3><span class="tag">86+ Countries</span></div>
+        <p class="muted" style="font-size:13px;margin-bottom:10px" id="country_desc">芭莎纺织产品已销售至全球 86+ 个国家和地区，覆盖亚洲、欧洲、美洲、非洲等主要市场。</p>
+        <div class="country-map" id="countryFlags"></div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section class="view" id="products">
+      <div class="panel">
+        <div class="panel-head">
+          <h3 id="h_products">产品中心</h3>
+          <label style="max-width:280px" id="lbl_search">搜索<input id="productSearch" placeholder="名称/功能/编号"></label>
+        </div>
+        <div class="category-bar" id="categoryBar"></div>
+        <div class="product-grid" id="productGrid"></div>
+      </div>
+    </section>
+
+    <!-- PRODUCT DETAIL -->
+    <section class="view" id="productDetail">
+      <div class="panel">
+        <div class="panel-head"><h3 id="h_detail">产品详情</h3><button class="btn" data-view-shortcut="products">← 返回</button></div>
+        <div id="detailContent"></div>
+      </div>
+    </section>
+
+    <!-- COMPANY -->
+    <section class="view" id="company">
+      <div class="grid cols-2">
+        <div class="panel">
+          <div class="panel-head"><h3 id="h_companyinfo">公司信息</h3><span class="tag">Company Profile</span></div>
+          <div class="company-photo" id="companyPhoto">B</div>
+          <video class="company-video hidden" id="companyVideo" controls></video>
+          <div class="kv" id="companyKv"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3 id="h_contact">联系我们</h3><span class="tag">Contact</span></div>
+          <p class="muted" style="font-size:13px" id="contact_desc">客户可通过产品详情页提交询盘，或直接联系业务员。</p>
+          <div class="kv" id="contactKv"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHARE -->
+    <section class="view" id="share">
+      <div class="grid cols-2">
+        <div class="panel">
+          <div class="panel-head"><h3>二维码和链接</h3><span class="tag">Logo Share Card</span></div>
+          <div class="form-stack">
+            <label>客户访问链接<input id="shareUrl" value="https://catalog.bazaartextile.com"></label>
+            <label>分享卡标题<input id="shareTitle" value="Bazaar Textile Global Product Catalog"></label>
+            <label>上传 Logo（可选）<input id="logoUpload" type="file" accept="image/*"></label>
+            <div class="actions" style="justify-content:flex-start">
+              <button class="btn primary" id="refreshQr">更新二维码</button>
+              <button class="btn" id="copyLink">复制链接</button>
+            </div>
+          </div>
+          <p class="muted" style="font-size:12px;margin-top:10px">二维码中心自动嵌入 Logo。正式上线可接后端生成高清带 Logo 二维码。</p>
+        </div>
+        <div class="panel">
+          <div class="share-card" id="shareCard">
+            <div class="logo-row" style="justify-content:center;color:var(--ink)">
+              <div class="logo-mark" style="background:var(--teal);color:#fff" id="qrCardLogo">B</div>
+              <div style="text-align:left"><strong>Bazaar Textile</strong><span style="color:var(--muted)">Global Catalog</span></div>
+            </div>
+            <div class="qr-wrap">
+              <img id="qrImage" alt="QR">
+              <div class="qr-logo" id="qrLogo">B</div>
+            </div>
+            <strong id="shareCardTitle">Bazaar Textile</strong>
+            <p class="muted" style="margin:6px 0 0;font-size:12px">Scan or open link to view products.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INQUIRIES -->
+    <section class="view" id="inquiries">
+      <div class="panel">
+        <div class="panel-head"><h3>客户询盘</h3><button class="btn" id="exportInquiry">导出 CSV</button></div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>时间</th><th>客户</th><th>国家</th><th>联系方式</th><th>产品</th><th>数量</th><th>留言</th><th>状态</th></tr></thead>
+            <tbody id="inquiryTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISITORS -->
+    <section class="view" id="visitors">
+      <div class="panel">
+        <div class="panel-head">
+          <h3>游客统计与管理</h3>
+          <div class="actions">
+            <button class="btn" id="exportVisitors">导出 CSV</button>
+          </div>
+        </div>
+        <div class="grid cols-4" style="margin-bottom:14px">
+          <div class="metric"><span>总访客</span><b id="vm_total">0</b></div>
+          <div class="metric"><span>本月新增</span><b id="vm_month">0</b></div>
+          <div class="metric"><span>已黑名单</span><b id="vm_blocked">0</b></div>
+          <div class="metric"><span>来源国家</span><b id="vm_countries">0</b></div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>登录时间</th><th>用户名/邮箱</th><th>登录方式</th><th>国家</th><th>来源渠道</th><th>访问次数</th><th>状态</th><th>操作</th></tr></thead>
+            <tbody id="visitorTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADMIN EDIT (Product + Company) -->
+    <section class="view" id="adminEdit">
+      <div class="grid cols-2">
+        <div class="panel">
+          <div class="panel-head"><h3>新增/编辑产品</h3><span class="tag">Admin</span></div>
+          <div class="form-stack">
+            <input id="editId" type="hidden">
+            <div class="row">
+              <label>产品名称<input id="editName"></label>
+              <label>产品编号<input id="editCode"></label>
+            </div>
+            <div class="row">
+              <label>分类<input id="editCategory"></label>
+              <label>图标/首字母<input id="editIcon" maxlength="2"></label>
+            </div>
+            <div class="row">
+              <label>成分<input id="editComposition"></label>
+              <label>克重<input id="editWeight"></label>
+            </div>
+            <div class="row">
+              <label>门幅<input id="editWidth"></label>
+              <label>MOQ<input id="editMoq"></label>
+            </div>
+            <label>功能标签（逗号分隔）<input id="editTags"></label>
+            <label>产品图片（1:1）<input id="editImage" type="file" accept="image/*"></label>
+            <div class="preview-box" id="productImagePreview">未上传图片时显示图标。</div>
+            <label>产品介绍<textarea id="editDesc"></textarea></label>
+            <div class="actions" style="justify-content:flex-start">
+              <button class="btn primary" id="saveProduct">保存产品</button>
+              <button class="btn" id="newProduct">清空新增</button>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>当前产品列表</h3><span class="muted" style="font-size:12px">点击行编辑</span></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>产品</th><th>分类</th><th>编号</th><th>操作</th></tr></thead>
+              <tbody id="adminProductTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- Company edit -->
+      <div class="panel" style="margin-top:14px">
+        <div class="panel-head"><h3>公司信息编辑</h3><span class="tag">可实时更新</span></div>
+        <div class="grid cols-2">
+          <div class="form-stack">
+            <label>公司名称<input id="companyEditName"></label>
+            <label>公司简介<textarea id="companyEditSummary"></textarea></label>
+            <div class="row">
+              <label>地址<input id="companyEditAddress"></label>
+              <label>官网<input id="companyEditWebsite"></label>
+            </div>
+            <div class="row">
+              <label>邮箱<input id="companyEditEmail"></label>
+              <label>WhatsApp<input id="companyEditWhatsapp"></label>
+            </div>
+            <label>电话<input id="companyEditPhone"></label>
+            <div class="row">
+              <label>展示图片<input id="companyImageUpload" type="file" accept="image/*"></label>
+              <label>介绍视频<input id="companyVideoUpload" type="file" accept="video/*"></label>
+            </div>
+            <div class="actions" style="justify-content:flex-start">
+              <button class="btn primary" id="saveCompany">保存公司信息</button>
+              <button class="btn" id="clearCompanyMedia">清除图片/视频</button>
+            </div>
+          </div>
+          <div>
+            <div class="company-photo" id="companyEditPhotoPreview">B</div>
+            <video class="company-video hidden" id="companyEditVideoPreview" controls></video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- APPEARANCE (login bg + app bg) -->
+    <section class="view" id="appearance">
+      <div class="grid cols-2">
+        <div class="panel">
+          <div class="panel-head"><h3>登录页背景设置</h3><span class="tag">Login Page</span></div>
+          <div class="form-stack">
+            <p class="muted" style="font-size:12px">选择预设图片，或上传自定义图片/视频作为登录页左侧背景。</p>
+            <label style="font-weight:700;color:var(--muted);font-size:12px">预设背景图</label>
+            <div style="display:flex;gap:8px;flex-wrap:wrap" id="loginBgPresets"></div>
+            <label>上传自定义背景图<input type="file" id="loginBgUpload" accept="image/*"></label>
+            <label>上传背景视频（替代图片）<input type="file" id="loginVideoUpload" accept="video/mp4,video/webm"></label>
+            <button class="btn" id="loginBgReset">恢复默认背景</button>
+          </div>
+          <p class="muted" style="font-size:12px;margin-top:12px">可编辑登录页左侧文字：</p>
+          <div class="form-stack" style="margin-top:8px">
+            <label>大标题<input id="heroEditH1"></label>
+            <label>副标题<input id="heroEditP"></label>
+            <label>公司底部说明<input id="heroEditFooter"></label>
+            <button class="btn primary" id="saveHeroText">保存文字</button>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>登录后背景设置</h3><span class="tag">App Background</span></div>
+          <div class="form-stack">
+            <p class="muted" style="font-size:12px">设置登录后主界面的背景颜色或背景图。</p>
+            <label style="font-weight:700;color:var(--muted);font-size:12px">预设背景方案</label>
+            <div style="display:flex;gap:8px;flex-wrap:wrap" id="appBgPresets"></div>
+            <label>上传自定义主界面背景图<input type="file" id="appBgUpload" accept="image/*"></label>
+            <button class="btn" id="appBgReset">恢复默认</button>
+          </div>
+          <div class="panel" style="margin-top:14px;box-shadow:none;background:#f8fafc">
+            <div class="panel-head"><h3>Logo 设置</h3><span class="tag">Brand</span></div>
+            <div class="form-stack">
+              <label>上传 Logo 图片（用于二维码/顶栏）<input type="file" id="logoMainUpload" accept="image/*"></label>
+              <div class="preview-box" id="logoPreviewBox">未上传 Logo，使用字母 B。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADMIN USERS -->
+    <section class="view" id="adminUsers">
+      <div class="panel">
+        <div class="panel-head"><h3>管理员管控</h3><span class="tag">主管理员专属</span></div>
+        <p class="muted" style="font-size:13px;margin-bottom:14px">共 3 位管理员账号。主管理员可启用/停用其他管理员，或重置其密码。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>账号</th><th>角色</th><th>最近登录</th><th>状态</th><th>操作</th></tr></thead>
+            <tbody id="adminUserTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</section>
+
+<!-- ═══ CHANGE PASSWORD MODAL ═══ -->
+<div class="modal-overlay hidden" id="pwdModal">
+  <div class="modal-box">
+    <h3>🔑 修改管理员密码</h3>
+    <p id="pwdModalDesc">首次登录请立即修改密码，确保账号安全。</p>
+    <div class="form-stack">
+      <label>当前密码（旧密码）<input type="password" id="pwdOld" placeholder="当前密码"></label>
+      <label>新密码<input type="password" id="pwdNew" placeholder="至少 8 位，含字母和数字"></label>
+      <label>确认新密码<input type="password" id="pwdConfirm" placeholder="再次输入新密码"></label>
+      <div class="actions" style="justify-content:flex-start">
+        <button class="btn primary" id="pwdSave">保存新密码</button>
+        <button class="btn" id="pwdCancel">稍后修改</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PRIVACY MODAL ═══ -->
+<div class="modal-overlay hidden" id="privacyModal">
+  <div class="modal-box" style="width:560px;max-height:80vh;overflow-y:auto;">
+    <h3 id="privacyModalTitle">用户协议</h3>
+    <div id="privacyModalContent" style="font-size:13px;color:var(--muted);line-height:1.8;margin-top:12px"></div>
+    <button class="btn primary" style="margin-top:16px;width:100%" onclick="closePrivacy()">我已阅读并同意</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- ═══════════════ SCRIPT ═══════════════ -->
+<script>
+// ─── i18n ───────────────────────────────────────────────────────
+const I18N = {
+  zh:{
+    login_title:"登录产品目录",login_sub:"游客登录后可查看产品；管理员登录后可管理后台。",
+    tab_email:"邮箱",tab_phone:"手机号",tab_invite:"邀请码",tab_admin:"管理员",
+    btn_email:"邮箱登录",btn_phone:"手机号登录",btn_invite:"邀请码登录",btn_wechat:"微信授权登录（游客）",
+    send_code:"发送验证码",lbl_email:"邮箱 / Email",lbl_code:"验证码",lbl_phone:"手机号",
+    lbl_smscode:"验证码",lbl_invite:"邀请码",lbl_contact:"联系方式",lbl_pwd:"密码",
+    admin_note:"演示：main_admin/BAZAAR-MAIN，admin_01/BAZAAR-01。正式上线请修改密码。",
+    nav_home:"🏠 首页",nav_products:"🧵 产品中心",nav_company:"🏭 公司信息",nav_share:"📲 二维码/链接",
+    nav_inquiries:"📋 客户询盘",nav_visitors:"👥 游客管理",nav_adminEdit:"⚙️ 产品管理",
+    nav_appearance:"🎨 界面设置",nav_adminUsers:"🔐 管理员管控",
+    h_company_intro:"公司简介",h_featured:"推荐产品",h_countries:"全球服务国家",
+    h_products:"产品中心",h_detail:"产品详情",h_companyinfo:"公司信息",h_contact:"联系我们",
+    m_products:"产品数量",m_cats:"产品分类",m_countries:"服务国家",m_langs:"支持语言",
+    m_main:"主营",m_service:"服务",m_clients:"客户",btn_all_products:"查看全部",
+    country_desc:"芭莎纺织产品已销售至全球 86+ 个国家和地区，覆盖亚洲、欧洲、美洲、非洲等主要市场。",
+    contact_desc:"客户可通过产品详情页提交询盘，或直接联系业务员。",
+    inquiry_submit:"提交询盘",inquiry_name:"姓名",inquiry_company:"公司",inquiry_country:"国家",
+    inquiry_contact:"联系方式（电话/WhatsApp/邮箱）",inquiry_qty:"采购数量",inquiry_email:"邮箱",inquiry_msg:"留言",
+    topbar_share:"生成分享码",logout:"退出登录",change_pwd:"🔑 修改密码",
+    user_agree:"《用户协议》",privacy:"《隐私政策》",security:"《安全协议》",
+    login_agree:"登录即表示您同意",
+    heroH1:"国内外客户都能登录查看的产品小程序",
+    heroP:"芭莎纺织 · 专注外套、羽绒服、户外功能面料，为全球服装品牌提供一站式解决方案。",
+    heroFooter:"绍兴芭莎纺织有限公司 · Shaoxing Basha Textile Co., Ltd.",
+    lbl_search:"搜索",
+  },
+  en:{
+    login_title:"Login to Product Catalog",login_sub:"Guests can view products; admins can manage the backend.",
+    tab_email:"Email",tab_phone:"Phone",tab_invite:"Invite",tab_admin:"Admin",
+    btn_email:"Email Login",btn_phone:"Phone Login",btn_invite:"Invite Code Login",btn_wechat:"WeChat Login (Guest)",
+    send_code:"Send Code",lbl_email:"Email",lbl_code:"Code",lbl_phone:"Phone",
+    lbl_smscode:"SMS Code",lbl_invite:"Invite Code",lbl_contact:"Contact",lbl_pwd:"Password",
+    admin_note:"Demo: main_admin/BAZAAR-MAIN, admin_01/BAZAAR-01. Change passwords after going live.",
+    nav_home:"🏠 Home",nav_products:"🧵 Products",nav_company:"🏭 Company",nav_share:"📲 QR / Link",
+    nav_inquiries:"📋 Inquiries",nav_visitors:"👥 Visitors",nav_adminEdit:"⚙️ Product Admin",
+    nav_appearance:"🎨 Appearance",nav_adminUsers:"🔐 Admin Control",
+    h_company_intro:"Company Overview",h_featured:"Featured Products",h_countries:"Global Coverage",
+    h_products:"Product Center",h_detail:"Product Detail",h_companyinfo:"Company Info",h_contact:"Contact Us",
+    m_products:"Products",m_cats:"Categories",m_countries:"Countries",m_langs:"Languages",
+    m_main:"Main",m_service:"Service",m_clients:"Clients",btn_all_products:"View All",
+    country_desc:"Bazaar Textile products are sold to 86+ countries across Asia, Europe, Americas, and Africa.",
+    contact_desc:"Customers can submit inquiries via product pages or contact our team directly.",
+    inquiry_submit:"Submit Inquiry",inquiry_name:"Name",inquiry_company:"Company",inquiry_country:"Country",
+    inquiry_contact:"Contact (Phone/WhatsApp/Email)",inquiry_qty:"Quantity",inquiry_email:"Email",inquiry_msg:"Message",
+    topbar_share:"Generate QR",logout:"Logout",change_pwd:"🔑 Change Password",
+    user_agree:"Terms of Service",privacy:"Privacy Policy",security:"Security Policy",
+    login_agree:"By logging in, you agree to our",
+    heroH1:"Global Product Catalog for Customers Worldwide",
+    heroP:"Bazaar Textile · Specializing in outerwear, down jacket, and functional fabrics for global brands.",
+    heroFooter:"Shaoxing Basha Textile Co., Ltd.",
+    lbl_search:"Search",
+  },
+  ru:{
+    login_title:"Войти в каталог",login_sub:"Гости могут просматривать товары; администраторы управляют системой.",
+    tab_email:"Email",tab_phone:"Телефон",tab_invite:"Инвайт",tab_admin:"Админ",
+    btn_email:"Войти по Email",btn_phone:"Войти по телефону",btn_invite:"Войти по коду",btn_wechat:"Войти через WeChat",
+    send_code:"Отправить код",lbl_email:"Email",lbl_code:"Код",lbl_phone:"Телефон",
+    lbl_smscode:"СМС код",lbl_invite:"Инвайт-код",lbl_contact:"Контакт",lbl_pwd:"Пароль",
+    admin_note:"Демо: main_admin/BAZAAR-MAIN. Смените пароль после запуска.",
+    nav_home:"🏠 Главная",nav_products:"🧵 Продукция",nav_company:"🏭 Компания",nav_share:"📲 QR / Ссылка",
+    nav_inquiries:"📋 Запросы",nav_visitors:"👥 Посетители",nav_adminEdit:"⚙️ Управление",
+    nav_appearance:"🎨 Оформление",nav_adminUsers:"🔐 Администраторы",
+    h_company_intro:"О компании",h_featured:"Рекомендуемые",h_countries:"Мировое покрытие",
+    h_products:"Каталог продукции",h_detail:"Детали товара",h_companyinfo:"О компании",h_contact:"Контакты",
+    m_products:"Товаров",m_cats:"Категорий",m_countries:"Страны",m_langs:"Языки",
+    m_main:"Профиль",m_service:"Услуги",m_clients:"Клиенты",btn_all_products:"Все товары",
+    country_desc:"Продукция Bazaar Textile продаётся в 86+ странах мира, охватывая Азию, Европу, Америку и Африку.",
+    contact_desc:"Клиенты могут отправить запрос через страницу товара или связаться с нами напрямую.",
+    inquiry_submit:"Отправить запрос",inquiry_name:"Имя",inquiry_company:"Компания",inquiry_country:"Страна",
+    inquiry_contact:"Контакт (телефон/WhatsApp/email)",inquiry_qty:"Количество",inquiry_email:"Email",inquiry_msg:"Сообщение",
+    topbar_share:"Создать QR",logout:"Выйти",change_pwd:"🔑 Сменить пароль",
+    user_agree:"Пользовательское соглашение",privacy:"Политика конфиденциальности",security:"Политика безопасности",
+    login_agree:"Входя, вы соглашаетесь с",
+    heroH1:"Глобальный каталог продукции для клиентов по всему миру",
+    heroP:"Bazaar Textile · Ткани для верхней одежды, пуховиков и outdoor-одежды для мировых брендов.",
+    heroFooter:"Shaoxing Basha Textile Co., Ltd.",
+    lbl_search:"Поиск",
+  },
+  es:{
+    login_title:"Iniciar sesión",login_sub:"Los visitantes pueden ver productos; los administradores gestionan el sistema.",
+    tab_email:"Email",tab_phone:"Teléfono",tab_invite:"Invitación",tab_admin:"Admin",
+    btn_email:"Entrar con Email",btn_phone:"Entrar con Teléfono",btn_invite:"Entrar con Código",btn_wechat:"Entrar con WeChat",
+    send_code:"Enviar código",lbl_email:"Email",lbl_code:"Código",lbl_phone:"Teléfono",
+    lbl_smscode:"Código SMS",lbl_invite:"Código de invitación",lbl_contact:"Contacto",lbl_pwd:"Contraseña",
+    admin_note:"Demo: main_admin/BAZAAR-MAIN. Cambie la contraseña al iniciar.",
+    nav_home:"🏠 Inicio",nav_products:"🧵 Productos",nav_company:"🏭 Empresa",nav_share:"📲 QR / Enlace",
+    nav_inquiries:"📋 Consultas",nav_visitors:"👥 Visitantes",nav_adminEdit:"⚙️ Gestión",
+    nav_appearance:"🎨 Apariencia",nav_adminUsers:"🔐 Administradores",
+    h_company_intro:"Sobre nosotros",h_featured:"Destacados",h_countries:"Cobertura global",
+    h_products:"Catálogo",h_detail:"Detalles",h_companyinfo:"Info empresa",h_contact:"Contacto",
+    m_products:"Productos",m_cats:"Categorías",m_countries:"Países",m_langs:"Idiomas",
+    m_main:"Principal",m_service:"Servicio",m_clients:"Clientes",btn_all_products:"Ver todo",
+    country_desc:"Los productos de Bazaar Textile se venden en más de 86 países.",
+    contact_desc:"Los clientes pueden enviar consultas desde la página del producto.",
+    inquiry_submit:"Enviar consulta",inquiry_name:"Nombre",inquiry_company:"Empresa",inquiry_country:"País",
+    inquiry_contact:"Contacto",inquiry_qty:"Cantidad",inquiry_email:"Email",inquiry_msg:"Mensaje",
+    topbar_share:"Generar QR",logout:"Salir",change_pwd:"🔑 Cambiar contraseña",
+    user_agree:"Términos de uso",privacy:"Política de privacidad",security:"Política de seguridad",
+    login_agree:"Al iniciar sesión, acepta nuestros",
+    heroH1:"Catálogo global de productos para clientes de todo el mundo",
+    heroP:"Bazaar Textile · Telas para ropa exterior, plumones y ropa outdoor para marcas globales.",
+    heroFooter:"Shaoxing Basha Textile Co., Ltd.",
+    lbl_search:"Buscar",
+  },
+  de:{
+    login_title:"Anmelden",login_sub:"Gäste können Produkte ansehen; Admins verwalten das System.",
+    tab_email:"E-Mail",tab_phone:"Telefon",tab_invite:"Einladung",tab_admin:"Admin",
+    btn_email:"Mit E-Mail anmelden",btn_phone:"Mit Telefon anmelden",btn_invite:"Mit Code anmelden",btn_wechat:"WeChat-Anmeldung",
+    send_code:"Code senden",lbl_email:"E-Mail",lbl_code:"Code",lbl_phone:"Telefon",
+    lbl_smscode:"SMS-Code",lbl_invite:"Einladungscode",lbl_contact:"Kontakt",lbl_pwd:"Passwort",
+    admin_note:"Demo: main_admin/BAZAAR-MAIN. Bitte Passwort nach dem Start ändern.",
+    nav_home:"🏠 Start",nav_products:"🧵 Produkte",nav_company:"🏭 Unternehmen",nav_share:"📲 QR / Link",
+    nav_inquiries:"📋 Anfragen",nav_visitors:"👥 Besucher",nav_adminEdit:"⚙️ Verwaltung",
+    nav_appearance:"🎨 Design",nav_adminUsers:"🔐 Admins",
+    h_company_intro:"Über uns",h_featured:"Empfehlungen",h_countries:"Globale Abdeckung",
+    h_products:"Produktkatalog",h_detail:"Produktdetails",h_companyinfo:"Unternehmensinfo",h_contact:"Kontakt",
+    m_products:"Produkte",m_cats:"Kategorien",m_countries:"Länder",m_langs:"Sprachen",
+    m_main:"Haupt",m_service:"Service",m_clients:"Kunden",btn_all_products:"Alle ansehen",
+    country_desc:"Bazaar Textile liefert in 86+ Länder weltweit.",
+    contact_desc:"Kunden können Anfragen über die Produktseite oder direkt einreichen.",
+    inquiry_submit:"Anfrage senden",inquiry_name:"Name",inquiry_company:"Unternehmen",inquiry_country:"Land",
+    inquiry_contact:"Kontakt",inquiry_qty:"Menge",inquiry_email:"E-Mail",inquiry_msg:"Nachricht",
+    topbar_share:"QR erstellen",logout:"Abmelden",change_pwd:"🔑 Passwort ändern",
+    user_agree:"Nutzungsbedingungen",privacy:"Datenschutzrichtlinie",security:"Sicherheitsrichtlinie",
+    login_agree:"Mit der Anmeldung stimmen Sie zu:",
+    heroH1:"Globaler Produktkatalog für Kunden weltweit",
+    heroP:"Bazaar Textile · Stoffe für Oberbekleidung, Daunenjacken und Outdoor-Mode.",
+    heroFooter:"Shaoxing Basha Textile Co., Ltd.",
+    lbl_search:"Suchen",
+  },
+  fr:{
+    login_title:"Se connecter",login_sub:"Les visiteurs peuvent voir les produits; les admins gèrent le système.",
+    tab_email:"Email",tab_phone:"Téléphone",tab_invite:"Invitation",tab_admin:"Admin",
+    btn_email:"Connexion par email",btn_phone:"Connexion par téléphone",btn_invite:"Connexion par code",btn_wechat:"Connexion WeChat",
+    send_code:"Envoyer le code",lbl_email:"Email",lbl_code:"Code",lbl_phone:"Téléphone",
+    lbl_smscode:"Code SMS",lbl_invite:"Code d'invitation",lbl_contact:"Contact",lbl_pwd:"Mot de passe",
+    admin_note:"Démo: main_admin/BAZAAR-MAIN. Changez le mot de passe après lancement.",
+    nav_home:"🏠 Accueil",nav_products:"🧵 Produits",nav_company:"🏭 Entreprise",nav_share:"📲 QR / Lien",
+    nav_inquiries:"📋 Demandes",nav_visitors:"👥 Visiteurs",nav_adminEdit:"⚙️ Gestion",
+    nav_appearance:"🎨 Apparence",nav_adminUsers:"🔐 Administrateurs",
+    h_company_intro:"À propos",h_featured:"En vedette",h_countries:"Couverture mondiale",
+    h_products:"Catalogue",h_detail:"Détails",h_companyinfo:"Info entreprise",h_contact:"Contact",
+    m_products:"Produits",m_cats:"Catégories",m_countries:"Pays",m_langs:"Langues",
+    m_main:"Principal",m_service:"Service",m_clients:"Clients",btn_all_products:"Voir tout",
+    country_desc:"Les produits Bazaar Textile sont vendus dans 86+ pays.",
+    contact_desc:"Les clients peuvent soumettre des demandes depuis la page produit.",
+    inquiry_submit:"Envoyer demande",inquiry_name:"Nom",inquiry_company:"Entreprise",inquiry_country:"Pays",
+    inquiry_contact:"Contact",inquiry_qty:"Quantité",inquiry_email:"Email",inquiry_msg:"Message",
+    topbar_share:"Créer QR",logout:"Déconnexion",change_pwd:"🔑 Changer mot de passe",
+    user_agree:"Conditions d'utilisation",privacy:"Politique de confidentialité",security:"Politique de sécurité",
+    login_agree:"En vous connectant, vous acceptez",
+    heroH1:"Catalogue produits mondial pour clients du monde entier",
+    heroP:"Bazaar Textile · Tissus pour vêtements d'extérieur, doudounes et mode outdoor.",
+    heroFooter:"Shaoxing Basha Textile Co., Ltd.",
+    lbl_search:"Rechercher",
+  },
+  ar:{
+    login_title:"تسجيل الدخول",login_sub:"يمكن للزوار عرض المنتجات؛ المشرفون يديرون النظام.",
+    tab_email:"البريد",tab_phone:"الهاتف",tab_invite:"دعوة",tab_admin:"مشرف",
+    btn_email:"دخول بالبريد",btn_phone:"دخول بالهاتف",btn_invite:"دخول بالكود",btn_wechat:"دخول بـ WeChat",
+    send_code:"إرسال الكود",lbl_email:"البريد الإلكتروني",lbl_code:"الكود",lbl_phone:"الهاتف",
+    lbl_smscode:"كود SMS",lbl_invite:"كود الدعوة",lbl_contact:"التواصل",lbl_pwd:"كلمة المرور",
+    admin_note:"تجريبي: main_admin/BAZAAR-MAIN. يرجى تغيير كلمة المرور عند الإطلاق.",
+    nav_home:"🏠 الرئيسية",nav_products:"🧵 المنتجات",nav_company:"🏭 الشركة",nav_share:"📲 رمز QR",
+    nav_inquiries:"📋 الاستفسارات",nav_visitors:"👥 الزوار",nav_adminEdit:"⚙️ إدارة المنتجات",
+    nav_appearance:"🎨 المظهر",nav_adminUsers:"🔐 المشرفون",
+    h_company_intro:"نبذة عن الشركة",h_featured:"منتجات مميزة",h_countries:"التغطية العالمية",
+    h_products:"كتالوج المنتجات",h_detail:"تفاصيل المنتج",h_companyinfo:"معلومات الشركة",h_contact:"اتصل بنا",
+    m_products:"المنتجات",m_cats:"الفئات",m_countries:"الدول",m_langs:"اللغات",
+    m_main:"رئيسي",m_service:"خدمة",m_clients:"العملاء",btn_all_products:"عرض الكل",
+    country_desc:"تُباع منتجات Bazaar Textile في أكثر من 86 دولة حول العالم.",
+    contact_desc:"يمكن للعملاء إرسال الاستفسارات من صفحة المنتج أو التواصل مباشرة.",
+    inquiry_submit:"إرسال الاستفسار",inquiry_name:"الاسم",inquiry_company:"الشركة",inquiry_country:"الدولة",
+    inquiry_contact:"التواصل",inquiry_qty:"الكمية",inquiry_email:"البريد",inquiry_msg:"رسالة",
+    topbar_share:"إنشاء QR",logout:"تسجيل الخروج",change_pwd:"🔑 تغيير كلمة المرور",
+    user_agree:"شروط الاستخدام",privacy:"سياسة الخصوصية",security:"سياسة الأمان",
+    login_agree:"بتسجيل الدخول، أنت توافق على",
+    heroH1:"كتالوج منتجات عالمي للعملاء في جميع أنحاء العالم",
+    heroP:"Bazaar Textile · أقمشة ملابس خارجية، سترات الريش وملابس رياضية للعلامات التجارية العالمية.",
+    heroFooter:"Shaoxing Basha Textile Co., Ltd.",
+    lbl_search:"بحث",
+  }
+};
+const LANG_NAMES = {zh:"中文",en:"English",ru:"Русский",es:"Español",de:"Deutsch",fr:"Français",ar:"العربية"};
+
+// ─── Privacy texts ───────────────────────────────────────────────
+const PRIVACY_TEXTS = {
+  user:`
+<h4>芭莎纺织全球产品目录 · 用户协议</h4>
+<p><b>生效日期：2025年1月1日</b></p>
+<p>欢迎使用绍兴芭莎纺织有限公司（以下简称"我们"或"芭莎纺织"）的全球产品目录小程序（以下简称"本平台"）。请您在使用本平台前仔细阅读本协议。登录或使用本平台即表示您已阅读、理解并同意受本协议约束。</p>
+<p><b>1. 服务说明</b><br>本平台为芭莎纺织的产品展示与客户询盘工具，供国内外客户浏览产品信息、提交采购询盘。</p>
+<p><b>2. 账号管理</b><br>您可通过邮箱验证码、手机号验证码、微信授权或邀请码方式登录本平台。您有责任保管好登录凭证，因账号问题导致的损失由您承担。</p>
+<p><b>3. 用户行为规范</b><br>您承诺不将本平台用于任何违法或违规目的；不擅自复制、传播、出售本平台内容；不尝试入侵、破坏或干扰本平台正常运行。</p>
+<p><b>4. 知识产权</b><br>本平台所展示的产品图片、描述文字、品牌标识等内容，均归绍兴芭莎纺织有限公司所有，未经授权不得使用。</p>
+<p><b>5. 免责声明</b><br>本平台产品参数供参考，以实际订单合同为准。我们不对因网络中断、不可抗力等造成的服务中断负责。</p>
+<p><b>6. 协议变更</b><br>我们保留随时更新本协议的权利，更新后将在本平台公告，继续使用即视为同意更新后的协议。</p>
+<p><b>7. 联系我们</b><br>如有疑问请联系：sales@bazaartextile.com</p>`,
+  privacy:`
+<h4>芭莎纺织全球产品目录 · 隐私政策</h4>
+<p><b>生效日期：2025年1月1日</b></p>
+<p>绍兴芭莎纺织有限公司（以下简称"我们"）重视并尊重您的隐私权。本政策说明我们如何收集、使用和保护您的个人信息。</p>
+<p><b>1. 我们收集哪些信息</b><br>• 登录信息：邮箱地址、手机号或微信 OpenID<br>• 询盘信息：姓名、公司名称、所在国家、联系方式、采购需求<br>• 访问记录：IP 地址、访问时间、浏览记录（用于统计分析）</p>
+<p><b>2. 我们如何使用信息</b><br>• 提供产品展示和询盘服务<br>• 联系并跟进您的采购需求<br>• 改善平台功能和用户体验<br>• 发送产品更新和活动通知（您可随时退订）</p>
+<p><b>3. 信息共享</b><br>我们不会将您的个人信息出售给第三方。仅在以下情况共享：法律法规要求；与业务办理必需的服务商共享（如短信、邮件服务商），且受到保密约束。</p>
+<p><b>4. 数据安全</b><br>我们采用行业标准的加密和安全措施保护您的数据。但请注意，没有任何互联网传输方式能保证100%安全。</p>
+<p><b>5. 数据保留</b><br>我们仅在必要期间保留您的信息，通常不超过3年，或按法律要求保留。</p>
+<p><b>6. 您的权利</b><br>您有权访问、更正或删除您的个人信息。如需行使上述权利，请联系：sales@bazaartextile.com</p>
+<p><b>7. Cookie 和本地存储</b><br>本平台使用 localStorage 存储您的登录状态和偏好设置，不用于跟踪您的网络行为。</p>
+<p><b>8. 未成年人</b><br>本平台为企业对企业服务，不面向18岁以下未成年人。</p>`,
+  security:`
+<h4>芭莎纺织全球产品目录 · 安全协议</h4>
+<p><b>生效日期：2025年1月1日</b></p>
+<p><b>1. 账号安全</b><br>• 请使用强密码（至少8位，含字母和数字）<br>• 请勿与他人共享您的账号和密码<br>• 首次登录管理员账号后，请立即修改默认密码<br>• 如发现账号异常登录，请立即联系管理员</p>
+<p><b>2. 数据传输安全</b><br>• 正式上线版本将通过 HTTPS 加密传输所有数据<br>• 管理员密码在服务端经加密哈希存储，不明文保存<br>• 验证码有效期为10分钟，超时自动失效</p>
+<p><b>3. 访问控制</b><br>• 游客仅可查看产品和提交询盘，无法访问后台数据<br>• 管理员操作受日志记录，主管理员可查看操作记录<br>• 连续5次输错密码将触发账号临时锁定</p>
+<p><b>4. 内容安全</b><br>• 上传的图片/视频文件将进行格式和大小验证<br>• 询盘内容经过 XSS 过滤，防止恶意代码注入</p>
+<p><b>5. 黑名单机制</b><br>• 被拉黑的游客账号将无法再次登录本平台<br>• 主管理员可解除黑名单</p>
+<p><b>6. 安全漏洞报告</b><br>如发现平台安全漏洞，请通过邮件报告：security@bazaartextile.com。我们将在48小时内响应。</p>
+<p><b>7. 免责声明</b><br>我们会尽力维护平台安全，但对因不可抗力、用户自身原因或第三方攻击导致的安全事件，不承担无限责任。</p>`
+};
+
+// ─── State ───────────────────────────────────────────────────────
+const LS = k => localStorage.getItem("baz_"+k);
+const SS = (k,v) => localStorage.setItem("baz_"+k,typeof v==="string"?v:JSON.stringify(v));
+
+const defaultProducts=[
+  {id:"p1",name:"防绒胆布 Down-proof Lining",code:"BZ-DP-001",category:"羽绒服面料",icon:"DP",composition:"100% Nylon",weight:"38-65gsm",width:"150cm",moq:"1000m/color",tags:["防绒","轻薄","高密"],desc:"适用于羽绒服、派克服内胆。支持防绒、防静电后整理。",imageUrl:""},
+  {id:"p2",name:"户外防水面料 Waterproof Shell",code:"BZ-WS-018",category:"户外功能面料",icon:"WS",composition:"Nylon Taslon",weight:"90-160gsm",width:"150cm",moq:"1200m/color",tags:["防水","耐磨","透湿"],desc:"适用于滑雪服、冲锋衣。可做 PU/TPU 复合及 DWR 处理。",imageUrl:""},
+  {id:"p3",name:"轻量尼龙面料 Lightweight Nylon",code:"BZ-LN-026",category:"里布/轻薄面料",icon:"LN",composition:"20D/30D Nylon",weight:"35-55gsm",width:"148cm",moq:"1000m/color",tags:["轻量","柔软","可定制"],desc:"适合轻薄羽绒服、收纳款外套、运动风衣。",imageUrl:""},
+  {id:"p4",name:"再生环保面料 Recycled",code:"BZ-RC-009",category:"环保系列",icon:"RC",composition:"Recycled Polyester",weight:"80-140gsm",width:"150cm",moq:"1500m/color",tags:["环保","GRS","品牌款"],desc:"适合外套、羽绒服、休闲夹克，面向海外品牌。",imageUrl:""}
+];
+const defaultCompany={name:"Shaoxing Basha Textile Co., Ltd.",summary:"绍兴芭莎纺织专注外套、羽绒服、户外功能面料，为全球品牌提供防绒、防水、轻量、环保等面料解决方案。支持样卡寄送、颜色定制、后整理开发和批量生产。",address:"Shaoxing, Zhejiang, China",email:"sales@bazaartextile.com",whatsapp:"+86 000 0000 0000",phone:"+86 000 0000 0000",website:"https://catalog.bazaartextile.com",imageUrl:"",videoUrl:""};
+const defaultAdmins={
+  main:{id:"main",username:"main_admin",password:"BAZAAR-MAIN",label:"主管理员",enabled:true,locked:true,firstLogin:true,lastLogin:""},
+  admin1:{id:"admin1",username:"admin_01",password:"BAZAAR-01",label:"管理员1",enabled:true,locked:false,firstLogin:true,lastLogin:""},
+  admin2:{id:"admin2",username:"admin_02",password:"BAZAAR-02",label:"管理员2",enabled:true,locked:false,firstLogin:true,lastLogin:""}
+};
+
+const state={
+  lang: LS("lang")||"zh",
+  user: JSON.parse(LS("user")||"null"),
+  products: JSON.parse(LS("products")||"null")||defaultProducts,
+  inquiries: JSON.parse(LS("inquiries")||"[]"),
+  company: JSON.parse(LS("company")||"null")||defaultCompany,
+  admins: JSON.parse(LS("admins")||"null")||defaultAdmins,
+  visitors: JSON.parse(LS("visitors")||"[]"),
+  logoDataUrl: LS("logo")||"",
+  loginBgUrl: LS("loginBg")||"",
+  loginBgVideo: LS("loginBgVideo")||"",
+  appBg: LS("appBg")||"",
+  heroText: JSON.parse(LS("heroText")||"null")||{h1:"",p:"",footer:""},
+  activeCategory:"全部",
+  editProductImageUrl:""
+};
+
+const $=s=>document.querySelector(s);
+const $$=s=>Array.from(document.querySelectorAll(s));
+function save(){
+  SS("user",state.user);SS("products",state.products);SS("inquiries",state.inquiries);
+  SS("company",state.company);SS("admins",state.admins);SS("visitors",state.visitors);
+  if(state.logoDataUrl)SS("logo",state.logoDataUrl);
+  if(state.loginBgUrl)SS("loginBg",state.loginBgUrl);
+  if(state.loginBgVideo)SS("loginBgVideo",state.loginBgVideo);
+  if(state.appBg)SS("appBg",state.appBg);
+  SS("heroText",state.heroText);
+  SS("lang",state.lang);
+}
+function toast(msg,dur=2800){
+  const t=$("#toast");t.textContent=msg;t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"),dur);
+}
+function t(k){return(I18N[state.lang]||I18N.zh)[k]||I18N.zh[k]||k;}
+function isAdmin(){return state.user?.type==="admin";}
+function isMainAdmin(){return state.user?.type==="admin"&&state.user?.adminId==="main";}
+
+// ─── Language ──────────────────────────────────────────────────
+function setLang(lang){
+  state.lang=lang;SS("lang",lang);
+  applyI18N();
+  renderLangBars();
+  document.documentElement.dir=lang==="ar"?"rtl":"ltr";
+}
+function applyI18N(){
+  const map={
+    lbl_login_title:"login_title",lbl_login_sub:"login_sub",
+    tab_email:"tab_email",tab_phone:"tab_phone",tab_invite:"tab_invite",tab_admin:"tab_admin",
+    btn_email_login:"btn_email",btn_phone_login:"btn_phone",btn_invite_login:"btn_invite",wechatLogin:"btn_wechat",
+    sendEmailCode:"send_code",sendPhoneCode:"send_code",
+    lbl_admin_note:"admin_note",
+    nav_home:"nav_home",nav_products:"nav_products",nav_company:"nav_company",nav_share:"nav_share",
+    nav_inquiries:"nav_inquiries",nav_visitors:"nav_visitors",nav_adminEdit:"nav_adminEdit",
+    nav_appearance:"nav_appearance",nav_adminUsers:"nav_adminUsers",
+    h_company_intro:"h_company_intro",h_featured:"h_featured",h_countries:"h_countries",
+    h_products:"h_products",h_detail:"h_detail",h_companyinfo:"h_companyinfo",h_contact:"h_contact",
+    m_products:"m_products",m_cats:"m_cats",m_countries:"m_countries",m_langs:"m_langs",
+    m_main:"m_main",m_service:"m_service",m_clients:"m_clients",
+    btn_all_products:"btn_all_products",country_desc:"country_desc",contact_desc:"contact_desc",
+    topbar_share:"topbar_share",logoutBtn:"logout",changePwdBtn:"change_pwd",
+    lbl_user_agree:"user_agree",lbl_privacy:"privacy",lbl_security:"security",
+    heroH1:"heroH1",heroP:"heroP",heroFooter:"heroFooter",
+  };
+  Object.entries(map).forEach(([id,key])=>{
+    const el=document.getElementById(id);
+    if(el)el.textContent=t(key);
+  });
+  const pb=$("#privacyBar");
+  if(pb)pb.innerHTML=`${t("login_agree")} <a href="#" onclick="showPrivacy('user');return false;" id="lbl_user_agree">${t("user_agree")}</a> 和 <a href="#" onclick="showPrivacy('privacy');return false;" id="lbl_privacy">${t("privacy")}</a> 及 <a href="#" onclick="showPrivacy('security');return false;" id="lbl_security">${t("security")}</a>`;
+  // hero text (custom or i18n)
+  if($("#heroH1"))$("#heroH1").textContent=state.heroText.h1||t("heroH1");
+  if($("#heroP"))$("#heroP").textContent=state.heroText.p||t("heroP");
+  if($("#heroFooter"))$("#heroFooter").textContent=state.heroText.footer||t("heroFooter");
+}
+function renderLangBars(){
+  const html=Object.entries(LANG_NAMES).map(([code,name])=>`<button class="lang-btn ${state.lang===code?"active":""}" onclick="setLang('${code}')">${name}</button>`).join("");
+  const lb=$("#loginLangBar");if(lb)lb.innerHTML=html;
+  const sb=$("#sidebarLangBar");if(sb)sb.innerHTML=html;
+}
+
+// ─── Login / Logout ────────────────────────────────────────────
+function login(role){
+  const contact=$("#emailInput")?.value||$("#phoneInput")?.value||$("#inviteContact")?.value||"";
+  const visitor={
+    id:"v"+Date.now(),
+    name:contact||role,
+    email:contact,
+    loginMethod:role==="邀请客户"?"invite":contact.includes("@")?"email":"phone",
+    country:"",
+    source:"直接访问",
+    time:new Date().toISOString(),
+    visits:1,
+    blocked:false
+  };
+  // check blacklist
+  const existing=state.visitors.find(v=>v.email&&v.email===contact);
+  if(existing){
+    if(existing.blocked){toast("此账号已被禁止访问，如有疑问请联系客服。");return;}
+    existing.visits++;existing.time=new Date().toISOString();
+  } else {
+    state.visitors.unshift(visitor);
+  }
+  state.user={role,type:"customer",contact,time:new Date().toISOString()};
+  save();showApp();
+}
+function adminLogin(){
+  const id=$("#adminAccount").value;
+  const pw=$("#adminPassword").value;
+  const admin=state.admins[id];
+  if(!admin||admin.password!==pw){toast("管理员账号或密码错误。");return;}
+  if(!admin.enabled){toast("该管理员账号已被主管理员停用。");return;}
+  admin.lastLogin=new Date().toLocaleString();
+  state.user={role:admin.label,type:"admin",adminId:id,username:admin.username,time:new Date().toISOString()};
+  save();showApp();
+  // first login → force change password
+  if(admin.firstLogin){
+    setTimeout(()=>showPwdModal(true),400);
+  }
+}
+function logout(){
+  state.user=null;save();
+  $("#appShell").classList.add("hidden");
+  $("#loginScreen").classList.remove("hidden");
+}
+function showApp(){
+  $("#loginScreen").classList.add("hidden");
+  $("#appShell").classList.remove("hidden");
+  applyPermissions();renderAll();
+  if(isAdmin())$("#changePwdBtn").style.display="";
+  else $("#changePwdBtn").style.display="none";
+}
+
+// ─── Change Password ───────────────────────────────────────────
+function showPwdModal(forced=false){
+  $("#pwdModal").classList.remove("hidden");
+  $("#pwdModalDesc").textContent=forced
+    ?"首次登录，请立即修改默认密码以确保账号安全！"
+    :"请输入当前密码和新密码。";
+  $("#pwdOld").value="";$("#pwdNew").value="";$("#pwdConfirm").value="";
+  $("#pwdCancel").style.display=forced?"none":"";
+}
+function closePwdModal(){$("#pwdModal").classList.add("hidden");}
+function savePwd(){
+  const id=state.user?.adminId;
+  if(!id)return;
+  const admin=state.admins[id];
+  const oldPw=$("#pwdOld").value;
+  const newPw=$("#pwdNew").value;
+  const confirm=$("#pwdConfirm").value;
+  if(admin.password!==oldPw){toast("当前密码不正确。");return;}
+  if(newPw.length<8){toast("新密码至少需要8位。");return;}
+  if(!/[a-zA-Z]/.test(newPw)||!/[0-9]/.test(newPw)){toast("新密码需包含字母和数字。");return;}
+  if(newPw!==confirm){toast("两次输入的新密码不一致。");return;}
+  admin.password=newPw;
+  admin.firstLogin=false;
+  save();closePwdModal();
+  toast("密码已修改成功！");
+}
+
+// ─── Privacy ──────────────────────────────────────────────────
+function showPrivacy(type){
+  const titles={user:"用户协议",privacy:"隐私政策",security:"安全协议"};
+  $("#privacyModalTitle").textContent=titles[type]||"协议";
+  $("#privacyModalContent").innerHTML=PRIVACY_TEXTS[type]||"";
+  $("#privacyModal").classList.remove("hidden");
+}
+function closePrivacy(){$("#privacyModal").classList.add("hidden");}
+
+// ─── Background / Appearance ──────────────────────────────────
+const LOGIN_BG_PRESETS=[
+  {url:"https://images.unsplash.com/photo-1523381294911-8d3cead13475?auto=format&fit=crop&w=1200&q=80",label:"默认面料"},
+  {url:"https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1200&q=80",label:"现代工厂"},
+  {url:"https://images.unsplash.com/photo-1517971129774-8a2b38fa128e?auto=format&fit=crop&w=1200&q=80",label:"纺织品"},
+  {url:"https://images.unsplash.com/photo-1547032175-7fc8c7bd15b3?auto=format&fit=crop&w=1200&q=80",label:"户外服装"},
+  {url:"",label:"纯色默认"},
+];
+const APP_BG_PRESETS=[
+  {bg:"",label:"系统默认"},
+  {bg:"#e8f4f1",label:"浅绿"},
+  {bg:"#f5f0e8",label:"暖米"},
+  {bg:"#e8ecf5",label:"浅蓝"},
+  {bg:"#f0ebe8",label:"暖橙"},
+];
+function renderAppearancePanel(){
+  const lbp=$("#loginBgPresets");
+  if(lbp)lbp.innerHTML=LOGIN_BG_PRESETS.map((p,i)=>p.url?
+    `<img src="${p.url}" class="bg-thumb ${state.loginBgUrl===p.url?"sel":""}" title="${p.label}" onclick="applyLoginBg('${p.url}')" alt="${p.label}">`
+    :`<div class="bg-thumb-default ${!state.loginBgUrl&&!state.loginBgVideo?"sel":""}" onclick="applyLoginBg('')">默认</div>`
+  ).join("");
+  const abp=$("#appBgPresets");
+  if(abp)abp.innerHTML=APP_BG_PRESETS.map(p=>
+    `<div class="bg-thumb-default ${state.appBg===p.bg?"sel":""}" style="background:${p.bg||"#f2f5f8"}" onclick="applyAppBg('${p.bg}')">${p.label}</div>`
+  ).join("");
+  if($("#heroEditH1"))$("#heroEditH1").value=state.heroText.h1||"";
+  if($("#heroEditP"))$("#heroEditP").value=state.heroText.p||"";
+  if($("#heroEditFooter"))$("#heroEditFooter").value=state.heroText.footer||"";
+  renderLogoPreview();
+}
+function applyLoginBg(url){
+  state.loginBgUrl=url;state.loginBgVideo="";save();
+  applyBgs();renderAppearancePanel();
+  toast("登录页背景已更新。");
+}
+function applyAppBg(bg){
+  state.appBg=bg;save();applyBgs();renderAppearancePanel();
+  toast("主界面背景已更新。");
+}
+function applyBgs(){
+  // login bg
+  const bi=$("#heroBgImg");
+  const bv_old=document.getElementById("heroBgVideo");
+  if(state.loginBgVideo){
+    if(!bv_old){
+      const v=document.createElement("video");
+      v.id="heroBgVideo";v.autoplay=true;v.loop=true;v.muted=true;v.playsInline=true;
+      v.src=state.loginBgVideo;v.style.cssText="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;z-index:0";
+      document.getElementById("heroBg")?.appendChild(v);
+    } else {bv_old.src=state.loginBgVideo;}
+    if(bi)bi.style.display="none";
+  } else {
+    if(bv_old)bv_old.remove();
+    if(bi){bi.style.display="block";bi.src=state.loginBgUrl||"https://images.unsplash.com/photo-1523381294911-8d3cead13475?auto=format&fit=crop&w=1600&q=82";}
+  }
+  // app bg
+  document.body.style.background=state.appBg||"var(--bg)";
+  const main=document.querySelector(".app-shell main");
+  if(main&&state.appBg)main.style.background=state.appBg;
+}
+function renderLogoPreview(){
+  const lp=$("#logoPreviewBox");
+  if(!lp)return;
+  lp.innerHTML=state.logoDataUrl
+    ?`<img src="${state.logoDataUrl}" alt="Logo" style="height:48px;border-radius:8px;display:block;margin-bottom:6px"> Logo 已上传。`
+    :"未上传 Logo，使用字母 B。";
+  updateLogoElements();
+}
+function updateLogoElements(){
+  const marks=["loginLogoMark","appLogoMark","qrLogo","qrCardLogo"];
+  marks.forEach(id=>{
+    const el=document.getElementById(id);
+    if(!el)return;
+    el.innerHTML=state.logoDataUrl?`<img src="${state.logoDataUrl}" alt="Logo" style="width:100%;height:100%;object-fit:cover;border-radius:inherit">`:"B";
+  });
+}
+
+// ─── Views ────────────────────────────────────────────────────
+function switchView(id){
+  if(["share","inquiries","visitors","adminEdit","appearance"].includes(id)&&!isAdmin()){
+    toast("游客账号无后台管理权限。");id="products";
+  }
+  if(id==="adminUsers"&&!isMainAdmin()){toast("只有主管理员可进入管理员管控。");id="home";}
+  $$(".view").forEach(v=>v.classList.remove("active"));
+  $$(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.view===id));
+  const el=$("#"+id);if(el)el.classList.add("active");
+  const titles={home:"首页",products:t("h_products"),productDetail:t("h_detail"),company:t("h_companyinfo"),share:"二维码/链接",inquiries:"客户询盘",visitors:"游客管理",adminEdit:"产品管理",appearance:"界面设置",adminUsers:"管理员管控"};
+  const pt=$("#pageTitle");if(pt)pt.textContent=titles[id]||"";
+  if(id==="appearance")renderAppearancePanel();
+}
+function applyPermissions(){
+  $$("[data-admin-only]").forEach(el=>el.classList.toggle("hidden",!isAdmin()));
+  $$("[data-main-only]").forEach(el=>el.classList.toggle("hidden",!isMainAdmin()));
+  if(!isAdmin()&&["share","inquiries","visitors","adminEdit","appearance","adminUsers"].some(id=>$("#"+id)?.classList.contains("active"))){
+    switchView("products");
+  }
+  const sc=$("#sideCard");
+  if(sc){
+    const rl=document.getElementById("userRoleLabel");
+    const rd=document.getElementById("userRoleDesc");
+    if(rl)rl.textContent=isAdmin()?(state.user.role+" · "+state.user.username):state.user?.role||"游客";
+    if(rd)rd.textContent=isAdmin()?"拥有产品、询盘、游客等全部后台权限。":"游客可查看产品并提交询盘。";
+  }
+  if(isAdmin())$("#changePwdBtn").style.display="";
+  else if($("#changePwdBtn"))$("#changePwdBtn").style.display="none";
+}
+
+// ─── Render helpers ───────────────────────────────────────────
+function categories(){return["全部",...new Set(state.products.map(p=>p.category))];}
+function renderMetrics(){
+  const pm=$("#productMetric");if(pm)pm.textContent=state.products.length;
+  const cm=$("#categoryMetric");if(cm)cm.textContent=categories().length-1;
+  const cs=$("#companySummary");if(cs)cs.textContent=state.company.summary;
+}
+function renderCountryFlags(){
+  const flags=["🇨🇳","🇷🇺","🇺🇸","🇬🇧","🇩🇪","🇫🇷","🇯🇵","🇰🇷","🇮🇳","🇧🇷","🇦🇺","🇨🇦","🇮🇹","🇪🇸","🇳🇱","🇸🇪","🇧🇪","🇵🇱","🇦🇹","🇨🇭","🇵🇹","🇬🇷","🇹🇷","🇸🇦","🇦🇪","🇮🇱","🇿🇦","🇳🇬","🇪🇬","🇲🇽","🇦🇷","🇨🇱","🇨🇴","🇹🇭","🇻🇳","🇮🇩","🇲🇾","🇵🇭","🇸🇬","🇧🇩","🇵🇰","🇺🇦","🇷🇴","🇭🇺","🇨🇿","🇸🇰","🇭🇷","🇷🇸","🇧🇬","🇫🇮","🇩🇰","🇳🇴","🇳🇿","🇮🇪","🇦🇿","🇰🇿","🇺🇿","🇬🇪","🇲🇦","🇹🇳","🇩🇿","🇰🇪","🇬🇭","🇪🇹","🇮🇶","🇮🇷","🇯🇴","🇱🇧","🇶🇦","🇰🇼","🇧🇭","🇴🇲","🇾🇪","🇦🇫","🇳🇵","🇱🇰","🇲🇲","🇰🇭","🇱🇦","🇲🇳","🇵🇪","🇺🇾","🇵🇾","🇧🇴","🇩🇴","🇨🇷","🇬🇹"];
+  const cf=$("#countryFlags");
+  if(cf)cf.innerHTML=flags.map(f=>`<span class="country-flag" title="">${f}</span>`).join("");
+}
+function renderCategories(){
+  const cb=$("#categoryBar");if(!cb)return;
+  cb.innerHTML=categories().map(c=>`<button class="chip ${c===state.activeCategory?"active":""}" data-category="${c}">${c}</button>`).join("");
+  $$("#categoryBar .chip").forEach(btn=>btn.onclick=()=>{state.activeCategory=btn.dataset.category;renderProducts();});
+}
+function productCard(p){
+  return`<article class="product-card"><div class="product-media">${p.imageUrl?`<img src="${p.imageUrl}" alt="${p.name}">`:(p.icon||"BZ")}</div><div class="product-body"><h4>${p.name}</h4><p>${p.desc}</p><div>${p.tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div><button class="btn primary full" style="margin-top:8px" data-product-detail="${p.id}">${t("inquiry_submit")==="提交询盘"?"查看详情":"View Detail"}</button></div></article>`;
+}
+function renderProducts(){
+  const q=($("#productSearch")?.value||"").trim().toLowerCase();
+  const list=state.products.filter(p=>{
+    const inCat=state.activeCategory==="全部"||p.category===state.activeCategory;
+    const txt=`${p.name}${p.code}${p.category}${p.tags.join(" ")}${p.desc}`.toLowerCase();
+    return inCat&&(!q||txt.includes(q));
+  });
+  const pg=$("#productGrid");
+  if(pg){pg.innerHTML=list.length?list.map(productCard).join(""):`<p class="muted">未找到匹配产品。</p>`;}
+  $$("[data-product-detail]").forEach(btn=>btn.onclick=()=>showDetail(btn.dataset.productDetail));
+}
+function renderFeatured(){
+  const fp=$("#featuredProducts");if(!fp)return;
+  fp.innerHTML=state.products.slice(0,2).map(p=>`<div style="border:1px solid var(--line);border-radius:var(--r);padding:12px"><strong>${p.name}</strong><br><span class="muted" style="font-size:12px">${p.code} · ${p.category}</span><br><button class="btn" style="margin-top:8px;font-size:12px" data-product-detail="${p.id}">查看详情</button></div>`).join("");
+  $$("[data-product-detail]").forEach(btn=>btn.onclick=()=>showDetail(btn.dataset.productDetail));
+}
+function showDetail(id){
+  const p=state.products.find(x=>x.id===id);if(!p)return;
+  const n=t("inquiry_name"),co=t("inquiry_company"),cou=t("inquiry_country"),con=t("inquiry_contact"),qty=t("inquiry_qty"),em=t("inquiry_email"),msg=t("inquiry_msg"),sub=t("inquiry_submit");
+  $("#detailContent").innerHTML=`<div class="detail-layout">
+    <div class="detail-photo">${p.imageUrl?`<img src="${p.imageUrl}" alt="${p.name}">`:(p.icon||"BZ")}</div>
+    <div>
+      <h2 style="margin:0 0 6px">${p.name}</h2><p class="muted">${p.desc}</p>
+      <div style="margin:10px 0">${p.tags.map(tg=>`<span class="tag">${tg}</span>`).join("")}</div>
+      <div class="kv"><div>产品编号</div><div>${p.code}</div><div>分类</div><div>${p.category}</div><div>成分</div><div>${p.composition}</div><div>克重</div><div>${p.weight}</div><div>门幅</div><div>${p.width}</div><div>MOQ</div><div>${p.moq}</div></div>
+      <div class="panel" style="box-shadow:none;margin-top:14px">
+        <div class="panel-head"><h3>${sub}</h3><span>Leave Inquiry</span></div>
+        <div class="form-stack">
+          <div class="row"><label>${n}<input id="inqName" placeholder="${n}"></label><label>${co}<input id="inqCompany" placeholder="${co}"></label></div>
+          <div class="row"><label>${cou}<input id="inqCountry" placeholder="${cou}"></label><label>${con}<input id="inqContact" placeholder="${con}"></label></div>
+          <div class="row"><label>${qty}<input id="inqQty" placeholder="${qty}"></label><label>${em}<input id="inqEmail" placeholder="email"></label></div>
+          <label>${msg}<textarea id="inqMsg" placeholder="specs, qty, target price, sample..."></textarea></label>
+          <button class="btn primary" id="submitInquiry">${sub}</button>
+        </div>
+      </div>
+    </div>
+  </div>`;
+  $("#submitInquiry").onclick=()=>{
+    state.inquiries.unshift({time:new Date().toLocaleString(),product:p.name,name:$("#inqName").value||"Anonymous",company:$("#inqCompany").value||"",country:$("#inqCountry").value||"",contact:$("#inqContact").value||$("#inqEmail").value||"",qty:$("#inqQty").value||"",msg:$("#inqMsg").value||"",status:"新询盘"});
+    save();renderInquiries();renderMetrics();toast("询盘已提交，后台可查看。");
+  };
+  switchView("productDetail");
+}
+function renderCompany(){
+  const cp=$("#companyPhoto");
+  if(cp)cp.innerHTML=state.company.imageUrl?`<img src="${state.company.imageUrl}" alt="${state.company.name}">`:"B";
+  const cv=$("#companyVideo");
+  if(cv){cv.classList.toggle("hidden",!state.company.videoUrl);if(state.company.videoUrl)cv.src=state.company.videoUrl;}
+  const ck=$("#companyKv");
+  if(ck)ck.innerHTML=[["公司名称",state.company.name],["简介",state.company.summary],["地址",state.company.address],["网站",state.company.website]].map(([k,v])=>`<div>${k}</div><div>${v}</div>`).join("");
+  const ck2=$("#contactKv");
+  if(ck2)ck2.innerHTML=[["邮箱",state.company.email],["WhatsApp",state.company.whatsapp],["电话",state.company.phone],["网站",state.company.website]].map(([k,v])=>`<div>${k}</div><div>${v}</div>`).join("");
+  fillCompanyForm();
+}
+function fillCompanyForm(){
+  const m={companyEditName:"name",companyEditSummary:"summary",companyEditAddress:"address",companyEditWebsite:"website",companyEditEmail:"email",companyEditWhatsapp:"whatsapp",companyEditPhone:"phone"};
+  Object.entries(m).forEach(([id,key])=>{const el=$("#"+id);if(el)el.value=state.company[key]||"";});
+  const ep=$("#companyEditPhotoPreview");if(ep)ep.innerHTML=state.company.imageUrl?`<img src="${state.company.imageUrl}" alt="">`:"B";
+  const ev=$("#companyEditVideoPreview");if(ev){ev.classList.toggle("hidden",!state.company.videoUrl);if(state.company.videoUrl)ev.src=state.company.videoUrl;}
+}
+function saveCompanyInfo(){
+  const m={companyEditName:"name",companyEditSummary:"summary",companyEditAddress:"address",companyEditWebsite:"website",companyEditEmail:"email",companyEditWhatsapp:"whatsapp",companyEditPhone:"phone"};
+  Object.entries(m).forEach(([id,key])=>{const el=$("#"+id);if(el&&el.value)state.company[key]=el.value;});
+  save();renderCompany();renderQr();toast("公司信息已更新。");
+}
+function renderQr(){
+  const url=($("#shareUrl")?.value||state.company.website).trim();
+  const title=$("#shareTitle")?.value||"Bazaar Textile";
+  const st=$("#shareCardTitle");if(st)st.textContent=title;
+  const qi=$("#qrImage");if(qi)qi.src="https://api.qrserver.com/v1/create-qr-code/?size=520x520&margin=14&data="+encodeURIComponent(url);
+}
+function renderInquiries(){
+  const it=$("#inquiryTable");
+  if(!it)return;
+  it.innerHTML=state.inquiries.length?state.inquiries.map(i=>`<tr><td>${i.time}</td><td>${i.name}<br><span class="muted">${i.company}</span></td><td>${i.country}</td><td>${i.contact}</td><td>${i.product}</td><td>${i.qty}</td><td>${i.msg}</td><td><span class="tag">${i.status}</span></td></tr>`).join(""):`<tr><td colspan="8" class="muted">暂无询盘。</td></tr>`;
+}
+function renderVisitors(){
+  const vt=$("#visitorTable");if(!vt)return;
+  const total=state.visitors.length;
+  const blocked=state.visitors.filter(v=>v.blocked).length;
+  const month=state.visitors.filter(v=>{const d=new Date(v.time);const n=new Date();return d.getMonth()===n.getMonth()&&d.getFullYear()===n.getFullYear();}).length;
+  const countries=new Set(state.visitors.filter(v=>v.country).map(v=>v.country)).size;
+  const vm_t=$("#vm_total");if(vm_t)vm_t.textContent=total;
+  const vm_m=$("#vm_month");if(vm_m)vm_m.textContent=month;
+  const vm_b=$("#vm_blocked");if(vm_b)vm_b.textContent=blocked;
+  const vm_c=$("#vm_countries");if(vm_c)vm_c.textContent=countries;
+  vt.innerHTML=state.visitors.length?state.visitors.map(v=>`<tr class="${v.blocked?"visitor-row":""}">
+    <td>${new Date(v.time).toLocaleString()}</td>
+    <td>${v.name||"-"}<br><span class="muted" style="font-size:11px">${v.email||""}</span></td>
+    <td>${v.loginMethod||"email"}</td>
+    <td>${v.country||"-"}</td>
+    <td>${v.source||"直接访问"}</td>
+    <td>${v.visits||1}</td>
+    <td>${v.blocked?`<span class="blk">已拉黑</span>`:`<span class="admin-status">正常</span>`}</td>
+    <td>
+      ${v.blocked
+        ?`<button class="btn primary" onclick="unblockVisitor('${v.id}')">解除拉黑</button>`
+        :`<button class="btn red" onclick="blockVisitor('${v.id}')">拉黑</button>`}
+      <button class="btn" onclick="deleteVisitor('${v.id}')" style="margin-left:4px">删除</button>
+    </td>
+  </tr>`).join(""):`<tr><td colspan="8" class="muted">暂无游客记录。</td></tr>`;
+}
+function blockVisitor(id){
+  const v=state.visitors.find(x=>x.id===id);if(v){v.blocked=true;save();renderVisitors();toast("已拉黑该游客，其账号将无法再次登录。");}
+}
+function unblockVisitor(id){
+  const v=state.visitors.find(x=>x.id===id);if(v){v.blocked=false;save();renderVisitors();toast("已解除拉黑。");}
+}
+function deleteVisitor(id){
+  if(!confirm("确认删除该游客记录？"))return;
+  state.visitors=state.visitors.filter(x=>x.id!==id);save();renderVisitors();toast("记录已删除。");
+}
+function exportVisitorsCsv(){
+  const rows=[["登录时间","用户名/邮箱","登录方式","国家","来源","访问次数","状态"],...state.visitors.map(v=>[v.time,v.name||"",v.loginMethod||"",v.country||"",v.source||"",v.visits||1,v.blocked?"已拉黑":"正常"])];
+  const csv="\uFEFF"+rows.map(r=>r.map(c=>`"${String(c).replaceAll('"','""')}"`).join(",")).join("\n");
+  const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));a.download="bazaar-visitors.csv";a.click();
+}
+function renderAdminUsers(){
+  const aut=$("#adminUserTable");if(!aut)return;
+  aut.innerHTML=Object.values(state.admins).map(admin=>`<tr>
+    <td><strong>${admin.username}</strong></td>
+    <td>${admin.label}</td>
+    <td>${admin.lastLogin||"尚未登录"}</td>
+    <td><span class="admin-status ${admin.enabled?"":"off"}">${admin.enabled?"启用":"停用"}</span></td>
+    <td style="display:flex;gap:6px;flex-wrap:wrap">
+      ${admin.locked?"<span class='muted' style='font-size:12px'>主管理员</span>":`
+        <button class="btn ${admin.enabled?"red":"primary"}" data-toggle-admin="${admin.id}">${admin.enabled?"停用":"启用"}</button>
+        <button class="btn gold" data-reset-admin="${admin.id}">重置密码</button>
+      `}
+    </td>
+  </tr>`).join("");
+  $$("[data-toggle-admin]").forEach(btn=>btn.onclick=()=>{
+    if(!isMainAdmin()){toast("只有主管理员可修改。");return;}
+    const admin=state.admins[btn.dataset.toggleAdmin];admin.enabled=!admin.enabled;save();renderAdminUsers();toast(`${admin.username} 已${admin.enabled?"启用":"停用"}。`);
+  });
+  $$("[data-reset-admin]").forEach(btn=>btn.onclick=()=>{
+    if(!isMainAdmin())return;
+    const admin=state.admins[btn.dataset.resetAdmin];
+    const newPw="RESET-"+Math.random().toString(36).slice(2,8).toUpperCase();
+    admin.password=newPw;admin.firstLogin=true;save();renderAdminUsers();
+    alert(`${admin.username} 的密码已重置为：${newPw}\n请告知该管理员，并要求其立即修改密码。`);
+  });
+}
+function fillForm(p={}){
+  $("#editId").value=p.id||"";$("#editName").value=p.name||"";$("#editCode").value=p.code||"";
+  $("#editCategory").value=p.category||"";$("#editIcon").value=p.icon||"";
+  $("#editComposition").value=p.composition||"";$("#editWeight").value=p.weight||"";
+  $("#editWidth").value=p.width||"";$("#editMoq").value=p.moq||"";
+  $("#editTags").value=(p.tags||[]).join(", ");$("#editDesc").value=p.desc||"";
+  state.editProductImageUrl=p.imageUrl||"";
+  $("#productImagePreview").innerHTML=state.editProductImageUrl?`<img src="${state.editProductImageUrl}" alt="" style="width:100px;aspect-ratio:1/1;object-fit:cover;border-radius:8px;display:block;margin-bottom:6px">当前图片`:"未上传图片时，显示图标。";
+}
+function renderAdminProducts(){
+  const apt=$("#adminProductTable");if(!apt)return;
+  apt.innerHTML=state.products.map(p=>`<tr><td>${p.name}<br><span class="muted" style="font-size:11px">${p.code}</span></td><td>${p.category}</td><td>${p.code}</td><td><button class="btn" data-edit="${p.id}">编辑</button> <button class="btn red" data-del="${p.id}">删除</button></td></tr>`).join("");
+  $$("[data-edit]").forEach(btn=>btn.onclick=()=>fillForm(state.products.find(p=>p.id===btn.dataset.edit)));
+  $$("[data-del]").forEach(btn=>btn.onclick=()=>{if(confirm("确认删除该产品？")){state.products=state.products.filter(p=>p.id!==btn.dataset.del);save();renderAll();toast("产品已删除。");}});
+}
+function saveProduct(){
+  const id=$("#editId").value||"p"+Date.now();
+  const p={id,name:$("#editName").value||"未命名",code:$("#editCode").value||"BZ-"+Date.now().toString().slice(-5),category:$("#editCategory").value||"未分类",icon:$("#editIcon").value||"BZ",composition:$("#editComposition").value||"",weight:$("#editWeight").value||"",width:$("#editWidth").value||"",moq:$("#editMoq").value||"",tags:$("#editTags").value.split(/[,，]/).map(x=>x.trim()).filter(Boolean),desc:$("#editDesc").value||"",imageUrl:state.editProductImageUrl||""};
+  const idx=state.products.findIndex(x=>x.id===id);
+  if(idx>=0)state.products[idx]=p;else state.products.unshift(p);
+  save();fillForm();renderAll();toast("产品已保存。");
+}
+function exportCsv(){
+  const rows=[["时间","客户","公司","国家","联系","产品","数量","留言","状态"],...state.inquiries.map(i=>[i.time,i.name,i.company,i.country,i.contact,i.product,i.qty,i.msg,i.status])];
+  const csv="\uFEFF"+rows.map(r=>r.map(c=>`"${String(c).replaceAll('"','""')}"`).join(",")).join("\n");
+  const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));a.download="bazaar-inquiries.csv";a.click();
+}
+function renderAll(){
+  renderMetrics();renderCategories();renderProducts();renderFeatured();
+  renderCompany();renderQr();renderInquiries();renderVisitors();
+  renderAdminProducts();renderAdminUsers();renderCountryFlags();
+  applyPermissions();updateLogoElements();
+}
+
+// ─── Bind events ──────────────────────────────────────────────
+function bind(){
+  // login tabs
+  $$(".tab").forEach(tab=>tab.onclick=()=>{
+    $$(".tab").forEach(t=>t.classList.remove("active"));tab.classList.add("active");
+    ["emailLogin","phoneLogin","inviteLogin","adminLogin"].forEach(id=>$("#"+id).classList.add("hidden"));
+    $("#"+tab.dataset.login+"Login").classList.remove("hidden");
+  });
+  $$("[data-do-login]").forEach(btn=>btn.onclick=()=>login(btn.dataset.doLogin));
+  $("#wechatLogin").onclick=()=>login("游客客户（微信）");
+  $("#adminLoginBtn").onclick=adminLogin;
+  // build admin account select
+  const sel=$("#adminAccount");
+  if(sel)sel.innerHTML=Object.values(state.admins).map(a=>`<option value="${a.id}">${a.username}（${a.label}）</option>`).join("");
+  $("#sendEmailCode").onclick=()=>toast("演示版验证码：123456。正式版调用邮件服务。");
+  $("#sendPhoneCode").onclick=()=>toast("演示版验证码：123456。正式版调用短信服务。");
+  // nav
+  $$(".nav button").forEach(btn=>btn.onclick=()=>switchView(btn.dataset.view));
+  $$("[data-view-shortcut]").forEach(btn=>btn.onclick=()=>switchView(btn.dataset.viewShortcut));
+  $("#logoutBtn").onclick=logout;
+  $("#productSearch").oninput=renderProducts;
+  $("#refreshQr").onclick=()=>{renderQr();toast("二维码已更新。");};
+  $("#copyLink").onclick=()=>navigator.clipboard.writeText($("#shareUrl").value).then(()=>toast("链接已复制。")).catch(()=>toast("请手动复制链接。"));
+  // logo upload
+  $("#logoUpload").onchange=e=>{
+    const f=e.target.files[0];if(!f)return;
+    const r=new FileReader();r.onload=()=>{state.logoDataUrl=r.result;save();renderQr();updateLogoElements();toast("Logo 已更新。");};r.readAsDataURL(f);
+  };
+  $("#logoMainUpload").onchange=e=>{
+    const f=e.target.files[0];if(!f)return;
+    const r=new FileReader();r.onload=()=>{state.logoDataUrl=r.result;save();renderLogoPreview();renderAppearancePanel();toast("Logo 已上传。");};r.readAsDataURL(f);
+  };
+  // export
+  $("#exportInquiry").onclick=exportCsv;
+  $("#exportVisitors").onclick=exportVisitorsCsv;
+  // product
+  $("#saveProduct").onclick=saveProduct;
+  $("#newProduct").onclick=()=>fillForm();
+  $("#editImage").onchange=e=>{
+    const f=e.target.files[0];if(!f)return;
+    const r=new FileReader();r.onload=()=>{state.editProductImageUrl=r.result;$("#productImagePreview").innerHTML=`<img src="${state.editProductImageUrl}" alt="" style="width:100px;aspect-ratio:1/1;object-fit:cover;border-radius:8px;display:block;margin-bottom:6px">图片已上传。`;};r.readAsDataURL(f);
+  };
+  // company
+  $("#saveCompany").onclick=saveCompanyInfo;
+  $("#clearCompanyMedia").onclick=()=>{state.company.imageUrl="";state.company.videoUrl="";save();renderCompany();toast("已清除图片/视频。");};
+  $("#companyImageUpload").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{state.company.imageUrl=r.result;save();renderCompany();toast("公司图片已上传。");};r.readAsDataURL(f);};
+  $("#companyVideoUpload").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{state.company.videoUrl=r.result;save();renderCompany();toast("公司视频已上传。");};r.readAsDataURL(f);};
+  // appearance
+  $("#loginBgUpload").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{state.loginBgUrl=r.result;state.loginBgVideo="";save();applyBgs();renderAppearancePanel();toast("登录背景图已更新。");};r.readAsDataURL(f);};
+  $("#loginVideoUpload").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{state.loginBgVideo=r.result;state.loginBgUrl="";save();applyBgs();toast("登录背景视频已上传。");};r.readAsDataURL(f);};
+  $("#loginBgReset").onclick=()=>{state.loginBgUrl="";state.loginBgVideo="";save();applyBgs();renderAppearancePanel();toast("已恢复默认登录背景。");};
+  $("#appBgUpload").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{state.appBg=r.result;save();applyBgs();toast("主界面背景已更新。");};r.readAsDataURL(f);};
+  $("#appBgReset").onclick=()=>{state.appBg="";save();applyBgs();renderAppearancePanel();toast("已恢复默认背景。");};
+  $("#saveHeroText").onclick=()=>{state.heroText={h1:$("#heroEditH1").value,p:$("#heroEditP").value,footer:$("#heroEditFooter").value};save();applyI18N();toast("登录页文字已保存。");};
+  // password modal
+  $("#changePwdBtn").onclick=()=>showPwdModal(false);
+  $("#pwdSave").onclick=savePwd;
+  $("#pwdCancel").onclick=closePwdModal;
+  // close modals on overlay click
+  $("#pwdModal").onclick=e=>{if(e.target===$("#pwdModal"))closePwdModal();};
+  $("#privacyModal").onclick=e=>{if(e.target===$("#privacyModal"))closePrivacy();};
+}
+
+// ─── Init ─────────────────────────────────────────────────────
+bind();
+setLang(state.lang);
+renderLangBars();
+applyBgs();
+renderAll();
+fillForm();
+renderAppearancePanel();
+
+if(state.user){
+  $("#loginScreen").classList.add("hidden");
+  $("#appShell").classList.remove("hidden");
+  applyPermissions();
+  renderAll();
+} else {
+  $("#loginScreen").classList.remove("hidden");
+}
+</script>
+</body>
+</html>
