@@ -1,0 +1,2509 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Bazaar Textile · Global Catalog</title>
+
+<!-- Google Translate -->
+<script>
+function googleTranslateElementInit(){
+  new google.translate.TranslateElement({
+    pageLanguage:'zh-CN',
+    includedLanguages:'zh-CN,en,ru,es,de,fr,ar,ja,ko,pt,tr,vi,id',
+    layout:google.translate.TranslateElement.InlineLayout.SIMPLE,
+    autoDisplay:false
+  },'google_translate_element');
+}
+</script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+
+<script>
+window.SUPABASE_URL  = 'https://ehvvpionbkwonfwvybtb.supabase.co';
+window.SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVodnZwaW9uYmt3b25md3Z5YnRiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0NTg2NjEsImV4cCI6MjA5NjAzNDY2MX0.ZEOhZC8pCCF8EOGhAvkIBAxgkzhehyZ10gFh4QBh1Xc';
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
+:root{
+  --bg:#0d1117;--panel:#161b22;--panel2:#1c2128;--ink:#e6edf3;--muted:#7d8590;
+  --line:#30363d;--line2:#21262d;
+  --teal:#00d4a0;--teal2:#00b386;--teal-dim:rgba(0,212,160,.12);
+  --gold:#e6a817;--blue:#2f81f7;--red:#f85149;--green:#3fb950;
+  --shadow:0 16px 48px rgba(0,0,0,.5);--r:10px;--login-bg:#070c10;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{min-height:100vh;background:var(--bg);color:var(--ink);font:14px/1.6 'DM Sans',system-ui,sans-serif;transition:background .3s;}
+button,input,select,textarea{font:inherit;}
+button{cursor:pointer;}
+.hidden{display:none!important;}
+a{color:var(--teal);text-decoration:none;}
+
+/* Google Translate - completely hidden, driven by custom selects */
+#google_translate_element,#google_translate_element2{position:absolute;width:0;height:0;overflow:hidden;opacity:0;pointer-events:none;}
+.goog-te-banner-frame,.goog-te-menu-frame{display:none!important;}
+body{top:0!important;}
+.skiptranslate{display:none!important;}
+/* Custom translate bar */
+.translate-bar{display:flex;align-items:center;gap:8px;padding:6px 12px;background:rgba(0,212,160,.06);border:1px solid rgba(0,212,160,.15);border-radius:8px;font-size:12px;color:var(--muted);}
+.translate-bar span{color:var(--teal);font-weight:600;}
+
+/* ── LOADING OVERLAY ── */
+#loadingOverlay{position:fixed;inset:0;background:rgba(7,12,16,.92);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;}
+.loader-ring{width:48px;height:48px;border:3px solid var(--line);border-top-color:var(--teal);border-radius:50%;animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loader-text{color:var(--muted);font-size:13px;}
+
+/* LOGIN */
+.login-screen{min-height:100vh;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(380px,.85fr);}
+.hero{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:48px;color:#fff;background:var(--login-bg);}
+.hero-bg{position:absolute;inset:0;z-index:0;}
+.hero-bg img{width:100%;height:100%;object-fit:cover;display:block;opacity:.35;}
+.hero-noise{position:absolute;inset:0;z-index:1;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");opacity:.5;}
+.hero-overlay{position:absolute;inset:0;z-index:2;background:linear-gradient(135deg,rgba(7,12,16,.92) 0%,rgba(7,12,16,.5) 60%,rgba(0,212,160,.04) 100%);}
+.hero>*{position:relative;z-index:3;}
+.hero-line{width:48px;height:3px;background:var(--teal);border-radius:2px;margin-bottom:24px;}
+.logo-row{display:flex;align-items:center;gap:14px;}
+.logo-mark{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--teal),var(--teal2));color:#000;display:grid;place-items:center;font-weight:900;font-size:18px;flex-shrink:0;overflow:hidden;box-shadow:0 0 24px rgba(0,212,160,.3);}
+.logo-mark img{width:100%;height:100%;object-fit:cover;}
+.logo-row strong{display:block;font-size:17px;font-family:'DM Serif Display',serif;letter-spacing:.02em;}
+.logo-row span{display:block;color:rgba(255,255,255,.45);font-size:11px;letter-spacing:.08em;text-transform:uppercase;}
+.hero-copy{max-width:620px;}
+.hero-copy h1{font-family:'DM Serif Display',serif;font-size:52px;line-height:1.0;letter-spacing:-.02em;margin-bottom:16px;}
+.hero-copy h1 em{font-style:italic;color:var(--teal);}
+.hero-copy p{font-size:15px;color:rgba(255,255,255,.6);max-width:500px;line-height:1.7;}
+.hero-footer{color:rgba(255,255,255,.3);font-size:11px;letter-spacing:.06em;text-transform:uppercase;}
+.login-panel{background:var(--panel);border-left:1px solid var(--line);min-height:100vh;padding:32px 40px;display:flex;flex-direction:column;gap:16px;position:relative;overflow-y:auto;}
+.login-card{width:100%;max-width:420px;margin:auto 0;}
+.login-card-head{margin-bottom:24px;}
+.login-card-head h2{font-family:'DM Serif Display',serif;font-size:26px;}
+.login-card-head p{margin-top:6px;color:var(--muted);font-size:13px;}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;background:var(--panel2);border:1px solid var(--line);border-radius:var(--r);padding:4px;margin-bottom:22px;}
+.tab{border:none;border-radius:7px;background:transparent;min-height:34px;color:var(--muted);font-weight:600;font-size:12px;letter-spacing:.04em;transition:.18s;text-transform:uppercase;}
+.tab.active{color:#000;background:var(--teal);box-shadow:0 2px 12px rgba(0,212,160,.35);}
+label.field{display:grid;gap:6px;color:var(--muted);font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;}
+input,select,textarea{width:100%;border:1px solid var(--line);border-radius:var(--r);padding:11px 13px;background:var(--panel2);color:var(--ink);outline:none;transition:.18s;}
+input::placeholder{color:var(--muted);}
+textarea{resize:vertical;min-height:80px;}
+input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,212,160,.12);background:var(--bg);}
+select option{background:var(--panel2);}
+.form-stack{display:grid;gap:14px;}
+.row2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
+.btn{min-height:38px;border:1px solid var(--line);border-radius:var(--r);padding:0 16px;background:var(--panel2);color:var(--ink);font-weight:600;font-size:13px;transition:.18s;display:inline-flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap;}
+.btn:hover{border-color:var(--teal);color:var(--teal);}
+.btn.primary{background:var(--teal);color:#000;border-color:var(--teal);font-weight:700;}
+.btn.primary:hover{background:var(--teal2);box-shadow:0 4px 20px rgba(0,212,160,.3);}
+.btn.blue{background:var(--blue);color:#fff;border-color:var(--blue);}
+.btn.gold{background:var(--gold);color:#000;border-color:var(--gold);}
+.btn.red{color:var(--red);border-color:rgba(248,81,73,.25);}
+.btn.red:hover{background:var(--red);color:#fff;border-color:var(--red);}
+.btn.full{width:100%;}
+.btn.sm{min-height:30px;font-size:12px;padding:0 10px;}
+.btn:disabled{opacity:.45;cursor:not-allowed;}
+.role-note{border:1px solid var(--line2);border-radius:var(--r);background:rgba(255,255,255,.02);padding:10px 12px;color:var(--muted);font-size:11px;line-height:1.7;}
+.privacy-bar{font-size:11px;color:var(--muted);text-align:center;line-height:2;}
+.toggle-link{color:var(--teal);font-size:12px;cursor:pointer;text-align:center;margin-top:4px;}
+.toggle-link:hover{text-decoration:underline;}
+.pw-wrap{position:relative;}
+.pw-wrap input{padding-right:40px;}
+.pw-eye{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);cursor:pointer;padding:4px;font-size:16px;min-height:auto;}
+.strength-bar{height:4px;border-radius:2px;background:var(--line);margin-top:4px;overflow:hidden;}
+.strength-fill{height:100%;border-radius:2px;transition:.3s;width:0%;}
+
+/* APP SHELL */
+.app-shell{min-height:100vh;display:grid;grid-template-columns:220px minmax(0,1fr);}
+.sidebar{background:#0d1117;border-right:1px solid var(--line);padding:20px;display:flex;flex-direction:column;gap:14px;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.nav{display:grid;gap:3px;}
+.nav button{border:none;border-radius:8px;background:transparent;color:var(--muted);min-height:38px;text-align:left;padding:0 12px;font-weight:500;font-size:13px;transition:.15s;display:flex;align-items:center;gap:8px;}
+.nav button.active,.nav button:hover{background:rgba(0,212,160,.08);color:var(--teal);}
+.nav button.active{font-weight:600;}
+.nav-section{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#3d4f5c;padding:10px 12px 4px;}
+.nav-div{height:1px;background:var(--line2);margin:4px 0;}
+.side-card{border:1px solid var(--line2);border-radius:var(--r);padding:12px;background:rgba(0,212,160,.04);font-size:12px;color:var(--muted);}
+.status-dot{width:7px;height:7px;border-radius:50%;background:var(--teal);display:inline-block;margin-right:6px;box-shadow:0 0 6px rgba(0,212,160,.5);}
+main{padding:24px;min-width:0;overflow-y:auto;}
+.topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:20px;}
+.topbar-left h2{font-family:'DM Serif Display',serif;font-size:24px;letter-spacing:-.01em;}
+.topbar-left p{margin:4px 0 0;color:var(--muted);font-size:13px;}
+.actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+.view{display:none;}
+.view.active{display:block;}
+.grid{display:grid;gap:14px;}
+.grid.cols-2{grid-template-columns:1fr 1fr;}
+.grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr));}
+.grid.cols-4{grid-template-columns:repeat(4,minmax(0,1fr));}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:18px;min-width:0;}
+.panel-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap;}
+.panel h3{margin:0;font-size:16px;font-weight:600;}
+.metric{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:16px;}
+.metric span{display:block;color:var(--muted);font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;}
+.metric b{display:block;margin-top:8px;font-size:28px;font-family:'DM Serif Display',serif;color:var(--teal);}
+.chip{white-space:nowrap;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--muted);min-height:30px;padding:0 14px;font-weight:600;font-size:12px;transition:.15s;}
+.chip.active{background:var(--teal);border-color:var(--teal);color:#000;}
+.chip:hover:not(.active){border-color:var(--teal);color:var(--teal);}
+.category-bar{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:14px;}
+.product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;}
+.product-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:.2s;}
+.product-card:hover{border-color:rgba(0,212,160,.3);box-shadow:0 8px 32px rgba(0,212,160,.06);}
+.product-media{height:180px;background:linear-gradient(135deg,rgba(0,212,160,.08),rgba(0,212,160,.02));display:grid;place-items:center;color:var(--teal);font-size:36px;font-weight:900;font-family:'DM Serif Display',serif;border-bottom:1px solid var(--line);overflow:hidden;position:relative;}
+.product-media img{width:100%;height:100%;object-fit:cover;display:block;}
+.product-body{padding:14px;}
+.product-body h4{margin:0 0 6px;font-size:14px;font-weight:600;}
+.product-body p{margin:0 0 10px;color:var(--muted);font-size:12px;line-height:1.6;}
+.tag{display:inline-flex;min-height:20px;align-items:center;padding:0 8px;border-radius:999px;background:rgba(0,212,160,.1);border:1px solid rgba(0,212,160,.2);color:var(--teal);font-weight:600;font-size:10px;margin:0 3px 3px 0;letter-spacing:.03em;}
+.tag.red{background:rgba(248,81,73,.1);border-color:rgba(248,81,73,.2);color:var(--red);}
+.tag.gold{background:rgba(230,168,23,.1);border-color:rgba(230,168,23,.2);color:var(--gold);}
+.admin-status{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;font-weight:600;font-size:11px;background:rgba(0,212,160,.1);border:1px solid rgba(0,212,160,.2);color:var(--teal);user-select:none;}
+.admin-status.off{background:rgba(248,81,73,.1);border-color:rgba(248,81,73,.2);color:var(--red);}
+.detail-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:16px;}
+.detail-photo{min-height:300px;border-radius:var(--r);background:linear-gradient(135deg,rgba(0,212,160,.08),rgba(0,212,160,.02));border:1px solid var(--line);overflow:hidden;}
+.detail-photo-main{width:100%;height:300px;object-fit:cover;display:block;}
+.detail-photo-placeholder{width:100%;height:300px;display:grid;place-items:center;color:var(--teal);font-size:64px;font-weight:900;font-family:'DM Serif Display',serif;}
+.thumb-strip{display:flex;gap:6px;padding:8px;overflow-x:auto;background:rgba(0,0,0,.2);}
+.thumb-strip img{width:56px;height:56px;object-fit:cover;border-radius:6px;cursor:pointer;border:2px solid transparent;transition:.15s;flex-shrink:0;}
+.thumb-strip img.active,.thumb-strip img:hover{border-color:var(--teal);}
+.company-photo{min-height:220px;border-radius:var(--r);background:linear-gradient(135deg,rgba(0,212,160,.08),rgba(0,212,160,.02));border:1px solid var(--line);display:grid;place-items:center;color:var(--teal);font-size:42px;overflow:hidden;}
+.company-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+.company-video{width:100%;min-height:200px;border:1px solid var(--line);border-radius:var(--r);background:#000;display:block;margin-top:12px;}
+.kv{display:grid;grid-template-columns:110px 1fr;}
+.kv div{padding:9px 0;border-bottom:1px solid var(--line2);font-size:13px;}
+.kv div:nth-child(odd){color:var(--muted);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.04em;}
+table{width:100%;border-collapse:collapse;}
+th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line2);vertical-align:top;font-size:13px;}
+th{color:var(--muted);background:var(--panel2);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
+tr:hover td{background:rgba(255,255,255,.015);}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:var(--r);}
+.share-card{width:300px;max-width:100%;border:1px solid var(--line);border-radius:14px;background:var(--panel2);padding:20px;text-align:center;}
+.qr-wrap{position:relative;width:220px;height:220px;margin:16px auto;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;display:grid;place-items:center;}
+.qr-wrap img{width:100%;height:100%;object-fit:contain;}
+.qr-logo{position:absolute;width:52px;height:52px;border:4px solid #fff;border-radius:10px;background:linear-gradient(135deg,var(--teal),var(--teal2));color:#000;display:grid;place-items:center;font-weight:900;font-size:16px;left:50%;top:50%;transform:translate(-50%,-50%);overflow:hidden;}
+.qr-logo img{width:100%;height:100%;object-fit:cover;}
+.preview-box{border:1px dashed var(--line);border-radius:var(--r);padding:10px;background:rgba(255,255,255,.02);color:var(--muted);font-size:12px;line-height:1.7;}
+.upload-hint{font-size:11px;color:var(--muted);margin-top:4px;padding:6px 10px;border-radius:6px;background:rgba(230,168,23,.06);border:1px solid rgba(230,168,23,.15);line-height:1.7;}
+.upload-hint strong{color:var(--gold);}
+.country-map{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+.country-flag{font-size:22px;cursor:default;transition:.15s;}
+.country-flag:hover{transform:scale(1.3);}
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;align-items:center;}
+.filter-bar select,.filter-bar input{min-width:130px;min-height:34px;font-size:12px;}
+.inq-stats,.vis-stats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
+.stat-card{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:10px 16px;min-width:110px;}
+.stat-card span{font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em;display:block;}
+.stat-card b{font-size:22px;color:var(--teal);font-family:'DM Serif Display',serif;display:block;margin-top:2px;}
+.toast{position:fixed;right:24px;bottom:24px;background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:var(--r);padding:12px 18px;max-width:340px;opacity:0;transform:translateY(10px);pointer-events:none;transition:.2s;box-shadow:var(--shadow);z-index:999;font-size:13px;}
+.toast.show{opacity:1;transform:translateY(0);}
+.toast.success{border-color:rgba(0,212,160,.4);}
+.toast.error{border-color:rgba(248,81,73,.4);}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);padding:16px;}
+.modal-box{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:28px;width:440px;max-width:100%;box-shadow:0 32px 80px rgba(0,0,0,.5);}
+.modal-box h3{margin:0 0 6px;font-size:18px;font-family:'DM Serif Display',serif;}
+.modal-box>p{margin:0 0 20px;color:var(--muted);font-size:13px;}
+.modal-wide{width:600px;max-height:80vh;overflow-y:auto;}
+.bg-thumb{width:72px;height:48px;border-radius:6px;object-fit:cover;border:2px solid transparent;cursor:pointer;transition:.15s;display:block;}
+.bg-thumb.sel,.bg-thumb:hover{border-color:var(--teal);}
+.bg-swatch{width:72px;height:48px;border-radius:6px;border:2px solid var(--line);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--muted);transition:.15s;flex-direction:column;gap:3px;}
+.bg-swatch.sel,.bg-swatch:hover{border-color:var(--teal);}
+.cat-tag{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:6px;background:var(--panel2);border:1px solid var(--line);font-size:12px;color:var(--ink);margin:3px;}
+.cat-tag button{background:none;border:none;color:var(--red);font-size:14px;padding:0 0 0 4px;cursor:pointer;line-height:1;}
+.img-size-warning{color:var(--gold);font-size:11px;margin-top:4px;padding:4px 8px;background:rgba(230,168,23,.08);border-radius:6px;display:none;}
+
+/* Multi-photo upload area */
+.photo-upload-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:8px;}
+.photo-slot{aspect-ratio:1/1;border:2px dashed var(--line);border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:.15s;overflow:hidden;position:relative;background:var(--panel2);}
+.photo-slot:hover{border-color:var(--teal);}
+.photo-slot img{width:100%;height:100%;object-fit:cover;display:block;}
+.photo-slot .rm-btn{position:absolute;top:3px;right:3px;width:20px;height:20px;border-radius:50%;background:var(--red);color:#fff;border:none;font-size:12px;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transition:.15s;line-height:1;padding:0;}
+.photo-slot:hover .rm-btn{opacity:1;}
+.photo-slot .add-icon{color:var(--muted);font-size:24px;pointer-events:none;}
+.photo-slot input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;}
+
+/* Sidebar translate */
+.sidebar-bottom{display:flex;flex-direction:column;gap:8px;margin-top:auto;}
+.sidebar-bottom-links{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;padding:4px 0;}
+.sidebar-bottom-links a{font-size:11px;color:var(--muted);}
+.sidebar-bottom-links a:hover{color:var(--teal);}
+.translate-wrap{padding:8px;background:rgba(0,212,160,.04);border:1px solid var(--line2);border-radius:8px;}
+.translate-wrap label{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:6px;}
+
+.row-blocked td{opacity:.6;}
+#appBgVideoEl{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1;pointer-events:none;display:none;}
+
+@media(max-width:900px){
+  .login-screen{grid-template-columns:1fr;}
+  .hero{min-height:220px;padding:24px;}
+  .hero-copy h1{font-size:28px;}
+  .login-panel{min-height:auto;padding:20px;border-left:none;border-top:1px solid var(--line);}
+  .login-card{margin:0 auto;}
+  .app-shell{grid-template-columns:1fr;grid-template-rows:auto 1fr;}
+  .sidebar{position:static;height:auto;overflow:visible;padding:14px;}
+  .nav{grid-template-columns:repeat(3,minmax(0,1fr));}
+  .side-card{margin-top:0;}
+  .grid.cols-2,.grid.cols-3,.grid.cols-4,.detail-layout{grid-template-columns:1fr;}
+  .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+  main{padding:14px;}
+  .topbar{flex-direction:column;align-items:stretch;}
+}
+@media(max-width:600px){
+  .product-grid,.nav{grid-template-columns:1fr;}
+  .tabs{grid-template-columns:repeat(3,1fr);}
+  .row2{grid-template-columns:1fr;}
+  .panel{padding:14px;}
+  .photo-upload-grid{grid-template-columns:repeat(3,1fr);}
+}
+</style>
+</head>
+<body>
+
+<div id="loadingOverlay">
+  <div class="loader-ring"></div>
+  <div class="loader-text">正在连接云端数据...</div>
+</div>
+
+<video id="appBgVideoEl" autoplay loop muted playsinline></video>
+
+<!-- ═══ LOGIN ═══ -->
+<section class="login-screen hidden" id="loginScreen">
+  <div class="hero" id="heroSection">
+    <div class="hero-bg"><img id="heroBgImg" src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?auto=format&fit=crop&w=1600&q=82" alt="bg"></div>
+    <div class="hero-noise"></div>
+    <div class="hero-overlay"></div>
+    <div class="logo-row">
+      <div class="logo-mark" id="loginLogoMark">B</div>
+      <div><strong id="heroTitle">Bazaar Textile</strong><span>Global Product Catalog</span></div>
+    </div>
+    <div class="hero-copy">
+      <div class="hero-line"></div>
+      <h1 id="heroH1">Global Fabric<br><em>Solutions</em></h1>
+      <p id="heroP">芭莎纺织 · 专注外套、羽绒服、户外功能面料，为全球服装品牌提供一站式解决方案。</p>
+    </div>
+    <div class="hero-footer" id="heroFooter">Shaoxing Basha Textile Co., Ltd.</div>
+  </div>
+
+  <div class="login-panel">
+    <div class="login-card">
+      <div class="login-card-head">
+        <h2>登录产品目录</h2>
+        <p>请使用账号登录，新用户请先注册账号。</p>
+      </div>
+      <div class="tabs" id="loginTabs">
+        <button class="tab active" data-login="account">账号登录</button>
+        <button class="tab" data-login="register">注册账号</button>
+        <button class="tab" data-login="admin">管理员</button>
+      </div>
+
+      <!-- Account Login -->
+      <div class="form-stack" id="accountLogin">
+        <label class="field">账号 / 邮箱<input id="accUsername" placeholder="账号名或注册邮箱" autocomplete="username"></label>
+        <label class="field">密码
+          <div class="pw-wrap">
+            <input id="accPassword" type="password" placeholder="请输入密码" autocomplete="current-password">
+            <button class="pw-eye" type="button" onclick="togglePw('accPassword',this)">👁</button>
+          </div>
+        </label>
+        <button class="btn primary full" id="btn_account_login">登录</button>
+        <p class="toggle-link" onclick="switchLoginTab('register')">还没有账号？点击注册</p>
+      </div>
+
+      <!-- Register -->
+      <div class="form-stack hidden" id="registerLogin">
+        <div class="row2">
+          <label class="field">姓名 *<input id="regName" placeholder="真实姓名"></label>
+          <label class="field">公司 *<input id="regCompany" placeholder="公司名称"></label>
+        </div>
+        <div class="row2">
+          <label class="field">手机<input id="regPhone" placeholder="+86 / +1 ..."></label>
+          <label class="field">邮箱 *<input id="regEmail" type="email" placeholder="your@email.com"></label>
+        </div>
+        <label class="field">账号名 *<input id="regUsername" placeholder="用于登录（英文/数字/下划线）"></label>
+        <label class="field">密码 *
+          <div class="pw-wrap">
+            <input id="regPassword" type="password" placeholder="至少8位，含字母和数字" oninput="checkStrength(this)">
+            <button class="pw-eye" type="button" onclick="togglePw('regPassword',this)">👁</button>
+          </div>
+          <div class="strength-bar"><div class="strength-fill" id="strengthFill"></div></div>
+        </label>
+        <label class="field">确认密码 *
+          <div class="pw-wrap">
+            <input id="regConfirm" type="password" placeholder="再次输入密码">
+            <button class="pw-eye" type="button" onclick="togglePw('regConfirm',this)">👁</button>
+          </div>
+        </label>
+        <button class="btn primary full" id="btn_register">立即注册</button>
+        <p class="toggle-link" onclick="switchLoginTab('account')">已有账号？点击登录</p>
+      </div>
+
+      <!-- Admin Login -->
+      <div class="form-stack hidden" id="adminLogin">
+        <label class="field">管理员账号<select id="adminAccount"></select></label>
+        <label class="field">管理员密码
+          <div class="pw-wrap">
+            <input id="adminPassword" type="password" placeholder="请输入密码" autocomplete="current-password">
+            <button class="pw-eye" type="button" onclick="togglePw('adminPassword',this)">👁</button>
+          </div>
+        </label>
+        <button class="btn primary full" id="adminLoginBtn">管理员登录</button>
+        <div class="role-note">管理员账号由主管理员分配。演示：main_admin / BAZAAR-MAIN</div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+      <div class="translate-bar">
+        <span>🌐</span>
+        <select id="langPicker" style="min-height:30px;border:1px solid var(--line);background:var(--panel2);color:var(--ink);border-radius:6px;padding:4px 10px;font-size:13px;cursor:pointer">
+          <option value="zh">中文</option>
+          <option value="en">English</option>
+          <option value="ru">Русский</option>
+          <option value="es">Español</option>
+          <option value="de">Deutsch</option>
+          <option value="fr">Français</option>
+          <option value="ar">العربية</option>
+          <option value="ja">日本語</option>
+          <option value="ko">한국어</option>
+          <option value="pt">Português</option>
+          <option value="tr">Türkçe</option>
+          <option value="vi">Tiếng Việt</option>
+          <option value="id">Indonesia</option>
+        </select>
+      </div>
+      <!-- Hidden GT element, driven by JS -->
+      <div id="google_translate_element" aria-hidden="true"></div>
+      <div class="privacy-bar">
+        <a href="#" onclick="showPrivacy('user');return false;">用户协议</a> ·
+        <a href="#" onclick="showPrivacy('privacy');return false;">隐私政策</a> ·
+        <a href="#" onclick="showPrivacy('security');return false;">安全协议</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ APP SHELL ═══ -->
+<section class="app-shell hidden" id="appShell">
+  <aside class="sidebar">
+    <div class="logo-row">
+      <div class="logo-mark" id="appLogoMark">B</div>
+      <div><strong id="appBrandName">Bazaar Textile</strong><span style="color:var(--muted);font-size:11px">Global Catalog</span></div>
+    </div>
+    <nav class="nav" id="sideNav">
+      <div class="nav-section">主菜单</div>
+      <button class="active" data-view="home">🏠 <span>首页</span></button>
+      <button data-view="products">🧵 <span>产品中心</span></button>
+      <button data-view="company">🏭 <span>公司信息</span></button>
+      <div class="nav-div"></div>
+      <div class="nav-section" id="nav_sec_admin" style="display:none">管理后台</div>
+      <button data-view="share" data-admin-only="true">📲 <span>二维码/链接</span></button>
+      <button data-view="inquiries" data-admin-only="true">📋 <span>客户询盘</span></button>
+      <button data-view="visitors" data-admin-only="true">👥 <span>游客管理</span></button>
+      <button data-view="adminEdit" data-admin-only="true">⚙️ <span>产品管理</span></button>
+      <button data-view="companyEdit" data-admin-only="true">🏢 <span>公司信息管理</span></button>
+      <button data-view="appearance" data-admin-only="true">🎨 <span>界面设置</span></button>
+      <button data-view="adminUsers" data-main-only="true">🔐 <span>管理员管控</span></button>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="translate-wrap">
+        <label>🌐 切换语言</label>
+        <select id="langPickerSide" style="width:100%;min-height:32px;border:1px solid var(--line);background:var(--panel2);color:var(--ink);border-radius:6px;padding:4px 8px;font-size:13px;cursor:pointer">
+          <option value="zh">中文</option>
+          <option value="en">English</option>
+          <option value="ru">Русский</option>
+          <option value="es">Español</option>
+          <option value="de">Deutsch</option>
+          <option value="fr">Français</option>
+          <option value="ar">العربية</option>
+          <option value="ja">日本語</option>
+          <option value="ko">한국어</option>
+          <option value="pt">Português</option>
+          <option value="tr">Türkçe</option>
+          <option value="vi">Tiếng Việt</option>
+          <option value="id">Indonesia</option>
+        </select>
+        <!-- Hidden GT element -->
+        <div id="google_translate_element2" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden;opacity:0"></div>
+      </div>
+      <div class="side-card">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span class="status-dot"></span>
+          <strong id="userRoleLabel" style="color:var(--ink)">客户</strong>
+        </div>
+        <span id="userRoleDesc" style="font-size:11px">游客可查看产品并提交询盘。</span>
+      </div>
+      <div class="sidebar-bottom-links">
+        <a href="#" onclick="showPrivacy('user');return false;">用户协议</a>
+        <span style="color:var(--line)">|</span>
+        <a href="#" onclick="showPrivacy('privacy');return false;">隐私政策</a>
+      </div>
+    </div>
+  </aside>
+
+  <main>
+    <div class="topbar">
+      <div class="topbar-left">
+        <h2 id="pageTitle">首页</h2>
+        <p id="pageSubtitle" style="color:var(--muted);font-size:13px">芭莎纺织产品目录与询盘系统</p>
+      </div>
+      <div class="actions">
+        <button class="btn gold" data-view-shortcut="share" data-admin-only="true">生成分享码</button>
+        <button class="btn sm primary" id="refreshDataBtn" title="从云端刷新数据">🔄 刷新数据</button>
+        <button class="btn" id="changePwdBtn" style="display:none">🔑 修改密码</button>
+        <button class="btn red" id="logoutBtn">退出登录</button>
+      </div>
+    </div>
+
+    <!-- HOME -->
+    <section class="view active" id="home">
+      <div class="grid cols-4">
+        <div class="metric"><span>产品数量</span><b id="productMetric">0</b></div>
+        <div class="metric"><span>产品分类</span><b id="categoryMetric">0</b></div>
+        <div class="metric"><span>服务国家</span><b>86+</b></div>
+        <div class="metric"><span>支持语言</span><b>13+</b></div>
+      </div>
+      <div class="grid cols-2" style="margin-top:14px">
+        <div class="panel">
+          <div class="panel-head"><h3>公司简介</h3><span class="tag">可后台更新</span></div>
+          <p id="companySummary" style="font-size:13px;color:var(--muted);line-height:1.7"></p>
+          <div class="grid cols-3" style="margin-top:12px">
+            <div class="metric"><span>主营</span><b style="font-size:15px;font-family:'DM Sans'">外套面料</b></div>
+            <div class="metric"><span>服务</span><b style="font-size:15px;font-family:'DM Sans'">样卡/定制</b></div>
+            <div class="metric"><span>客户</span><b style="font-size:15px;font-family:'DM Sans'">全球品牌</b></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>推荐产品</h3><button class="btn sm" data-view-shortcut="products">查看全部</button></div>
+          <div id="featuredProducts" class="grid" style="gap:10px"></div>
+        </div>
+      </div>
+      <div class="panel" style="margin-top:14px">
+        <div class="panel-head"><h3>全球服务国家</h3><span class="tag">86+ Countries</span></div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:10px">芭莎纺织产品已销售至全球 86+ 个国家和地区。</p>
+        <div class="country-map" id="countryFlags"></div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section class="view" id="products">
+      <div class="panel">
+        <div class="panel-head">
+          <h3>产品中心</h3>
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+            <input id="productSearch" placeholder="搜索名称/功能/编号..." style="max-width:240px;min-height:34px">
+            <select id="productCatFilter" style="min-height:34px;min-width:130px;font-size:12px"><option value="">全部分类</option></select>
+          </div>
+        </div>
+        <div class="category-bar" id="categoryBar"></div>
+        <div class="product-grid" id="productGrid"></div>
+      </div>
+    </section>
+
+    <!-- PRODUCT DETAIL -->
+    <section class="view" id="productDetail">
+      <div class="panel">
+        <div class="panel-head"><h3>产品详情</h3><button class="btn sm" data-view-shortcut="products">← 返回</button></div>
+        <div id="detailContent"></div>
+      </div>
+    </section>
+
+    <!-- COMPANY -->
+    <section class="view" id="company">
+      <div class="grid cols-2">
+        <div class="panel">
+          <div class="panel-head"><h3>公司信息</h3><span class="tag">Company Profile</span></div>
+          <div class="company-photo" id="companyPhoto">B</div>
+          <div id="companyVideo" style="margin-top:12px"></div>
+          <div class="kv" id="companyKv"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>联系我们</h3><span class="tag">Contact</span></div>
+          <p style="font-size:13px;color:var(--muted);margin-bottom:12px">客户可通过产品详情页提交询盘，或直接联系业务员。</p>
+          <div class="kv" id="contactKv"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHARE (QR) -->
+    <section class="view" id="share">
+      <div class="grid cols-2">
+        <div class="panel">
+          <div class="panel-head"><h3>二维码与分享链接</h3><span class="tag">QR Code</span></div>
+          <div class="form-stack">
+            <label class="field">客户访问链接<input id="shareUrl" value="https://catalog.bazaartextile.com"></label>
+            <label class="field">分享卡标题<input id="shareTitle" value="Bazaar Textile Global Product Catalog"></label>
+            <label class="field">上传 Logo（可选）<input id="logoUpload" type="file" accept="image/*"></label>
+            <div class="actions" style="justify-content:flex-start">
+              <button class="btn primary" id="refreshQr">🔄 生成二维码</button>
+              <button class="btn" id="copyLink">📋 复制链接</button>
+              <button class="btn" id="downloadQr">⬇️ 下载</button>
+            </div>
+          </div>
+          <div style="margin-top:12px;padding:8px 12px;border-radius:8px;background:rgba(0,212,160,.06);border:1px solid rgba(0,212,160,.15);font-size:11px;color:var(--muted)">
+            💡 二维码由 <strong style="color:var(--teal)">api.qrserver.com</strong> 生成，扫码即可打开上方链接地址。
+          </div>
+        </div>
+        <div class="panel" style="display:flex;align-items:center;justify-content:center">
+          <div class="share-card" id="shareCard">
+            <div class="logo-row" style="justify-content:center;color:var(--ink)">
+              <div class="logo-mark" id="qrCardLogo">B</div>
+              <div style="text-align:left"><strong>Bazaar Textile</strong><span style="color:var(--muted);display:block;font-size:11px">Global Catalog</span></div>
+            </div>
+            <div class="qr-wrap" id="qrWrap">
+              <img id="qrImage" alt="QR Code" style="width:100%;height:100%;object-fit:contain">
+              <div class="qr-logo" id="qrLogo">B</div>
+            </div>
+            <strong id="shareCardTitle">Bazaar Textile</strong>
+            <p style="color:var(--muted);margin:6px 0 0;font-size:12px">Scan to visit product catalog.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INQUIRIES -->
+    <section class="view" id="inquiries">
+      <div class="panel">
+        <div class="panel-head">
+          <h3>客户询盘</h3>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="btn sm" id="exportInquiry">📥 导出 CSV</button>
+            <button class="btn sm red" id="clearSelectedInquiries">🗑 删除选中</button>
+          </div>
+        </div>
+        <div class="inq-stats">
+          <div class="stat-card"><span>总询盘</span><b id="inq_total">0</b></div>
+          <div class="stat-card"><span>今日</span><b id="inq_today">0</b></div>
+          <div class="stat-card"><span>未处理</span><b id="inq_new">0</b></div>
+          <div class="stat-card"><span>跟进中</span><b id="inq_follow">0</b></div>
+        </div>
+        <div class="filter-bar">
+          <select id="inqFilterStatus"><option value="">全部状态</option><option>新询盘</option><option>跟进中</option><option>已完成</option><option>无效</option></select>
+          <input id="inqFilterSearch" placeholder="搜索客户/产品..." style="max-width:180px">
+          <input id="inqFilterDate" type="date">
+          <button class="btn sm" onclick="clearInqFilters()">清除筛选</button>
+        </div>
+        <div class="table-wrap">
+          <table><thead><tr><th><input type="checkbox" id="selectAllInq"></th><th>时间</th><th>客户</th><th>国家</th><th>联系</th><th>产品</th><th>数量</th><th>留言</th><th>状态</th><th>操作</th></tr></thead>
+          <tbody id="inquiryTable"></tbody></table>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISITORS -->
+    <section class="view" id="visitors">
+      <div class="panel">
+        <div class="panel-head">
+          <h3>游客统计与管理</h3>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="btn sm" id="exportVisitors">📥 导出 CSV</button>
+            <button class="btn sm gold" id="unblockAllBtn" onclick="unblockAllVisitors()">🔓 全部解除拉黑</button>
+            <button class="btn sm primary" onclick="reloadVisitors()">🔄 刷新</button>
+          </div>
+        </div>
+        <div class="vis-stats">
+          <div class="stat-card"><span>总访客</span><b id="vm_total">0</b></div>
+          <div class="stat-card"><span>本月新增</span><b id="vm_month">0</b></div>
+          <div class="stat-card"><span>已拉黑</span><b id="vm_blocked">0</b></div>
+          <div class="stat-card"><span>来源国家</span><b id="vm_countries">0</b></div>
+        </div>
+        <div class="filter-bar">
+          <input id="visFilterSearch" placeholder="搜索账号/姓名..." style="max-width:180px">
+          <select id="visFilterStatus"><option value="">全部状态</option><option value="normal">正常</option><option value="blocked">已拉黑</option></select>
+          <input id="visFilterDate" type="date">
+          <button class="btn sm" onclick="clearVisFilters()">清除筛选</button>
+        </div>
+        <div class="table-wrap">
+          <table><thead><tr>
+            <th><input type="checkbox" id="selectAllVis" title="全选"></th>
+            <th>注册时间</th><th>账号</th><th>姓名</th><th>公司</th><th>邮箱</th><th>访问次数</th><th>状态</th><th>操作</th>
+          </tr></thead>
+          <tbody id="visitorTable"></tbody></table>
+        </div>
+        <div style="margin-top:10px;display:flex;gap:8px">
+          <button class="btn sm red" id="blockSelectedBtn" onclick="blockSelected(true)">🚫 拉黑选中</button>
+          <button class="btn sm primary" id="unblockSelectedBtn" onclick="blockSelected(false)">✅ 解除选中</button>
+          <button class="btn sm" id="deleteSelectedVisBtn" onclick="deleteSelectedVisitors()">🗑 删除选中</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADMIN EDIT -->
+    <section class="view" id="adminEdit">
+      <div class="panel" style="margin-bottom:14px">
+        <div class="panel-head"><h3>产品分类管理</h3><span class="tag">Category</span></div>
+        <div style="display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap">
+          <label class="field" style="flex:1;min-width:180px">新增分类名称<input id="newCatInput" placeholder="输入分类名称，如：羽绒服面料"></label>
+          <button class="btn primary" id="addCatBtn" style="align-self:end">➕ 添加分类</button>
+        </div>
+        <div style="margin-top:12px" id="catTagsWrap"></div>
+      </div>
+
+      <div class="grid cols-2">
+        <div class="panel">
+          <div class="panel-head">
+            <h3 id="editFormTitle">新增产品</h3>
+            <button class="btn sm" id="newProduct">清空</button>
+          </div>
+          <div class="form-stack">
+            <input id="editId" type="hidden">
+            <div class="row2">
+              <label class="field">产品名称 *<input id="editName"></label>
+              <label class="field">产品编号<input id="editCode"></label>
+            </div>
+            <label class="field">产品分类 *<select id="editCategory"><option value="">请选择分类</option></select></label>
+            <div class="row2">
+              <label class="field">图标/首字母<input id="editIcon" maxlength="2"></label>
+              <label class="field">克重<input id="editWeight"></label>
+            </div>
+            <div class="row2">
+              <label class="field">成分<input id="editComposition"></label>
+              <label class="field">门幅<input id="editWidth"></label>
+            </div>
+            <label class="field">MOQ<input id="editMoq"></label>
+            <label class="field">功能标签（逗号分隔）<input id="editTags"></label>
+
+            <label class="field">产品图片（最多5张，1:1比例）
+              <div class="upload-hint">📐 <strong>推荐：</strong>400×400px，JPG/PNG，<strong style="color:var(--red)">&lt;300KB/张</strong>。第一张为主图。</div>
+              <div class="photo-upload-grid" id="photoUploadGrid"></div>
+              <div class="img-size-warning" id="imgSizeWarn">⚠️ 图片过大，请压缩后再上传（建议 &lt;300KB）</div>
+            </label>
+
+            <label class="field">产品介绍<textarea id="editDesc"></textarea></label>
+            <div class="actions" style="justify-content:flex-start">
+              <button class="btn primary" id="saveProduct">💾 保存产品</button>
+              <button class="btn red" id="deleteProductBtn" style="display:none">🗑 删除产品</button>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head">
+            <h3>当前产品列表</h3>
+            <select id="adminCatFilter" style="min-height:30px;font-size:12px;min-width:120px"><option value="">全部分类</option></select>
+          </div>
+          <div class="table-wrap">
+            <table><thead><tr><th>产品</th><th>分类</th><th>操作</th></tr></thead>
+            <tbody id="adminProductTable"></tbody></table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPANY EDIT -->
+    <section class="view" id="companyEdit">
+      <div class="panel">
+        <div class="panel-head"><h3>公司信息管理</h3><span class="tag">Admin · 实时更新</span></div>
+        <div class="grid cols-2">
+          <div class="form-stack">
+            <label class="field">公司名称<input id="companyEditName"></label>
+            <label class="field">公司简介<textarea id="companyEditSummary" style="min-height:120px"></textarea></label>
+            <div class="row2">
+              <label class="field">地址<input id="companyEditAddress"></label>
+              <label class="field">官网<input id="companyEditWebsite"></label>
+            </div>
+            <div class="row2">
+              <label class="field">邮箱<input id="companyEditEmail"></label>
+              <label class="field">WhatsApp<input id="companyEditWhatsapp"></label>
+            </div>
+            <label class="field">电话<input id="companyEditPhone"></label>
+            <div class="row2">
+              <label class="field">展示图片
+                <input id="companyImageUpload" type="file" accept="image/*">
+                <div class="upload-hint">📐 <strong>推荐：</strong>800×600px，JPG，&lt;500KB</div>
+              </label>
+              <label class="field">介绍视频
+                <input id="companyVideoUrl" type="url" placeholder="YouTube链接 或 MP4直链 URL">
+                <div class="upload-hint">🎬 支持 <strong>YouTube</strong> 链接（自动转为嵌入）或任意 <strong>MP4/WebM</strong> 直链。推荐用 YouTube，稳定清晰无限制。</div>
+              </label>
+              <button class="btn sm primary" id="applyVideoUrl" type="button" style="margin-top:-4px">▶ 应用视频链接</button>
+            </div>
+            <div class="actions" style="justify-content:flex-start">
+              <button class="btn primary" id="saveCompany">💾 保存公司信息</button>
+              <button class="btn" id="clearCompanyMedia">清除图片/视频</button>
+            </div>
+          </div>
+          <div>
+            <p style="font-size:12px;color:var(--muted);margin-bottom:10px">预览</p>
+            <div class="company-photo" id="companyEditPhotoPreview">B</div>
+            <div id="companyEditVideoPreview" style="margin-top:12px"></div>
+            <div class="kv" style="margin-top:14px" id="companyEditPreviewKv"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- APPEARANCE -->
+    <section class="view" id="appearance">
+      <div class="grid cols-2">
+        <div class="panel">
+          <div class="panel-head"><h3>登录页背景</h3><span class="tag">Login Page</span></div>
+          <div class="form-stack">
+            <p style="font-size:12px;color:var(--muted)">选择预设图片，或上传自定义背景。</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap" id="loginBgPresets"></div>
+            <label class="field">上传自定义背景图
+              <input type="file" id="loginBgUpload" accept="image/*">
+              <div class="upload-hint">📐 <strong>推荐：</strong>1920×1080px，&lt;500KB</div>
+            </label>
+            <div class="actions" style="justify-content:flex-start">
+              <button class="btn primary" id="saveLoginBg">💾 保存登录背景</button>
+              <button class="btn" id="loginBgReset">恢复默认</button>
+            </div>
+          </div>
+          <div style="border-top:1px solid var(--line);margin-top:16px;padding-top:16px">
+            <p style="font-size:12px;color:var(--muted);margin-bottom:10px;font-weight:600">登录页文字</p>
+            <div class="form-stack">
+              <label class="field">大标题<input id="heroEditH1"></label>
+              <label class="field">副标题<input id="heroEditP"></label>
+              <label class="field">底部说明<input id="heroEditFooter"></label>
+              <button class="btn primary" id="saveHeroText">💾 保存文字</button>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>主界面背景</h3><span class="tag">App Background</span></div>
+          <div class="form-stack">
+            <label style="color:var(--muted);font-size:12px;font-weight:600">预设配色</label>
+            <div style="display:flex;gap:8px;flex-wrap:wrap" id="appBgPresets"></div>
+            <label class="field">上传自定义背景图
+              <input type="file" id="appBgUpload" accept="image/*">
+              <div class="upload-hint">📐 推荐尺寸 1920×1080px，&lt;300KB</div>
+            </label>
+            <div class="actions" style="justify-content:flex-start">
+              <button class="btn primary" id="saveAppBg">💾 保存主界面背景</button>
+              <button class="btn" id="appBgReset">恢复默认</button>
+            </div>
+          </div>
+          <div style="border-top:1px solid var(--line);margin-top:16px;padding-top:16px">
+            <div class="panel-head"><h3>Logo 设置</h3></div>
+            <div class="form-stack">
+              <label class="field">上传 Logo（PNG透明，推荐 200×200px，&lt;100KB）
+                <input type="file" id="logoMainUpload" accept="image/*">
+              </label>
+              <div class="preview-box" id="logoPreviewBox">未上传 Logo，使用字母 B。</div>
+              <button class="btn primary" id="saveLogo">💾 保存 Logo</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADMIN USERS -->
+    <section class="view" id="adminUsers">
+      <div class="panel">
+        <div class="panel-head"><h3>管理员管控</h3><span class="tag">主管理员专属</span></div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:14px">共 3 位管理员。主管理员可启用/停用或重置密码。</p>
+        <div class="table-wrap">
+          <table><thead><tr><th>账号</th><th>角色</th><th>最近登录</th><th>状态</th><th>操作</th></tr></thead>
+          <tbody id="adminUserTable"></tbody></table>
+        </div>
+      </div>
+    </section>
+  </main>
+</section>
+
+<!-- CHANGE PASSWORD MODAL -->
+<div class="modal-overlay hidden" id="pwdModal">
+  <div class="modal-box">
+    <h3>🔑 修改密码</h3>
+    <p id="pwdModalDesc">首次登录，请立即修改默认密码。</p>
+    <div class="form-stack">
+      <label class="field">当前密码<div class="pw-wrap"><input type="password" id="pwdOld"><button class="pw-eye" type="button" onclick="togglePw('pwdOld',this)">👁</button></div></label>
+      <label class="field">新密码（至少8位，含字母和数字）<div class="pw-wrap"><input type="password" id="pwdNew"><button class="pw-eye" type="button" onclick="togglePw('pwdNew',this)">👁</button></div></label>
+      <label class="field">确认新密码<div class="pw-wrap"><input type="password" id="pwdConfirm"><button class="pw-eye" type="button" onclick="togglePw('pwdConfirm',this)">👁</button></div></label>
+      <div class="actions" style="justify-content:flex-start">
+        <button class="btn primary" id="pwdSave">保存新密码</button>
+        <button class="btn" id="pwdCancel">稍后修改</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRIVACY MODAL -->
+<div class="modal-overlay hidden" id="privacyModal">
+  <div class="modal-box modal-wide">
+    <h3 id="privacyModalTitle">用户协议</h3>
+    <div id="privacyModalContent" style="font-size:13px;color:var(--muted);line-height:1.9;margin-top:12px;max-height:60vh;overflow-y:auto;padding-right:8px"></div>
+    <button class="btn primary full" style="margin-top:18px" onclick="closePrivacy()">我已阅读并同意</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ─── Privacy texts ───────────────────────────────────────
+const PRIVACY_TEXTS={
+  user:`<h4 style="color:var(--teal);margin-bottom:12px">芭莎纺织 · 用户协议 V1.0</h4>
+<p><strong>生效日期：2025年1月1日</strong></p><br>
+<p>欢迎使用绍兴芭莎纺织有限公司的全球产品目录系统。登录即表示您同意受本协议约束。</p><br>
+<p><strong>1. 账号安全</strong><br>账号密码须妥善保管，不得转让。发现账号异常请立即联系管理员。</p><br>
+<p><strong>2. 行为规范</strong><br>不得利用本平台从事违法活动，不得抓取或复制平台内容。</p><br>
+<p><strong>3. 知识产权</strong><br>本平台所有内容归绍兴芭莎纺织有限公司所有。</p><br>
+<p><strong>联系：</strong>sales@bazaartextile.com</p>`,
+  privacy:`<h4 style="color:var(--teal);margin-bottom:12px">芭莎纺织 · 隐私政策 V1.0</h4>
+<p><strong>1. 收集的信息</strong><br>注册信息：姓名、公司、手机、邮箱、账号名；登录信息：IP、时间；询盘内容。</p><br>
+<p><strong>2. 使用目的</strong><br>提供产品展示和询盘服务，联系处理业务咨询。</p><br>
+<p><strong>3. 数据安全</strong><br>采用HTTPS加密传输，密码Hash存储。</p><br>
+<p><strong>联系：</strong>privacy@bazaartextile.com</p>`,
+  security:`<h4 style="color:var(--teal);margin-bottom:12px">芭莎纺织 · 安全协议 V1.0</h4>
+<p><strong>1. 账号安全</strong><br>密码至少8位，含字母和数字，建议每90天更换一次。</p><br>
+<p><strong>2. 数据安全</strong><br>所有传输采用HTTPS加密，密码经Hash处理存储。</p><br>
+<p><strong>3. 访问控制</strong><br>普通用户仅可查看产品和提交询盘；被拉黑的用户无法访问本平台。</p><br>
+<p><strong>漏洞报告：</strong>security@bazaartextile.com</p>`
+};
+
+// ════════════════════════════════════════════════════════
+// SUPABASE
+// ════════════════════════════════════════════════════════
+let db = null;
+const SUPABASE_CONFIGURED =
+  window.SUPABASE_URL && !window.SUPABASE_URL.includes('YOUR_PROJECT') &&
+  window.SUPABASE_ANON && !window.SUPABASE_ANON.includes('YOUR_ANON');
+
+if(SUPABASE_CONFIGURED && window.supabase){
+  db = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON,{
+    auth:{persistSession:false,autoRefreshToken:false}
+  });
+}
+
+// ─── localStorage ──
+const LS = k => { try{ return localStorage.getItem('bz6_'+k); }catch(e){ return null; } };
+const SS = (k,v) => { try{ localStorage.setItem('bz6_'+k, typeof v==='string'?v:JSON.stringify(v)); }catch(e){} };
+
+// ─── parseImages: support both string and JSON array ──
+function parseImages(raw){
+  if(!raw) return [];
+  if(Array.isArray(raw)) return raw.filter(Boolean);
+  try{
+    const parsed = JSON.parse(raw);
+    if(Array.isArray(parsed)) return parsed.filter(Boolean);
+    return parsed ? [parsed] : [];
+  } catch(e){
+    return raw ? [raw] : [];
+  }
+}
+
+// ─── mappers ──
+const mapProduct = r => ({
+  id:r.id, name:r.name||'', code:r.code||'', category:r.category||'未分类',
+  icon:r.icon||'BZ', composition:r.composition||'', weight:r.weight||'',
+  width:r.width||'', moq:r.moq||'',
+  tags:Array.isArray(r.tags)?r.tags:(r.tags?String(r.tags).split(',').filter(Boolean):[]),
+  desc:r.description||'',
+  images: parseImages(r.image_url),
+  imageUrl: parseImages(r.image_url)[0]||''
+});
+const mapUser = r => ({
+  id:r.id, username:r.username||'', email:r.email||'',
+  password:r.password_hash||'', name:r.name||'', company:r.company||'',
+  phone:r.phone||'', country:r.country||'',
+  // Strict boolean: only true if explicitly true (not null, undefined, 0, "")
+  is_blocked: r.is_blocked === true,
+  login_count:r.login_count||0,
+  last_login_at:r.last_login_at||'', createdAt:r.created_at||''
+});
+const mapAdmin = r => ({
+  id:r.id, username:r.username||'', password:r.password||'',
+  label:r.label||r.username||'', enabled:r.enabled!==false,
+  locked:r.is_main||false, firstLogin:r.first_login!==false,
+  lastLogin:r.last_login_at?new Date(r.last_login_at).toLocaleString():''
+});
+const mapInquiry = r => ({
+  id:r.id,
+  time:new Date(r.created_at).toLocaleString('zh-CN'),
+  timeStamp:r.created_at,
+  product:r.product_name||'', name:r.customer_name||'',
+  productId:r.product_id||'',
+  productCode:r.product_code||'',
+  company:r.company||'', country:r.country||'',
+  contact:r.contact||r.email||'', qty:r.quantity||'',
+  msg:r.message||'', status:r.status||'新询盘'
+});
+const mapCompany = r => ({
+  name:r.name||'', summary:r.summary||'', address:r.address||'',
+  email:r.email||'', whatsapp:r.whatsapp||'', phone:r.phone||'',
+  website:r.website||'', imageUrl:r.image_url||'', videoUrl:r.video_url||'',
+  logoUrl:r.logo_url||'', loginBgUrl:r.login_bg_url||'',
+  appBg:r.app_bg||'', appBgType:r.app_bg_type||'color',
+  heroText:{h1:r.hero_h1||'',p:r.hero_p||'',footer:r.hero_footer||''}
+});
+
+// ════════════════════════════════════════════════════════
+// CRUD
+// ════════════════════════════════════════════════════════
+async function dbGetProducts(){
+  if(!db){ const d=LS('products'); return d?JSON.parse(d):defaultProducts.slice(); }
+  const {data,error}=await db.from('products').select('*').order('created_at',{ascending:false});
+  if(error) return JSON.parse(LS('products')||'null')||defaultProducts.slice();
+  return (data||[]).map(mapProduct);
+}
+async function dbSaveProduct(p){
+  // store images as JSON array string
+  const imagesJson = JSON.stringify(p.images||[]);
+  const isUUID=/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(p.id);
+  const row={
+    name:p.name, code:p.code||'', category:p.category||'未分类',
+    icon:p.icon||'BZ', composition:p.composition||'', weight:p.weight||'',
+    width:p.width||'', moq:p.moq||'',
+    tags:p.tags||[], description:p.desc||'',
+    image_url:imagesJson,
+    updated_at:new Date().toISOString()
+  };
+  if(!db){
+    if(isUUID){
+      const idx=state.products.findIndex(x=>x.id===p.id);
+      if(idx>=0) state.products[idx]={...state.products[idx],...p};
+      SS('products',state.products);
+    } else {
+      const newP={...p,id:'p'+Date.now()};
+      state.products.unshift(newP); SS('products',state.products);
+      return newP;
+    }
+    return p;
+  }
+  if(isUUID){
+    const {data,error}=await db.from('products').update(row).eq('id',p.id).select().single();
+    if(error) throw error;
+    return mapProduct(data);
+  } else {
+    const {data,error}=await db.from('products').insert(row).select().single();
+    if(error) throw error;
+    return mapProduct(data);
+  }
+}
+async function dbDeleteProduct(id){
+  if(!db){ state.products=state.products.filter(p=>String(p.id)!==String(id)); SS('products',state.products); return; }
+  const {error}=await db.from('products').delete().eq('id',id);
+  if(error) throw error;
+  // Remove from local state immediately
+  state.products=state.products.filter(p=>String(p.id)!==String(id));
+}
+async function dbGetCategories(){
+  if(!db){ const d=LS('categories'); return d?JSON.parse(d):defaultCategories.slice(); }
+  const {data,error}=await db.from('categories').select('name').order('sort_order').order('created_at');
+  if(error) return defaultCategories.slice();
+  return (data||[]).map(r=>r.name);
+}
+async function dbSaveCategory(name){
+  if(!db){ if(!state.categories.includes(name))state.categories.push(name); SS('categories',state.categories); return; }
+  const {error}=await db.from('categories').upsert({name},{onConflict:'name'});
+  if(error) throw error;
+}
+async function dbDeleteCategory(name){
+  if(!db){ state.categories=state.categories.filter(c=>c!==name); SS('categories',state.categories); return; }
+  await db.from('categories').delete().eq('name',name);
+}
+async function dbGetUsers(){
+  if(!db){ const d=LS('regUsers'); return d?JSON.parse(d):[]; }
+  const {data,error}=await db.from('users').select('*').order('created_at',{ascending:false});
+  if(error) return [];
+  return (data||[]).map(mapUser);
+}
+async function dbLoginUser(usernameOrEmail, password){
+  if(!db){
+    return state.registeredUsers.find(u=>
+      (u.username===usernameOrEmail||u.email===usernameOrEmail) && u.password===password
+    )||null;
+  }
+  // Query by username OR email
+  const {data,error}=await db.from('users').select('*')
+    .or(`username.eq.${usernameOrEmail},email.eq.${usernameOrEmail}`)
+    .limit(5);
+  if(error||!data||data.length===0) return null;
+  // Find matching password
+  const matched = data.find(r => r.password_hash === password);
+  if(!matched) return null;
+  return mapUser(matched);
+}
+async function dbCheckUserExists(username, email){
+  if(!db) return {
+    usernameTaken:state.registeredUsers.some(u=>u.username===username),
+    emailTaken:state.registeredUsers.some(u=>u.email===email)
+  };
+  const {data,error}=await db.from('users').select('username,email')
+    .or(`username.eq.${username},email.eq.${email}`);
+  if(error) return {usernameTaken:false,emailTaken:false};
+  return {
+    usernameTaken:(data||[]).some(r=>r.username===username),
+    emailTaken:(data||[]).some(r=>r.email===email)
+  };
+}
+async function dbRegisterUser(u){
+  if(!db){ state.registeredUsers.push(u); SS('regUsers',state.registeredUsers); return u; }
+  const {data,error}=await db.from('users').insert({
+    username:u.username, email:u.email, password_hash:u.password,
+    name:u.name, company:u.company, phone:u.phone||'',
+    login_count:1,
+    last_login_at:new Date().toISOString(), is_blocked:false
+  }).select().single();
+  if(error) throw error;
+  return mapUser(data);
+}
+async function dbUpdateUser(id, patch){
+  if(!db){
+    const u=state.registeredUsers.find(x=>x.id===id);
+    if(u) Object.assign(u,patch);
+    SS('regUsers',state.registeredUsers); return;
+  }
+  const row={};
+  if(patch.is_blocked!==undefined)  row.is_blocked=patch.is_blocked;
+  if(patch.login_count!==undefined) row.login_count=patch.login_count;
+  if(patch.last_login_at===true)    row.last_login_at=new Date().toISOString();
+  if(patch.country!==undefined)     row.country=patch.country;
+  if(Object.keys(row).length===0) return;
+  const {error}=await db.from('users').update(row).eq('id',id);
+  if(error) console.error('[dbUpdateUser]',error);
+}
+async function dbDeleteUser(id){
+  if(!db){ state.registeredUsers=state.registeredUsers.filter(u=>u.id!==id); SS('regUsers',state.registeredUsers); return; }
+  const {error}=await db.from('users').delete().eq('id',id);
+  if(error) throw error;
+}
+async function dbGetAdmins(){
+  if(!db){ const d=LS('admins'); return d?JSON.parse(d):{...defaultAdmins}; }
+  const {data,error}=await db.from('admins').select('*');
+  if(error) return {...defaultAdmins};
+  const map={};
+  (data||[]).forEach(r=>{ map[r.id]=mapAdmin(r); });
+  return Object.keys(map).length>0 ? map : {...defaultAdmins};
+}
+async function dbUpdateAdmin(id, patch){
+  if(state.admins[id]) Object.assign(state.admins[id],patch);
+  if(!db){ SS('admins',state.admins); return; }
+  const row={};
+  if(patch.password!==undefined)   row.password=patch.password;
+  if(patch.firstLogin!==undefined) row.first_login=patch.firstLogin;
+  if(patch.enabled!==undefined)    row.enabled=patch.enabled;
+  if(patch.lastLogin===true)       row.last_login_at=new Date().toISOString();
+  if(Object.keys(row).length===0) return;
+  const {error}=await db.from('admins').update(row).eq('id',id);
+  if(error) console.error('[dbUpdateAdmin]',error);
+}
+async function dbGetInquiries(){
+  if(!db){ const d=LS('inquiries'); return d?JSON.parse(d):[]; }
+  const {data,error}=await db.from('inquiries').select('*').order('created_at',{ascending:false});
+  if(error) return [];
+  return (data||[]).map(mapInquiry);
+}
+async function dbAddInquiry(inq){
+  if(!db){ return inq; }
+  // Primary payload matching the Supabase inquiries table schema
+  const payload = {
+    product_id:    inq.productId   || null,
+    product_code:  inq.productCode || '',
+    product_name:  inq.product     || '',
+    customer_name: inq.name        || '',
+    company:       inq.company     || '',
+    country:       inq.country     || '',
+    contact:       inq.contact     || '',
+    email:         inq.contact     || '',
+    quantity:      inq.qty         || '',
+    message:       inq.msg         || '',
+    status:        '新询盘'
+  };
+  const { data, error } = await db.from('inquiries').insert(payload).select().single();
+  if (!error && data) return mapInquiry(data);
+  // Fallback: try without product_id if FK constraint fails
+  if (error && (error.code === '23503' || String(error.message).includes('foreign key'))) {
+    const payload2 = { ...payload, product_id: null };
+    const { data: d2, error: e2 } = await db.from('inquiries').insert(payload2).select().single();
+    if (!e2 && d2) return mapInquiry(d2);
+    throw e2 || new Error('inquiry insert failed');
+  }
+  throw error || new Error('inquiry insert failed');
+}
+async function dbUpdateInquiryStatus(id,status){
+  const inq=state.inquiries.find(i=>i.id===id);
+  if(inq) inq.status=status;
+  if(!db){ SS('inquiries',state.inquiries); return; }
+  await db.from('inquiries').update({status,updated_at:new Date().toISOString()}).eq('id',id);
+}
+async function dbDeleteInquiry(id){
+  if(!db){ state.inquiries=state.inquiries.filter(i=>i.id!==id); SS('inquiries',state.inquiries); return; }
+  const {error}=await db.from('inquiries').delete().eq('id',id);
+  if(error) throw error;
+}
+async function dbDeleteInquiries(ids){
+  if(!ids.length) return;
+  if(!db){ state.inquiries=state.inquiries.filter(i=>!ids.includes(i.id)); SS('inquiries',state.inquiries); return; }
+  const {error}=await db.from('inquiries').delete().in('id',ids);
+  if(error) throw error;
+}
+async function dbGetCompany(){
+  if(!db){ const d=LS('company'); return d?JSON.parse(d):{...defaultCompany}; }
+  const {data,error}=await db.from('company_settings').select('*').eq('id',1).maybeSingle();
+  if(error||!data) return {...defaultCompany};
+  return mapCompany(data);
+}
+async function dbSaveCompany(c){
+  if(!db){ SS('company',c); return; }
+  const {error}=await db.from('company_settings').upsert({
+    id:1, name:c.name||'', summary:c.summary||'', address:c.address||'',
+    email:c.email||'', whatsapp:c.whatsapp||'', phone:c.phone||'',
+    website:c.website||'', image_url:c.imageUrl||'', video_url:c.videoUrl||'',
+    logo_url:state.logoDataUrl||c.logoUrl||'',
+    login_bg_url:state.loginBgUrl||c.loginBgUrl||'',
+    app_bg:state.appBg||c.appBg||'',
+    app_bg_type:state.appBgType||c.appBgType||'color',
+    hero_h1:state.heroText?.h1||'',
+    hero_p:state.heroText?.p||'',
+    hero_footer:state.heroText?.footer||'',
+    updated_at:new Date().toISOString()
+  });
+  if(error) throw error;
+}
+async function dbSaveAppearance(){
+  if(!db){
+    SS('logo',state.logoDataUrl); SS('loginBg',state.loginBgUrl);
+    SS('appBg',state.appBg); SS('appBgType',state.appBgType);
+    SS('heroText',state.heroText); return;
+  }
+  const {error}=await db.from('company_settings').upsert({
+    id:1,
+    logo_url:     state.logoDataUrl||'',
+    login_bg_url: state.loginBgUrl||'',
+    app_bg:       state.appBg||'',
+    app_bg_type:  state.appBgType||'color',
+    hero_h1:      state.heroText?.h1||'',
+    hero_p:       state.heroText?.p||'',
+    hero_footer:  state.heroText?.footer||'',
+    updated_at:   new Date().toISOString()
+  });
+  if(error) console.error('[dbSaveAppearance]',error);
+}
+
+// ════════════════════════════════════════════════════════
+// STATE & DEFAULTS
+// ════════════════════════════════════════════════════════
+const defaultCategories=['羽绒服面料','户外功能面料','里布/轻薄面料','环保系列'];
+const defaultProducts=[
+  {id:'p1',name:'防绒胆布 Down-proof Lining',code:'BZ-DP-001',category:'羽绒服面料',icon:'DP',composition:'100% Nylon',weight:'38-65gsm',width:'150cm',moq:'1000m/color',tags:['防绒','轻薄','高密'],desc:'适用于羽绒服、派克服内胆，支持防绒、防静电后整理。',images:[],imageUrl:''},
+  {id:'p2',name:'户外防水面料 Waterproof Shell',code:'BZ-WS-018',category:'户外功能面料',icon:'WS',composition:'Nylon Taslon',weight:'90-160gsm',width:'150cm',moq:'1200m/color',tags:['防水','耐磨','透湿'],desc:'适用于滑雪服、冲锋衣，可做PU/TPU复合及DWR处理。',images:[],imageUrl:''},
+  {id:'p3',name:'轻量尼龙 Lightweight Nylon',code:'BZ-LN-026',category:'里布/轻薄面料',icon:'LN',composition:'20D/30D Nylon',weight:'35-55gsm',width:'148cm',moq:'1000m/color',tags:['轻量','柔软','可定制'],desc:'适合轻薄羽绒服、收纳款外套、运动风衣。',images:[],imageUrl:''},
+  {id:'p4',name:'再生环保面料 Recycled',code:'BZ-RC-009',category:'环保系列',icon:'RC',composition:'Recycled Polyester',weight:'80-140gsm',width:'150cm',moq:'1500m/color',tags:['环保','GRS','品牌款'],desc:'适合外套、羽绒服、休闲夹克，面向海外品牌。',images:[],imageUrl:''}
+];
+const defaultCompany={
+  name:'Shaoxing Basha Textile Co., Ltd.',
+  summary:'绍兴芭莎纺织专注外套、羽绒服、户外功能面料，为全球品牌提供防绒、防水、轻量、环保等面料解决方案。',
+  address:'Shaoxing, Zhejiang, China',
+  email:'sales@bazaartextile.com', whatsapp:'+86 000 0000 0000',
+  phone:'+86 000 0000 0000', website:'https://catalog.bazaartextile.com',
+  imageUrl:'', videoUrl:''
+};
+const defaultAdmins={
+  main:  {id:'main',  username:'main_admin',password:'BAZAAR-MAIN',label:'主管理员',enabled:true,locked:true, firstLogin:false,lastLogin:''},
+  admin1:{id:'admin1',username:'admin_01',  password:'BAZAAR-01',  label:'管理员1', enabled:true,locked:false,firstLogin:true, lastLogin:''},
+  admin2:{id:'admin2',username:'admin_02',  password:'BAZAAR-02',  label:'管理员2', enabled:true,locked:false,firstLogin:true, lastLogin:''}
+};
+
+const state={
+  lang: LS('lang')||'zh',
+  user: (()=>{ try{ return JSON.parse(LS('user')||'null'); }catch(e){ return null; } })(),
+  products:[], categories:[], inquiries:[],
+  company:{...defaultCompany}, admins:{...defaultAdmins},
+  visitors:[], registeredUsers:[],
+  logoDataUrl:'', loginBgUrl:'', appBg:'', appBgType:'color',
+  heroText:{h1:'',p:'',footer:''},
+  activeCategory:'全部',
+  editProductImages:[],  // array of up to 5 base64/url strings
+  currentProductId:null
+};
+
+function saveSession(){ SS('user',state.user); SS('lang',state.lang); }
+
+// ════════════════════════════════════════════════════════
+// STARTUP
+// ════════════════════════════════════════════════════════
+async function loadFromSupabase(){
+  setLoading(true,'正在连接云端数据...');
+  try{
+    const [products,categories,company,admins,users,inquiries]=await Promise.all([
+      dbGetProducts(), dbGetCategories(), dbGetCompany(),
+      dbGetAdmins(), dbGetUsers(), dbGetInquiries()
+    ]);
+    state.products        = products;
+    state.categories      = categories.length ? categories : defaultCategories.slice();
+    state.company         = company;
+    state.admins          = admins;
+    state.registeredUsers = users;
+    state.inquiries       = inquiries;
+    state.visitors = users.map(u=>({
+      id:u.id, name:u.name, email:u.email, username:u.username,
+      company:u.company||'', country:u.country||'',
+      time:u.createdAt||u.last_login_at||new Date().toISOString(),
+      visits:u.login_count||1,
+      blocked: u.is_blocked === true
+    }));
+    if(company.logoUrl)    state.logoDataUrl=company.logoUrl;
+    if(company.loginBgUrl) state.loginBgUrl=company.loginBgUrl;
+    if(company.appBg)      { state.appBg=company.appBg; state.appBgType=company.appBgType||'color'; }
+    if(company.heroText)   state.heroText=company.heroText;
+  } catch(e){
+    console.error('[loadFromSupabase] 失败，降级本地缓存',e);
+    toast('云端同步失败，使用本地数据','error');
+    loadLocalFallback();
+  } finally { setLoading(false); }
+  applyLoginBg(); applyAppBg(); applyHeroText(); applyLanguage(state.lang, false);
+  updateAdminSelect();
+  if(state.user){
+    if(state.user.type==='customer' && db){
+      try{
+        const userId=state.user.userId;
+        let found=null;
+        if(userId){
+          const {data}=await db.from('users').select('is_blocked').eq('id',userId).maybeSingle();
+          found=data;
+        }
+        if(!found){
+          found=state.registeredUsers.find(u=>u.username===state.user.username||u.email===state.user.contact);
+        }
+        if(found && found.is_blocked){ toast('您的账号已被停用','error'); state.user=null; saveSession(); showLoginScreen(); return; }
+      } catch(e){}
+    }
+    showAppScreen();
+  } else { showLoginScreen(); }
+}
+function loadLocalFallback(){
+  state.products=JSON.parse(LS('products')||'null')||defaultProducts.slice();
+  state.categories=JSON.parse(LS('categories')||'null')||defaultCategories.slice();
+  state.company=JSON.parse(LS('company')||'null')||{...defaultCompany};
+  state.admins=JSON.parse(LS('admins')||'null')||{...defaultAdmins};
+  state.registeredUsers=JSON.parse(LS('regUsers')||'[]');
+  state.visitors=JSON.parse(LS('visitors')||'[]');
+  state.inquiries=JSON.parse(LS('inquiries')||'[]');
+  if(LS('logo'))     state.logoDataUrl=LS('logo');
+  if(LS('loginBg'))  state.loginBgUrl=LS('loginBg');
+  if(LS('appBg'))    state.appBg=LS('appBg');
+  if(LS('heroText')) state.heroText=JSON.parse(LS('heroText')||'{}');
+}
+
+function setLoading(show,msg=''){
+  const el=document.getElementById('loadingOverlay');
+  if(!el)return;
+  if(show){el.style.display='flex';el.querySelector('.loader-text').textContent=msg||'加载中...';}
+  else el.style.display='none';
+}
+function showLoginScreen(){
+  document.getElementById('loginScreen').classList.remove('hidden');
+  document.getElementById('appShell').classList.add('hidden');
+}
+function showAppScreen(){
+  document.getElementById('loginScreen').classList.add('hidden');
+  document.getElementById('appShell').classList.remove('hidden');
+  renderAll(); applyPermissions(); applyAppBg();
+  applyLanguage(state.lang, false);
+  openProductFromHash();
+  // init second translate widget
+  setTimeout(initTranslate2, 1500);
+}
+function initTranslate2(){
+  const el=document.getElementById('google_translate_element2');
+  if(el&&!el.querySelector('select')&&window.google&&google.translate){
+    try{ new google.translate.TranslateElement({pageLanguage:'zh-CN',includedLanguages:'zh-CN,en,ru,es,de,fr,ar,ja,ko,pt,tr,vi,id',layout:google.translate.TranslateElement.InlineLayout.SIMPLE,autoDisplay:false},'google_translate_element2'); }
+    catch(e){}
+  }
+}
+function applyHeroText(){
+  const h=document.getElementById('heroH1'),p=document.getElementById('heroP'),f=document.getElementById('heroFooter');
+  if(h&&state.heroText.h1)h.textContent=state.heroText.h1;
+  if(p&&state.heroText.p)p.textContent=state.heroText.p;
+  if(f&&state.heroText.footer)f.textContent=state.heroText.footer;
+}
+
+const LANG_MAP = {
+  zh: 'zh-CN',
+  en: 'en',
+  ru: 'ru',
+  es: 'es',
+  de: 'de',
+  fr: 'fr',
+  ar: 'ar',
+  ja: 'ja',
+  ko: 'ko',
+  pt: 'pt',
+  tr: 'tr',
+  vi: 'vi',
+  id: 'id',
+};
+
+function syncGoogleTranslate(langCode, tries=0){
+  // If switching back to Chinese, reload to clear translation
+  if(langCode==='zh-CN'){
+    // Google Translate uses a cookie; easiest reset is reload
+    const gc=document.cookie.indexOf('googtrans');
+    if(gc>=0){
+      document.cookie='googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      document.cookie='googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.'+location.hostname;
+    }
+    const sel=document.querySelector('#google_translate_element select, #google_translate_element2 select');
+    if(sel){
+      sel.value='zh-CN'; sel.dispatchEvent(new Event('change'));
+    }
+    return;
+  }
+  const selects=[
+    document.querySelector('#google_translate_element select'),
+    document.querySelector('#google_translate_element2 select')
+  ].filter(Boolean);
+  if(!selects.length){
+    if(tries<20) setTimeout(()=>syncGoogleTranslate(langCode,tries+1),400);
+    return;
+  }
+  selects.forEach(sel=>{
+    const opt=Array.from(sel.options).find(o=>o.value===langCode||o.value.startsWith(langCode.split('-')[0]));
+    if(opt){ sel.value=opt.value; sel.dispatchEvent(new Event('change')); }
+  });
+}
+
+function applyLanguage(lang, persist=true){
+  const next = LANG_MAP[lang] ? lang : 'zh';
+  state.lang = next;
+  if(persist) saveSession();
+  document.documentElement.lang = LANG_MAP[next] || 'zh-CN';
+  const topPicker = document.getElementById('langPicker');
+  const sidePicker = document.getElementById('langPickerSide');
+  if(topPicker && topPicker.value !== next) topPicker.value = next;
+  if(sidePicker && sidePicker.value !== next) sidePicker.value = next;
+  syncGoogleTranslate(LANG_MAP[next]);
+  const hint = document.getElementById('pageSubtitle');
+  if(hint){
+    hint.dataset.lang = next;
+  }
+}
+
+// ════════════════════════════════════════════════════════
+// UTILS
+// ════════════════════════════════════════════════════════
+const $=s=>document.querySelector(s);
+const $$=s=>Array.from(document.querySelectorAll(s));
+
+function toast(msg,type='',dur=3200){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.className='toast show'+(type?' '+type:'');
+  clearTimeout(t._tid); t._tid=setTimeout(()=>t.classList.remove('show'),dur);
+}
+function isAdmin(){ return state.user?.type==='admin'; }
+function isMainAdmin(){ return state.user?.type==='admin'&&state.user?.adminId==='main'; }
+function togglePw(id,btn){
+  const inp=document.getElementById(id); if(!inp)return;
+  if(inp.type==='password'){inp.type='text';btn.textContent='🙈';}
+  else{inp.type='password';btn.textContent='👁';}
+}
+function checkStrength(inp){
+  const v=inp.value; const fill=document.getElementById('strengthFill'); if(!fill)return;
+  let s=0;
+  if(v.length>=8)s++; if(/[a-zA-Z]/.test(v)&&/[0-9]/.test(v))s++;
+  if(v.length>=12)s++; if(/[^a-zA-Z0-9]/.test(v))s++;
+  const pct=[0,25,50,75,100][s]||0;
+  const col=['','#f85149','#e6a817','#3fb950','#00d4a0'][s]||'';
+  fill.style.width=pct+'%'; fill.style.background=col;
+}
+
+// ─── Privacy ──
+function showPrivacy(type){
+  const titles={user:'用户协议',privacy:'隐私政策',security:'安全协议'};
+  document.getElementById('privacyModalTitle').textContent=titles[type]||'协议';
+  document.getElementById('privacyModalContent').innerHTML=PRIVACY_TEXTS[type]||'';
+  document.getElementById('privacyModal').classList.remove('hidden');
+}
+function closePrivacy(){ document.getElementById('privacyModal').classList.add('hidden'); }
+
+// ════════════════════════════════════════════════════════
+// AUTH
+// ════════════════════════════════════════════════════════
+function switchLoginTab(type){
+  $$('.tab[data-login]').forEach(t=>t.classList.toggle('active',t.dataset.login===type));
+  ['accountLogin','registerLogin','adminLogin'].forEach(id=>{
+    document.getElementById(id)?.classList.add('hidden');
+  });
+  document.getElementById(type+'Login')?.classList.remove('hidden');
+}
+
+async function doAccountLogin(){
+  const usr=document.getElementById('accUsername').value.trim();
+  const pw=document.getElementById('accPassword').value;
+  if(!usr||!pw){ toast('请输入账号和密码','error'); return; }
+  const btn=document.getElementById('btn_account_login');
+  btn.disabled=true; btn.textContent='验证中...';
+  try{
+    const found=await dbLoginUser(usr, pw);
+    if(!found){ toast('账号或密码不正确，请检查后重试','error'); return; }
+    if(found.is_blocked){ toast('此账号已被禁止访问，如有疑问请联系客服','error'); return; }
+    await dbUpdateUser(found.id,{login_count:(found.login_count||0)+1, last_login_at:true});
+    // Refresh visitor list if admin is logged in too
+    state.user={
+      role:found.name, type:'customer',
+      contact:found.email, username:found.username,
+      company:found.company, userId:found.id,
+      time:new Date().toISOString()
+    };
+    // Update local cache
+    const cached=state.registeredUsers.find(u=>u.id===found.id);
+    if(cached){ cached.login_count=(found.login_count||0)+1; cached.last_login_at=new Date().toISOString(); }
+    else{ state.registeredUsers.push({...found,login_count:(found.login_count||0)+1}); }
+    saveSession(); showAppScreen();
+    toast('欢迎回来，'+found.name+'！','success');
+  } catch(e){ console.error('[登录失败]',e); toast('登录失败，请稍后重试','error'); }
+  finally{ btn.disabled=false; btn.textContent='登录'; }
+}
+
+async function doRegister(){
+  const name=document.getElementById('regName').value.trim();
+  const company=document.getElementById('regCompany').value.trim();
+  const phone=document.getElementById('regPhone').value.trim();
+  const email=document.getElementById('regEmail').value.trim();
+  const username=document.getElementById('regUsername').value.trim();
+  const password=document.getElementById('regPassword').value;
+  const confirm=document.getElementById('regConfirm').value;
+  if(!name||!company||!email||!username||!password){ toast('请填写所有必填项（*）','error'); return; }
+  if(!email.includes('@')){ toast('请输入有效邮箱地址','error'); return; }
+  if(!/^[a-zA-Z0-9_]{3,20}$/.test(username)){ toast('账号名3-20位，只能含字母、数字和下划线','error'); return; }
+  if(password.length<8){ toast('密码至少需要8位','error'); return; }
+  if(!/[a-zA-Z]/.test(password)||!/[0-9]/.test(password)){ toast('密码需同时包含字母和数字','error'); return; }
+  if(password!==confirm){ toast('两次输入的密码不一致','error'); return; }
+  const btn=document.getElementById('btn_register');
+  btn.disabled=true; btn.textContent='注册中...';
+  try{
+    const {usernameTaken,emailTaken}=await dbCheckUserExists(username,email);
+    if(usernameTaken){ toast('该账号名已被注册，请换一个','error'); return; }
+    if(emailTaken){ toast('该邮箱已被注册，请直接登录','error'); return; }
+    const saved=await dbRegisterUser({username,email,password,name,company,phone});
+    state.registeredUsers.push(saved);
+    state.visitors.unshift({id:saved.id,name,email,company,username,time:new Date().toISOString(),visits:1,blocked:false});
+    state.user={role:name,type:'customer',contact:email,username,company,userId:saved.id,time:new Date().toISOString()};
+    saveSession(); showAppScreen();
+    toast('注册成功！欢迎 '+name,'success');
+  } catch(e){
+    if(e.message?.includes('duplicate')||e.code==='23505') toast('该账号名或邮箱已被注册','error');
+    else toast('注册失败：'+e.message,'error');
+  } finally{ btn.disabled=false; btn.textContent='立即注册'; }
+}
+
+async function adminLogin(){
+  const id=document.getElementById('adminAccount').value;
+  const pw=document.getElementById('adminPassword').value;
+  if(!id){ toast('请选择管理员账号','error'); return; }
+  const admin=state.admins[id];
+  if(!admin||admin.password!==pw){ toast('管理员账号或密码错误','error'); return; }
+  if(!admin.enabled){ toast('该账号已被主管理员停用','error'); return; }
+  admin.lastLogin=new Date().toLocaleString();
+  await dbUpdateAdmin(id,{lastLogin:true});
+  state.user={role:admin.label,type:'admin',adminId:id,username:admin.username,time:new Date().toISOString()};
+  saveSession(); showAppScreen();
+  if(admin.firstLogin) setTimeout(()=>showPwdModal(true),500);
+}
+
+function logout(){
+  state.user=null; saveSession();
+  document.getElementById('appShell').classList.add('hidden');
+  document.getElementById('loginScreen').classList.remove('hidden');
+}
+
+function showPwdModal(forced=false){
+  document.getElementById('pwdModal').classList.remove('hidden');
+  document.getElementById('pwdModalDesc').textContent=forced?'首次登录，请立即修改默认密码！':'请输入当前密码和新密码。';
+  document.getElementById('pwdOld').value='';
+  document.getElementById('pwdNew').value='';
+  document.getElementById('pwdConfirm').value='';
+  document.getElementById('pwdCancel').style.display=forced?'none':'';
+}
+function closePwdModal(){ document.getElementById('pwdModal').classList.add('hidden'); }
+async function savePwd(){
+  const id=state.user?.adminId; if(!id){ toast('仅管理员可修改密码','error'); return; }
+  const admin=state.admins[id];
+  const oldPw=document.getElementById('pwdOld').value;
+  const newPw=document.getElementById('pwdNew').value;
+  const conf=document.getElementById('pwdConfirm').value;
+  if(admin.password!==oldPw){ toast('当前密码不正确','error'); return; }
+  if(newPw.length<8){ toast('新密码至少8位','error'); return; }
+  if(!/[a-zA-Z]/.test(newPw)||!/[0-9]/.test(newPw)){ toast('新密码需含字母和数字','error'); return; }
+  if(newPw!==conf){ toast('两次密码不一致','error'); return; }
+  await dbUpdateAdmin(id,{password:newPw,firstLogin:false});
+  closePwdModal(); toast('密码已修改成功','success');
+}
+
+// ════════════════════════════════════════════════════════
+// APPEARANCE
+// ════════════════════════════════════════════════════════
+const LOGIN_BG_PRESETS=[
+  {url:'https://images.unsplash.com/photo-1523381294911-8d3cead13475?auto=format&fit=crop&w=800&q=70',label:'默认'},
+  {url:'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=70',label:'工厂'},
+  {url:'https://images.unsplash.com/photo-1517971129774-8a2b38fa128e?auto=format&fit=crop&w=800&q=70',label:'纺织'},
+  {url:'https://images.unsplash.com/photo-1547032175-7fc8c7bd15b3?auto=format&fit=crop&w=800&q=70',label:'户外'},
+];
+const APP_BG_PRESETS=[
+  {bg:'',type:'color',label:'深色默认',color:'#0d1117'},
+  {bg:'#0a1628',type:'color',label:'深蓝',color:'#0a1628'},
+  {bg:'#0d1a12',type:'color',label:'深绿',color:'#0d1a12'},
+  {bg:'#1a1208',type:'color',label:'深暖',color:'#1a1208'},
+  {bg:'#f0f2f5',type:'color',label:'浅色',color:'#f0f2f5'},
+];
+let _pendingLoginBg=null,_pendingAppBg=null,_pendingAppBgType=null;
+
+function renderAppearancePanel(){
+  const lbp=document.getElementById('loginBgPresets');
+  if(lbp)lbp.innerHTML=LOGIN_BG_PRESETS.map(p=>
+    `<img src="${p.url}" class="bg-thumb ${state.loginBgUrl===p.url?'sel':''}" title="${p.label}" onclick="selectLoginBgPreset('${p.url}')" alt="${p.label}">`
+  ).join('');
+  const abp=document.getElementById('appBgPresets');
+  if(abp)abp.innerHTML=APP_BG_PRESETS.map((p,i)=>
+    `<div class="bg-swatch ${state.appBg===p.bg?'sel':''}" style="background:${p.color}" onclick="selectAppBgPreset(${i})">${p.label}</div>`
+  ).join('');
+  const h1=document.getElementById('heroEditH1');if(h1)h1.value=state.heroText.h1||'';
+  const hp=document.getElementById('heroEditP');if(hp)hp.value=state.heroText.p||'';
+  const hf=document.getElementById('heroEditFooter');if(hf)hf.value=state.heroText.footer||'';
+  renderLogoPreview();
+}
+function selectLoginBgPreset(url){
+  _pendingLoginBg=url;
+  const bi=document.getElementById('heroBgImg');
+  if(bi){bi.style.display='block';bi.src=url;}
+}
+function selectAppBgPreset(idx){
+  const p=APP_BG_PRESETS[idx]; _pendingAppBg=p.bg; _pendingAppBgType=p.type;
+  applyAppBgPreview(p.bg,p.type);
+  $$('#appBgPresets .bg-swatch').forEach((s,i)=>s.classList.toggle('sel',i===idx));
+}
+function applyAppBgPreview(bg,type){
+  if(type==='image'&&bg) document.body.style.background=`${bg} center/cover no-repeat fixed`;
+  else document.body.style.background=bg||'var(--bg)';
+}
+function applyAppBg(){ applyAppBgPreview(state.appBg,state.appBgType); }
+function applyLoginBg(){
+  const bi=document.getElementById('heroBgImg'); if(!bi)return;
+  bi.style.display='block';
+  bi.src=state.loginBgUrl||'https://images.unsplash.com/photo-1523381294911-8d3cead13475?auto=format&fit=crop&w=1600&q=82';
+}
+function renderLogoPreview(){
+  const lp=document.getElementById('logoPreviewBox');
+  if(lp)lp.innerHTML=state.logoDataUrl
+    ?`<img src="${state.logoDataUrl}" alt="Logo" style="height:48px;border-radius:8px;display:block;margin-bottom:6px"> Logo 已上传。`
+    :'未上传 Logo，使用字母 B。';
+  updateLogoElements();
+}
+function updateLogoElements(){
+  ['loginLogoMark','appLogoMark','qrLogo','qrCardLogo'].forEach(id=>{
+    const el=document.getElementById(id); if(!el)return;
+    el.innerHTML=state.logoDataUrl
+      ?`<img src="${state.logoDataUrl}" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:inherit">`
+      :'B';
+  });
+}
+
+// ════════════════════════════════════════════════════════
+// VIEW SWITCHING
+// ════════════════════════════════════════════════════════
+function switchView(id){
+  const adminViews=['share','inquiries','visitors','adminEdit','companyEdit','appearance','adminUsers'];
+  if(adminViews.includes(id)&&!isAdmin()){ toast('游客账号无后台管理权限','error'); id='products'; }
+  if(id==='adminUsers'&&!isMainAdmin()){ toast('只有主管理员可访问','error'); id='home'; }
+  $$('.view').forEach(v=>v.classList.remove('active'));
+  $$('.nav button[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===id));
+  document.getElementById(id)?.classList.add('active');
+  if(id==='appearance') renderAppearancePanel();
+  if(id==='adminEdit'){ renderCategoryTags(); renderAdminProductList(); renderPhotoSlots(); }
+  if(id==='companyEdit') fillCompanyForm();
+  if(id==='visitors') reloadVisitors();
+  if(id==='inquiries') renderInquiries();
+  window.scrollTo(0,0);
+}
+function applyPermissions(){
+  $$('[data-admin-only]').forEach(el=>el.classList.toggle('hidden',!isAdmin()));
+  $$('[data-main-only]').forEach(el=>el.classList.toggle('hidden',!isMainAdmin()));
+  const sec=document.getElementById('nav_sec_admin'); if(sec) sec.style.display=isAdmin()?'':'none';
+  const rl=document.getElementById('userRoleLabel');
+  const rd=document.getElementById('userRoleDesc');
+  if(rl)rl.textContent=isAdmin()?(state.user.role+' · '+state.user.username):state.user?.role||'游客';
+  if(rd)rd.textContent=isAdmin()?'拥有产品、询盘、游客等全部后台权限。':'游客可查看产品并提交询盘。';
+  const cpb=document.getElementById('changePwdBtn'); if(cpb) cpb.style.display=isAdmin()?'':'none';
+}
+
+// ════════════════════════════════════════════════════════
+// CATEGORIES
+// ════════════════════════════════════════════════════════
+function renderCategoryTags(){
+  const wrap=document.getElementById('catTagsWrap'); if(!wrap)return;
+  wrap.innerHTML=state.categories.length
+    ?state.categories.map(c=>`<span class="cat-tag">${c}<button onclick="deleteCat('${c.replace(/'/g,'\\\'')}')" title="删除">×</button></span>`).join('')
+    :`<span style="color:var(--muted);font-size:12px">暂无分类，请添加。</span>`;
+  updateCategorySelects();
+}
+async function addCat(){
+  const inp=document.getElementById('newCatInput'); if(!inp)return;
+  const name=inp.value.trim();
+  if(!name){ toast('请输入分类名称','error'); return; }
+  if(state.categories.includes(name)){ toast('该分类已存在','error'); return; }
+  try{
+    await dbSaveCategory(name);
+    state.categories.push(name);
+    renderCategoryTags(); inp.value=''; toast('分类已添加','success');
+  } catch(e){ toast('添加失败：'+e.message,'error'); }
+}
+async function deleteCat(name){
+  if(!confirm(`确认删除分类"${name}"？`)) return;
+  try{
+    await dbDeleteCategory(name);
+    state.categories=state.categories.filter(c=>c!==name);
+    state.products.forEach(p=>{ if(p.category===name) p.category='未分类'; });
+    renderCategoryTags(); renderProducts(); toast('分类已删除','success');
+  } catch(e){ toast('删除失败：'+e.message,'error'); }
+}
+function updateCategorySelects(){
+  ['editCategory','productCatFilter','adminCatFilter'].forEach(id=>{
+    const sel=document.getElementById(id); if(!sel)return;
+    const val=sel.value;
+    if(id==='editCategory'){
+      sel.innerHTML=`<option value="">请选择分类</option>`+state.categories.map(c=>`<option value="${c}">${c}</option>`).join('');
+    } else {
+      sel.innerHTML=`<option value="">全部分类</option>`+state.categories.map(c=>`<option value="${c}">${c}</option>`).join('');
+    }
+    if(val) sel.value=val;
+  });
+}
+
+// ════════════════════════════════════════════════════════
+// PRODUCTS
+// ════════════════════════════════════════════════════════
+function renderMetrics(){
+  const pm=document.getElementById('productMetric'); if(pm)pm.textContent=state.products.length;
+  const cm=document.getElementById('categoryMetric'); if(cm)cm.textContent=state.categories.length;
+  const cs=document.getElementById('companySummary'); if(cs)cs.textContent=state.company.summary;
+}
+function renderCountryFlags(){
+  const flags=['🇨🇳','🇷🇺','🇺🇸','🇬🇧','🇩🇪','🇫🇷','🇯🇵','🇰🇷','🇮🇳','🇧🇷','🇦🇺','🇨🇦','🇮🇹','🇪🇸','🇳🇱','🇸🇪','🇧🇪','🇵🇱','🇦🇹','🇨🇭','🇵🇹','🇬🇷','🇹🇷','🇸🇦','🇦🇪','🇮🇱','🇿🇦','🇳🇬','🇪🇬','🇲🇽','🇦🇷','🇨🇱','🇨🇴','🇹🇭','🇻🇳','🇮🇩','🇲🇾','🇵🇭','🇸🇬','🇧🇩','🇵🇰','🇺🇦','🇷🇴','🇭🇺','🇨🇿','🇸🇰','🇭🇷','🇷🇸','🇧🇬','🇫🇮','🇩🇰','🇳🇴','🇳🇿','🇮🇪','🇦🇿','🇰🇿','🇺🇿','🇬🇪','🇲🇦','🇹🇳','🇩🇿','🇰🇪','🇬🇭','🇪🇹','🇮🇶','🇮🇷','🇯🇴','🇱🇧','🇶🇦','🇰🇼','🇧🇭','🇴🇲','🇾🇪','🇦🇫','🇳🇵','🇱🇰','🇲🇲','🇰🇭','🇱🇦','🇲🇳','🇵🇪','🇺🇾','🇵🇾','🇧🇴','🇩🇴'];
+  const cf=document.getElementById('countryFlags');
+  if(cf)cf.innerHTML=flags.map(f=>`<span class="country-flag">${f}</span>`).join('');
+}
+function renderCategories(){
+  const cats=['全部',...new Set(state.products.map(p=>p.category))];
+  const cb=document.getElementById('categoryBar'); if(!cb)return;
+  cb.innerHTML=cats.map(c=>`<button class="chip ${c===state.activeCategory?'active':''}" data-cat="${c}">${c}</button>`).join('');
+  $$('#categoryBar .chip').forEach(btn=>btn.onclick=()=>{ state.activeCategory=btn.dataset.cat; renderCategories(); renderProducts(); });
+}
+function productCard(p){
+  const img=p.images&&p.images.length ? p.images[0] : p.imageUrl;
+  const tagsHtml=p.tags.map(tg=>`<span class="tag">${tg}</span>`).join('');
+  return`<article class="product-card" data-product-card="${p.id}" role="button" tabindex="0" style="cursor:pointer">
+    <div class="product-media">${img?`<img src="${img}" alt="${p.name}">`:(p.icon||'BZ')}</div>
+    <div class="product-body">
+      <h4>${p.name}</h4>
+      <p>${p.desc||''}</p>
+      <div>${tagsHtml}<span class="tag gold">${p.category}</span></div>
+      <button class="btn primary full" style="margin-top:10px;font-size:12px" data-product-detail="${p.id}">查看详情 →</button>
+    </div>
+  </article>`;
+}
+function renderProducts(){
+  const q=(document.getElementById('productSearch')?.value||'').trim().toLowerCase();
+  const catF=document.getElementById('productCatFilter')?.value||'';
+  const list=state.products.filter(p=>{
+    const inCat=state.activeCategory==='全部'||p.category===state.activeCategory;
+    const inCatFilter=!catF||p.category===catF;
+    const txt=`${p.name}${p.code}${p.category}${p.tags.join(' ')}${p.desc}`.toLowerCase();
+    return inCat&&inCatFilter&&(!q||txt.includes(q));
+  });
+  const pg=document.getElementById('productGrid');
+  if(pg)pg.innerHTML=list.length?list.map(productCard).join(''):`<p style="color:var(--muted);padding:24px;grid-column:1/-1">未找到匹配产品。</p>`;
+  $$('[data-product-card]').forEach(card=>{
+    card.onclick=()=>openProductDetail(card.dataset.productCard);
+    card.onkeydown=(e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openProductDetail(card.dataset.productCard); } };
+  });
+  $$('[data-product-detail]').forEach(btn=>btn.onclick=()=>openProductDetail(btn.dataset.productDetail));
+}
+function renderFeatured(){
+  const fp=document.getElementById('featuredProducts'); if(!fp)return;
+  fp.innerHTML=state.products.slice(0,2).map(p=>`
+    <div style="border:1px solid var(--line);border-radius:var(--r);padding:12px;background:var(--panel2);cursor:pointer" data-product-card="${p.id}" role="button" tabindex="0">
+      <strong style="font-size:13px">${p.name}</strong><br>
+      <span style="color:var(--muted);font-size:11px">${p.code} · ${p.category}</span><br>
+      <button class="btn sm" style="margin-top:8px" data-product-detail="${p.id}">查看详情</button>
+    </div>`).join('');
+  $$('#featuredProducts [data-product-card]').forEach(card=>{
+    card.onclick=()=>openProductDetail(card.dataset.productCard);
+    card.onkeydown=(e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openProductDetail(card.dataset.productCard); } };
+  });
+  $$('[data-product-detail]').forEach(btn=>btn.onclick=()=>openProductDetail(btn.dataset.productDetail));
+}
+
+function productDetailRoute(id){
+  return `#product-${encodeURIComponent(String(id||''))}`;
+}
+
+function openProductDetail(id){
+  const key=String(id||'');
+  const p=state.products.find(x=>String(x.id)===key);
+  if(!p) return;
+  history.replaceState(null,'',productDetailRoute(p.id));
+  showDetail(p.id);
+  switchView('productDetail');
+}
+
+function openProductFromHash(){
+  const match=location.hash.match(/^#product-(.+)$/);
+  if(!match) return false;
+  const id=decodeURIComponent(match[1]||'');
+  if(!state.products.some(p=>String(p.id)===id)) return false;
+  showDetail(id);
+  switchView('productDetail');
+  return true;
+}
+
+function showDetail(id){
+  const key=String(id||'');
+  const p=state.products.find(x=>String(x.id)===key); if(!p)return;
+  state.currentProductId = String(p.id);
+  history.replaceState(null,'',productDetailRoute(p.id));
+  const images=p.images&&p.images.length ? p.images : (p.imageUrl?[p.imageUrl]:[]);
+  const tagsHtml=p.tags.map(tg=>`<span class="tag">${tg}</span>`).join('');
+
+  const photoHtml = images.length
+    ? `<div class="detail-photo">
+        <img class="detail-photo-main" id="detailMainImg" src="${images[0]}" alt="${p.name}">
+        ${images.length>1?`<div class="thumb-strip">
+          ${images.map((img,i)=>`<img src="${img}" class="${i===0?'active':''}" onclick="switchDetailPhoto(this,'${img}')" alt="图片${i+1}">`).join('')}
+        </div>`:''}
+      </div>`
+    : `<div class="detail-photo"><div class="detail-photo-placeholder">${p.icon||'BZ'}</div></div>`;
+
+  document.getElementById('detailContent').innerHTML=`
+    <div class="detail-layout">
+      ${photoHtml}
+      <div>
+        <h2 style="margin:0 0 8px;font-family:'DM Serif Display',serif">${p.name}</h2>
+        <p style="color:var(--muted);font-size:13px;margin-bottom:10px">${p.desc||''}</p>
+        <div style="margin-bottom:10px">${tagsHtml}<span class="tag gold">${p.category}</span></div>
+        <div class="kv">
+          <div>产品编号</div><div>${p.code}</div>
+          <div>分类</div><div>${p.category}</div>
+          <div>成分</div><div>${p.composition||'-'}</div>
+          <div>克重</div><div>${p.weight||'-'}</div>
+          <div>门幅</div><div>${p.width||'-'}</div>
+          <div>MOQ</div><div>${p.moq||'-'}</div>
+        </div>
+        <div class="panel" style="box-shadow:none;margin-top:16px;background:var(--panel2)">
+          <div class="panel-head"><h3>提交询盘</h3><span class="tag">Inquiry</span></div>
+          <div class="form-stack">
+            <div class="row2">
+              <label class="field">姓名<input id="inqName" placeholder="您的姓名"></label>
+              <label class="field">公司<input id="inqCompany" placeholder="公司名称"></label>
+            </div>
+            <div class="row2">
+              <label class="field">国家<input id="inqCountry" placeholder="所在国家"></label>
+              <label class="field">联系方式<input id="inqContact" placeholder="电话/WhatsApp/邮箱"></label>
+            </div>
+            <div class="row2">
+              <label class="field">采购数量<input id="inqQty" placeholder="m/pcs"></label>
+              <label class="field">邮箱<input id="inqEmail" type="email" placeholder="your@email.com"></label>
+            </div>
+            <label class="field">留言<textarea id="inqMsg" placeholder="规格、颜色、用途、目标价格..."></textarea></label>
+            <button class="btn primary" id="submitInquiry">📩 提交询盘</button>
+          </div>
+        </div>
+      </div>
+    </div>`;
+
+  document.getElementById('submitInquiry').onclick=async()=>{
+    const inq={
+      id:'i'+Date.now(), time:new Date().toLocaleString('zh-CN'),
+      timeStamp:new Date().toISOString(), product:p.name,
+      productId:p.id, productCode:p.code||'',
+      name:document.getElementById('inqName').value||'Anonymous',
+      company:document.getElementById('inqCompany').value||'',
+      country:document.getElementById('inqCountry').value||'',
+      contact:document.getElementById('inqContact').value||document.getElementById('inqEmail').value||'',
+      qty:document.getElementById('inqQty').value||'',
+      msg:document.getElementById('inqMsg').value||'', status:'新询盘'
+    };
+    try{
+      const saved=await dbAddInquiry(inq);
+      state.inquiries.unshift(saved); renderInquiries();
+      if(!db) SS('inquiries',state.inquiries);
+      toast('询盘已提交，后台可查看','success');
+      ['inqName','inqCompany','inqCountry','inqContact','inqQty','inqEmail','inqMsg'].forEach(i=>{const el=document.getElementById(i);if(el)el.value='';});
+    } catch(e){
+      console.error('[询盘提交失败]', e);
+      const msg = e?.message || JSON.stringify(e) || '未知错误';
+      toast('提交失败：' + msg.substring(0,80), 'error');
+    }
+  };
+  switchView('productDetail');
+}
+
+function switchDetailPhoto(el, src){
+  const main=document.getElementById('detailMainImg');
+  if(main)main.src=src;
+  $$('.thumb-strip img').forEach(i=>i.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// ─── Smart video renderer ──
+function getYouTubeId(url){
+  if(!url) return null;
+  const m=url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+  return m?m[1]:null;
+}
+function renderVideoPlayer(url, containerId){
+  const c=document.getElementById(containerId); if(!c) return;
+  if(!url){ c.innerHTML=''; return; }
+  const ytId=getYouTubeId(url);
+  if(ytId){
+    c.innerHTML=`<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--r);border:1px solid var(--line);margin-top:4px">
+      <iframe src="https://www.youtube.com/embed/${ytId}?rel=0" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" allowfullscreen loading="lazy"></iframe>
+    </div>`;
+  } else {
+    c.innerHTML=`<video controls style="width:100%;border-radius:var(--r);border:1px solid var(--line);background:#000;display:block;margin-top:4px;max-height:300px" preload="metadata">
+      <source src="${url}">
+      <p style="color:var(--muted);padding:12px;font-size:12px">无法播放此视频，请检查链接是否可访问。</p>
+    </video>`;
+  }
+}
+
+// ─── COMPANY ──
+function renderCompany(){
+  const cp=document.getElementById('companyPhoto');
+  if(cp)cp.innerHTML=state.company.imageUrl?`<img src="${state.company.imageUrl}" alt="">`:'B';
+  renderVideoPlayer(state.company.videoUrl, 'companyVideo');
+  const ck=document.getElementById('companyKv');
+  if(ck)ck.innerHTML=[['公司名称',state.company.name],['简介',state.company.summary],['地址',state.company.address],['网站',`<a href="${state.company.website}" target="_blank">${state.company.website}</a>`]].map(([k,v])=>`<div>${k}</div><div>${v}</div>`).join('');
+  const ck2=document.getElementById('contactKv');
+  if(ck2)ck2.innerHTML=[['邮箱',state.company.email],['WhatsApp',state.company.whatsapp],['电话',state.company.phone]].map(([k,v])=>`<div>${k}</div><div>${v||'-'}</div>`).join('');
+}
+function fillCompanyForm(){
+  const m={companyEditName:'name',companyEditSummary:'summary',companyEditAddress:'address',companyEditWebsite:'website',companyEditEmail:'email',companyEditWhatsapp:'whatsapp',companyEditPhone:'phone'};
+  Object.entries(m).forEach(([id,key])=>{const el=document.getElementById(id);if(el)el.value=state.company[key]||'';});
+  // Fill video URL field
+  const vu=document.getElementById('companyVideoUrl'); if(vu) vu.value=state.company.videoUrl||'';
+  const ep=document.getElementById('companyEditPhotoPreview');
+  if(ep)ep.innerHTML=state.company.imageUrl?`<img src="${state.company.imageUrl}" alt="">`:'B';
+  renderVideoPlayer(state.company.videoUrl, 'companyEditVideoPreview');
+  const pk=document.getElementById('companyEditPreviewKv');
+  if(pk)pk.innerHTML=[['名称',state.company.name],['邮箱',state.company.email],['电话',state.company.phone],['WhatsApp',state.company.whatsapp]].map(([k,v])=>`<div>${k}</div><div>${v||'-'}</div>`).join('');
+}
+async function saveCompanyInfo(){
+  const m={companyEditName:'name',companyEditSummary:'summary',companyEditAddress:'address',companyEditWebsite:'website',companyEditEmail:'email',companyEditWhatsapp:'whatsapp',companyEditPhone:'phone'};
+  Object.entries(m).forEach(([id,key])=>{const el=document.getElementById(id);if(el&&el.value!==undefined)state.company[key]=el.value;});
+  // Read video URL from input
+  const vu=document.getElementById('companyVideoUrl');
+  if(vu) state.company.videoUrl=(vu.value||'').trim();
+  try{
+    await dbSaveCompany(state.company);
+    renderCompany(); fillCompanyForm(); toast('公司信息已保存','success');
+  } catch(e){ toast('保存失败：'+e.message,'error'); }
+}
+
+// ─── QR ──
+function renderQr(){
+  const url=(document.getElementById('shareUrl')?.value||'https://catalog.bazaartextile.com').trim();
+  const title=(document.getElementById('shareTitle')?.value||'Bazaar Textile').trim();
+  const st=document.getElementById('shareCardTitle'); if(st)st.textContent=title;
+  const qrUrl=`https://api.qrserver.com/v1/create-qr-code/?size=600x600&margin=14&ecc=M&data=${encodeURIComponent(url)}`;
+  const qi=document.getElementById('qrImage');
+  if(qi){ qi.src=qrUrl; qi.onerror=()=>{ qi.src=`https://chart.googleapis.com/chart?chs=500x500&cht=qr&chl=${encodeURIComponent(url)}&choe=UTF-8`; }; }
+}
+function downloadQr(){
+  const url=(document.getElementById('shareUrl')?.value||'').trim();
+  const qrUrl=`https://api.qrserver.com/v1/create-qr-code/?size=800x800&margin=20&ecc=M&data=${encodeURIComponent(url)}`;
+  const a=document.createElement('a'); a.href=qrUrl; a.download='bazaar-qrcode.png'; a.target='_blank'; a.click();
+  toast('正在下载二维码...','success');
+}
+
+// ─── INQUIRIES ──
+function clearInqFilters(){
+  ['inqFilterStatus','inqFilterSearch','inqFilterDate'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  renderInquiries();
+}
+function renderInquiries(){
+  const it=document.getElementById('inquiryTable'); if(!it)return;
+  const total=state.inquiries.length;
+  const today=new Date().toLocaleDateString('zh-CN');
+  const todayCnt=state.inquiries.filter(i=>new Date(i.timeStamp||i.time).toLocaleDateString('zh-CN')===today).length;
+  const newCnt=state.inquiries.filter(i=>i.status==='新询盘').length;
+  const followCnt=state.inquiries.filter(i=>i.status==='跟进中').length;
+  ['inq_total','inq_today','inq_new','inq_follow'].forEach((id,n)=>{
+    const el=document.getElementById(id); if(el)el.textContent=[total,todayCnt,newCnt,followCnt][n];
+  });
+  const statusF=document.getElementById('inqFilterStatus')?.value||'';
+  const searchF=(document.getElementById('inqFilterSearch')?.value||'').toLowerCase();
+  const dateF=document.getElementById('inqFilterDate')?.value||'';
+  const list=state.inquiries.filter(i=>{
+    if(statusF&&i.status!==statusF)return false;
+    if(searchF&&!`${i.name}${i.company}${i.product}${i.contact}`.toLowerCase().includes(searchF))return false;
+    if(dateF){const d=new Date(i.timeStamp||i.time).toISOString().slice(0,10);if(d!==dateF)return false;}
+    return true;
+  });
+  it.innerHTML=list.length?list.map(i=>`<tr>
+    <td><input type="checkbox" class="inq-check" data-id="${i.id}"></td>
+    <td style="white-space:nowrap;font-size:12px">${i.time}</td>
+    <td>${i.name||'-'}<br><span style="color:var(--muted);font-size:11px">${i.company||''}</span></td>
+    <td>${i.country||'-'}</td>
+    <td style="font-size:12px">${i.contact||'-'}</td>
+    <td style="font-size:12px">${i.product||'-'}</td>
+    <td>${i.qty||'-'}</td>
+    <td style="max-width:140px;font-size:11px;color:var(--muted)">${(i.msg||'-').substring(0,80)}</td>
+    <td><select style="min-height:26px;font-size:11px;padding:2px 4px" onchange="updateInqStatus('${i.id}',this.value)">
+      ${['新询盘','跟进中','已完成','无效'].map(s=>`<option ${i.status===s?'selected':''}>${s}</option>`).join('')}
+    </select></td>
+    <td><button class="btn sm red" onclick="deleteInquiry('${i.id}')">删除</button></td>
+  </tr>`).join(''):`<tr><td colspan="10" style="color:var(--muted);text-align:center;padding:20px">暂无询盘。</td></tr>`;
+  const sia=document.getElementById('selectAllInq');
+  if(sia) sia.onchange=e=>$$('.inq-check').forEach(c=>c.checked=e.target.checked);
+}
+async function updateInqStatus(id,status){
+  await dbUpdateInquiryStatus(id,status); renderInquiries();
+}
+async function deleteInquiry(id){
+  if(!confirm('确认删除该询盘？'))return;
+  try{ await dbDeleteInquiry(id); state.inquiries=state.inquiries.filter(i=>i.id!==id); renderInquiries(); toast('询盘已删除','success'); }
+  catch(e){ toast('删除失败','error'); }
+}
+
+// ─── VISITORS ──
+async function reloadVisitors(){
+  if(db){
+    const users=await dbGetUsers().catch(()=>[]);
+    state.registeredUsers=users;
+    state.visitors=users.map(u=>({
+      id:u.id, name:u.name, email:u.email, username:u.username,
+      company:u.company||'', country:u.country||'',
+      time:u.createdAt||u.last_login_at||'',
+      visits:u.login_count||1,
+      blocked: u.is_blocked === true
+    }));
+  }
+  renderVisitors();
+}
+function clearVisFilters(){
+  ['visFilterSearch','visFilterStatus','visFilterDate'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  renderVisitors();
+}
+function renderVisitors(){
+  const vt=document.getElementById('visitorTable'); if(!vt)return;
+  const total=state.visitors.length;
+  const blocked=state.visitors.filter(v=>v.blocked).length;
+  const n=new Date();
+  const month=state.visitors.filter(v=>{const d=new Date(v.time);return d.getMonth()===n.getMonth()&&d.getFullYear()===n.getFullYear();}).length;
+  const countries=new Set(state.visitors.filter(v=>v.country).map(v=>v.country)).size;
+  ['vm_total','vm_month','vm_blocked','vm_countries'].forEach((id,i)=>{
+    const el=document.getElementById(id); if(el)el.textContent=[total,month,blocked,countries][i];
+  });
+  // Show/hide unblockAll button
+  const uab=document.getElementById('unblockAllBtn');
+  if(uab) uab.style.display=blocked>0?'':'none';
+
+  const searchF=(document.getElementById('visFilterSearch')?.value||'').toLowerCase();
+  const statusF=document.getElementById('visFilterStatus')?.value||'';
+  const dateF=document.getElementById('visFilterDate')?.value||'';
+  const list=state.visitors.filter(v=>{
+    if(searchF&&!`${v.name||''}${v.email||''}${v.username||''}`.toLowerCase().includes(searchF))return false;
+    if(statusF==='normal'&&v.blocked)return false;
+    if(statusF==='blocked'&&!v.blocked)return false;
+    if(dateF&&v.time){const d=new Date(v.time).toISOString().slice(0,10);if(d!==dateF)return false;}
+    return true;
+  });
+  vt.innerHTML=list.length?list.map(v=>`<tr class="${v.blocked?'row-blocked':''}">
+    <td><input type="checkbox" class="vis-check" data-id="${v.id}"></td>
+    <td style="font-size:11px;white-space:nowrap">${v.time?new Date(v.time).toLocaleString('zh-CN'):'-'}</td>
+    <td><strong>${v.username||'-'}</strong></td>
+    <td>${v.name||'-'}</td>
+    <td style="font-size:12px">${v.company||'-'}</td>
+    <td style="font-size:12px">${v.email||'-'}</td>
+    <td style="text-align:center">${v.visits||1}</td>
+    <td>
+      ${v.blocked
+        ?`<span class="admin-status off" style="cursor:pointer" title="点击解除" onclick="blockVisitor('${v.id}',false)">🚫 已拉黑</span>`
+        :`<span class="admin-status" style="cursor:pointer" title="点击拉黑" onclick="blockVisitor('${v.id}',true)">✅ 正常</span>`}
+    </td>
+    <td style="display:flex;gap:4px;flex-wrap:wrap">
+      ${v.blocked
+        ?`<button class="btn sm primary" onclick="blockVisitor('${v.id}',false)">解除限制</button>`
+        :`<button class="btn sm red" onclick="blockVisitor('${v.id}',true)">拉黑</button>`}
+      <button class="btn sm" style="color:var(--red);border-color:rgba(248,81,73,.25)" onclick="deleteVisitor('${v.id}')">删除</button>
+    </td>
+  </tr>`).join(''):`<tr><td colspan="9" style="color:var(--muted);text-align:center;padding:20px">暂无访客记录。</td></tr>`;
+
+  // select all checkbox
+  const sa=document.getElementById('selectAllVis');
+  if(sa){ sa.checked=false; sa.onchange=e=>$$('.vis-check').forEach(c=>c.checked=e.target.checked); }
+}
+async function blockVisitor(id, block){
+  try{
+    if(db){
+      const {error}=await db.from('users').update({is_blocked:block}).eq('id',id);
+      if(error) throw error;
+    }
+    const v=state.visitors.find(x=>x.id===id);
+    if(v) v.blocked=block;
+    const u=state.registeredUsers.find(x=>x.id===id);
+    if(u) u.is_blocked=block;
+    renderVisitors();
+    toast(block?'已拉黑，该账号立即无法登录':'已解除限制，该账号可正常登录','success');
+  } catch(e){ console.error('[blockVisitor]',e); toast('操作失败：'+(e.message||e),'error'); }
+}
+async function deleteVisitor(id){
+  if(!confirm('确认删除该访客记录？'))return;
+  try{
+    await dbDeleteUser(id);
+    state.visitors=state.visitors.filter(x=>x.id!==id);
+    state.registeredUsers=state.registeredUsers.filter(u=>u.id!==id);
+    renderVisitors(); toast('记录已删除','success');
+  } catch(e){ toast('删除失败：'+e.message,'error'); }
+}
+
+// Batch block/unblock selected visitors
+async function blockSelected(block){
+  const ids=$$('.vis-check:checked').map(c=>c.dataset.id);
+  if(!ids.length){ toast('请先勾选要操作的账号','error'); return; }
+  const label=block?'拉黑':'解除限制';
+  if(!confirm(`确认${label}选中的 ${ids.length} 个账号？`))return;
+  let ok=0, fail=0;
+  for(const id of ids){
+    try{
+      await dbUpdateUser(id,{is_blocked:block});
+      const v=state.visitors.find(x=>x.id===id); if(v) v.blocked=block;
+      const u=state.registeredUsers.find(x=>x.id===id); if(u) u.is_blocked=block;
+      ok++;
+    } catch(e){ fail++; }
+  }
+  renderVisitors();
+  toast(`${label}完成：${ok} 成功${fail?'，'+fail+' 失败':''}`, fail?'error':'success');
+}
+
+// Unblock ALL blocked visitors (data repair tool)
+async function unblockAllVisitors(){
+  const blockedList=state.visitors.filter(v=>v.blocked);
+  if(!blockedList.length){ toast('当前没有已拉黑的账号',''); return; }
+  if(!confirm(`将解除全部 ${blockedList.length} 个已拉黑账号的限制，确认继续？`))return;
+  let ok=0, fail=0;
+  for(const v of blockedList){
+    try{
+      await dbUpdateUser(v.id,{is_blocked:false});
+      v.blocked=false;
+      const u=state.registeredUsers.find(x=>x.id===v.id); if(u) u.is_blocked=false;
+      ok++;
+    } catch(e){ fail++; }
+  }
+  renderVisitors();
+  toast(`已解除全部限制：${ok} 成功${fail?'，'+fail+' 失败':''}`, fail?'error':'success');
+}
+
+// Delete selected visitors
+async function deleteSelectedVisitors(){
+  const ids=$$('.vis-check:checked').map(c=>c.dataset.id);
+  if(!ids.length){ toast('请先勾选要删除的账号','error'); return; }
+  if(!confirm(`确认删除选中的 ${ids.length} 个账号？此操作不可撤销。`))return;
+  let ok=0, fail=0;
+  for(const id of ids){
+    try{
+      await dbDeleteUser(id);
+      state.visitors=state.visitors.filter(x=>x.id!==id);
+      state.registeredUsers=state.registeredUsers.filter(u=>u.id!==id);
+      ok++;
+    } catch(e){ fail++; }
+  }
+  renderVisitors();
+  toast(`删除完成：${ok} 成功${fail?'，'+fail+' 失败':''}`, fail?'error':'success');
+}
+
+// ════════════════════════════════════════════════════════
+// PRODUCT ADMIN - Multi-photo
+// ════════════════════════════════════════════════════════
+const MAX_PHOTOS = 5;
+
+function renderPhotoSlots(){
+  const grid=document.getElementById('photoUploadGrid'); if(!grid)return;
+  const imgs=state.editProductImages;
+  grid.innerHTML='';
+  // existing photos
+  imgs.forEach((src,i)=>{
+    const slot=document.createElement('div');
+    slot.className='photo-slot';
+    slot.innerHTML=`<img src="${src}" alt="图片${i+1}"><button class="rm-btn" onclick="removePhoto(${i})" title="删除">×</button>`;
+    grid.appendChild(slot);
+  });
+  // add slot if under limit
+  if(imgs.length < MAX_PHOTOS){
+    const addSlot=document.createElement('div');
+    addSlot.className='photo-slot';
+    addSlot.innerHTML=`<span class="add-icon">＋</span><input type="file" accept="image/jpeg,image/png,image/webp" onchange="addPhoto(this)" title="添加图片">`;
+    grid.appendChild(addSlot);
+  }
+}
+function addPhoto(input){
+  const f=input.files?.[0]; if(!f)return;
+  if(f.size>300*1024){
+    document.getElementById('imgSizeWarn').style.display='block';
+    toast('图片超过300KB，建议压缩后上传','error');
+  } else { document.getElementById('imgSizeWarn').style.display='none'; }
+  const r=new FileReader(); r.onload=()=>{
+    if(state.editProductImages.length>=MAX_PHOTOS){ toast('最多上传5张图片','error'); return; }
+    state.editProductImages.push(r.result);
+    renderPhotoSlots();
+  }; r.readAsDataURL(f);
+}
+function removePhoto(idx){
+  state.editProductImages.splice(idx,1);
+  renderPhotoSlots();
+}
+
+function fillForm(p={}){
+  document.getElementById('editId').value=p.id||'';
+  document.getElementById('editName').value=p.name||'';
+  document.getElementById('editCode').value=p.code||'';
+  document.getElementById('editCategory').value=p.category||'';
+  document.getElementById('editIcon').value=p.icon||'';
+  document.getElementById('editComposition').value=p.composition||'';
+  document.getElementById('editWeight').value=p.weight||'';
+  document.getElementById('editWidth').value=p.width||'';
+  document.getElementById('editMoq').value=p.moq||'';
+  document.getElementById('editTags').value=(p.tags||[]).join(', ');
+  document.getElementById('editDesc').value=p.desc||'';
+  // load images
+  state.editProductImages = p.images ? [...p.images] : (p.imageUrl?[p.imageUrl]:[]);
+  renderPhotoSlots();
+  const et=document.getElementById('editFormTitle'); if(et)et.textContent=p.id?'编辑产品':'新增产品';
+  const db2=document.getElementById('deleteProductBtn'); if(db2)db2.style.display=p.id?'':'none';
+  document.getElementById('imgSizeWarn').style.display='none';
+}
+function renderAdminProductList(){
+  const apt=document.getElementById('adminProductTable'); if(!apt)return;
+  const catF=document.getElementById('adminCatFilter')?.value||'';
+  const list=state.products.filter(p=>!catF||p.category===catF);
+  apt.innerHTML=list.length?list.map(p=>`<tr>
+    <td><strong style="font-size:13px">${p.name}</strong><br><span style="color:var(--muted);font-size:11px">${p.code}</span></td>
+    <td><span class="tag gold">${p.category}</span></td>
+    <td style="white-space:nowrap">
+      <button class="btn sm" data-edit="${p.id}">编辑</button>
+      <button class="btn sm red" data-del="${p.id}" style="margin-left:4px">删除</button>
+    </td>
+  </tr>`).join(''):`<tr><td colspan="3" style="color:var(--muted);text-align:center;padding:16px">暂无产品。</td></tr>`;
+  $$('[data-edit]').forEach(btn=>btn.onclick=()=>{
+    const target = state.products.find(p=>String(p.id)===String(btn.dataset.edit)) || {};
+    fillForm(target);
+    switchView('adminEdit');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+  $$('[data-del]').forEach(btn=>btn.onclick=async()=>{
+    if(!confirm('确认删除该产品？'))return;
+    try{
+      await dbDeleteProduct(btn.dataset.del);
+      renderAll(); fillForm();
+      toast('产品已删除','success');
+    } catch(e){ toast('删除失败：'+e.message,'error'); }
+  });
+}
+async function saveProduct(){
+  const id=document.getElementById('editId').value||'';
+  const name=document.getElementById('editName').value.trim();
+  if(!name){ toast('请填写产品名称','error'); return; }
+  const cat=document.getElementById('editCategory').value||'未分类';
+  if(!state.categories.includes(cat)&&cat!=='未分类'){
+    await dbSaveCategory(cat).catch(()=>{}); state.categories.push(cat);
+  }
+  const p={
+    id, name,
+    code:document.getElementById('editCode').value||'BZ-'+Date.now().toString().slice(-5),
+    category:cat, icon:document.getElementById('editIcon').value||'BZ',
+    composition:document.getElementById('editComposition').value||'',
+    weight:document.getElementById('editWeight').value||'',
+    width:document.getElementById('editWidth').value||'',
+    moq:document.getElementById('editMoq').value||'',
+    tags:document.getElementById('editTags').value.split(/[,，]/).map(x=>x.trim()).filter(Boolean),
+    desc:document.getElementById('editDesc').value||'',
+    images: [...state.editProductImages],
+    imageUrl: state.editProductImages[0]||''
+  };
+  const saveBtn=document.getElementById('saveProduct');
+  saveBtn.disabled=true; saveBtn.textContent='保存中...';
+  try{
+    const saved=await dbSaveProduct(p);
+    const idx=state.products.findIndex(x=>String(x.id)===String(saved.id)||(id&&String(x.id)===String(id)));
+    if(idx>=0) state.products[idx]=saved; else state.products.unshift(saved);
+    state.currentProductId = String(saved.id);
+    renderAll(); fillForm(); renderCategoryTags();
+    openProductDetail(saved.id);
+    toast('产品已保存并同步至云端 ✓','success');
+  } catch(e){ toast('保存失败：'+e.message,'error'); }
+  finally{ saveBtn.disabled=false; saveBtn.textContent='💾 保存产品'; }
+}
+async function deleteCurrentProduct(){
+  const id=document.getElementById('editId').value; if(!id)return;
+  if(!confirm('确认删除该产品？'))return;
+  try{
+    await dbDeleteProduct(id);
+    renderAll(); fillForm(); toast('产品已删除','success');
+  } catch(e){ toast('删除失败：'+e.message,'error'); }
+}
+
+// ─── ADMIN USERS ──
+function renderAdminUsers(){
+  const aut=document.getElementById('adminUserTable'); if(!aut)return;
+  aut.innerHTML=Object.values(state.admins).map(admin=>`<tr>
+    <td><strong>${admin.username}</strong></td>
+    <td>${admin.label}</td>
+    <td>${admin.lastLogin||'尚未登录'}</td>
+    <td><span class="admin-status ${admin.enabled?'':'off'}">${admin.enabled?'启用':'停用'}</span></td>
+    <td style="display:flex;gap:6px;flex-wrap:wrap">
+      ${admin.locked
+        ?`<span style="color:var(--muted);font-size:12px">主管理员（不可操作）</span>`
+        :`<button class="btn sm ${admin.enabled?'red':'primary'}" data-toggle-admin="${admin.id}">${admin.enabled?'停用':'启用'}</button>
+           <button class="btn sm gold" data-reset-admin="${admin.id}">重置密码</button>`}
+    </td>
+  </tr>`).join('');
+  $$('[data-toggle-admin]').forEach(btn=>btn.onclick=async()=>{
+    if(!isMainAdmin()){ toast('只有主管理员可操作','error'); return; }
+    const admin=state.admins[btn.dataset.toggleAdmin];
+    admin.enabled=!admin.enabled;
+    await dbUpdateAdmin(admin.id,{enabled:admin.enabled});
+    renderAdminUsers(); toast(`${admin.username} 已${admin.enabled?'启用':'停用'}`,'success');
+  });
+  $$('[data-reset-admin]').forEach(btn=>btn.onclick=async()=>{
+    if(!isMainAdmin()){ toast('只有主管理员可操作','error'); return; }
+    const admin=state.admins[btn.dataset.resetAdmin];
+    const newPw='RESET-'+Math.random().toString(36).slice(2,8).toUpperCase();
+    await dbUpdateAdmin(admin.id,{password:newPw,firstLogin:true});
+    renderAdminUsers();
+    alert(`${admin.username} 密码已重置为：${newPw}\n请立即告知该管理员修改密码。`);
+  });
+}
+
+// ─── CSV Export ──
+function exportCsv(){
+  const rows=[['时间','客户','公司','国家','联系','产品','数量','留言','状态'],
+    ...state.inquiries.map(i=>[i.time,i.name,i.company,i.country,i.contact,i.product,i.qty,i.msg,i.status])];
+  const csv='\uFEFF'+rows.map(r=>r.map(c=>`"${String(c||'').replaceAll('"','""')}"`).join(',')).join('\n');
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'})); a.download='bazaar-inquiries.csv'; a.click();
+}
+function exportVisitorsCsv(){
+  const rows=[['注册时间','账号','姓名','公司','邮箱','访问次数','状态'],
+    ...state.visitors.map(v=>[v.time,v.username||'',v.name||'',v.company||'',v.email||'',v.visits||1,v.blocked?'已拉黑':'正常'])];
+  const csv='\uFEFF'+rows.map(r=>r.map(c=>`"${String(c||'').replaceAll('"','""')}"`).join(',')).join('\n');
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'})); a.download='bazaar-visitors.csv'; a.click();
+}
+
+// ─── renderAll ──
+function renderAll(){
+  renderMetrics(); renderCategories(); updateCategorySelects();
+  renderProducts(); renderFeatured(); renderCompany(); renderQr();
+  renderInquiries(); renderVisitors(); renderAdminProductList();
+  renderAdminUsers(); renderCountryFlags(); updateLogoElements();
+}
+function updateAdminSelect(){
+  const sel=document.getElementById('adminAccount');
+  if(sel) sel.innerHTML=Object.values(state.admins).map(a=>`<option value="${a.id}">${a.username}（${a.label}）</option>`).join('');
+}
+
+// ════════════════════════════════════════════════════════
+// EVENT BINDING
+// ════════════════════════════════════════════════════════
+function bind(){
+  // Login tabs
+  $$('.tab[data-login]').forEach(tab=>tab.onclick=()=>switchLoginTab(tab.dataset.login));
+  document.getElementById('btn_account_login').onclick=doAccountLogin;
+  document.getElementById('btn_register').onclick=doRegister;
+  document.getElementById('adminLoginBtn').onclick=adminLogin;
+  document.getElementById('accPassword')?.addEventListener('keydown',e=>{if(e.key==='Enter')doAccountLogin();});
+  document.getElementById('accUsername')?.addEventListener('keydown',e=>{if(e.key==='Enter')doAccountLogin();});
+
+  // Nav
+  $$('.nav button[data-view]').forEach(btn=>btn.onclick=()=>switchView(btn.dataset.view));
+  $$('[data-view-shortcut]').forEach(btn=>btn.onclick=()=>switchView(btn.dataset.viewShortcut));
+  document.getElementById('logoutBtn').onclick=logout;
+  ['langPicker','langPickerSide'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el){
+      el.value = state.lang || 'zh';
+      el.onchange = e => {
+        const lang = e.target.value || 'zh';
+        applyLanguage(lang);
+      };
+    }
+  });
+  window.addEventListener('hashchange',()=>{
+    if(location.hash.startsWith('#product-')) openProductFromHash();
+  });
+
+  // Refresh
+  document.getElementById('refreshDataBtn').onclick=async()=>{
+    setLoading(true,'正在从云端同步数据...');
+    try{
+      const [products,categories,company,users,inquiries]=await Promise.all([
+        dbGetProducts(),dbGetCategories(),dbGetCompany(),dbGetUsers(),dbGetInquiries()
+      ]);
+      state.products=products; state.categories=categories.length?categories:defaultCategories.slice();
+      state.company=company; state.registeredUsers=users; state.inquiries=inquiries;
+      state.visitors=users.map(u=>({id:u.id,name:u.name,email:u.email,username:u.username,company:u.company||'',country:u.country||'',time:u.createdAt||u.last_login_at||'',visits:u.login_count||1,blocked:u.is_blocked===true}));
+      renderAll(); applyLoginBg(); applyAppBg(); toast('数据已同步 ✓','success');
+    } catch(e){ toast('同步失败：'+e.message,'error'); }
+    finally{ setLoading(false); }
+  };
+
+  // Products search
+  document.getElementById('productSearch')?.addEventListener('input',renderProducts);
+  document.getElementById('productCatFilter')?.addEventListener('change',renderProducts);
+
+  // QR
+  document.getElementById('refreshQr').onclick=()=>{renderQr();toast('二维码已更新','success');};
+  document.getElementById('copyLink').onclick=()=>navigator.clipboard.writeText(document.getElementById('shareUrl')?.value||'').then(()=>toast('链接已复制','success')).catch(()=>toast('请手动复制链接'));
+  document.getElementById('downloadQr').onclick=downloadQr;
+  document.getElementById('shareUrl')?.addEventListener('input',renderQr);
+  document.getElementById('shareTitle')?.addEventListener('input',()=>{const st=document.getElementById('shareCardTitle');if(st)st.textContent=document.getElementById('shareTitle').value;});
+
+  // Logo upload (QR page)
+  document.getElementById('logoUpload').onchange=e=>{
+    const f=e.target.files?.[0]; if(!f)return;
+    if(f.size>150*1024){ toast('Logo文件过大，请压缩到150KB以内','error'); e.target.value=''; return; }
+    const r=new FileReader(); r.onload=()=>{ state.logoDataUrl=r.result; saveSession(); renderQr(); updateLogoElements(); toast('Logo已更新','success'); }; r.readAsDataURL(f);
+  };
+
+  // Inquiries
+  document.getElementById('exportInquiry').onclick=exportCsv;
+  document.getElementById('clearSelectedInquiries').onclick=async()=>{
+    const ids=$$('.inq-check:checked').map(c=>c.dataset.id);
+    if(!ids.length){toast('请先选择要删除的询盘','error');return;}
+    if(!confirm(`删除选中的 ${ids.length} 条询盘？`))return;
+    try{
+      await dbDeleteInquiries(ids);
+      state.inquiries=state.inquiries.filter(i=>!ids.includes(String(i.id)));
+      renderInquiries(); toast(`已删除 ${ids.length} 条`,'success');
+    } catch(e){ toast('删除失败','error'); }
+  };
+  ['inqFilterStatus','inqFilterDate'].forEach(id=>document.getElementById(id)?.addEventListener('change',renderInquiries));
+  document.getElementById('inqFilterSearch')?.addEventListener('input',renderInquiries);
+
+  // Visitors
+  document.getElementById('exportVisitors').onclick=exportVisitorsCsv;
+  ['visFilterStatus','visFilterDate'].forEach(id=>document.getElementById(id)?.addEventListener('change',renderVisitors));
+  document.getElementById('visFilterSearch')?.addEventListener('input',renderVisitors);
+
+  // Categories
+  document.getElementById('addCatBtn').onclick=addCat;
+  document.getElementById('newCatInput')?.addEventListener('keydown',e=>{if(e.key==='Enter')addCat();});
+  document.getElementById('adminCatFilter')?.addEventListener('change',renderAdminProductList);
+
+  // Products admin
+  document.getElementById('saveProduct').onclick=saveProduct;
+  document.getElementById('newProduct').onclick=()=>fillForm();
+  document.getElementById('deleteProductBtn').onclick=deleteCurrentProduct;
+
+  // Company
+  document.getElementById('saveCompany').onclick=saveCompanyInfo;
+  document.getElementById('clearCompanyMedia').onclick=async()=>{
+    state.company.imageUrl=''; state.company.videoUrl='';
+    const vu=document.getElementById('companyVideoUrl'); if(vu) vu.value='';
+    await dbSaveCompany(state.company).catch(()=>{});
+    renderCompany(); fillCompanyForm(); toast('已清除图片/视频','success');
+  };
+  document.getElementById('companyImageUpload').onchange=e=>{
+    const f=e.target.files?.[0]; if(!f)return;
+    if(f.size>500*1024){ toast('图片过大，请压缩到500KB以内','error'); e.target.value=''; return; }
+    const r=new FileReader(); r.onload=async()=>{
+      state.company.imageUrl=r.result;
+      await dbSaveCompany(state.company).catch(()=>{});
+      renderCompany(); fillCompanyForm(); toast('公司图片已上传','success');
+    }; r.readAsDataURL(f);
+  };
+  document.getElementById('companyVideoUpload')?.addEventListener('change', ()=>{});// removed - now URL-based
+  // Video URL apply button
+  document.getElementById('applyVideoUrl')?.addEventListener('click', async()=>{
+    const url=(document.getElementById('companyVideoUrl')?.value||'').trim();
+    if(!url){ toast('请输入视频链接','error'); return; }
+    state.company.videoUrl=url;
+    renderVideoPlayer(url,'companyEditVideoPreview');
+    toast('视频预览已更新，请点击保存公司信息');
+  });
+  // Also live preview on Enter key in video URL field
+  document.getElementById('companyVideoUrl')?.addEventListener('keydown',e=>{
+    if(e.key==='Enter'){ e.preventDefault(); document.getElementById('applyVideoUrl')?.click(); }
+  });
+
+  // Appearance
+  document.getElementById('loginBgUpload').onchange=e=>{
+    const f=e.target.files?.[0]; if(!f)return;
+    if(f.size>500*1024){ toast('文件过大，请压缩到500KB以内','error'); e.target.value=''; return; }
+    const r=new FileReader(); r.onload=()=>{
+      state.loginBgUrl=r.result; _pendingLoginBg=r.result;
+      const bi=document.getElementById('heroBgImg'); if(bi){bi.style.display='block';bi.src=r.result;}
+      toast('背景图已上传，请点击保存');
+    }; r.readAsDataURL(f);
+  };
+  document.getElementById('saveLoginBg').onclick=async()=>{
+    if(_pendingLoginBg!==null) state.loginBgUrl=_pendingLoginBg;
+    await dbSaveAppearance();
+    applyLoginBg(); renderAppearancePanel();
+    toast('登录页背景已保存','success'); _pendingLoginBg=null;
+  };
+  document.getElementById('loginBgReset').onclick=async()=>{
+    state.loginBgUrl=''; _pendingLoginBg=null;
+    await dbSaveAppearance(); applyLoginBg(); renderAppearancePanel();
+    toast('已恢复默认背景','success');
+  };
+  document.getElementById('appBgUpload').onchange=e=>{
+    const f=e.target.files?.[0]; if(!f)return;
+    if(f.size>500*1024){ toast('文件过大，请压缩到500KB以内','error'); e.target.value=''; return; }
+    const r=new FileReader(); r.onload=()=>{
+      _pendingAppBg=`url('${r.result}')`; _pendingAppBgType='image';
+      applyAppBgPreview(`url('${r.result}')`,_pendingAppBgType);
+      toast('背景图已上传，请点击保存');
+    }; r.readAsDataURL(f);
+  };
+  document.getElementById('saveAppBg').onclick=async()=>{
+    if(_pendingAppBg!==null){state.appBg=_pendingAppBg;state.appBgType=_pendingAppBgType||'color';}
+    await dbSaveAppearance(); applyAppBg(); renderAppearancePanel();
+    toast('主界面背景已保存','success'); _pendingAppBg=null;
+  };
+  document.getElementById('appBgReset').onclick=async()=>{
+    state.appBg=''; state.appBgType='color'; _pendingAppBg=null;
+    await dbSaveAppearance(); applyAppBg(); renderAppearancePanel();
+    toast('已恢复默认','success');
+  };
+  document.getElementById('saveHeroText').onclick=async()=>{
+    state.heroText={
+      h1:document.getElementById('heroEditH1').value,
+      p:document.getElementById('heroEditP').value,
+      footer:document.getElementById('heroEditFooter').value
+    };
+    await dbSaveAppearance(); applyHeroText(); toast('文字已保存','success');
+  };
+  document.getElementById('logoMainUpload').onchange=e=>{
+    const f=e.target.files?.[0]; if(!f)return;
+    if(f.size>100*1024){ toast('Logo文件过大，请压缩到100KB以内','error'); e.target.value=''; return; }
+    const r=new FileReader(); r.onload=()=>{ state.logoDataUrl=r.result; renderLogoPreview(); }; r.readAsDataURL(f);
+  };
+  document.getElementById('saveLogo').onclick=async()=>{
+    if(!state.logoDataUrl){toast('请先上传Logo','error');return;}
+    await dbSaveAppearance(); renderLogoPreview(); toast('Logo已保存','success');
+  };
+
+  // Password modal
+  document.getElementById('changePwdBtn').onclick=()=>showPwdModal(false);
+  document.getElementById('pwdSave').onclick=savePwd;
+  document.getElementById('pwdCancel').onclick=closePwdModal;
+
+  // Modal close on overlay click
+  ['pwdModal','privacyModal'].forEach(id=>{
+    const m=document.getElementById(id);
+    if(m)m.onclick=e=>{if(e.target===m)m.classList.add('hidden');};
+  });
+
+  // Select all inquiries
+  document.getElementById('selectAllInq')?.addEventListener('change',e=>{
+    $$('.inq-check').forEach(c=>c.checked=e.target.checked);
+  });
+}
+
+// ════════════════════════════════════════════════════════
+// STARTUP
+// ════════════════════════════════════════════════════════
+bind();
+applyLoginBg();
+applyAppBg();
+applyLanguage(state.lang, false);
+
+if(SUPABASE_CONFIGURED){
+  loadFromSupabase();
+} else {
+  setLoading(false);
+  loadLocalFallback();
+  updateAdminSelect();
+  applyHeroText(); applyLoginBg(); applyAppBg();
+  applyLanguage(state.lang, false);
+  fillForm(); renderCategoryTags(); renderAppearancePanel();
+  if(state.user){ showAppScreen(); } else { showLoginScreen(); }
+}
+</script>
+</body>
+</html>
