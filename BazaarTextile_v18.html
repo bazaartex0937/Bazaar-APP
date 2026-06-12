@@ -1012,7 +1012,10 @@ async function dbGetCategories(){
 }
 async function dbSaveCategory(name){
   if(!db){ if(!state.categories.includes(name))state.categories.push(name); SS('categories',state.categories); return; }
-  const {error}=await db.from('categories').upsert({name},{onConflict:'name'});
+  // First check if it already exists (avoids ON CONFLICT constraint requirement)
+  const {data:existing} = await db.from('categories').select('name').eq('name',name).maybeSingle();
+  if(existing) return; // already exists, nothing to do
+  const {error} = await db.from('categories').insert({name});
   if(error) throw error;
 }
 async function dbDeleteCategory(name){
@@ -1240,6 +1243,51 @@ function saveSession(){ SS('user',state.user); SS('lang',state.lang); }
 // ════════════════════════════════════════════════════════
 // STARTUP
 // ════════════════════════════════════════════════════════
+
+// ── DB Schema Health Check ─────────────────────────────
+async function checkDbSchema(){
+  if(!db) return;
+  const testName = '__schema_check__';
+  const {error} = await db.from('categories').upsert({name:testName},{onConflict:'name'});
+  if(error && error.message && error.message.includes('ON CONFLICT')){
+    showDbFixNotice();
+  } else {
+    await db.from('categories').delete().eq('name',testName).catch(()=>{});
+  }
+}
+function showDbFixNotice(){
+  if(sessionStorage.getItem('db_fix_shown')) return;
+  sessionStorage.setItem('db_fix_shown','1');
+  const div = document.createElement('div');
+  div.id = 'db-fix-notice';
+  div.style.cssText = 'position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:99999;background:#1c2128;border:1px solid rgba(248,81,73,.5);border-radius:12px;padding:16px 20px;max-width:580px;width:92%;box-shadow:0 8px 32px rgba(0,0,0,.6);';
+  div.innerHTML = `
+    <div style="display:flex;align-items:flex-start;gap:12px">
+      <span style="font-size:22px;flex-shrink:0">⚠️</span>
+      <div style="flex:1;min-width:0">
+        <strong style="color:#f85149;font-size:14px;display:block;margin-bottom:4px">数据库需要执行一次迁移</strong>
+        <p style="color:#7d8590;font-size:12px;margin-bottom:10px;line-height:1.6">
+          <code style="color:#e6edf3">categories</code> 表缺少唯一约束，导致"添加分类"失败。<br>
+          请前往 <strong style="color:#e6edf3">Supabase → SQL Editor</strong> 执行以下语句（<strong style="color:#00d4a0">只需执行一次</strong>）：
+        </p>
+        <div style="background:#0d1117;border:1px solid #30363d;border-radius:8px;padding:10px 12px;position:relative;margin-bottom:10px">
+          <code style="font-family:monospace;font-size:12px;color:#00d4a0;white-space:pre-wrap;display:block;padding-right:60px">ALTER TABLE categories ADD CONSTRAINT categories_name_unique UNIQUE (name);</code>
+          <button onclick="navigator.clipboard.writeText('ALTER TABLE categories ADD CONSTRAINT categories_name_unique UNIQUE (name);').then(()=>{this.textContent='✓ 已复制';setTimeout(()=>this.textContent='复制',2000)}).catch(()=>{})"
+            style="position:absolute;top:6px;right:8px;background:rgba(0,212,160,.1);border:1px solid rgba(0,212,160,.2);border-radius:5px;color:#00d4a0;font-size:11px;padding:3px 10px;cursor:pointer">
+            复制
+          </button>
+        </div>
+        <p style="color:#7d8590;font-size:11px;line-height:1.6">
+          执行后刷新页面即可正常使用。&nbsp;
+          <a href="https://supabase.com/dashboard" target="_blank" style="color:#2f81f7">打开 Supabase Dashboard →</a>
+        </p>
+      </div>
+      <button onclick="document.getElementById('db-fix-notice').remove()"
+        style="background:none;border:none;color:#7d8590;font-size:20px;cursor:pointer;flex-shrink:0;line-height:1;padding:0">✕</button>
+    </div>`;
+  document.body.appendChild(div);
+}
+
 async function loadFromSupabase(){
   setLoading(true,'正在连接云端数据...');
   try{
@@ -1318,10 +1366,11 @@ function showAppScreen(){
   document.getElementById('appShell').classList.remove('hidden');
   renderAll(); applyPermissions(); applyAppBg();
   openProductFromHash();
-  // Apply language after content is rendered
   if(state.lang && state.lang !== 'zh') {
     setTimeout(()=>applyLanguage(state.lang, false), 300);
   }
+  // Run DB schema check for admins only
+  if(isAdmin()) setTimeout(checkDbSchema, 2000);
 }
 function applyHeroText(){
   const h=document.getElementById('heroH1'),p=document.getElementById('heroP'),f=document.getElementById('heroFooter');
