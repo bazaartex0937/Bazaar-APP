@@ -176,7 +176,7 @@ main{padding:24px;min-width:0;overflow-y:auto;}
 .product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;}
 .product-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:.2s;}
 .product-card:hover{border-color:rgba(0,212,160,.3);box-shadow:0 8px 32px rgba(0,212,160,.06);}
-.product-media{height:180px;background:linear-gradient(135deg,rgba(0,212,160,.08),rgba(0,212,160,.02));display:grid;place-items:center;color:var(--teal);font-size:36px;font-weight:900;font-family:'DM Serif Display',serif;border-bottom:1px solid var(--line);overflow:hidden;position:relative;}
+.product-media{aspect-ratio:1/1;width:100%;background:linear-gradient(135deg,rgba(0,212,160,.08),rgba(0,212,160,.02));display:grid;place-items:center;color:var(--teal);font-size:36px;font-weight:900;font-family:'DM Serif Display',serif;border-bottom:1px solid var(--line);overflow:hidden;position:relative;}
 .product-media img{width:100%;height:100%;object-fit:cover;display:block;}
 .product-body{padding:14px;}
 .product-body h4{margin:0 0 6px;font-size:14px;font-weight:600;}
@@ -186,13 +186,14 @@ main{padding:24px;min-width:0;overflow-y:auto;}
 .tag.gold{background:rgba(230,168,23,.1);border-color:rgba(230,168,23,.2);color:var(--gold);}
 .admin-status{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;font-weight:600;font-size:11px;background:rgba(0,212,160,.1);border:1px solid rgba(0,212,160,.2);color:var(--teal);user-select:none;}
 .admin-status.off{background:rgba(248,81,73,.1);border-color:rgba(248,81,73,.2);color:var(--red);}
-.detail-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:16px;}
-.detail-photo{min-height:300px;border-radius:var(--r);background:linear-gradient(135deg,rgba(0,212,160,.08),rgba(0,212,160,.02));border:1px solid var(--line);overflow:hidden;}
-.detail-photo-main{width:100%;height:300px;object-fit:cover;display:block;}
-.detail-photo-placeholder{width:100%;height:300px;display:grid;place-items:center;color:var(--teal);font-size:64px;font-weight:900;font-family:'DM Serif Display',serif;}
-.thumb-strip{display:flex;gap:6px;padding:8px;overflow-x:auto;background:rgba(0,0,0,.2);}
-.thumb-strip img{width:56px;height:56px;object-fit:cover;border-radius:6px;cursor:pointer;border:2px solid transparent;transition:.15s;flex-shrink:0;}
-.thumb-strip img.active,.thumb-strip img:hover{border-color:var(--teal);}
+.detail-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:16px;align-items:start;}
+.detail-photo-wrap{display:flex;flex-direction:column;gap:8px;}
+.detail-photo{border-radius:var(--r);background:linear-gradient(135deg,rgba(0,212,160,.08),rgba(0,212,160,.02));border:1px solid var(--line);overflow:hidden;aspect-ratio:1/1;width:100%;}
+.detail-photo-main{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .2s;}
+.detail-photo-placeholder{width:100%;height:100%;display:grid;place-items:center;color:var(--teal);font-size:64px;font-weight:900;font-family:'DM Serif Display',serif;}
+.thumb-strip{display:flex;gap:8px;padding:4px 0;overflow-x:auto;}
+.thumb-strip .thumb-img{width:72px;height:72px;object-fit:cover;border-radius:8px;cursor:pointer;border:2px solid var(--line);transition:.15s;flex-shrink:0;display:block;}
+.thumb-strip .thumb-img.active,.thumb-strip .thumb-img:hover{border-color:var(--teal);box-shadow:0 0 0 2px rgba(0,212,160,.25);}
 .company-photo{min-height:220px;border-radius:var(--r);background:linear-gradient(135deg,rgba(0,212,160,.08),rgba(0,212,160,.02));border:1px solid var(--line);display:grid;place-items:center;color:var(--teal);font-size:42px;overflow:hidden;}
 .company-photo img{width:100%;height:100%;object-fit:cover;display:block;}
 .company-video{width:100%;min-height:200px;border:1px solid var(--line);border-radius:var(--r);background:#000;display:block;margin-top:12px;}
@@ -910,15 +911,33 @@ function parseImages(raw){
 }
 
 // ─── mappers ──
-const mapProduct = r => ({
-  id:r.id, name:r.name||'', code:r.code||'', category:r.category||'未分类',
-  icon:r.icon||'BZ', composition:r.composition||'', weight:r.weight||'',
-  width:r.width||'', moq:r.moq||'',
-  tags:Array.isArray(r.tags)?r.tags:(r.tags?String(r.tags).split(',').filter(Boolean):[]),
-  desc:r.description||'',
-  images: parseImages(r.image_url),
-  imageUrl: parseImages(r.image_url)[0]||''
-});
+const mapProduct = r => {
+  // Normalize tags: handle array, JSON string, comma-separated, or Postgres array literal
+  let tags = [];
+  const raw = r.tags;
+  if(Array.isArray(raw)){
+    tags = raw.map(t=>String(t).replace(/^["']+|["']+$/g,'')).filter(Boolean);
+  } else if(raw && typeof raw === 'string'){
+    // Try JSON parse first
+    try {
+      const parsed = JSON.parse(raw);
+      if(Array.isArray(parsed)) tags = parsed.map(t=>String(t).replace(/^["'\\]+|["'\\]+$/g,'')).filter(Boolean);
+      else tags = [String(parsed)];
+    } catch(e) {
+      // Comma-separated fallback
+      tags = raw.replace(/^\[|\]$/g,'').split(',').map(t=>t.trim().replace(/^["'\\]+|["'\\]+$/g,'')).filter(Boolean);
+    }
+  }
+  return {
+    id:r.id, name:r.name||'', code:r.code||'', category:r.category||'未分类',
+    icon:r.icon||'BZ', composition:r.composition||'', weight:r.weight||'',
+    width:r.width||'', moq:r.moq||'',
+    tags,
+    desc:r.description||'',
+    images: parseImages(r.image_url),
+    imageUrl: parseImages(r.image_url)[0]||''
+  };
+};
 const mapUser = r => ({
   id:r.id, username:r.username||'', email:r.email||'',
   password:r.password_hash||'', name:r.name||'', company:r.company||'',
@@ -1993,14 +2012,19 @@ function showDetail(id){
   const images=p.images&&p.images.length ? p.images : (p.imageUrl?[p.imageUrl]:[]);
   const tagsHtml=p.tags.map(tg=>`<span class="tag">${tg}</span>`).join('');
 
+  // Store images on a temp global so thumb clicks can reference them safely
+  window._detailImages = images;
+
   const photoHtml = images.length
-    ? `<div class="detail-photo">
-        <img class="detail-photo-main" id="detailMainImg" src="${images[0]}" alt="${p.name}">
+    ? `<div class="detail-photo-wrap">
+        <div class="detail-photo">
+          <img class="detail-photo-main" id="detailMainImg" src="${images[0]}" alt="${p.name}">
+        </div>
         ${images.length>1?`<div class="thumb-strip">
-          ${images.map((img,i)=>`<img src="${img}" class="${i===0?'active':''}" onclick="switchDetailPhoto(this,'${img}')" alt="图片${i+1}">`).join('')}
+          ${images.map((img,i)=>`<img src="${img}" class="thumb-img${i===0?' active':''}" data-idx="${i}" alt="图片${i+1}">`).join('')}
         </div>`:''}
       </div>`
-    : `<div class="detail-photo"><div class="detail-photo-placeholder">${p.icon||'BZ'}</div></div>`;
+    : `<div class="detail-photo-wrap"><div class="detail-photo"><div class="detail-photo-placeholder">${p.icon||'BZ'}</div></div></div>`;
 
   document.getElementById('detailContent').innerHTML=`
     <div class="detail-layout">
@@ -2039,6 +2063,19 @@ function showDetail(id){
       </div>
     </div>`;
 
+  // Wire up thumbnail clicks AFTER innerHTML (safe for base64 src)
+  $$('.thumb-img').forEach(thumb => {
+    thumb.addEventListener('click', () => {
+      const idx = parseInt(thumb.dataset.idx, 10);
+      const src = window._detailImages[idx];
+      if(!src) return;
+      const main = document.getElementById('detailMainImg');
+      if(main) { main.src = src; }
+      $$('.thumb-img').forEach(t => t.classList.remove('active'));
+      thumb.classList.add('active');
+    });
+  });
+
   document.getElementById('submitInquiry').onclick=async()=>{
     const inq={
       id:'i'+Date.now(), time:new Date().toLocaleString('zh-CN'),
@@ -2066,12 +2103,8 @@ function showDetail(id){
   switchView('productDetail');
 }
 
-function switchDetailPhoto(el, src){
-  const main=document.getElementById('detailMainImg');
-  if(main)main.src=src;
-  $$('.thumb-strip img').forEach(i=>i.classList.remove('active'));
-  el.classList.add('active');
-}
+// switchDetailPhoto kept as stub for safety
+function switchDetailPhoto(){}
 
 // ─── Smart video renderer ──
 function getYouTubeId(url){
